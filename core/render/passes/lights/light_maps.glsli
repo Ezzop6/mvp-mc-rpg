@@ -1,0 +1,75 @@
+// Cube shadow maps of block lights as v1 (docs/v2.md §5.22): slot pool and light -> slot table at set 0 binding 5; after the PARAMS block. LM_TINT_PLANE: maps with the see-through plane (Transparency or Water).
+#if !defined(LM_TINT_PLANE) && (defined(SEE_THROUGH) || defined(SEE_WATER))
+#define LM_TINT_PLANE
+#endif
+struct LightMapEntry {
+	ivec4 light;  // world block of the light
+	uint state;   // slot | LM_READY, LM_WANT = build asked (no slot yet) or dirty (has one)
+	uint last;    // frame of the last use
+	uint pad0, pad1;
+};
+layout(set = 0, binding = 5, std430) restrict buffer LightMapMeta {
+	uint lm_build_count, lm_pad0, lm_pad1, lm_pad2;
+	uvec4 lm_builds[LIGHT_MAP_BUILDS];  // this frame: x = entry, y = slot
+	uint lm_owner[LIGHT_MAP_SLOTS];     // entry + 1 holding the slot, 0 = free
+	uvec4 lm_keys[LIGHT_MAP_KEYS / 4u]; // checksums of light blocks in buckets of 4 by hash, 0 = free
+	LightMapEntry lm[LIGHT_MAP_KEYS];
+};
+
+const uint LM_WANT = 0x10000u, LM_READY = 0x20000u, LM_SLOT_MASK = 0xFFFFu;
+const uint LM_TOUCH_FRAMES = 4u, LM_EVICT_FRAMES = 8u, LM_STALE_FRAMES = 8u, LM_AGE_MAX = 0x1FFFFFu;
+const uint LIGHT_MAP_TEXELS = uint(6 * LIGHT_MAP_MAX * LIGHT_MAP_MAX);
+const float LM_FAR = 60000.0;
+
+// Texel word: half floats of the opaque hit's distance and of the see-through entry (LM_FAR without Transparency).
+uint lm_pack(float opaque_t) { return packHalf2x16(vec2(opaque_t, LM_FAR)); }
+
+#ifdef LM_TINT_PLANE
+const uint LM_TINT = LIGHT_MAP_SLOTS * LIGHT_MAP_TEXELS; // the second plane: half float of the see-through exit, RGB565 transmittance past it (v1)
+uvec2 lm_pack(float opaque_t, vec2 span, vec3 trans) {
+	uvec3 q = uvec3(round(clamp(trans, 0.0, 1.0) * vec3(31.0, 63.0, 31.0)));
+	return uvec2(packHalf2x16(vec2(opaque_t, span.x)), packHalf2x16(vec2(span.y, 0.0)) | (q.r | q.g << 5 | q.b << 11) << 16);
+}
+
+// Transmittance at distance z along a texel: 1 before its see-through span, exponential inside, the stored one past it (v1).
+vec3 lm_trans(uint depth, uint tint, float z) {
+	float s = unpackHalf2x16(depth).y, f = clamp((z - s) / max(unpackHalf2x16(tint).x - s, 1e-3), 0.0, 1.0);
+	uint c = tint >> 16;
+	vec3 t = vec3(c & 31u, c >> 5 & 63u, c >> 11) / vec3(31.0, 63.0, 31.0);
+	return f < 1.0 ? pow(max(t, vec3(0.02)), vec3(f)) : t;
+}
+#endif
+
+int lm_size() { return clamp(int(P.light_map_size + 0.5), 8, LIGHT_MAP_MAX); }
+
+uvec2 lm_hash(ivec3 b) {
+	uvec3 v = uvec3(b) * uvec3(0x8DA6B343u, 0xD8163841u, 0xCB1AB31Fu);
+	uint h = v.x ^ v.y ^ v.z;
+	h = (h ^ (h >> 15)) * 0x2C1B3C6Du;
+	h = (h ^ (h >> 12)) * 0x297A2D39u;
+	return uvec2(h, (h ^ (h >> 16)) | 1u);
+}
+uint lm_bucket(uvec2 h) { return h.x & (LIGHT_MAP_KEYS / 4u - 1u); }
+uint first_true(bvec4 m) { return m.x ? 0u : m.y ? 1u : m.z ? 2u : 3u; }
+
+int lm_find(uvec2 h) {
+	bvec4 m = equal(lm_keys[lm_bucket(h)], uvec4(h.y));
+	return any(m) ? int(lm_bucket(h) * 4u + first_true(m)) : -1;
+}
+
+int lm_axis(vec3 q) { vec3 a = abs(q); return a.x >= a.y && a.x >= a.z ? 0 : a.y >= a.z ? 1 : 2; }
+vec3 lm_rot(vec3 q, int ax) { return ax == 0 ? q.yzx : ax == 1 ? q.zxy : q; } // q as (u, v, axis) of the face on `ax` (face_axes order)
+
+// Direction of texel st (0..n) of a face, not normalized.
+vec3 lm_dir(int face, vec2 st, int n) {
+	vec3 r = vec3(st / float(n) * 2.0 - 1.0, (face & 1) != 0 ? 1.0 : -1.0);
+	return face < 2 ? r.zxy : face < 4 ? r.yzx : r;
+}
+
+// Face of direction q and its texel coordinates (texel centres at integers).
+int lm_face(vec3 q, int n, out vec2 st) {
+	int ax = lm_axis(q);
+	vec3 r = lm_rot(q, ax);
+	st = (r.xy / abs(r.z) * 0.5 + 0.5) * float(n) - 0.5;
+	return face_code(ax, r.z > 0.0);
+}

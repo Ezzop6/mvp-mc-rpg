@@ -1,0 +1,25 @@
+{
+  "Note": "flat world with edits: lamps, torches and lava at night, outside",
+  "Created": "2026-10-06T00:00:00",
+  "Commit": "converted from tests/scenes",
+  "Status": "Resolved",
+  "Redirect": "lights-resaved",
+  "Camera": {
+    "Anchor": {
+      "X": -1,
+      "Y": 0,
+      "Z": -1
+    },
+    "Local": {
+      "X": 7.5,
+      "Y": 6.0,
+      "Z": 7.5
+    },
+    "Yaw": -2.356194490192345,
+    "Pitch": -0.38856429198099446
+  },
+  "TimeOfDay": 23,
+  "Width": 1920,
+  "Height": 1080,
+  "Render": null
+}

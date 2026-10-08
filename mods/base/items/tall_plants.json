@@ -1,0 +1,14 @@
+{
+  "category": "tall_plants",
+  "source": "import",
+  "entries": [
+    { "id": "base:azalea", "block": "base:azalea" },
+    { "id": "base:bamboo", "block": "base:bamboo" },
+    { "id": "base:big_dripleaf", "block": "base:big_dripleaf" },
+    { "id": "base:cactus", "block": "base:cactus" },
+    { "id": "base:chorus_flower", "block": "base:chorus_flower" },
+    { "id": "base:chorus_plant", "block": "base:chorus_plant" },
+    { "id": "base:small_dripleaf", "block": "base:small_dripleaf" },
+    { "id": "base:sugar_cane", "block": "base:sugar_cane" }
+  ]
+}

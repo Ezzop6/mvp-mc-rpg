@@ -1,0 +1,437 @@
+// Random test world (RandomGenerator.cs, RP = its ShaderParams): fbm heightfield with optional 3D shape, trees and props, catalog structures, models, scattered blocks and items.
+layout(set = WORLD_SET, binding = WB_GEN_PARAMS, std430) restrict readonly buffer RandomParams {
+	float height, scale, roughness, water;
+	float trees, models, structures, items;
+	float blocks, ridged, warp, terraces;
+	float overhang, overhang_scale, caves, cave_depth;
+	float islands, island_alt, island_size, pad0;
+} RP;
+// [0] = scattered block count, [1] = item count, then their variant ids, then the template palettes.
+layout(set = WORLD_SET, binding = GB_IDS, std430) restrict readonly buffer RandomIds { uint rg_ids[]; };
+// [0] = (small count, large count, max large half-extent, 0); per template [1 + 2i] = (data byte offset, sx, sy, sz), [2 + 2i] = (cumulative weight within tier, palette offset in rg_ids, 0, 0).
+layout(set = WORLD_SET, binding = GB_TEMPL_DIR, std430) restrict readonly buffer TemplDir { ivec4 tdir[]; };
+layout(set = WORLD_SET, binding = GB_TEMPL_DATA, std430) restrict readonly buffer TemplData { uint tdata[]; }; // palette indices, 4 per uint
+const int MAX_FEATURE_LIGHTS = 1;
+
+const float STONE_MARGIN = 2.5, DIRT_DEPTH = 1.5, BEACH = 1.0;
+const uint GROUP_FEATURES = 16u;
+const int K_NONE = 0, K_OAK = 1, K_BIRCH = 2, K_DARK_OAK = 3, K_SPRUCE = 4, K_BUSH = 5, K_BOULDER = 6, K_LAMP = 7, K_CACTUS = 8, K_TEMPLATE = 9, K_OBJECT = 10;
+
+float height_m(vec2 p) {
+	p /= RP.scale;
+	vec2 w = vec2(0.0);
+	[[dont_unroll]] for (int j = 0; j < 2 && RP.warp > 0.0; j++) w[j] = noise3(p.x, j == 0 ? RG_WARP_Y : RG_WARP_Y2, p.y);
+	p += RP.warp * w;
+	float sum = 0.0, amp = 1.0, norm = 0.0;
+	for (int i = 0; i < RG_OCTAVES; i++) {
+		float n = noise3(p.x, RG_NOISE_Y + float(i) * RG_OCTAVE_Y, p.y);
+		if (RP.ridged > 0.5) n = 2.0 * (1.0 - abs(n)) * (1.0 - abs(n)) - 1.0;
+		sum += n * amp;
+		norm += amp; amp *= RP.roughness; p *= 2.0;
+	}
+	float h = RP.height * sum / norm, t = RP.terraces > 0.0 ? h / RP.terraces : 0.0;
+	return RP.terraces > 0.0 ? RP.terraces * (floor(t) + smoothstep(RG_TERRACE_EDGE, 1.0, fract(t))) : h;
+}
+
+bool shaped() { return RP.overhang > 0.0 || RP.caves > 0.0 || RP.islands > 0.0; }
+float island_half() { return RG_ISLAND_DEPTH * RP.island_size; }
+
+// Floating islands: a band around island_alt, flat tops (RG_ISLAND_TOP of the depth above it), noise decides the cover.
+bool island(vec3 p) {
+	float d = p.y - RP.island_alt, t = island_half(), top = RG_ISLAND_TOP * t;
+	if (RP.islands <= 0.0 || d < -t || d > top) return false;
+	vec3 q = p / RP.island_size;
+	float n = 0.0, f = d < 0.0 ? -d / t : d / top;
+	[[dont_unroll]] for (int j = 0; j < 2; j++) n += noise3(q.x * float(1 + j) + 7.1 * float(j), q.y * float(1 + j), q.z * float(1 + j)) / float(1 + j);
+	return 0.5 + n / 3.0 - (1.0 - 0.5 * RP.islands) > 0.25 * f * f - 0.05;
+}
+
+// Heightfield moved up and down by 3D noise (overhangs, arches) or a floating island; caves are cut separately.
+bool ground(vec3 p, float H) {
+	vec3 q = p / RP.overhang_scale;
+	return p.y < H + (RP.overhang > 0.0 ? RP.overhang * noise3(q.x, q.y, q.z) : 0.0) || island(p);
+}
+
+// Tunnels where two noise fields are both near zero, from cave_depth below the surface up through it.
+bool cave(vec3 p, float H) {
+	if (RP.caves <= 0.0 || p.y < H - RP.cave_depth) return false;
+	vec3 q = p / RG_CAVE_SCALE;
+	bool open = true;
+	[[dont_unroll]] for (int j = 0; j < 2 && open; j++) open = abs(noise3(q.x + 31.7 * float(j), q.y * (1.0 + 0.3 * float(j)), q.z + 13.1 * float(j))) < 0.12 * RP.caves;
+	return open;
+}
+
+float rock_line() { return 0.45 * RP.height + 4.0; }
+float snow_line() { return 0.65 * RP.height + 6.0; }
+
+uint top_block(float y) { return y > snow_line() ? B_SNOW_BLOCK : y > rock_line() ? B_STONE : y < RP.water + BEACH ? B_SAND : B_GRASS_BLOCK; }
+
+// Shaped terrain: k = ground reaches the block (1), a block above (2), DIRT_DEPTH above (3); top block, dirt, stone.
+uint terrain_3d(ivec3 b, float H) {
+	vec3 p = center_m(b);
+	int k = 0;
+	[[dont_unroll]] for (; k < 3 && ground(p + vec3(0.0, k == 0 ? 0.0 : k == 1 ? BS : DIRT_DEPTH, 0.0), H); k++) {}
+	if (k == 0) return p.y < RP.water ? B_WATER : 0u;
+	if (cave(p, H)) return 0u;
+	uint top = top_block(p.y);
+	return k == 1 ? top : k == 3 ? B_STONE : top == B_GRASS_BLOCK || top == B_SNOW_BLOCK ? B_DIRT : top;
+}
+
+uint terrain(ivec3 b, float H) {
+	if (shaped()) return terrain_3d(b, H);
+	float y = center_m(b.y);
+	if (y >= H) return y < RP.water ? B_WATER : 0u;
+	uint top = top_block(y);
+	if (y + BS >= H) return top;
+	return y + DIRT_DEPTH < H ? B_STONE : top == B_GRASS_BLOCK || top == B_SNOW_BLOCK ? B_DIRT : top;
+}
+
+// Topmost solid block at lattice column g; false when under water.
+bool find_surface(ivec2 g, out int sy, out uint mat) {
+	float H = height_m(vec2(center_m(g.x * GROUP), center_m(g.y * GROUP)));
+	sy = int(ceil(H / BS - 0.5)) - 1;
+	mat = top_block(center_m(sy));
+	return center_m(sy) >= RP.water;
+}
+
+// A random block or item on the block right above the surface, on land.
+uint scatter(ivec3 b, float H) {
+	float y = center_m(b.y);
+	if (y < H || y - BS >= H || y < RP.water) return 0u;
+	uint nb = rg_ids[0], ni = rg_ids[1], k = hash3(ivec3(b.x, 1, b.z), 22u);
+	float r = hash01(ivec3(b.x, 0, b.z), 21u);
+	if (r >= RP.blocks + RP.items || (shaped() && !ground(center_m(b - ivec3(0, 1, 0)), H))) return 0u;
+	if (r < RP.blocks) return nb == 0u ? 0u : rg_ids[2u + k % nb];
+	return ni == 0u ? 0u : rg_ids[2u + nb + k % ni];
+}
+
+int kind_of(ivec4 f) { return f.w & 0xFF; }
+uint rnd_of(ivec4 f) { return uint(f.w) >> 16; }
+int R(uint rnd, int shift, int m) { return int((rnd >> uint(shift)) % uint(m)); }
+
+ivec4 templ_entry(int idx) { return tdir[1 + 2 * idx]; }
+ivec4 templ_meta(int idx) { return tdir[2 + 2 * idx]; }
+int templ_index(ivec4 f) { return (f.w >> 8) & 0xFFFF; }
+int templ_rot(ivec4 f) { return (f.w >> 24) & 3; }
+ivec2 templ_rot_size(ivec4 f) { ivec4 e = templ_entry(templ_index(f)); return (templ_rot(f) & 1) == 0 ? e.yw : e.wy; }
+
+void gen_feature_box(ivec4 f, out ivec3 lo, out ivec3 hi) {
+	ivec3 a = f.xyz;
+	uint r = rnd_of(f);
+	switch (kind_of(f)) {
+		case K_OAK: case K_DARK_OAK: {
+			int h = 18 + R(r, 0, 10), rx = 7 + R(r, 4, 4), ry = 5 + R(r, 6, 3);
+			lo = a + ivec3(-rx, -2, -rx); hi = a + ivec3(rx + 2, h + ry + 1, rx + 2); return;
+		}
+		case K_BIRCH: {
+			int h = 20 + R(r, 0, 10), rx = 4 + R(r, 4, 2);
+			lo = a + ivec3(-rx, -2, -rx); hi = a + ivec3(rx + 1, h + 6, rx + 1); return;
+		}
+		case K_SPRUCE: {
+			int h = 26 + R(r, 0, 14), rb = 6 + R(r, 4, 3);
+			lo = a + ivec3(-rb - 1, -2, -rb - 1); hi = a + ivec3(rb + 2, h + 4, rb + 2); return;
+		}
+		case K_BUSH: { int s = 3 + R(r, 0, 2); lo = a + ivec3(-s, 0, -s); hi = a + ivec3(s + 1, s + 1, s + 1); return; }
+		case K_BOULDER: { int s = (2 + R(r, 0, 4)) * 7 / 4 + 1; lo = a - s; hi = a + s + 1; return; } // noise can grow it 1.75x
+		case K_LAMP: lo = a + ivec3(-1, 0, -1); hi = a + ivec3(2, 11, 2); return;
+		case K_CACTUS: { int h = 4 + R(r, 0, 6); lo = a + ivec3(-1, 0, -1); hi = a + ivec3(3, h + 2, 2); return; }
+		case K_OBJECT: { ivec3 d = obj_dims(f); lo = obj_origin(f, d); hi = lo + d; return; }
+		default: {
+			ivec2 s = templ_rot_size(f);
+			lo = a + ivec3(-s.x / 2, -1, -s.y / 2); hi = lo + ivec3(s.x, templ_entry(templ_index(f)).z, s.y); return;
+		}
+	}
+}
+
+float ellipsoid(vec3 p, vec3 c, vec3 r) { vec3 q = (p - c) / r; return dot(q, q); }
+
+uint templ_block(ivec4 f, ivec3 p) {
+	int idx = templ_index(f), rot = templ_rot(f);
+	ivec4 e = templ_entry(idx);
+	ivec2 rs = templ_rot_size(f);
+	int u = p.x + rs.x / 2, v = p.z + rs.y / 2, y = p.y + 1; // template bottom layer replaces the surface block
+	if (u < 0 || v < 0 || u >= rs.x || v >= rs.y || y < 0 || y >= e.z) return 0u;
+	int x, z;
+	if (rot == 0) { x = u; z = v; }
+	else if (rot == 1) { x = v; z = rs.x - 1 - u; }
+	else if (rot == 2) { x = e.y - 1 - u; z = e.w - 1 - v; }
+	else { x = rs.y - 1 - v; z = u; }
+	uint i = uint(e.x) + uint(x + e.y * (y + e.z * z)), k = (tdata[i >> 2] >> ((i & 3u) * 8u)) & 0xFFu;
+	return k == 0u ? 0u : rg_ids[uint(templ_meta(idx).y) + k - 1u];
+}
+
+// Block a feature puts at world block b, 0 = nothing.
+uint feature_block(ivec4 f, ivec3 b) {
+	ivec3 p = b - f.xyz;
+	vec3 pf = vec3(p);
+	uint r = rnd_of(f);
+	int k = kind_of(f);
+	switch (k) {
+		case K_OAK: case K_DARK_OAK: {
+			int h = 18 + R(r, 0, 10), rx = 7 + R(r, 4, 4), ry = 5 + R(r, 6, 3);
+			if (p.x >= 0 && p.x <= 1 && p.z >= 0 && p.z <= 1 && p.y >= -2 && p.y < h) return k == K_OAK ? B_OAK_LOG : B_DARK_OAK_LOG;
+			if (ellipsoid(pf, vec3(0.5, float(h), 0.5), vec3(rx, ry, rx)) <= 1.0 && hash01(b, 7u) > 0.15) return k == K_OAK ? B_OAK_LEAVES : B_DARK_OAK_LEAVES;
+			return 0u;
+		}
+		case K_BIRCH: {
+			int h = 20 + R(r, 0, 10), rx = 4 + R(r, 4, 2);
+			if (p.x == 0 && p.z == 0 && p.y >= -2 && p.y < h) return B_BIRCH_LOG;
+			return ellipsoid(pf, vec3(0.0, float(h - 2), 0.0), vec3(rx, 7, rx)) <= 1.0 && hash01(b, 8u) > 0.12 ? B_BIRCH_LEAVES : 0u;
+		}
+		case K_SPRUCE: {
+			int h = 26 + R(r, 0, 14), rb = 6 + R(r, 4, 3);
+			if (p.x == 0 && p.z == 0 && p.y >= -2 && p.y < h) return B_SPRUCE_LOG;
+			if (p.y < 5 || p.y > h + 2) return 0u;
+			float rad = float(rb) * float(h + 3 - p.y) / float(h - 2) * ((p.y % 3) == 0 ? 0.65 : 1.0);
+			return length(pf.xz) <= rad && hash01(b, 9u) > 0.1 ? B_SPRUCE_LEAVES : 0u;
+		}
+		case K_BUSH: {
+			float s = float(2 + R(r, 0, 2));
+			return ellipsoid(pf, vec3(0.0, 1.0, 0.0), vec3(s, s * 0.7, s)) <= 1.0 && hash01(b, 10u) > 0.1 ? (R(r, 3, 2) == 0 ? B_OAK_LEAVES : B_DARK_OAK_LEAVES) : 0u;
+		}
+		case K_BOULDER: {
+			float s = float(2 + R(r, 0, 4));
+			vec3 c = vec3(0.0, s / 3.0, 0.0), w = vec3(b) * 0.35;
+			float e = sqrt(ellipsoid(pf, c, vec3(s * 1.3, s, s))) + 0.25 * noise3(w.x, w.y, w.z);
+			return e <= 1.0 ? (pf.y > c.y + s * 0.4 ? B_MOSSY_COBBLESTONE : B_COBBLESTONE) : 0u;
+		}
+		case K_LAMP: {
+			if (p.x != 0 || p.z != 0) return p.y == 9 && abs(p.x) + abs(p.z) == 1 ? B_OAK_PLANKS : 0u;
+			return p.y >= 1 && p.y <= 7 ? B_STONE_BRICKS : p.y == 8 ? B_GLOWSTONE : p.y == 9 ? B_OAK_PLANKS : 0u;
+		}
+		case K_CACTUS: {
+			int h = 4 + R(r, 0, 6), arm = h / 2;
+			if (p.x == 0 && p.z == 0 && p.y >= 1 && p.y <= h) return B_CACTUS;
+			return R(r, 4, 2) == 1 && p.z == 0 && ((p.x == 1 && p.y == arm) || (p.x == 2 && p.y >= arm && p.y <= arm + 2)) ? B_CACTUS : 0u;
+		}
+		case K_OBJECT: return 0u;
+		default: return templ_block(f, p);
+	}
+}
+
+// Light blocks of features are staged by PASS_GROUP_FILL like any other generated block.
+int gen_feature_lights(ivec4 f, out vec3 pos[MAX_FEATURE_LIGHTS], out uint type[MAX_FEATURE_LIGHTS]) { return 0; }
+
+// The first template whose cumulative weight is over rnd's share (the last when none is).
+int pick_template(int first, int n, uint rnd) {
+	int want = int(rnd % uint(RG_WEIGHT_ONE)), lo = 0, hi = n - 1;
+	while (lo < hi) {
+		int m = (lo + hi) / 2;
+		if (templ_meta(first + m).x > want) hi = m;
+		else lo = m + 1;
+	}
+	return first + lo;
+}
+
+ivec4 make(ivec2 g, int sy, int kind, uint rnd) { return ivec4(g.x * GROUP, sy, g.y * GROUP, kind | int((rnd & 0xFFFFu) << 16)); }
+
+int vegetation(uint mat, ivec2 g, float s) {
+	if (mat == B_GRASS_BLOCK) {
+		if (s >= 0.6) return s < 0.8 ? K_BUSH : s < 0.93 ? K_BOULDER : K_LAMP;
+		float forest = noise3(float(g.x) / 72.0, 3.3, float(g.y) / 72.0);
+		s /= 0.6;
+		return forest > 0.2 ? (s < 0.6 ? K_BIRCH : K_OAK) : forest < -0.2 ? (s < 0.7 ? K_DARK_OAK : K_OAK) : (s < 0.34 ? K_OAK : s < 0.67 ? K_BIRCH : K_SPRUCE);
+	}
+	if (mat == B_SNOW_BLOCK) return s < 0.7 ? K_SPRUCE : s < 0.85 ? K_BOULDER : K_NONE;
+	if (mat == B_SAND) return s < 0.5 ? K_CACTUS : s < 0.6 ? K_BOULDER : K_NONE;
+	return s < 0.3 ? K_BOULDER : s < 0.6 ? K_SPRUCE : K_NONE;
+}
+
+// Fine anchors: one per lattice column (2.5 m grid), vegetation and placeable models.
+bool fine_feature(ivec2 g, out ivec4 f) {
+	float r1 = hash01(ivec3(g.x, 0, g.y), 1u);
+	if (r1 >= RP.trees + RP.models) return false;
+	int sy; uint mat;
+	if (!find_surface(g, sy, mat)) return false;
+	uint rnd = hash3(ivec3(g.x, 1, g.y), 3u);
+	if (r1 >= RP.trees) {
+		uint n = mdata[MH_PLACEABLE];
+		if (n == 0u) return false;
+		f = ivec4(g.x * GROUP, sy, g.y * GROUP, K_OBJECT | int(mdata[mdata[MH_PLACEABLE_LIST] + rnd % n] << 8 | YAW_ROT[rnd >> 30] << 24));
+		return true;
+	}
+	int kind = vegetation(mat, g, hash01(ivec3(g.x, 0, g.y), 2u));
+	f = make(g, sy, kind, rnd);
+	return kind != K_NONE;
+}
+
+// Coarse anchors: one per chunk column (25 blocks, anchor at block cell * 25 + 10), small templates.
+bool coarse_feature(ivec2 cell, out ivec4 f) {
+	int small = tdir[0].x;
+	if (small == 0 || hash01(ivec3(cell.x, 5, cell.y), 5u) >= RP.structures) return false;
+	ivec2 g = cell * (CHUNK / GROUP) + RG_COARSE_ANCHOR;
+	int sy; uint mat;
+	if (!find_surface(g, sy, mat)) return false;
+	uint rnd = hash3(ivec3(cell.x, 6, cell.y), 6u);
+	f = ivec4(g.x * GROUP, sy, g.y * GROUP, K_TEMPLATE | pick_template(0, small, rnd) << 8 | int((rnd >> 16) & 3u) << 24);
+	return true;
+}
+
+// Large anchors: one per 100x100 blocks (anchor at the cell centre), big templates (monuments, villages).
+bool large_feature(ivec2 cell, out ivec4 f) {
+	int small = tdir[0].x, large = tdir[0].y;
+	if (large == 0 || hash01(ivec3(cell.x, 9, cell.y), 7u) >= RP.structures) return false;
+	ivec2 g = cell * (RG_LARGE_CELL / GROUP) + RG_LARGE_CELL / (2 * GROUP);
+	int sy; uint mat;
+	if (!find_surface(g, sy, mat)) return false;
+	uint rnd = hash3(ivec3(cell.x, 10, cell.y), 8u);
+	f = ivec4(g.x * GROUP, sy, g.y * GROUP, K_TEMPLATE | pick_template(small, large, rnd) << 8 | int((rnd >> 16) & 3u) << 24);
+	return true;
+}
+
+// UNI | air / water / stone if block rows y0..y1 (centres, m) over heights hmin..hmax are uniform (air starts a block above for scattered blocks), 0 = mixed.
+uint classify(float hmin, float hmax, float y0, float y1) {
+	bool isl = RP.islands > 0.0 && y1 >= RP.island_alt - island_half() && y0 <= RP.island_alt + RG_ISLAND_TOP * island_half();
+	if (y0 > hmax + BS + RG_NOISE_BOUND * RP.overhang && !isl) return y1 < RP.water ? UNI | B_WATER : y0 >= RP.water ? UNI : 0u;
+	return y1 < hmin - STONE_MARGIN - RG_NOISE_BOUND * RP.overhang - (RP.caves > 0.0 ? RP.cave_depth : 0.0) ? UNI | B_STONE : 0u;
+}
+
+float gen_column(ivec2 b) { return height_m(vec2(center_m(b.x), center_m(b.y))); }
+
+// Anchors are deterministic (also outside the window): a feature crossing a column border is the same in each.
+bool gen_feature(ivec2 col, uint k, out ivec4 f) {
+	if (k < uint(RG_FINE_N * RG_FINE_N)) {
+		int kk = int(k);
+		return fine_feature(col * (CHUNK / GROUP) - RG_FINE_REACH + ivec2(kk % RG_FINE_N, kk / RG_FINE_N), f);
+	}
+	if (k < uint(RG_FINE_N * RG_FINE_N + RG_COARSE_N * RG_COARSE_N)) {
+		int kk = int(k) - RG_FINE_N * RG_FINE_N;
+		return coarse_feature(col - RG_COARSE_REACH + ivec2(kk % RG_COARSE_N, kk / RG_COARSE_N), f);
+	}
+	ivec2 c0 = col * CHUNK;
+	int kk = int(k) - RG_FINE_N * RG_FINE_N - RG_COARSE_N * RG_COARSE_N, reach = tdir[0].z + CHUNK - 1;
+	return large_feature(ivec2(fdiv(c0.x - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL), fdiv(c0.y - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL)) + ivec2(kk % RG_LARGE_N, kk / RG_LARGE_N), f);
+}
+
+uint gen_classify_chunk(ivec3 lo, vec2 mm, uint li) { return classify(mm.x, mm.y, center_m(lo.y), center_m(lo.y + CHUNK - 1)); }
+
+uint gen_classify_group(ivec3 gb) {
+	float hmin = 1e9, hmax = -1e9;
+	for (int z = 0; z < GROUP; z++)
+		for (int x = 0; x < GROUP; x++) {
+			float h = column_value(ivec2(gb.x + x, gb.z + z));
+			hmin = min(hmin, h); hmax = max(hmax, h);
+		}
+	return classify(hmin, hmax, center_m(gb.y), center_m(gb.y + GROUP - 1));
+}
+
+// The group's column heights and the features touching it (list bits, then the records and their index in the column list).
+const uint GROUP_FEATURES_LOD = 64u;
+shared float s_hs[GROUP * GROUP];
+shared uint s_hit[2];
+shared ivec4 s_feats[GROUP_FEATURES_LOD];
+shared uint s_fidx[GROUP_FEATURES_LOD];
+shared uint s_nf;
+
+// The first `cap` features touching [gb, ge); where they overlap the highest .w wins.
+void group_features(ivec3 gb, ivec3 ge, uint slot, uint v, uint cap) {
+	uint nfeat = feature_count(slot);
+	if (v < 2u) s_hit[v] = 0u;
+	barrier();
+	if (v < nfeat && box_hits(col_feature(slot, v), gb, ge)) atomicOr(s_hit[v >> 5], 1u << (v & 31u));
+	barrier();
+	if (v == 0u) {
+		uint nf = 0u;
+		for (uint j = 0u; j < nfeat && nf < cap; j++)
+			if ((s_hit[j >> 5] >> (j & 31u) & 1u) != 0u) { s_fidx[nf] = j; s_feats[nf++] = col_feature(slot, j); }
+		s_nf = nf;
+	}
+	barrier();
+}
+
+void gen_group_begin(ivec3 gb, uint slot, uint v) {
+	if (v < uint(GROUP * GROUP)) s_hs[v] = column_value(ivec2(gb.x + int(v) % GROUP, gb.z + int(v) / GROUP));
+	group_features(gb, gb + GROUP, slot, v, GROUP_FEATURES);
+}
+
+uint cell_mask[2] = uint[2](~0u, ~0u); // L >= 1: the group's features touching the current coarse cell (gen_cell_lod)
+
+uint feature_at(ivec3 b, uint id) {
+	int best = -2147483647;
+	for (uint j = 0u; j < s_nf; j++) {
+		if ((cell_mask[j >> 5] >> (j & 31u) & 1u) == 0u) continue;
+		uint fb = feature_block(s_feats[j], b);
+		if (fb != 0u && s_feats[j].w > best) { best = s_feats[j].w; id = fb; }
+	}
+	for (uint j = 0u; j < s_nf && id == 0u; j++)
+		if ((cell_mask[j >> 5] >> (j & 31u) & 1u) != 0u && kind_of(s_feats[j]) == K_OBJECT && obj_cell_at(s_feats[j], b) != EMPTY_REF) id = PART | s_fidx[j];
+	return id;
+}
+
+uint gen_block(ivec3 b, ivec3 l) {
+	float H = s_hs[l.x + GROUP * l.z];
+	uint id = feature_at(b, terrain(b, H));
+	return id == 0u ? scatter(b, H) : id;
+}
+
+// L >= 1 (docs/v2.md §5.17): terrain at the exact heights of the sample columns (so features sit on it as at L0), features by sample, no scattered blocks (under a pixel).
+// Features come straight from their anchors per coarse group (a coarse column holds too many for its list), so a chunk or group is mixed within the reach of features around the surface.
+const int RG_LOD_TOP = 64, RG_LOD_BELOW = 12; // blocks: trees and models above the surface, roots below; small templates reach tdir[0].w (the tallest)
+
+// Height of the tallest large template over RG_LOD_TOP whose footprint (either rotation) covers [lo, hi) in x and z, as large_feature draws it (without its surface), else 0.
+int large_top(ivec3 lo, ivec3 hi) {
+	int small = tdir[0].x, large = tdir[0].y, reach = tdir[0].z + 1, top = 0;
+	if (large == 0) return 0;
+	ivec2 l0 = ivec2(fdiv(lo.x - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL), fdiv(lo.z - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL));
+	ivec2 l1 = ivec2(fdiv(hi.x + reach - RG_LARGE_CELL / 2, RG_LARGE_CELL), fdiv(hi.z + reach - RG_LARGE_CELL / 2, RG_LARGE_CELL)) + 1;
+	for (int z = l0.y; z <= l1.y; z++)
+		for (int x = l0.x; x <= l1.x; x++)
+			if (hash01(ivec3(x, 9, z), 7u) < RP.structures) {
+				ivec4 e = templ_entry(pick_template(small, large, hash3(ivec3(x, 10, z), 8u)));
+				ivec2 a = ivec2(x, z) * RG_LARGE_CELL + RG_LARGE_CELL / (2 * GROUP) * GROUP;
+				int r = max(e.y, e.w) / 2 + 1;
+				if (e.z > top && e.z > RG_LOD_TOP && all(greaterThan(a + r, lo.xz)) && all(lessThan(a - r, hi.xz))) top = e.z;
+			}
+	return top;
+}
+
+uint gen_classify_lod(ivec3 lo, ivec3 hi, vec2 mm) {
+	bool feats = RP.trees + RP.models + RP.structures > 0.0;
+	int top = feats ? max(max(RG_LOD_TOP, tdir[0].w), large_top(lo, hi)) : 0;
+	return classify(mm.x - (feats ? float(RG_LOD_BELOW) * BS : 0.0), mm.y + float(top) * BS, center_m(lo.y), center_m(hi.y - 1));
+}
+
+void add_feature_lod(ivec4 f, ivec3 gb, ivec3 ge) {
+	if (!box_hits(f, gb, ge)) return;
+	uint i = atomicAdd(s_nf, 1u);
+	if (i < GROUP_FEATURES_LOD) { s_feats[i] = f; s_fidx[i] = i; }
+	else atomicAdd(W.lod_stat[1], 1u);
+}
+
+// Every fine, coarse and large anchor whose feature can reach [gb, ge), as gen_feature enumerates them per column.
+shared float s_hs_lod[4 * GROUP * GROUP]; // heights of the group's 10 x 10 sample columns
+
+void gen_group_begin_lod(ivec3 gb, uint slot, int level, uint v) {
+	ivec3 ge = gb + (GROUP << level);
+	if (v < uint(4 * GROUP * GROUP)) s_hs_lod[v] = gen_column(lod_sample_column(gb, ivec2(int(v) % (2 * GROUP), int(v) / (2 * GROUP)), level));
+	if (v == 0u) s_nf = 0u;
+	barrier();
+	int reach = tdir[0].z + 1;
+	ivec2 f0 = ivec2(fdiv(gb.x, GROUP), fdiv(gb.z, GROUP)) - RG_FINE_REACH, fn = ivec2(fdiv(ge.x - 1, GROUP), fdiv(ge.z - 1, GROUP)) + RG_FINE_REACH - f0 + 1;
+	ivec2 c0 = ivec2(fdiv(gb.x, CHUNK), fdiv(gb.z, CHUNK)) - RG_COARSE_REACH, cn = ivec2(fdiv(ge.x - 1, CHUNK), fdiv(ge.z - 1, CHUNK)) + RG_COARSE_REACH - c0 + 1;
+	ivec2 l0 = ivec2(fdiv(gb.x - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL), fdiv(gb.z - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL));
+	ivec2 ln = ivec2(fdiv(ge.x + reach - RG_LARGE_CELL / 2, RG_LARGE_CELL), fdiv(ge.z + reach - RG_LARGE_CELL / 2, RG_LARGE_CELL)) - l0 + 2;
+	uint nf = uint(fn.x * fn.y), nc = uint(cn.x * cn.y), nl = uint(ln.x * ln.y);
+	for (uint k = v; k < nf + nc + nl; k += GROUP_X) {
+		ivec4 f;
+		bool ok = k < nf ? fine_feature(f0 + ivec2(int(k) % fn.x, int(k) / fn.x), f)
+			: k < nf + nc ? coarse_feature(c0 + ivec2(int(k - nf) % cn.x, int(k - nf) / cn.x), f)
+			: large_feature(l0 + ivec2(int(k - nf - nc) % ln.x, int(k - nf - nc) / ln.x), f);
+		if (ok) add_feature_lod(f, gb, ge);
+	}
+	barrier();
+	if (v == 0u) s_nf = min(s_nf, GROUP_FEATURES_LOD);
+	barrier();
+}
+
+uint gen_block_lod(ivec3 b, ivec2 sc, int level) { return feature_at(b, terrain(b, s_hs_lod[sc.x + 2 * GROUP * sc.y])); }
+
+ivec4 gen_part_lod(uint j) { return s_feats[j]; }
+
+bool gen_cell_lod(ivec3 lo, ivec3 hi) {
+	cell_mask = uint[2](0u, 0u);
+	for (uint j = 0u; j < s_nf; j++) if (box_hits(s_feats[j], lo, hi)) cell_mask[j >> 5] |= 1u << (j & 31u);
+	return (cell_mask[0] | cell_mask[1]) != 0u;
+}
+
+uint gen_feature_lod(ivec3 b) { return feature_at(b, 0u); }

@@ -1,0 +1,20 @@
+{
+  "Note": "sun shadows (docs/v2.md §5.21): the shadows-* flat scene (roof, tree, poles, overhang, models, near and far towers) at 4K with low, high and grazing sun, close up and with LOD; the smoke worlds (1080p) for Shadows off = world-v2",
+  "Bookmarks": [
+    "shadows-low",
+    "shadows-noon",
+    "shadows-dusk",
+    "shadows-close",
+    "shadows-low-lod",
+    "lights-outside",
+    "random-default",
+    "lights-inside"
+  ],
+  "Capture": [
+    "Shot",
+    "PassMs"
+  ],
+  "Views": [
+    "Sun"
+  ]
+}

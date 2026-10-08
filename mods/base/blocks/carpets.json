@@ -1,0 +1,182 @@
+{
+  "category": "carpets",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:black_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/black_wool", "wool": "block/black_wool" },
+      "tags": ["color:black"],
+      "variants": [{ "looks": [{ "model": "black_carpet" }] }]
+    },
+    {
+      "id": "base:blue_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/blue_wool", "wool": "block/blue_wool" },
+      "tags": ["color:blue"],
+      "variants": [{ "looks": [{ "model": "blue_carpet" }] }]
+    },
+    {
+      "id": "base:brown_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/brown_wool", "wool": "block/brown_wool" },
+      "tags": ["color:brown"],
+      "variants": [{ "looks": [{ "model": "brown_carpet" }] }]
+    },
+    {
+      "id": "base:cyan_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/cyan_wool", "wool": "block/cyan_wool" },
+      "tags": ["color:cyan"],
+      "variants": [{ "looks": [{ "model": "cyan_carpet" }] }]
+    },
+    {
+      "id": "base:gray_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/gray_wool", "wool": "block/gray_wool" },
+      "tags": ["color:gray"],
+      "variants": [{ "looks": [{ "model": "gray_carpet" }] }]
+    },
+    {
+      "id": "base:green_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/green_wool", "wool": "block/green_wool" },
+      "tags": ["color:green"],
+      "variants": [{ "looks": [{ "model": "green_carpet" }] }]
+    },
+    {
+      "id": "base:light_blue_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/light_blue_wool", "wool": "block/light_blue_wool" },
+      "tags": ["color:light_blue"],
+      "variants": [{ "looks": [{ "model": "light_blue_carpet" }] }]
+    },
+    {
+      "id": "base:light_gray_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/light_gray_wool", "wool": "block/light_gray_wool" },
+      "tags": ["color:light_gray"],
+      "variants": [{ "looks": [{ "model": "light_gray_carpet" }] }]
+    },
+    {
+      "id": "base:lime_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/lime_wool", "wool": "block/lime_wool" },
+      "tags": ["color:lime"],
+      "variants": [{ "looks": [{ "model": "lime_carpet" }] }]
+    },
+    {
+      "id": "base:magenta_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/magenta_wool", "wool": "block/magenta_wool" },
+      "tags": ["color:magenta"],
+      "variants": [{ "looks": [{ "model": "magenta_carpet" }] }]
+    },
+    {
+      "id": "base:moss_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/moss_block", "wool": "block/moss_block" },
+      "variants": [{ "looks": [{ "model": "moss_carpet" }] }]
+    },
+    {
+      "id": "base:orange_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/orange_wool", "wool": "block/orange_wool" },
+      "tags": ["color:orange"],
+      "variants": [{ "looks": [{ "model": "orange_carpet" }] }]
+    },
+    {
+      "id": "base:pale_moss_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/pale_moss_carpet", "wool": "block/pale_moss_carpet" },
+      "states": {
+        "bottom": ["false", "true"],
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "bottom": "true" }], "looks": [{ "model": "pale_moss_carpet" }] },
+        { "when": [{ "bottom": "false", "east": "none", "north": "none", "south": "none", "west": "none" }], "looks": [{ "model": "pale_moss_carpet" }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "pale_moss_carpet_side_tall" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "pale_moss_carpet_side_small" }] },
+        {
+          "when": [{ "bottom": "false", "east": "none", "north": "none", "south": "none", "west": "none" }],
+          "looks": [{ "model": "pale_moss_carpet_side_tall" }]
+        },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "pale_moss_carpet_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "pale_moss_carpet_side_small", "y": 90, "uvlock": true }] },
+        {
+          "when": [{ "bottom": "false", "east": "none", "north": "none", "south": "none", "west": "none" }],
+          "looks": [{ "model": "pale_moss_carpet_side_tall", "y": 90, "uvlock": true }]
+        },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "pale_moss_carpet_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "pale_moss_carpet_side_small", "y": 180, "uvlock": true }] },
+        {
+          "when": [{ "bottom": "false", "east": "none", "north": "none", "south": "none", "west": "none" }],
+          "looks": [{ "model": "pale_moss_carpet_side_tall", "y": 180, "uvlock": true }]
+        },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "pale_moss_carpet_side_tall", "y": 270, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "pale_moss_carpet_side_small", "y": 270, "uvlock": true }] },
+        {
+          "when": [{ "bottom": "false", "east": "none", "north": "none", "south": "none", "west": "none" }],
+          "looks": [{ "model": "pale_moss_carpet_side_tall", "y": 270, "uvlock": true }]
+        }
+      ]
+    },
+    {
+      "id": "base:pink_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/pink_wool", "wool": "block/pink_wool" },
+      "tags": ["color:pink"],
+      "variants": [{ "looks": [{ "model": "pink_carpet" }] }]
+    },
+    {
+      "id": "base:purple_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/purple_wool", "wool": "block/purple_wool" },
+      "tags": ["color:purple"],
+      "variants": [{ "looks": [{ "model": "purple_carpet" }] }]
+    },
+    {
+      "id": "base:red_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/red_wool", "wool": "block/red_wool" },
+      "tags": ["color:red"],
+      "variants": [{ "looks": [{ "model": "red_carpet" }] }]
+    },
+    {
+      "id": "base:white_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/white_wool", "wool": "block/white_wool" },
+      "tags": ["color:white"],
+      "variants": [{ "looks": [{ "model": "white_carpet" }] }]
+    },
+    {
+      "id": "base:yellow_carpet",
+      "kind": "carpet",
+      "template": "carpet",
+      "textures": { "particle": "block/yellow_wool", "wool": "block/yellow_wool" },
+      "tags": ["color:yellow"],
+      "variants": [{ "looks": [{ "model": "yellow_carpet" }] }]
+    }
+  ]
+}

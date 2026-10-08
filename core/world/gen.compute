@@ -1,0 +1,724 @@
+// Generation (docs/v2.md §4.2): RELEASE of chunks that left, new columns, then per chunk CLASSIFY, FILL with PALETTE, PACK (allocation from free stacks) and occupancy; content from the module's gen_* hooks.
+#include "world.glsli"
+#include "blocks.glsli"
+#include "models.glsli"
+#include "lights.glsli"
+layout(local_size_x = GROUP_X) in;
+#include "gen_api.glsli"
+
+layout(set = 0, binding = 4, std430) restrict readonly buffer Columns { ivec4 columns[]; }; // the new columns: world chunk x, z of level z, ordered by level
+// chunk.w = JOB_*; edits = first record, count, replaced record + 1, mixed groups; counts[1] = the replaced entry's light list (directory y), counts[3] = groups that are not air; base[0] = first mixed slot, then the record taken; base[3] = level.
+struct Job { ivec4 chunk; uvec4 edits; uint counts[4]; uint base[4]; };
+layout(set = 0, binding = 5, std430) restrict buffer Jobs { Job jobs[]; };
+// GROUPS_PER_CHUNK per job: the final entry, or class << CLASS_SHIFT and the brick's GroupWork index until PACK.
+layout(set = 0, binding = 6, std430) restrict buffer JobGroups { uvec2 job_groups[]; };
+layout(set = 0, binding = 7, std430) restrict buffer Mixed { uint mixed_count; uint mixed_cap; uint mixed_jobs; uint mixed_pad; uint mixed[]; }; // job << 7 | group
+layout(set = 0, binding = 8, std430) restrict buffer GroupWork { uint work[]; }; // BRICK125_WORDS per mixed group: the brick as it is stored
+layout(set = 0, binding = 9, std430) restrict writeonly buffer FillArgs { uint fill_args[3]; };
+layout(set = 0, binding = 10, std430) restrict readonly buffer Edits { uvec4 edits[]; }; // per job, sorted: group * 125 + cell (L >= 1: times 8 + sample), variant or ~0, fluid word or ~0
+layout(set = 0, binding = 11, std430) restrict buffer Results { uint deferred_count; uint res_pad0, res_pad1, res_pad2; ivec4 deferred[]; }; // w = failed (pools full) | level << 1
+layout(set = 0, binding = 12, std430) restrict readonly buffer Release { ivec4 rel[]; }; // world chunks that left their level's sphere, w = level
+layout(set = 0, binding = 13, std430) restrict buffer FreeList { uint free_list[]; };   // per pool cap[p] entries, pools in PL_ order
+
+layout(push_constant, std430) uniform PC {
+	uint step;
+	uint count;
+	uint row;   // invocations per dispatch row
+	uint first;
+} pc;
+
+const uint RESERVE_FAIL = 1u << 4u;
+const uint NO_EDIT = 0xFFFFFFFFu, MIXED_GROUP = 0xFFFFFFFFu, NO_ITEM = 0xFFFFFFFFu, BOX_SEEDS = 9u, JOB_BITS = 7u, RECORD_THREAD = GROUP_X - 1u;
+
+// (block word, fluid word) of a generator id: fluids go to the fluid layer (docs/v2.md §3.5).
+uvec2 gen_pair(uint id) {
+	if (id == 0u || id >= PART) return uvec2(id, 0u);
+	uint w = block_word(id);
+	return (pal_flags(w) & F_FLUID) != 0u ? uvec2(0u, id) : uvec2(w, 0u);
+}
+
+// A placed block keeps the cell's fluid unless it is an opaque cube; a fluid edit sets it.
+uvec2 apply_edit(uvec2 p, uvec4 e) {
+	if (e.y != NO_EDIT) {
+		uvec2 b = gen_pair(e.y);
+		p = b.y != 0u ? b : uvec2(b.x, (pal_flags(b.x) & F_OPAQUE) != 0u ? 0u : p.y);
+	}
+	if (e.z != NO_EDIT) p.y = e.z;
+	return p;
+}
+
+uint edits_from(uint first, uint n, uint key) {
+	uint lo = first, hi = first + n;
+	while (lo < hi) {
+		uint m = (lo + hi) >> 1;
+		if (edits[m].x < key) lo = m + 1u; else hi = m;
+	}
+	return lo;
+}
+
+uint bits_below(uint m[4], uint i) {
+	uint r = bitCount(m[i >> 5] & ((1u << (i & 31u)) - 1u));
+	for (uint w = 0u; w < (i >> 5); w++) r += bitCount(m[w]);
+	return r;
+}
+
+int job_level(uint j) { return int(jobs[j].base[3]); }
+int cell_blocks() { return 1 << lvl; }
+uint edit_scale() { return lvl == 0 ? 1u : 8u; } // L >= 1: an edit key per sample
+
+// Occupancy = not uniform air (NONE included: rays see a missing chunk and go coarser).
+void set_occupied(ivec3 wc) {
+	ivec3 s = slot_of(wc);
+	uint i = slot_index(s), m = mip_index(s);
+	atomicOr(occ[i >> 5], 1u << (i & 31u));
+	atomicOr(occ_mip[m >> 5], 1u << (m & 31u));
+}
+
+void mark_occupied(ivec3 wc) {
+	set_occupied(wc);
+	atomicMax(W.top_y[lvl], wc.y + 1);
+}
+
+// The mip bit stays set (conservative) until OCCUPANCY recomputes it.
+void clear_occupied(ivec3 wc) {
+	uint i = chunk_slot(wc);
+	atomicAnd(occ[i >> 5], ~(1u << (i & 31u)));
+}
+
+// Free stacks (docs/v2.md §3.6): pops only in PACK, pushes only in RELEASE and RECLAIM, FIXUP between them.
+uint free_base(uint p) {
+	uint b = 0u;
+	for (uint q = 0u; q < p; q++) b += W.cap[q];
+	return b;
+}
+
+uint take(uint p) {
+	int t = atomicAdd(W.free_top[p], -1);
+	if (t > 0) return free_list[free_base(p) + uint(t - 1)];
+	uint b = atomicAdd(W.used[p], 1u);
+	return b < W.cap[p] ? b : NO_ITEM;
+}
+
+// Past the mid sphere a chunk may not take the near reserve, the pool's last 1/FAR_RESERVE_DIV (docs/v2.md §3.6); read after the take, so it counts itself.
+bool over_reserve(uint p) {
+	int in_use = int(min(atomicAdd(W.used[p], 0u), W.cap[p])) - max(atomicAdd(W.free_top[p], 0), 0);
+	return in_use > int(W.cap[p] - W.cap[p] / FAR_RESERVE_DIV);
+}
+
+void give(uint p, uint item) { free_list[free_base(p) + uint(atomicAdd(W.free_top[p], 1))] = item; }
+
+// The light list pool works the same way: pops only in LIGHTS, pushes in RELEASE and RECLAIM.
+uint take_list() {
+	int t = atomicAdd(LL.free_top, -1);
+	if (t > 0) return LL.words[uint(t - 1)];
+	uint b = atomicAdd(LL.used, 1u);
+	return b < LL.cap ? b : NO_ITEM;
+}
+
+void give_list(uint y) { if (y != 0u) LL.words[uint(atomicAdd(LL.free_top, 1))] = light_list(y); }
+
+bool is_brick(uint x) { return (x & UNI) == 0u && entry_class(x) != CLASS_AIR; }
+
+// Thread li of a workgroup gives back brick li of the record, the last thread the record itself.
+void free_record(uint rec, uint li) {
+	if (li < GROUPS_PER_CHUNK) {
+		uint x = records[rec * CHUNK_REC_WORDS + 2u * li];
+		if (is_brick(x)) give(entry_class(x) + 1u, x & INDEX_MASK);
+	} else if (li == RECORD_THREAD) give(PL_RECORDS, rec);
+}
+
+// A chunk generated again: its old record goes back in RECLAIM, after the new directory entry is written.
+void replace_entry(uint j, uint slot) {
+	uint old = dir[slot].x;
+	if (old != NONE) atomicAdd(W.probe.z, 1u);
+	if (old != NONE && (old & UNI) == 0u) { jobs[j].edits.z = old + 1u; jobs[j].counts[1] = dir[slot].y; }
+}
+
+uvec2 entry_of(uvec2 p) { return p == uvec2(0u) ? uvec2(ENTRY_AIR, 0u) : uvec2(UNI | p.x, p.y); }
+
+// Air bits along x of row y + 5 * z of a 5^3 air mask (index x + 5 * (y + 5 * z)).
+uint air_row(uvec4 m, int r) {
+	uint b = uint(GROUP * r), w = b >> 5, o = b & 31u, v = m[w] >> o;
+	if (o > 32u - uint(GROUP)) v |= m[w + 1u] << (32u - o);
+	return v & ((1u << GROUP) - 1u);
+}
+
+bool all_air(uvec4 m, ivec3 lo, ivec3 hi) {
+	uint xs = ((1u << uint(hi.x - lo.x)) - 1u) << uint(lo.x);
+	for (int z = lo.z; z < hi.z; z++)
+		for (int y = lo.y; y < hi.y; y++)
+			if ((air_row(m, y + GROUP * z) & xs) != xs) return false;
+	return true;
+}
+
+// Greedy air box [lo, hi) around seed; rays cross it in one DDA step.
+void grow_box(uvec4 m, ivec3 seed, out ivec3 lo, out ivec3 hi) {
+	lo = seed; hi = seed + 1;
+	for (bool grew = true; grew; ) {
+		grew = false;
+		for (int a = 0; a < 3; a++) {
+			ivec3 l0 = lo, l1 = hi;
+			l0[a] = lo[a] - 1; l1[a] = lo[a];
+			if (lo[a] > 0 && all_air(m, l0, l1)) { lo[a]--; grew = true; }
+			l0[a] = hi[a]; l1[a] = hi[a] + 1;
+			if (hi[a] < GROUP && all_air(m, l0, l1)) { hi[a]++; grew = true; }
+		}
+	}
+}
+
+ivec3 box_seed(uint j) { return j < 8u ? ivec3(j & 1u, (j >> 1) & 1u, j >> 2) * (GROUP - 1) : ivec3(GROUP / 2); }
+
+shared uint s_e, s_n, s_solid, s_fail, s_rec;
+shared uint s_bits[4];  // CLASSIFY: mixed groups; FILL: palette heads; PACK: air groups
+shared uint s_air[4];   // FILL: air cells
+shared uvec2 s_pair[GROUPS_PER_CHUNK];
+shared uint s_words[BRICK_INDEX_WORDS], s_box[BOX_SEEDS], s_vol[BOX_SEEDS], s_ef, s_ee, s_scan[GROUP_X];
+
+// CLASSIFY: a workgroup per job. A uniform chunk goes to the directory, a mixed one marks its mixed groups for SCAN and LIST.
+// L >= 1: min / max of the group's 5 x 5 coarse column heights.
+vec2 group_minmax(uint slot, ivec3 g) {
+	vec2 mm = vec2(1e9, -1e9);
+	for (int z = 0; z < GROUP; z++)
+		for (int x = 0; x < GROUP; x++) {
+			float h = heights[slot * uint(CHUNK * CHUNK) + uint(g.x * GROUP + x + CHUNK * (g.z * GROUP + z))];
+			mm = vec2(min(mm.x, h), max(mm.y, h));
+		}
+	return mm;
+}
+
+void classify(uint j, uint li) {
+	lvl = job_level(j);
+	int s = cell_blocks();
+	ivec3 wc = jobs[j].chunk.xyz, lo = wc * (CHUNK * s);
+	uint slot = col_slot(wc.xz), nf = feature_count(slot), ef = jobs[j].edits.x, en = jobs[j].edits.y, es = edit_scale();
+	bool feat = false;
+	for (uint k = 0u; k < nf && !feat; k++) feat = box_hits(col_feature(slot, k), lo, lo + CHUNK * s);
+	uint e = feat || en != 0u ? 0u : lvl == 0 ? gen_classify_chunk(lo, colmm[slot], li) : gen_classify_lod(lo, lo + CHUNK * s, colmm[slot]);
+	if (li == 0u) { s_e = e; s_n = 0u; s_solid = 0u; }
+	barrier();
+	if (s_e != 0u) {
+		if (li != 0u) return;
+		uvec2 p = gen_pair(s_e & ~UNI);
+		uint ds = chunk_slot(wc);
+		replace_entry(j, ds);
+		dir[ds] = uvec2(UNI | p.x, p.y);
+		if (p != uvec2(0u)) mark_occupied(wc); else clear_occupied(wc);
+		jobs[j].chunk.w = int(JOB_UNIFORM);
+		return;
+	}
+	if (li < GROUPS_PER_CHUNK) {
+		ivec3 gc = group_cell(int(li)), gb = lo + gc * (GROUP * s);
+		bool hit = en != 0u && edits_from(ef, en, li * GROUPS_PER_CHUNK * es) < edits_from(ef, en, (li + 1u) * GROUPS_PER_CHUNK * es);
+		for (uint k = 0u; k < nf && !hit; k++) hit = box_hits(col_feature(slot, k), gb, gb + GROUP * s);
+		uint ge = hit ? 0u : lvl == 0 ? gen_classify_group(gb) : gen_classify_lod(gb, gb + GROUP * s, group_minmax(slot, gc));
+		if (ge != 0u) {
+			uvec2 p = gen_pair(ge & ~UNI);
+			job_groups[j * GROUPS_PER_CHUNK + li] = entry_of(p);
+			if (p != uvec2(0u)) atomicAdd(s_solid, 1u);
+		} else {
+			job_groups[j * GROUPS_PER_CHUNK + li] = uvec2(MIXED_GROUP, 0u);
+			atomicAdd(s_n, 1u);
+		}
+	}
+	barrier();
+	if (li != 0u) return;
+	jobs[j].counts = uint[4](0u, 0u, 0u, s_solid);
+	jobs[j].edits.w = s_n;
+	jobs[j].chunk.w = int(JOB_MIXED);
+}
+
+// SCAN: one workgroup gives mixed jobs their FILL slots in job order (nearest first); from the first that does not fit on, jobs are deferred.
+void scan(uint li) {
+	uint per = (mixed_jobs + GROUP_X - 1u) / GROUP_X, j0 = min(li * per, mixed_jobs), j1 = min(j0 + per, mixed_jobs), sum = 0u;
+	for (uint j = j0; j < j1; j++) if (jobs[j].chunk.w == int(JOB_MIXED)) sum += jobs[j].edits.w;
+	s_scan[li] = sum;
+	barrier();
+	for (uint o = 1u; o < GROUP_X; o <<= 1) {
+		uint v = li >= o ? s_scan[li - o] : 0u;
+		barrier();
+		s_scan[li] += v;
+		barrier();
+	}
+	uint start = s_scan[li] - sum, end = 0u;
+	for (uint j = j0; j < j1; j++) {
+		if (jobs[j].chunk.w != int(JOB_MIXED)) continue;
+		uint n = jobs[j].edits.w;
+		if (start + n <= mixed_cap) { jobs[j].base[0] = start; end = start + n; }
+		else { jobs[j].chunk.w = int(JOB_DEFERRED); deferred[atomicAdd(deferred_count, 1u)] = ivec4(jobs[j].chunk.xyz, job_level(j) << 1); }
+		start += n;
+	}
+	atomicMax(mixed_count, end);
+}
+
+// LIST: a workgroup per job, thread g = group g: the job's mixed groups into its FILL slots.
+void list(uint j, uint li) {
+	if (jobs[j].chunk.w != int(JOB_MIXED)) return;
+	if (li < 4u) s_bits[li] = 0u;
+	barrier();
+	bool m = li < GROUPS_PER_CHUNK && job_groups[j * GROUPS_PER_CHUNK + li].x == MIXED_GROUP;
+	if (m) atomicOr(s_bits[li >> 5], 1u << (li & 31u));
+	barrier();
+	if (m) mixed[jobs[j].base[0] + bits_below(s_bits, li)] = j << JOB_BITS | li;
+}
+
+// L >= 1 (docs/v2.md §5.17): bit 30 marks a colour word (models and object parts), RGB 7-8-7 with gamma 1 / 2.2 in bits 0-21.
+uint lod_color_word(vec3 linear) {
+	uvec3 q = uvec3(round(pow(clamp(linear, 0.0, 1.0), vec3(1.0 / 2.2)) * vec3(127.0, 255.0, 127.0)));
+	return LOD_COLOR | q.x | q.y << 7 | q.z << 15;
+}
+
+// Model cell mc by its coarsest mip, or its first voxel at the 4^3 mip when that is empty: its colour word, 0 when empty.
+// whole: an object part counts whenever its cell has voxels (walls of a building prop are thinner than a mip voxel), with the model's first material.
+uint lod_model_color(uvec4 rec, uint mc, bool whole) {
+	if (mc == EMPTY_REF) return 0u;
+	ivec3 lo, hi;
+	uint val = cell_voxel(mc, rec.x >> 24, 4, ivec3(0), lo, hi);
+	for (int v = 0; v < 64 && val == 0u; v++) val = cell_voxel(mc, rec.x >> 24, 3, ivec3(v & 3, (v >> 2) & 3, v >> 4), lo, hi);
+	if (val == 0u && whole) val = 1u;
+	return val == 0u ? 0u : lod_color_word(material_albedo(rec.y + val));
+}
+
+const uint LOD_CUTOUT_MIN = 2u, S_AIR = 0u, S_SOLID = 1u, S_CUTOUT = 2u; // LOD_CUTOUT_MIN: cutout samples that make a cell solid, leaves never vanish
+
+// A coarse sample: the generator's pair at block b (models and object parts as colour words, invisible and volume blocks as air) and its kind.
+uvec2 lod_sample(ivec3 b, ivec2 sc, out uint kd) {
+	uvec2 p = gen_pair(gen_block_lod(b, sc, lvl));
+	kd = S_SOLID;
+	if (p.x >= PART) { ivec4 f = gen_part_lod(p.x & ~PART); p.x = lod_model_color(model_rec(obj_model(f)), obj_cell_at(f, b), true); }
+	else if (p.x != 0u) {
+		uint f = pal_flags(p.x);
+		if ((f & F_MODEL) != 0u) { uvec4 rec = model_rec(block_look(p.x & PAL_ID_MASK, b) & LOOK_MODEL_MASK); p.x = lod_model_color(rec, model_cell(rec, ivec3(0)), false); }
+		else if ((f & (F_INVISIBLE | F_VOLUME)) != 0u) p.x = 0u;
+		else if ((f & F_CUTOUT) != 0u) kd = S_CUTOUT;
+	}
+	if (p.x == 0u) kd = S_AIR;
+	return p;
+}
+
+// A feature's solid block word at b (models and object parts as colour words), 0 for none, invisible or volume blocks.
+uint lod_feature_word(ivec3 b) {
+	uint id = gen_feature_lod(b);
+	if (id >= PART) { ivec4 f = gen_part_lod(id & ~PART); return lod_model_color(model_rec(obj_model(f)), obj_cell_at(f, b), true); }
+	uint w = gen_pair(id).x, f = pal_flags(w);
+	if (w == 0u || (f & (F_INVISIBLE | F_VOLUME)) != 0u) return 0u;
+	if ((f & F_MODEL) == 0u) return w;
+	uvec4 rec = model_rec(block_look(w & PAL_ID_MASK, b) & LOOK_MODEL_MASK);
+	return lod_model_color(rec, model_cell(rec, ivec3(0)), false);
+}
+
+// L >= 1: the pair of coarse cell l of the group at gb from 2^3 samples on the group's 10 x 10 sample columns (sc, edits by key0 + sample): solid from 4 solid or LOD_CUTOUT_MIN cutout samples,
+// material the most frequent at the surface (no solid sample above it in the cell). Fluid from the blocks of one sample column, so the surface is the L0 one at every level:
+// water above the topmost solid block makes it a fluid cell, its level bits = blocks from the cell's bottom to the top of the water (1..2^L); the column is read from the top down to its first solid block, and not at all when its bottom block is dry air.
+// From L2 a cell touched by features (gen_cell_lod) is also solid when every one of the 4 lines along some axis through the sample positions
+// meets a feature block (gen_feature_lod): thin walls and trunks between the samples keep their silhouette.
+uvec2 lod_cell(ivec3 gb, ivec3 l, uint key0, uint slot) {
+	int s = cell_blocks(), a = s / 4, c = 3 * s / 4;
+	ivec3 c0 = gb + l * s;
+	bool near_features = gen_cell_lod(c0, c0 + s);
+	uvec2 smp[8];
+	uint kind[8], solid = 0u, cut = 0u;
+	for (int k = 0; k < 8; k++) {
+		uint kd;
+		uvec2 p = lod_sample(c0 + ivec3((k & 1) != 0 ? c : a, (k & 2) != 0 ? c : a, (k & 4) != 0 ? c : a), l.xz * 2 + ivec2(k & 1, (k >> 2) & 1), kd);
+		bool edited = false;
+		for (uint e = s_ef; e < s_ee; e++) if (edits[e].x == key0 + uint(k)) { p = apply_edit(p, edits[e]); edited = true; }
+		if (edited) kd = p.x == 0u ? S_AIR : (pal_flags(p.x) & F_CUTOUT) != 0u ? S_CUTOUT : S_SOLID;
+		smp[k] = p;
+		kind[k] = kd;
+		if (kd != S_AIR) solid++;
+		if (kd == S_CUTOUT) cut++;
+	}
+	uvec2 r = uvec2(0u);
+	if (solid >= 4u || cut >= LOD_CUTOUT_MIN) {
+		bool leaves = solid < 4u;
+		uint best = 0u;
+		for (int pass = 0, most = 0; pass < 2 && most == 0; pass++)
+			for (int k = 0; k < 8; k++) {
+				bool want = leaves ? kind[k] == S_CUTOUT : kind[k] != S_AIR, top = (k & 2) != 0 || kind[k | 2] == S_AIR;
+				if (!want || pass == 0 && !top) continue;
+				int n = 0;
+				for (int u = 0; u < 8; u++) n += smp[u].x == smp[k].x && (pass == 1 || (u & 2) != 0 || kind[u | 2] == S_AIR) ? 1 : 0;
+				if (n > most) { most = n; best = smp[k].x; }
+			}
+		r.x = best;
+	}
+	if (r.x == 0u && s > 2 && near_features)
+		for (int ax = 0; ax < 3 && r.x == 0u; ax++) {
+			uint hit[4];
+			int lines = 0;
+			for (; lines < 4; lines++) {
+				ivec3 o = ivec3(0);
+				o[(ax + 1) % 3] = (lines & 1) != 0 ? c : a;
+				o[(ax + 2) % 3] = (lines & 2) != 0 ? c : a;
+				hit[lines] = 0u;
+				for (int t = 0; t < s && hit[lines] == 0u; t++) {
+					o[ax] = t;
+					hit[lines] = lod_feature_word(c0 + o);
+				}
+				if (hit[lines] == 0u) break;
+			}
+			if (lines == 4) r.x = hit[0] == hit[2] || hit[0] == hit[3] ? hit[0] : hit[1];
+		}
+	int top_solid = -1, top_fluid = -1;
+	uint fluid = 0u, kb;
+	uvec2 pb = lod_sample(c0 + ivec3(c, 0, c), l.xz * 2 + 1, kb);
+	if (kb != S_AIR || (pb.y & PAL_ID_MASK) != 0u)
+		for (int y = s - 1; y >= 0 && top_solid < 0; y--) {
+			uint kd;
+			uvec2 p = lod_sample(c0 + ivec3(c, y, c), l.xz * 2 + 1, kd);
+			if (kd != S_AIR) top_solid = y;
+			else if ((p.y & PAL_ID_MASK) != 0u && top_fluid < 0) { top_fluid = y; fluid = p.y & PAL_ID_MASK; }
+		}
+	if (top_fluid < 0) // a lake narrower than the cell: its highest fluid sample
+		for (int k = 0; k < 8; k++)
+			if ((smp[k].y & PAL_ID_MASK) != 0u && kind[k] == S_AIR && ((k & 2) != 0 ? c : a) > top_fluid) { top_fluid = (k & 2) != 0 ? c : a; fluid = smp[k].y & PAL_ID_MASK; }
+	for (int k = 0; k < 8; k++) if (kind[k] != S_AIR) top_solid = max(top_solid, (k & 2) != 0 ? c : a); // a solid sample above the water keeps the cell (a building on the shore)
+	if (top_fluid > top_solid) r = uvec2(0u, fluid | uint(top_fluid + 1) << FLUID_LEVEL_SHIFT);
+	else r.y = r.x != 0u && top_fluid >= 0 ? fluid | uint(top_fluid + 1) << FLUID_LEVEL_SHIFT : 0u;
+	return r;
+}
+
+// FILL: a workgroup per mixed group, thread v = cell v: generator pairs, edits, the group's palette (PALETTE, §3.4; ponytail: brute-force dedupe).
+void fill() {
+	uint k = gl_WorkGroupID.x + gl_WorkGroupID.y * gl_NumWorkGroups.x, v = gl_LocalInvocationIndex;
+	if (k >= min(mixed_count, mixed_cap)) return;
+	uint j = mixed[k] >> JOB_BITS, g = mixed[k] & ((1u << JOB_BITS) - 1u), gslot = j * GROUPS_PER_CHUNK + g;
+	lvl = job_level(j);
+	int cs = cell_blocks();
+	ivec3 wc = jobs[j].chunk.xyz, gb = wc * (CHUNK * cs) + group_cell(int(g)) * (GROUP * cs);
+	uint es = edit_scale(), slot = col_slot(wc.xz);
+	if (v < 4u) { s_bits[v] = 0u; s_air[v] = 0u; }
+	if (v < BRICK_INDEX_WORDS) s_words[v] = 0u;
+	if (v == 0u) {
+		uint ef = jobs[j].edits.x, en = jobs[j].edits.y;
+		s_ef = edits_from(ef, en, g * GROUPS_PER_CHUNK * es);
+		s_ee = edits_from(ef, en, (g + 1u) * GROUPS_PER_CHUNK * es);
+	}
+	barrier();
+	if (lvl == 0) gen_group_begin(gb, slot, v);
+	else gen_group_begin_lod(gb, slot, lvl, v);
+	bool cell = v < GROUPS_PER_CHUNK;
+	if (cell) {
+		ivec3 l = group_cell(int(v));
+		uvec2 p;
+		if (lvl == 0) {
+			p = gen_pair(gen_block(gb + l, l));
+			for (uint e = s_ef; e < s_ee; e++) if (edits[e].x == g * GROUPS_PER_CHUNK + v) p = apply_edit(p, edits[e]);
+		} else p = lod_cell(gb, l, (g * GROUPS_PER_CHUNK + v) * 8u, slot);
+		s_pair[v] = p;
+	}
+	barrier();
+	uint first = v;
+	if (cell) {
+		for (uint u = 0u; u < v; u++) if (s_pair[u] == s_pair[v]) { first = u; break; }
+		if (first == v) atomicOr(s_bits[v >> 5], 1u << (v & 31u));
+		if (s_pair[v] == uvec2(0u)) atomicOr(s_air[v >> 5], 1u << (v & 31u));
+	}
+	barrier();
+	uint n = bitCount(s_bits[0]) + bitCount(s_bits[1]) + bitCount(s_bits[2]) + bitCount(s_bits[3]);
+	if (n == 1u) {
+		if (v != 0u) return;
+		job_groups[gslot] = entry_of(s_pair[0]);
+		if (s_pair[0] != uvec2(0u)) atomicAdd(jobs[j].counts[3], 1u);
+		return;
+	}
+	uint cls = n <= BRICK4_PAIRS ? 0u : n <= BRICK16_PAIRS ? 1u : 2u, base = k * BRICK125_WORDS;
+	if (cell) {
+		uint idx = bits_below(s_bits, first);
+		atomicOr(s_words[v >> 2], idx << ((v & 3u) * 8u));
+		if (first == v) { work[base + BRICK_INDEX_WORDS + 2u * idx] = s_pair[v].x; work[base + BRICK_INDEX_WORDS + 2u * idx + 1u] = s_pair[v].y; }
+	}
+	if (v < BOX_SEEDS) {
+		ivec3 seed = box_seed(v);
+		uint sv = uint(group_index(seed));
+		uvec4 air = uvec4(s_air[0], s_air[1], s_air[2], s_air[3]);
+		s_vol[v] = 0u;
+		if ((air[sv >> 5] & (1u << (sv & 31u))) != 0u) {
+			ivec3 lo, hi;
+			grow_box(air, seed, lo, hi);
+			ivec3 d = hi - lo;
+			s_vol[v] = uint(d.x * d.y * d.z);
+			s_box[v] = pack_box(uvec3(lo), uvec3(hi));
+		}
+	}
+	barrier();
+	if (v == 0u) {
+		uint pick = 0u;
+		for (uint b = 1u; b < BOX_SEEDS; b++) if (s_vol[b] > s_vol[pick]) pick = b;
+		if (s_vol[pick] > 0u) s_words[BRICK_BOX_WORD] |= s_box[pick];
+		job_groups[gslot] = uvec2(cls << CLASS_SHIFT, k);
+		atomicAdd(jobs[j].counts[3], 1u);
+	}
+	barrier();
+	if (v < BRICK_INDEX_WORDS) work[base + v] = s_words[v];
+}
+
+void store_brick(uint cls, uint i, uint w) {
+	if (cls == 0u) brick4[i] = w;
+	else if (cls == 1u) brick16[i] = w;
+	else brick125[i] = w;
+}
+
+// PACK: a workgroup per job, thread g = group g, the last thread the record. The whole chunk or nothing (docs/v2.md §3.6): a failed take fails the chunk, RECLAIM gives back what it took.
+// A far chunk refused by the reserve fails without counting in W.fail (bit RESERVE_FAIL).
+void pack(uint j, uint li) {
+	if (jobs[j].chunk.w != int(JOB_MIXED)) return;
+	lvl = job_level(j);
+	ivec3 wc = jobs[j].chunk.xyz;
+	uint slot = chunk_slot(wc);
+	if (jobs[j].counts[3] == 0u) {
+		if (li != 0u) return;
+		replace_entry(j, slot);
+		dir[slot] = uvec2(UNI, 0u);
+		clear_occupied(wc);
+		jobs[j].chunk.w = int(JOB_UNIFORM);
+		return;
+	}
+	if (li < 4u) s_bits[li] = 0u;
+	if (li == 0u) s_fail = 0u;
+	barrier();
+	bool grp = li < GROUPS_PER_CHUNK, rec = li == RECORD_THREAD;
+	vec3 d = vec3(wc) - W.near.xyz;
+	bool far = lvl > 0 || dot(d, d) > float((W.probe.w + MID_MARGIN) * (W.probe.w + MID_MARGIN));
+	uvec2 e = grp ? job_groups[j * GROUPS_PER_CHUNK + li] : uvec2(UNI, 0u);
+	bool brick = grp && is_brick(e.x);
+	uint cls = entry_class(e.x), pool = brick ? cls + 1u : PL_RECORDS, item = brick || rec ? take(pool) : NO_ITEM;
+	if ((brick || rec) && (item == NO_ITEM || far && over_reserve(pool))) atomicOr(s_fail, far ? RESERVE_FAIL : 1u << pool);
+	if (grp && e.x == ENTRY_AIR) atomicOr(s_bits[li >> 5], 1u << (li & 31u));
+	if (rec) s_rec = item;
+	barrier();
+	if (s_fail != 0u) {
+		if (brick) job_groups[j * GROUPS_PER_CHUNK + li].y = item;
+		if (rec) jobs[j].base[0] = item;
+		if (li != 0u) return;
+		for (uint p = 0u; p < 4u; p++) if ((s_fail >> p & 1u) != 0u) atomicAdd(W.fail[p], 1u);
+		jobs[j].chunk.w = int(JOB_FAILED);
+		deferred[atomicAdd(deferred_count, 1u)] = ivec4(wc, 1 | lvl << 1);
+		return;
+	}
+	if (brick) {
+		uint src = e.y * BRICK125_WORDS, dst = brick_base(cls, item), n = cls == 0u ? BRICK4_WORDS : cls == 1u ? BRICK16_WORDS : BRICK125_WORDS;
+		for (uint w = 0u; w < n; w++) store_brick(cls, dst + w, work[src + w]);
+		e = uvec2(cls << CLASS_SHIFT | item, 0u);
+	}
+	if (grp && e.x == ENTRY_AIR) {
+		ivec3 g = group_cell(int(li)), lo, hi;
+		grow_box(uvec4(s_bits[0], s_bits[1], s_bits[2], s_bits[3]), g, lo, hi);
+		e.y = pack_box(uvec3(g - lo), uvec3(hi - 1 - g));
+	}
+	uint r = s_rec * CHUNK_REC_WORDS;
+	if (grp) { records[r + 2u * li] = e.x; records[r + 2u * li + 1u] = e.y; }
+	memoryBarrierBuffer();
+	barrier();
+	if (li != 0u) return;
+	records[r + CHUNK_STAMP_WORD] = pc.first;
+	replace_entry(j, slot);
+	dir[slot] = uvec2(s_rec, 0u);
+	mark_occupied(wc);
+}
+
+// RECLAIM: a workgroup per job: what a failed chunk took, and the record a regenerated chunk replaced, back to the free stacks.
+void reclaim(uint j, uint li) {
+	if (jobs[j].chunk.w == int(JOB_FAILED)) {
+		uvec2 e = li < GROUPS_PER_CHUNK ? job_groups[j * GROUPS_PER_CHUNK + li] : uvec2(UNI, 0u);
+		if (is_brick(e.x) && e.y != NO_ITEM) give(entry_class(e.x) + 1u, e.y);
+		if (li == RECORD_THREAD && jobs[j].base[0] != NO_ITEM) give(PL_RECORDS, jobs[j].base[0]);
+	}
+	if (jobs[j].edits.z != 0u) free_record(jobs[j].edits.z - 1u, li);
+	if (li == 0u) give_list(jobs[j].counts[1]);
+}
+
+// RELEASE: a workgroup per chunk that left its level's sphere: its memory to the free stacks, the directory entry NONE (occupied: rays go coarser there).
+void release(uint i, uint li) {
+	lvl = rel[i].w;
+	ivec3 wc = rel[i].xyz;
+	uint slot = chunk_slot(wc), x = dir[slot].x;
+	barrier();
+	if (x == NONE) return;
+	if ((x & UNI) == 0u) free_record(x, li);
+	if (li != 0u) return;
+	if ((x & UNI) == 0u) give_list(dir[slot].y);
+	dir[slot] = uvec2(NONE, 0u);
+	set_occupied(wc);
+}
+
+// A light block or a light fluid (lava) of a cell's pair.
+bool lit(uvec2 p) { return p.x < PART && (pal_flags(p.x) & F_LIGHT) != 0u || (p.y & PAL_ID_MASK) != 0u && (types[p.y & PAL_ID_MASK].flags & F_LIGHT) != 0u; }
+uint lit_id(uvec2 p) { return p.x < PART && (pal_flags(p.x) & F_LIGHT) != 0u ? p.x & PAL_ID_MASK : p.y & PAL_ID_MASK; }
+
+// Pair of cell v of a group entry (uniform or brick).
+uvec2 group_pair(uvec2 ge, uint v) {
+	if ((ge.x & UNI) != 0u) return uvec2(ge.x & ~UNI, ge.y);
+	uint cls = entry_class(ge.x), base = brick_base(cls, ge.x & INDEX_MASK);
+	return brick_pair(cls, base, brick_index(cls, base, v));
+}
+
+// Cheap test before the cells: a brick's palette slots (unused ones may hold old pairs: only a cost).
+bool group_may_light(uvec2 ge) {
+	if ((ge.x & UNI) != 0u) return lit(uvec2(ge.x & ~UNI, ge.y));
+	uint cls = entry_class(ge.x);
+	if (cls == CLASS_AIR) return false;
+	uint base = brick_base(cls, ge.x & INDEX_MASK), n = cls == 0u ? BRICK4_PAIRS : cls == 1u ? BRICK16_PAIRS : GROUPS_PER_CHUNK;
+	for (uint k = 0u; k < n; k++) if (lit(brick_pair(cls, base, k))) return true;
+	return false;
+}
+
+shared uint s_lit, s_any;
+
+// A neighbour light cannot shine through cell q of the chunk with record rec: an opaque cube or a fluid (a lava lake lights from its surface only); outside the chunk never.
+bool closed(uint rec, ivec3 q) {
+	if (any(lessThan(q, ivec3(0))) || any(greaterThanEqual(q, ivec3(CHUNK)))) return false;
+	uint o = rec * CHUNK_REC_WORDS + 2u * uint(group_index(q / GROUP));
+	uvec2 p = group_pair(uvec2(records[o], records[o + 1u]), uint(group_index(q % GROUP)));
+	return p.y != 0u || p.x < PART && (pal_flags(p.x) & F_OPAQUE) != 0u;
+}
+
+// A light cell of the chunk that some face of it shines from.
+bool shines(uint rec, ivec3 b) {
+	for (int f = 0; f < 6; f++) if (!closed(rec, b + face_step(f))) return true;
+	return false;
+}
+
+// LIGHTS: a workgroup per L0 job that wrote its directory entry, thread g = group g. A mixed chunk's light list: its light cells that shine, in group and cell order, MAX_CHUNK_LIGHTS kept (docs/v2.md §5.22);
+// the chunk goes to LL.change when it or a chunk next to it has lights (their maps may have changed).
+void lights(uint j, uint li) {
+	lvl = job_level(j);
+	int st = jobs[j].chunk.w;
+	if (lvl != 0 || st != int(JOB_UNIFORM) && st != int(JOB_MIXED)) return;
+	ivec3 wc = jobs[j].chunk.xyz;
+	uint slot = chunk_slot(wc);
+	uvec2 e = dir[slot];
+	bool mixed = (e.x & UNI) == 0u;
+	uvec2 ge = mixed && li < GROUPS_PER_CHUNK ? uvec2(records[e.x * CHUNK_REC_WORDS + 2u * li], records[e.x * CHUNK_REC_WORDS + 2u * li + 1u]) : uvec2(ENTRY_AIR, 0u);
+	ivec3 g = group_cell(int(li)) * GROUP;
+	bool may = group_may_light(ge);
+	if (li == 0u) { s_lit = 0u; s_any = 0u; }
+	barrier();
+	if (may) atomicOr(s_any, 1u);
+	barrier();
+	if (s_any != 0u) { // most chunks have no light: no cell scan, no list (PACK left y = 0)
+		uint n = 0u;
+		if (may) for (uint v = 0u; v < GROUPS_PER_CHUNK; v++) if (lit(group_pair(ge, v)) && shines(e.x, g + group_cell(int(v)))) n++;
+		s_scan[li] = n;
+		barrier();
+		for (uint o = 1u; o < GROUP_X; o <<= 1) {
+			uint a = li >= o ? s_scan[li - o] : 0u;
+			barrier();
+			s_scan[li] += a;
+			barrier();
+		}
+		uint total = s_scan[GROUP_X - 1u];
+		if (li == 0u) {
+			s_rec = total == 0u ? NO_ITEM : take_list();
+			if (total != 0u && s_rec == NO_ITEM) atomicAdd(LL.fail, 1u);
+		}
+		barrier();
+		if (n != 0u && s_rec != NO_ITEM)
+			for (uint v = 0u, k = s_scan[li] - n; v < GROUPS_PER_CHUNK && k < MAX_CHUNK_LIGHTS; v++) {
+				uvec2 p = group_pair(ge, v);
+				ivec3 b = g + group_cell(int(v));
+				if (!lit(p) || !shines(e.x, b)) continue;
+				uint o = light_word(s_rec, k++);
+				LL.words[o] = uint(b.x + CHUNK * (b.y + CHUNK * b.z));
+				LL.words[o + 1u] = lit_id(p);
+			}
+		if (li == 0u) dir[slot].y = s_rec == NO_ITEM ? 0u : s_rec + 1u | min(total, MAX_CHUNK_LIGHTS) << LIGHT_COUNT_SHIFT;
+	}
+	memoryBarrierBuffer();
+	barrier();
+	if (li < 27u) {
+		ivec3 nc = wc + ivec3(int(li % 3u), int(li / 3u % 3u), int(li / 9u)) - 1;
+		if (in_ring0(nc) && has_lights(dir[slot0(nc)])) s_lit = 1u;
+	}
+	barrier();
+	if (li == 0u && s_lit != 0u) {
+		uint k = atomicAdd(LL.changes, 1u);
+		if (k < LIGHT_CHANGES) LL.change[k] = ivec4(wc, 0);
+	}
+}
+
+// OCCUPANCY: a job that became uniform air recomputes the mip bit of its 4^3 slots from their bits (a row of 4 slots is 4 bits of one word).
+void occupancy(uint j) {
+	lvl = job_level(j);
+	ivec3 wc = jobs[j].chunk.xyz;
+	if (dir[chunk_slot(wc)] != uvec2(UNI, 0u)) return;
+	ivec3 s = slot_of(wc), m0 = s & ~3;
+	bool any = false;
+	for (int z = 0; z < 4; z++)
+		for (int y = 0; y < 4; y++) {
+			uint i = slot_index(m0 + ivec3(0, y, z));
+			any = any || (occ[i >> 5] >> (i & 31u) & 15u) != 0u;
+		}
+	uint m = mip_index(s);
+	if (any) atomicOr(occ_mip[m >> 5], 1u << (m & 31u));
+	else atomicAnd(occ_mip[m >> 5], ~(1u << (m & 31u)));
+}
+
+// PROBE: chunks within the near and the mid radius of the camera chunk that are not in memory (tests NearMissing, MidMissing, loading screen).
+void probe(uint i) {
+	int n = int(W.probe.w), w = 2 * n + 1;
+	ivec3 d = ivec3(int(i) % w, int(i) / w % w, int(i) / (w * w)) - n;
+	float r2 = dot(vec3(d), vec3(d));
+	if (r2 > float(n * n) || dir[chunk_slot(ivec3(W.near.xyz) + d)].x != NONE) return;
+	atomicAdd(W.probe.y, 1u);
+	if (r2 <= W.near.w * W.near.w) atomicAdd(W.probe.x, 1u);
+}
+
+void main() {
+	if (pc.step == GEN_FILL) { fill(); return; }
+	uint i = gl_GlobalInvocationID.x + gl_GlobalInvocationID.y * pc.row;
+	if (i >= pc.count) return;
+	const uint CB = uint(CHUNK * CHUNK);
+	if (pc.step == GEN_CLEAR) {
+		dir[i] = uvec2(NONE, 0u);
+		if (i < pc.count / 32u) occ[i] = ~0u;
+		if (i < pc.count / 2048u) occ_mip[i] = ~0u;
+	} else if (pc.step == GEN_RELEASE) release(i / GROUP_X, i % GROUP_X);
+	else if (pc.step == GEN_OCCUPANCY) occupancy(i);
+	else if (pc.step == GEN_HEIGHTS) {
+		ivec4 c = columns[i / CB];
+		lvl = c.z;
+		uint l = i % CB, slot = col_slot(c.xy);
+		int s = cell_blocks();
+		heights[slot * CB + l] = gen_column((c.xy * CHUNK + ivec2(l % uint(CHUNK), l / uint(CHUNK))) * s + s / 2);
+		if (l == 0u) col_feature_count[slot] = 0u;
+	} else if (pc.step == GEN_COLUMN_MIN_MAX) {
+		ivec4 c = columns[i / GROUP_X];
+		lvl = c.z;
+		uint li = i % GROUP_X, slot = col_slot(c.xy);
+		vec2 mm = vec2(1e9, -1e9);
+		for (uint k = li; k < CB; k += GROUP_X) { float h = heights[slot * CB + k]; mm = vec2(min(mm.x, h), max(mm.y, h)); }
+		s_v[li].xy = mm;
+		barrier();
+		if (li == 0u) {
+			for (uint k = 1u; k < GROUP_X; k++) mm = vec2(min(mm.x, s_v[k].x), max(mm.y, s_v[k].y));
+			colmm[slot] = mm;
+		}
+	} else if (pc.step == GEN_FEATURES) {
+		// L0 columns only: at L >= 1 the modules take features per coarse group straight from their anchors (gen_group_begin_lod), a coarse column holds too many for a list
+		ivec2 col = columns[i / FEATURE_CANDIDATES].xy, c0 = col * CHUNK;
+		uint slot = col_slot(col);
+		ivec4 f;
+		if (!gen_feature(col, i % FEATURE_CANDIDATES, f)) return;
+		ivec3 lo, hi;
+		gen_feature_box(f, lo, hi);
+		if (lo.x < c0.x + CHUNK && hi.x > c0.x && lo.z < c0.y + CHUNK && hi.z > c0.y) {
+			uint n = atomicAdd(col_feature_count[slot], 1u);
+			if (n < MAX_COL_FEATURES) col_features[slot * MAX_COL_FEATURES + n] = f;
+			else atomicAdd(W.lod_stat[0], 1u);
+		}
+	} else if (pc.step == GEN_CLASSIFY) classify(i / GROUP_X, i % GROUP_X);
+	else if (pc.step == GEN_SCAN) scan(i);
+	else if (pc.step == GEN_LIST) list(i / GROUP_X, i % GROUP_X);
+	else if (pc.step == GEN_FILL_ARGS) {
+		uint n = min(mixed_count, mixed_cap), x = min(n, 65535u);
+		fill_args[0] = x; fill_args[1] = x == 0u ? 0u : (n + x - 1u) / x; fill_args[2] = 1u;
+	} else if (pc.step == GEN_PACK) pack(i / GROUP_X, i % GROUP_X);
+	else if (pc.step == GEN_FIXUP) {
+		for (uint p = 0u; p < 4u; p++) { W.free_top[p] = max(W.free_top[p], 0); W.used[p] = min(W.used[p], W.cap[p]); }
+		LL.free_top = max(LL.free_top, 0);
+		LL.used = min(LL.used, LL.cap);
+	} else if (pc.step == GEN_LIGHTS) lights(i / GROUP_X, i % GROUP_X);
+	else if (pc.step == GEN_RECLAIM) reclaim(i / GROUP_X, i % GROUP_X);
+	else if (pc.step == GEN_PROBE) probe(i);
+}

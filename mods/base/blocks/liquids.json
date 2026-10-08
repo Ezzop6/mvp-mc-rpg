@@ -1,0 +1,96 @@
+{
+  "category": "liquids",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:bubble_column",
+      "kind": "entity",
+      "textures": { "particle": "block/water_still" },
+      "surface": "translucent",
+      "tags": ["animated", "base_texture", "placeholder"],
+      "cubes": { "water": { "all": { "texture": "block/water_still" } } },
+      "variants": [{ "looks": [{ "cube": "water" }] }]
+    },
+    {
+      "id": "base:lava",
+      "kind": "liquid",
+      "textures": { "flow": "block/lava_flow", "particle": "block/lava_still", "still": "block/lava_still" },
+      "emission": 0.398,
+      "light": { "level": 15, "color": "#ff6101" },
+      "states": { "level": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "tags": ["animated"]
+    },
+    {
+      "id": "base:acid",
+      "kind": "liquid",
+      "textures": { "flow": "block/water_flow", "overlay": "block/water_overlay", "particle": "block/water_still", "still": "block/water_still" },
+      "surface": "translucent",
+      "tint": { "source": "constant", "color": "#a6e02a" },
+      "states": { "level": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "tags": ["animated", "base_texture"]
+    },
+    {
+      "id": "base:blood",
+      "kind": "liquid",
+      "textures": { "flow": "block/water_flow", "overlay": "block/water_overlay", "particle": "block/water_still", "still": "block/water_still" },
+      "surface": "translucent",
+      "tint": { "source": "constant", "color": "#7a1414" },
+      "states": { "level": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "tags": ["animated", "base_texture"]
+    },
+    {
+      "id": "base:honey",
+      "kind": "liquid",
+      "textures": { "flow": "block/water_flow", "overlay": "block/water_overlay", "particle": "block/water_still", "still": "block/water_still" },
+      "surface": "translucent",
+      "tint": { "source": "constant", "color": "#d99a1c" },
+      "states": { "level": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "tags": ["animated", "base_texture"]
+    },
+    {
+      "id": "base:ink",
+      "kind": "liquid",
+      "textures": { "flow": "block/water_flow", "overlay": "block/water_overlay", "particle": "block/water_still", "still": "block/water_still" },
+      "surface": "translucent",
+      "tint": { "source": "constant", "color": "#141033" },
+      "states": { "level": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "tags": ["animated", "base_texture"]
+    },
+    {
+      "id": "base:milk",
+      "kind": "liquid",
+      "textures": { "flow": "block/water_flow", "overlay": "block/water_overlay", "particle": "block/water_still", "still": "block/water_still" },
+      "surface": "translucent",
+      "tint": { "source": "constant", "color": "#efece0" },
+      "states": { "level": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "tags": ["animated", "base_texture"]
+    },
+    {
+      "id": "base:oil",
+      "kind": "liquid",
+      "textures": { "flow": "block/water_flow", "overlay": "block/water_overlay", "particle": "block/water_still", "still": "block/water_still" },
+      "surface": "translucent",
+      "tint": { "source": "constant", "color": "#26241d" },
+      "states": { "level": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "tags": ["animated", "base_texture"]
+    },
+    {
+      "id": "base:slime",
+      "kind": "liquid",
+      "textures": { "flow": "block/water_flow", "overlay": "block/water_overlay", "particle": "block/water_still", "still": "block/water_still" },
+      "surface": "translucent",
+      "tint": { "source": "constant", "color": "#6fbf3a" },
+      "states": { "level": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "tags": ["animated", "base_texture"]
+    },
+    {
+      "id": "base:water",
+      "kind": "liquid",
+      "textures": { "flow": "block/water_flow", "overlay": "block/water_overlay", "particle": "block/water_still", "still": "block/water_still" },
+      "surface": "translucent",
+      "tint": { "source": "water", "color": "#3f76e4" },
+      "states": { "level": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "tags": ["animated", "base_texture"]
+    }
+  ]
+}

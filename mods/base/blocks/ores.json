@@ -1,0 +1,653 @@
+{
+  "category": "ores",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:amethyst_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/amethyst_block", "emission": 0.006 } },
+      "cubes": { "amethyst_block": { "all": { "texture": "block/amethyst_block", "emission": 0.006 } } },
+      "variants": [{ "looks": [{ "cube": "amethyst_block" }] }]
+    },
+    {
+      "id": "base:amethyst_cluster",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "base": "block/amethyst_block", "crystal": "block/extra/amethyst_crystal", "particle": "block/extra/amethyst_crystal" },
+      "emission": 0.003,
+      "light": { "level": 5, "color": "#c384ff" },
+      "orientation": "facing",
+      "states": { "facing": ["down", "east", "north", "south", "up", "west"] },
+      "tags": ["default_rotated_x", "random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "up" }],
+          "looks": [
+            { "model": "amethyst_cluster2" },
+            { "model": "amethyst_cluster2", "y": 90 },
+            { "model": "amethyst_cluster2", "y": 180 },
+            { "model": "amethyst_cluster2", "y": 270 },
+            { "model": "amethyst_cluster3" },
+            { "model": "amethyst_cluster3", "y": 90 },
+            { "model": "amethyst_cluster3", "y": 180 },
+            { "model": "amethyst_cluster3", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "down" }],
+          "looks": [
+            { "model": "amethyst_cluster2", "x": 180 },
+            { "model": "amethyst_cluster2", "x": 180, "y": 180 },
+            { "model": "amethyst_cluster3", "x": 180 },
+            { "model": "amethyst_cluster3", "x": 180, "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [
+            { "model": "amethyst_cluster2", "x": 90 },
+            { "model": "amethyst_cluster2", "x": 270, "y": 180 },
+            { "model": "amethyst_cluster3", "x": 90 },
+            { "model": "amethyst_cluster3", "x": 270, "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [
+            { "model": "amethyst_cluster2", "x": 90, "y": 180 },
+            { "model": "amethyst_cluster2", "x": 270 },
+            { "model": "amethyst_cluster3", "x": 90, "y": 180 },
+            { "model": "amethyst_cluster3", "x": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [
+            { "model": "amethyst_cluster2", "x": 90, "y": 90 },
+            { "model": "amethyst_cluster2", "x": 270, "y": 270 },
+            { "model": "amethyst_cluster3", "x": 90, "y": 90 },
+            { "model": "amethyst_cluster3", "x": 270, "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [
+            { "model": "amethyst_cluster2", "x": 90, "y": 270 },
+            { "model": "amethyst_cluster2", "x": 270, "y": 90 },
+            { "model": "amethyst_cluster3", "x": 90, "y": 270 },
+            { "model": "amethyst_cluster3", "x": 270, "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "facing": "up" }],
+          "looks": [
+            { "model": "amethyst_cluster" },
+            { "model": "amethyst_cluster", "y": 90 },
+            { "model": "amethyst_cluster", "y": 180 },
+            { "model": "amethyst_cluster", "y": 270 }
+          ]
+        },
+        { "when": [{ "facing": "down" }], "looks": [{ "model": "amethyst_cluster", "x": 180 }, { "model": "amethyst_cluster", "x": 180, "y": 180 }] },
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "amethyst_cluster", "x": 90 }, { "model": "amethyst_cluster", "x": 270, "y": 180 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "amethyst_cluster", "x": 90, "y": 180 }, { "model": "amethyst_cluster", "x": 270 }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "amethyst_cluster", "x": 90, "y": 90 }, { "model": "amethyst_cluster", "x": 270, "y": 270 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "amethyst_cluster", "x": 90, "y": 270 }, { "model": "amethyst_cluster", "x": 270, "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:ancient_debris",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/ancient_debris_top" },
+        "bottom": { "texture": "block/ancient_debris_top" },
+        "side": { "texture": "block/ancient_debris_side" }
+      },
+      "cubes": {
+        "ancient_debris": {
+          "top": { "texture": "block/ancient_debris_top" },
+          "bottom": { "texture": "block/ancient_debris_top" },
+          "side": { "texture": "block/ancient_debris_side" }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "ancient_debris" }] }]
+    },
+    {
+      "id": "base:coal_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/coal_block" } },
+      "cubes": { "coal_block": { "all": { "texture": "block/coal_block" } } },
+      "variants": [{ "looks": [{ "cube": "coal_block" }] }]
+    },
+    {
+      "id": "base:coal_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/coal_ore" } },
+      "cubes": { "coal_ore": { "all": { "texture": "block/coal_ore" } } },
+      "variants": [{ "looks": [{ "cube": "coal_ore" }] }]
+    },
+    {
+      "id": "base:copper_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/copper_ore" } },
+      "cubes": { "copper_ore": { "all": { "texture": "block/copper_ore" } } },
+      "variants": [{ "looks": [{ "cube": "copper_ore" }] }]
+    },
+    {
+      "id": "base:deepslate_coal_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/deepslate_coal_ore" } },
+      "cubes": { "deepslate_coal_ore": { "all": { "texture": "block/deepslate_coal_ore" } } },
+      "variants": [{ "looks": [{ "cube": "deepslate_coal_ore" }] }]
+    },
+    {
+      "id": "base:deepslate_copper_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/deepslate_copper_ore" } },
+      "cubes": { "deepslate_copper_ore": { "all": { "texture": "block/deepslate_copper_ore" } } },
+      "variants": [{ "looks": [{ "cube": "deepslate_copper_ore" }] }]
+    },
+    {
+      "id": "base:deepslate_diamond_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/deepslate_diamond_ore" } },
+      "cubes": { "deepslate_diamond_ore": { "all": { "texture": "block/deepslate_diamond_ore" } } },
+      "variants": [{ "looks": [{ "cube": "deepslate_diamond_ore" }] }]
+    },
+    {
+      "id": "base:deepslate_emerald_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/deepslate_emerald_ore" } },
+      "cubes": { "deepslate_emerald_ore": { "all": { "texture": "block/deepslate_emerald_ore" } } },
+      "variants": [{ "looks": [{ "cube": "deepslate_emerald_ore" }] }]
+    },
+    {
+      "id": "base:deepslate_gold_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/deepslate_gold_ore" } },
+      "cubes": { "deepslate_gold_ore": { "all": { "texture": "block/deepslate_gold_ore" } } },
+      "variants": [{ "looks": [{ "cube": "deepslate_gold_ore" }] }]
+    },
+    {
+      "id": "base:deepslate_iron_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/deepslate_iron_ore" } },
+      "cubes": { "deepslate_iron_ore": { "all": { "texture": "block/deepslate_iron_ore" } } },
+      "variants": [{ "looks": [{ "cube": "deepslate_iron_ore" }] }]
+    },
+    {
+      "id": "base:deepslate_lapis_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/deepslate_lapis_ore" } },
+      "cubes": { "deepslate_lapis_ore": { "all": { "texture": "block/deepslate_lapis_ore" } } },
+      "variants": [{ "looks": [{ "cube": "deepslate_lapis_ore" }] }]
+    },
+    {
+      "id": "base:deepslate_redstone_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/deepslate_redstone_ore" } },
+      "light": { "level": 9, "when": "lit=true", "color": "#ffbbbe" },
+      "cubes": { "deepslate_redstone_ore": { "all": { "texture": "block/deepslate_redstone_ore" } } },
+      "variants": [{ "looks": [{ "cube": "deepslate_redstone_ore" }] }]
+    },
+    {
+      "id": "base:diamond_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/diamond_block" } },
+      "tags": ["random_rotation"],
+      "cubes": { "diamond_block": { "all": { "texture": "block/diamond_block" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "diamond_block" },
+            { "cube": "diamond_block", "y": 90 },
+            { "cube": "diamond_block", "y": 180 },
+            { "cube": "diamond_block", "y": 270 },
+            { "cube": "diamond_block", "x": 90 },
+            { "cube": "diamond_block", "x": 90, "y": 90 },
+            { "cube": "diamond_block", "x": 90, "y": 180 },
+            { "cube": "diamond_block", "x": 90, "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:diamond_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/diamond_ore" } },
+      "cubes": { "diamond_ore": { "all": { "texture": "block/diamond_ore" } } },
+      "variants": [{ "looks": [{ "cube": "diamond_ore" }] }]
+    },
+    {
+      "id": "base:emerald_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/emerald_block" } },
+      "cubes": { "emerald_block": { "all": { "texture": "block/emerald_block" } } },
+      "variants": [{ "looks": [{ "cube": "emerald_block" }] }]
+    },
+    {
+      "id": "base:emerald_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/emerald_ore" } },
+      "cubes": { "emerald_ore": { "all": { "texture": "block/emerald_ore" } } },
+      "variants": [{ "looks": [{ "cube": "emerald_ore" }] }]
+    },
+    {
+      "id": "base:gold_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/gold_block" } },
+      "tags": ["random_rotation"],
+      "cubes": { "gold_block": { "all": { "texture": "block/gold_block" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "gold_block" },
+            { "cube": "gold_block", "y": 180 },
+            { "cube": "gold_block", "x": 180 },
+            { "cube": "gold_block", "x": 180, "y": 180 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:gold_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/gold_ore" } },
+      "cubes": { "gold_ore": { "all": { "texture": "block/gold_ore" } } },
+      "variants": [{ "looks": [{ "cube": "gold_ore" }] }]
+    },
+    {
+      "id": "base:iron_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/iron_block" } },
+      "tags": ["random_rotation"],
+      "cubes": { "iron_block": { "all": { "texture": "block/iron_block" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "iron_block" },
+            { "cube": "iron_block", "y": 180 },
+            { "cube": "iron_block", "x": 180 },
+            { "cube": "iron_block", "x": 180, "y": 180 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:iron_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/iron_ore" } },
+      "cubes": { "iron_ore": { "all": { "texture": "block/iron_ore" } } },
+      "variants": [{ "looks": [{ "cube": "iron_ore" }] }]
+    },
+    {
+      "id": "base:lapis_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/lapis_block" } },
+      "cubes": { "lapis_block": { "all": { "texture": "block/lapis_block" } } },
+      "variants": [{ "looks": [{ "cube": "lapis_block" }] }]
+    },
+    {
+      "id": "base:lapis_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/lapis_ore" } },
+      "cubes": { "lapis_ore": { "all": { "texture": "block/lapis_ore" } } },
+      "variants": [{ "looks": [{ "cube": "lapis_ore" }] }]
+    },
+    {
+      "id": "base:large_amethyst_bud",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "base": "block/amethyst_block", "crystal": "block/extra/amethyst_crystal", "particle": "block/extra/amethyst_crystal" },
+      "emission": 0.003,
+      "light": { "level": 4, "color": "#c384ff" },
+      "orientation": "facing",
+      "states": { "facing": ["down", "east", "north", "south", "up", "west"] },
+      "tags": ["default_rotated_x", "random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "up" }],
+          "looks": [
+            { "model": "large_amethyst_bud2" },
+            { "model": "large_amethyst_bud2", "y": 90 },
+            { "model": "large_amethyst_bud2", "y": 180 },
+            { "model": "large_amethyst_bud2", "y": 270 },
+            { "model": "large_amethyst_bud3" },
+            { "model": "large_amethyst_bud3", "y": 90 },
+            { "model": "large_amethyst_bud3", "y": 180 },
+            { "model": "large_amethyst_bud3", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "down" }],
+          "looks": [
+            { "model": "large_amethyst_bud2", "x": 180 },
+            { "model": "large_amethyst_bud2", "x": 180, "y": 180 },
+            { "model": "large_amethyst_bud3", "x": 180 },
+            { "model": "large_amethyst_bud3", "x": 180, "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [
+            { "model": "large_amethyst_bud2", "x": 90 },
+            { "model": "large_amethyst_bud2", "x": 270, "y": 180 },
+            { "model": "large_amethyst_bud3", "x": 90 },
+            { "model": "large_amethyst_bud3", "x": 270, "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [
+            { "model": "large_amethyst_bud2", "x": 90, "y": 180 },
+            { "model": "large_amethyst_bud2", "x": 270 },
+            { "model": "large_amethyst_bud3", "x": 90, "y": 180 },
+            { "model": "large_amethyst_bud3", "x": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [
+            { "model": "large_amethyst_bud2", "x": 90, "y": 90 },
+            { "model": "large_amethyst_bud2", "x": 270, "y": 270 },
+            { "model": "large_amethyst_bud3", "x": 90, "y": 90 },
+            { "model": "large_amethyst_bud3", "x": 270, "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [
+            { "model": "large_amethyst_bud2", "x": 90, "y": 270 },
+            { "model": "large_amethyst_bud2", "x": 270, "y": 90 },
+            { "model": "large_amethyst_bud3", "x": 90, "y": 270 },
+            { "model": "large_amethyst_bud3", "x": 270, "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "facing": "up" }],
+          "looks": [
+            { "model": "large_amethyst_bud" },
+            { "model": "large_amethyst_bud", "y": 90 },
+            { "model": "large_amethyst_bud", "y": 180 },
+            { "model": "large_amethyst_bud", "y": 270 }
+          ]
+        },
+        { "when": [{ "facing": "down" }], "looks": [{ "model": "large_amethyst_bud", "x": 180 }, { "model": "large_amethyst_bud", "x": 180, "y": 180 }] },
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "large_amethyst_bud", "x": 90 }, { "model": "large_amethyst_bud", "x": 270, "y": 180 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "large_amethyst_bud", "x": 90, "y": 180 }, { "model": "large_amethyst_bud", "x": 270 }] },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [{ "model": "large_amethyst_bud", "x": 90, "y": 90 }, { "model": "large_amethyst_bud", "x": 270, "y": 270 }]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [{ "model": "large_amethyst_bud", "x": 90, "y": 270 }, { "model": "large_amethyst_bud", "x": 270, "y": 90 }]
+        }
+      ]
+    },
+    {
+      "id": "base:medium_amethyst_bud",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "base": "block/amethyst_block", "crystal": "block/extra/amethyst_crystal", "particle": "block/extra/amethyst_crystal" },
+      "emission": 0.003,
+      "light": { "level": 2, "color": "#c384ff" },
+      "orientation": "facing",
+      "states": { "facing": ["down", "east", "north", "south", "up", "west"] },
+      "tags": ["default_rotated_x", "random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "up" }],
+          "looks": [
+            { "model": "medium_amethyst_bud2" },
+            { "model": "medium_amethyst_bud2", "y": 90 },
+            { "model": "medium_amethyst_bud2", "y": 180 },
+            { "model": "medium_amethyst_bud2", "y": 270 },
+            { "model": "medium_amethyst_bud3" },
+            { "model": "medium_amethyst_bud3", "y": 90 },
+            { "model": "medium_amethyst_bud3", "y": 180 },
+            { "model": "medium_amethyst_bud3", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "down" }],
+          "looks": [
+            { "model": "medium_amethyst_bud2", "x": 180 },
+            { "model": "medium_amethyst_bud2", "x": 180, "y": 180 },
+            { "model": "medium_amethyst_bud3", "x": 180 },
+            { "model": "medium_amethyst_bud3", "x": 180, "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [
+            { "model": "medium_amethyst_bud2", "x": 90 },
+            { "model": "medium_amethyst_bud2", "x": 270, "y": 180 },
+            { "model": "medium_amethyst_bud3", "x": 90 },
+            { "model": "medium_amethyst_bud3", "x": 270, "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [
+            { "model": "medium_amethyst_bud2", "x": 90, "y": 180 },
+            { "model": "medium_amethyst_bud2", "x": 270 },
+            { "model": "medium_amethyst_bud3", "x": 90, "y": 180 },
+            { "model": "medium_amethyst_bud3", "x": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [
+            { "model": "medium_amethyst_bud2", "x": 90, "y": 90 },
+            { "model": "medium_amethyst_bud2", "x": 270, "y": 270 },
+            { "model": "medium_amethyst_bud3", "x": 90, "y": 90 },
+            { "model": "medium_amethyst_bud3", "x": 270, "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [
+            { "model": "medium_amethyst_bud2", "x": 90, "y": 270 },
+            { "model": "medium_amethyst_bud2", "x": 270, "y": 90 },
+            { "model": "medium_amethyst_bud3", "x": 90, "y": 270 },
+            { "model": "medium_amethyst_bud3", "x": 270, "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "facing": "up" }],
+          "looks": [
+            { "model": "medium_amethyst_bud" },
+            { "model": "medium_amethyst_bud", "y": 90 },
+            { "model": "medium_amethyst_bud", "y": 180 },
+            { "model": "medium_amethyst_bud", "y": 270 }
+          ]
+        },
+        { "when": [{ "facing": "down" }], "looks": [{ "model": "medium_amethyst_bud", "x": 180 }, { "model": "medium_amethyst_bud", "x": 180, "y": 180 }] },
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "medium_amethyst_bud", "x": 90 }, { "model": "medium_amethyst_bud", "x": 270, "y": 180 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "medium_amethyst_bud", "x": 90, "y": 180 }, { "model": "medium_amethyst_bud", "x": 270 }] },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [{ "model": "medium_amethyst_bud", "x": 90, "y": 90 }, { "model": "medium_amethyst_bud", "x": 270, "y": 270 }]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [{ "model": "medium_amethyst_bud", "x": 90, "y": 270 }, { "model": "medium_amethyst_bud", "x": 270, "y": 90 }]
+        }
+      ]
+    },
+    {
+      "id": "base:nether_gold_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/nether_gold_ore", "emission": 0.004 } },
+      "cubes": { "nether_gold_ore": { "all": { "texture": "block/nether_gold_ore", "emission": 0.004 } } },
+      "variants": [{ "looks": [{ "cube": "nether_gold_ore" }] }]
+    },
+    {
+      "id": "base:nether_quartz_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/nether_quartz_ore" } },
+      "cubes": { "nether_quartz_ore": { "all": { "texture": "block/nether_quartz_ore" } } },
+      "variants": [{ "looks": [{ "cube": "nether_quartz_ore" }] }]
+    },
+    {
+      "id": "base:netherite_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/netherite_block" } },
+      "tags": ["random_rotation"],
+      "cubes": { "netherite_block": { "all": { "texture": "block/netherite_block" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "netherite_block" },
+            { "cube": "netherite_block", "y": 90 },
+            { "cube": "netherite_block", "y": 180 },
+            { "cube": "netherite_block", "y": 270 },
+            { "cube": "netherite_block", "x": 90 },
+            { "cube": "netherite_block", "x": 90, "y": 90 },
+            { "cube": "netherite_block", "x": 90, "y": 180 },
+            { "cube": "netherite_block", "x": 90, "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:raw_copper_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/raw_copper_block" } },
+      "cubes": { "raw_copper_block": { "all": { "texture": "block/raw_copper_block" } } },
+      "variants": [{ "looks": [{ "cube": "raw_copper_block" }] }]
+    },
+    {
+      "id": "base:raw_gold_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/raw_gold_block" } },
+      "cubes": { "raw_gold_block": { "all": { "texture": "block/raw_gold_block" } } },
+      "variants": [{ "looks": [{ "cube": "raw_gold_block" }] }]
+    },
+    {
+      "id": "base:raw_iron_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/raw_iron_block" } },
+      "cubes": { "raw_iron_block": { "all": { "texture": "block/raw_iron_block" } } },
+      "variants": [{ "looks": [{ "cube": "raw_iron_block" }] }]
+    },
+    {
+      "id": "base:redstone_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/redstone_block" } },
+      "cubes": { "redstone_block": { "all": { "texture": "block/redstone_block" } } },
+      "variants": [{ "looks": [{ "cube": "redstone_block" }] }]
+    },
+    {
+      "id": "base:redstone_ore",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/redstone_ore" } },
+      "light": { "level": 9, "when": "lit=true", "color": "#ffc4c2" },
+      "cubes": { "redstone_ore": { "all": { "texture": "block/redstone_ore" } } },
+      "variants": [{ "looks": [{ "cube": "redstone_ore" }] }]
+    },
+    {
+      "id": "base:small_amethyst_bud",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "crystal": "block/small_amethyst_bud", "particle": "block/small_amethyst_bud" },
+      "surface": "cutout",
+      "emission": 0.006,
+      "light": { "level": 1, "color": "#bb7dff" },
+      "orientation": "facing",
+      "states": { "facing": ["down", "east", "north", "south", "up", "west"] },
+      "tags": ["animated", "default_rotated_x", "random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "up" }],
+          "looks": [
+            { "model": "small_amethyst_bud" },
+            { "model": "small_amethyst_bud", "y": 90 },
+            { "model": "small_amethyst_bud", "y": 180 },
+            { "model": "small_amethyst_bud", "y": 270 },
+            { "model": "small_amethyst_bud2" },
+            { "model": "small_amethyst_bud2", "y": 90 },
+            { "model": "small_amethyst_bud2", "y": 180 },
+            { "model": "small_amethyst_bud2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "down" }],
+          "looks": [
+            { "model": "small_amethyst_bud", "x": 180 },
+            { "model": "small_amethyst_bud", "x": 180, "y": 180 },
+            { "model": "small_amethyst_bud2", "x": 180 },
+            { "model": "small_amethyst_bud2", "x": 180, "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [
+            { "model": "small_amethyst_bud", "x": 90 },
+            { "model": "small_amethyst_bud", "x": 270, "y": 180 },
+            { "model": "small_amethyst_bud2", "x": 90 },
+            { "model": "small_amethyst_bud2", "x": 270, "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [
+            { "model": "small_amethyst_bud", "x": 90, "y": 180 },
+            { "model": "small_amethyst_bud", "x": 270 },
+            { "model": "small_amethyst_bud2", "x": 90, "y": 180 },
+            { "model": "small_amethyst_bud2", "x": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [
+            { "model": "small_amethyst_bud", "x": 90, "y": 90 },
+            { "model": "small_amethyst_bud", "x": 270, "y": 270 },
+            { "model": "small_amethyst_bud2", "x": 90, "y": 90 },
+            { "model": "small_amethyst_bud2", "x": 270, "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [
+            { "model": "small_amethyst_bud", "x": 90, "y": 270 },
+            { "model": "small_amethyst_bud", "x": 270, "y": 90 },
+            { "model": "small_amethyst_bud2", "x": 90, "y": 270 },
+            { "model": "small_amethyst_bud2", "x": 270, "y": 90 }
+          ]
+        }
+      ]
+    }
+  ]
+}

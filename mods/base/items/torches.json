@@ -1,0 +1,10 @@
+{
+  "category": "torches",
+  "source": "import",
+  "entries": [
+    { "id": "base:copper_torch", "block": "base:copper_torch" },
+    { "id": "base:redstone_torch", "block": "base:redstone_torch" },
+    { "id": "base:soul_torch", "block": "base:soul_torch" },
+    { "id": "base:torch", "block": "base:torch" }
+  ]
+}

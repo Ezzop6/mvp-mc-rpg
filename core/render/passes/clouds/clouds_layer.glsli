@@ -1,0 +1,21 @@
+// v1 clouds: one fbm layer at CloudAltitude, lit by the sun through a second lookup towards it, over the sky pixels.
+#include "clouds.glsli"
+
+float cloud_shape(vec2 p, float px, int octaves) { return cloud_shape(p, px, octaves, P.cloud_coverage, P.cloud_softness); }
+
+vec3 clouds_layer(vec3 c, vec3 d, bool sky) {
+	vec3 o = cam_pos_m();
+	float ct = (P.cloud_altitude - o.y) / d.y;
+	if (!sky || !(ct > 0.0 && ct < P.cloud_fade * 3.0)) return c;
+	float wind = radians(P.cloud_wind_angle);
+	vec2 p = (o.xz + d.xz * ct + vec2(cos(wind), sin(wind)) * P.cloud_speed * P.sky_sun.w) / P.cloud_scale;
+	float px = ct * cam.lens.x / (max(abs(d.y), 1e-3) * P.cloud_scale);
+	float dens = cloud_shape(p, px, 5);
+	if (dens <= 0.0) return c;
+	vec3 l = cam.sun_dir.xyz;
+	float ly = max(abs(l.y), 0.1);
+	vec2 ps = p + l.xz / ly * (0.5 * P.cloud_thickness / P.cloud_scale);
+	float lit = exp(-(dens + cloud_shape(ps, px, 3)) * 0.25 * P.cloud_density * P.cloud_thickness / ly);
+	float a = cloud_alpha(dens, ct, d.y, P.cloud_density * P.cloud_thickness, P.cloud_fade);
+	return c * (1.0 - a) + P.cloud_color.rgb * (cam.sun_col.rgb * lit + cam.amb_col.rgb * P.cloud_ambient) * a;
+}

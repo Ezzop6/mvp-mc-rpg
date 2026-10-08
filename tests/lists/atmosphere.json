@@ -1,0 +1,16 @@
+{
+  "Note": "atmosphere: shafts against the cloud layer (clear, gap, gap with clouds not blocking, covered) at 4K, the shared air colour of sky, haze and fog at noon and dusk, the night sky; deterministic (paused clock). --compare-variant=Atmosphere:fused,off = fused against the separate passes",
+  "Bookmarks": [
+    "atmo-shafts-clear",
+    "atmo-shafts-gap",
+    "atmo-shafts-gap-off",
+    "atmo-shafts-covered",
+    "atmo-haze-day",
+    "atmo-haze-dusk",
+    "atmo-night"
+  ],
+  "Capture": [
+    "Shot",
+    "PassMs"
+  ]
+}

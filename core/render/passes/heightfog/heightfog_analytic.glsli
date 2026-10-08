@@ -1,0 +1,9 @@
+// v1 height fog: FogDensity · exp(-FogFalloff · (y - FogHeight)) integrated along the ray, towards the haze colour, surfaces only.
+#include "res://core/render/passes/haze/haze.glsli"
+
+vec3 heightfog_analytic(vec3 c, vec3 d, float t) {
+	if (t <= 0.0) return c;
+	float dist = t * BS, k = P.fog_falloff, cy = cam_pos_m().y - P.fog_height, dy = d.y * dist;
+	float avg = abs(dy) > 1e-3 ? (1.0 - exp(-k * dy)) / (k * dy) : 1.0;
+	return mix(haze_color(d), c, exp(-P.fog_density * exp(-k * cy) * avg * dist));
+}

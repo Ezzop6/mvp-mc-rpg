@@ -1,0 +1,22 @@
+{
+  "category": "banners",
+  "source": "import",
+  "entries": [
+    { "id": "base:black_banner", "block": "base:black_banner" },
+    { "id": "base:blue_banner", "block": "base:blue_banner" },
+    { "id": "base:brown_banner", "block": "base:brown_banner" },
+    { "id": "base:cyan_banner", "block": "base:cyan_banner" },
+    { "id": "base:gray_banner", "block": "base:gray_banner" },
+    { "id": "base:green_banner", "block": "base:green_banner" },
+    { "id": "base:light_blue_banner", "block": "base:light_blue_banner" },
+    { "id": "base:light_gray_banner", "block": "base:light_gray_banner" },
+    { "id": "base:lime_banner", "block": "base:lime_banner" },
+    { "id": "base:magenta_banner", "block": "base:magenta_banner" },
+    { "id": "base:orange_banner", "block": "base:orange_banner" },
+    { "id": "base:pink_banner", "block": "base:pink_banner" },
+    { "id": "base:purple_banner", "block": "base:purple_banner" },
+    { "id": "base:red_banner", "block": "base:red_banner" },
+    { "id": "base:white_banner", "block": "base:white_banner" },
+    { "id": "base:yellow_banner", "block": "base:yellow_banner" }
+  ]
+}

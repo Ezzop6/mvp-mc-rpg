@@ -1,0 +1,26 @@
+{
+  "category": "lamps",
+  "source": "import",
+  "entries": [
+    { "id": "base:beacon", "block": "base:beacon" },
+    { "id": "base:conduit", "block": "base:conduit" },
+    { "id": "base:copper_bulb", "block": "base:copper_bulb" },
+    { "id": "base:end_rod", "block": "base:end_rod" },
+    { "id": "base:exposed_copper_bulb", "block": "base:exposed_copper_bulb" },
+    { "id": "base:glowstone", "block": "base:glowstone" },
+    { "id": "base:jack_o_lantern", "block": "base:jack_o_lantern" },
+    { "id": "base:ochre_froglight", "block": "base:ochre_froglight" },
+    { "id": "base:oxidized_copper_bulb", "block": "base:oxidized_copper_bulb" },
+    { "id": "base:pearlescent_froglight", "block": "base:pearlescent_froglight" },
+    { "id": "base:redstone_lamp", "block": "base:redstone_lamp" },
+    { "id": "base:respawn_anchor", "block": "base:respawn_anchor" },
+    { "id": "base:sea_lantern", "block": "base:sea_lantern" },
+    { "id": "base:shroomlight", "block": "base:shroomlight" },
+    { "id": "base:verdant_froglight", "block": "base:verdant_froglight" },
+    { "id": "base:waxed_copper_bulb", "block": "base:waxed_copper_bulb" },
+    { "id": "base:waxed_exposed_copper_bulb", "block": "base:waxed_exposed_copper_bulb" },
+    { "id": "base:waxed_oxidized_copper_bulb", "block": "base:waxed_oxidized_copper_bulb" },
+    { "id": "base:waxed_weathered_copper_bulb", "block": "base:waxed_weathered_copper_bulb" },
+    { "id": "base:weathered_copper_bulb", "block": "base:weathered_copper_bulb" }
+  ]
+}

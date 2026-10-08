@@ -1,0 +1,33 @@
+{
+  "Note": "cliffs with a 900 MB world budget: s < 1, near identical to the full budget, NearMissing = 0",
+  "Scene": "random-crazy",
+  "TimeOfDay": 14,
+  "WorldMB": 900,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": 0,
+        "Y": 320,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -25
+    },
+    {
+      "T": 15,
+      "Pos": {
+        "X": 1500,
+        "Y": 320,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -25
+    }
+  ],
+  "Shots": [
+    3,
+    9,
+    14
+  ]
+}

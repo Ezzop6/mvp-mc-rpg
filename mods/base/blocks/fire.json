@@ -1,0 +1,130 @@
+{
+  "category": "fire",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:campfire",
+      "kind": "custom",
+      "template": "template_campfire",
+      "textures": { "cut": "block/stripped_oak_log", "log": "block/oak_log_top", "particle": "block/oak_log", "side": "block/oak_log" },
+      "light": { "level": 15, "when": "lit=true", "color": "#ffcf81" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "lit": ["false", "true"] },
+      "variants": [
+        { "when": { "facing": "east", "lit": "false" }, "looks": [{ "model": "campfire_off", "y": 270 }] },
+        { "when": { "facing": "east", "lit": "true" }, "looks": [{ "model": "campfire", "y": 270 }] },
+        { "when": { "facing": "north", "lit": "false" }, "looks": [{ "model": "campfire_off", "y": 180 }] },
+        { "when": { "facing": "north", "lit": "true" }, "looks": [{ "model": "campfire", "y": 180 }] },
+        { "when": { "facing": "south", "lit": "false" }, "looks": [{ "model": "campfire_off" }] },
+        { "when": { "facing": "south", "lit": "true" }, "looks": [{ "model": "campfire" }] },
+        { "when": { "facing": "west", "lit": "false" }, "looks": [{ "model": "campfire_off", "y": 90 }] },
+        { "when": { "facing": "west", "lit": "true" }, "looks": [{ "model": "campfire", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:fire",
+      "kind": "fire",
+      "template": "template_fire_floor",
+      "textures": { "fire": "block/fire_0", "particle": "block/fire_0" },
+      "surface": "cutout",
+      "emission": 0.003,
+      "light": { "level": 15, "color": "#ffb150" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "up": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["animated", "random_variants"],
+      "multipart": [
+        {
+          "when": [{ "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "fire_floor0" }, { "model": "fire_floor1" }]
+        },
+        {
+          "when": [{ "north": "true" }, { "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "fire_side0" }, { "model": "fire_side1" }, { "model": "fire_side_alt0" }, { "model": "fire_side_alt1" }]
+        },
+        {
+          "when": [{ "east": "true" }, { "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [
+            { "model": "fire_side0", "y": 90 },
+            { "model": "fire_side1", "y": 90 },
+            { "model": "fire_side_alt0", "y": 90 },
+            { "model": "fire_side_alt1", "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "south": "true" }, { "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [
+            { "model": "fire_side0", "y": 180 },
+            { "model": "fire_side1", "y": 180 },
+            { "model": "fire_side_alt0", "y": 180 },
+            { "model": "fire_side_alt1", "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "west": "true" }, { "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [
+            { "model": "fire_side0", "y": 270 },
+            { "model": "fire_side1", "y": 270 },
+            { "model": "fire_side_alt0", "y": 270 },
+            { "model": "fire_side_alt1", "y": 270 }
+          ]
+        },
+        { "when": [{ "up": "true" }], "looks": [{ "model": "fire_up0" }, { "model": "fire_up1" }, { "model": "fire_up_alt0" }, { "model": "fire_up_alt1" }] }
+      ]
+    },
+    {
+      "id": "base:soul_campfire",
+      "kind": "custom",
+      "template": "template_campfire",
+      "textures": { "cut": "block/stripped_oak_log", "log": "block/oak_log_top", "particle": "block/oak_log", "side": "block/oak_log" },
+      "light": { "level": 10, "when": "lit=true", "color": "#ffcf81" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "lit": ["false", "true"] },
+      "variants": [
+        { "when": { "facing": "east", "lit": "false" }, "looks": [{ "model": "campfire_off", "y": 270 }] },
+        { "when": { "facing": "east", "lit": "true" }, "looks": [{ "model": "soul_campfire", "y": 270 }] },
+        { "when": { "facing": "north", "lit": "false" }, "looks": [{ "model": "campfire_off", "y": 180 }] },
+        { "when": { "facing": "north", "lit": "true" }, "looks": [{ "model": "soul_campfire", "y": 180 }] },
+        { "when": { "facing": "south", "lit": "false" }, "looks": [{ "model": "campfire_off" }] },
+        { "when": { "facing": "south", "lit": "true" }, "looks": [{ "model": "soul_campfire" }] },
+        { "when": { "facing": "west", "lit": "false" }, "looks": [{ "model": "campfire_off", "y": 90 }] },
+        { "when": { "facing": "west", "lit": "true" }, "looks": [{ "model": "soul_campfire", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:soul_fire",
+      "kind": "fire",
+      "template": "template_fire_floor",
+      "textures": { "fire": "block/soul_fire_0", "particle": "block/soul_fire_0" },
+      "surface": "cutout",
+      "light": { "level": 10, "color": "#3dfcff" },
+      "tags": ["animated", "random_variants"],
+      "multipart": [
+        { "looks": [{ "model": "soul_fire_floor0" }, { "model": "soul_fire_floor1" }] },
+        { "looks": [{ "model": "soul_fire_side0" }, { "model": "soul_fire_side1" }, { "model": "soul_fire_side_alt0" }, { "model": "soul_fire_side_alt1" }] },
+        {
+          "looks": [
+            { "model": "soul_fire_side0", "y": 90 },
+            { "model": "soul_fire_side1", "y": 90 },
+            { "model": "soul_fire_side_alt0", "y": 90 },
+            { "model": "soul_fire_side_alt1", "y": 90 }
+          ]
+        },
+        {
+          "looks": [
+            { "model": "soul_fire_side0", "y": 180 },
+            { "model": "soul_fire_side1", "y": 180 },
+            { "model": "soul_fire_side_alt0", "y": 180 },
+            { "model": "soul_fire_side_alt1", "y": 180 }
+          ]
+        },
+        {
+          "looks": [
+            { "model": "soul_fire_side0", "y": 270 },
+            { "model": "soul_fire_side1", "y": 270 },
+            { "model": "soul_fire_side_alt0", "y": 270 },
+            { "model": "soul_fire_side_alt1", "y": 270 }
+          ]
+        }
+      ]
+    }
+  ]
+}

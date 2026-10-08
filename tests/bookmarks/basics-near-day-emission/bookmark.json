@@ -1,0 +1,39 @@
+{
+  "Note": "basics-near-day with Shade block emission",
+  "Created": "2026-10-07T20:00:00",
+  "Commit": "c17c990, written through WorldSave (flat + 35 edits)",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0
+    },
+    "Local": {
+      "X": 5.5,
+      "Y": 1.75,
+      "Z": 6.5
+    },
+    "Yaw": 0.0,
+    "Pitch": -0.3
+  },
+  "TimeOfDay": 12,
+  "Day": 0,
+  "TimePaused": true,
+  "Clock": 0.0,
+  "Width": 1920,
+  "Height": 1080,
+  "Render": {
+    "Tune": {
+      "Values": {
+        "day": {
+          "Shade.lambert.Emission": [
+            1
+          ]
+        }
+      },
+      "Variants": {}
+    }
+  }
+}

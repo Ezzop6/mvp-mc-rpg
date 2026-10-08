@@ -1,0 +1,21 @@
+{
+  "Note": "lights-wall at night, camera still: a hole in the wall lets the torch through, a torch placed behind the wall, then removed (light lists and map invalidation by edits, docs/v2.md §5.20)",
+  "Scene": "lights-wall",
+  "Resolution": "1080p",
+  "TimeOfDay": 23,
+  "On": ["Lights"],
+  "Path": [
+    {
+      "T": 0,
+      "Pos": { "X": 25, "Y": 4.5, "Z": 6 },
+      "Yaw": 0,
+      "Pitch": -35
+    }
+  ],
+  "Actions": [
+    { "T": 1, "Kind": "Edit", "Edits": "50,1,0..50,2,0=base:air" },
+    { "T": 2, "Kind": "Edit", "Edits": "50,0,4=base:torch" },
+    { "T": 3, "Kind": "Edit", "Edits": "50,0,4=base:air" }
+  ],
+  "Shots": [0.9, 1.9, 2.9, 3.9]
+}

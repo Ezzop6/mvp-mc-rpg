@@ -1,0 +1,515 @@
+{
+  "category": "technical",
+  "source": "import",
+  "entries": [
+    { "id": "base:air", "kind": "entity", "textures": { "particle": "block/missingno" }, "tags": ["missing_texture"] },
+    {
+      "id": "base:barrier",
+      "kind": "entity",
+      "textures": { "particle": "item/barrier" },
+      "surface": "cutout",
+      "tags": ["placeholder"],
+      "cubes": { "barrier": { "all": { "texture": "item/barrier" } } },
+      "variants": [{ "looks": [{ "cube": "barrier" }] }]
+    },
+    { "id": "base:cave_air", "kind": "entity", "textures": { "particle": "block/missingno" }, "tags": ["missing_texture"] },
+    {
+      "id": "base:chain_command_block",
+      "kind": "cube",
+      "template": "template_command_block",
+      "faces": {
+        "top": { "texture": "block/chain_command_block_side", "emission": 0.007 },
+        "bottom": { "texture": "block/chain_command_block_side", "rotation": 180, "emission": 0.007 },
+        "front": { "texture": "block/chain_command_block_front", "emission": 0.008 },
+        "back": { "texture": "block/chain_command_block_back", "emission": 0.005 },
+        "left": { "texture": "block/chain_command_block_side", "rotation": 270, "emission": 0.007 },
+        "right": { "texture": "block/chain_command_block_side", "rotation": 90, "emission": 0.007 }
+      },
+      "orientation": "facing",
+      "states": { "conditional": ["false", "true"], "facing": ["down", "east", "north", "south", "up", "west"] },
+      "tags": ["animated"],
+      "cubes": {
+        "chain_command_block": {
+          "top": { "texture": "block/chain_command_block_side", "emission": 0.007 },
+          "bottom": { "texture": "block/chain_command_block_side", "rotation": 180, "emission": 0.007 },
+          "front": { "texture": "block/chain_command_block_front", "emission": 0.008 },
+          "back": { "texture": "block/chain_command_block_back", "emission": 0.005 },
+          "left": { "texture": "block/chain_command_block_side", "rotation": 270, "emission": 0.007 },
+          "right": { "texture": "block/chain_command_block_side", "rotation": 90, "emission": 0.007 }
+        },
+        "chain_command_block_conditional": {
+          "top": { "texture": "block/chain_command_block_conditional", "emission": 0.007 },
+          "bottom": { "texture": "block/chain_command_block_conditional", "rotation": 180, "emission": 0.007 },
+          "front": { "texture": "block/chain_command_block_front", "emission": 0.008 },
+          "back": { "texture": "block/chain_command_block_back", "emission": 0.005 },
+          "left": { "texture": "block/chain_command_block_conditional", "rotation": 270, "emission": 0.007 },
+          "right": { "texture": "block/chain_command_block_conditional", "rotation": 90, "emission": 0.007 }
+        }
+      },
+      "variants": [
+        { "when": { "conditional": "false", "facing": "down" }, "looks": [{ "cube": "chain_command_block", "x": 90 }] },
+        { "when": { "conditional": "false", "facing": "east" }, "looks": [{ "cube": "chain_command_block", "y": 90 }] },
+        { "when": { "conditional": "false", "facing": "north" }, "looks": [{ "cube": "chain_command_block" }] },
+        { "when": { "conditional": "false", "facing": "south" }, "looks": [{ "cube": "chain_command_block", "y": 180 }] },
+        { "when": { "conditional": "false", "facing": "up" }, "looks": [{ "cube": "chain_command_block", "x": 270 }] },
+        { "when": { "conditional": "false", "facing": "west" }, "looks": [{ "cube": "chain_command_block", "y": 270 }] },
+        { "when": { "conditional": "true", "facing": "down" }, "looks": [{ "cube": "chain_command_block_conditional", "x": 90 }] },
+        { "when": { "conditional": "true", "facing": "east" }, "looks": [{ "cube": "chain_command_block_conditional", "y": 90 }] },
+        { "when": { "conditional": "true", "facing": "north" }, "looks": [{ "cube": "chain_command_block_conditional" }] },
+        { "when": { "conditional": "true", "facing": "south" }, "looks": [{ "cube": "chain_command_block_conditional", "y": 180 }] },
+        { "when": { "conditional": "true", "facing": "up" }, "looks": [{ "cube": "chain_command_block_conditional", "x": 270 }] },
+        { "when": { "conditional": "true", "facing": "west" }, "looks": [{ "cube": "chain_command_block_conditional", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:command_block",
+      "kind": "cube",
+      "template": "template_command_block",
+      "faces": {
+        "top": { "texture": "block/command_block_side", "emission": 0.007 },
+        "bottom": { "texture": "block/command_block_side", "rotation": 180, "emission": 0.007 },
+        "front": { "texture": "block/command_block_front", "emission": 0.008 },
+        "back": { "texture": "block/command_block_back", "emission": 0.005 },
+        "left": { "texture": "block/command_block_side", "rotation": 270, "emission": 0.007 },
+        "right": { "texture": "block/command_block_side", "rotation": 90, "emission": 0.007 }
+      },
+      "orientation": "facing",
+      "states": { "conditional": ["false", "true"], "facing": ["down", "east", "north", "south", "up", "west"] },
+      "tags": ["animated"],
+      "cubes": {
+        "command_block": {
+          "top": { "texture": "block/command_block_side", "emission": 0.007 },
+          "bottom": { "texture": "block/command_block_side", "rotation": 180, "emission": 0.007 },
+          "front": { "texture": "block/command_block_front", "emission": 0.008 },
+          "back": { "texture": "block/command_block_back", "emission": 0.005 },
+          "left": { "texture": "block/command_block_side", "rotation": 270, "emission": 0.007 },
+          "right": { "texture": "block/command_block_side", "rotation": 90, "emission": 0.007 }
+        },
+        "command_block_conditional": {
+          "top": { "texture": "block/command_block_conditional", "emission": 0.007 },
+          "bottom": { "texture": "block/command_block_conditional", "rotation": 180, "emission": 0.007 },
+          "front": { "texture": "block/command_block_front", "emission": 0.008 },
+          "back": { "texture": "block/command_block_back", "emission": 0.005 },
+          "left": { "texture": "block/command_block_conditional", "rotation": 270, "emission": 0.007 },
+          "right": { "texture": "block/command_block_conditional", "rotation": 90, "emission": 0.007 }
+        }
+      },
+      "variants": [
+        { "when": { "conditional": "false", "facing": "down" }, "looks": [{ "cube": "command_block", "x": 90 }] },
+        { "when": { "conditional": "false", "facing": "east" }, "looks": [{ "cube": "command_block", "y": 90 }] },
+        { "when": { "conditional": "false", "facing": "north" }, "looks": [{ "cube": "command_block" }] },
+        { "when": { "conditional": "false", "facing": "south" }, "looks": [{ "cube": "command_block", "y": 180 }] },
+        { "when": { "conditional": "false", "facing": "up" }, "looks": [{ "cube": "command_block", "x": 270 }] },
+        { "when": { "conditional": "false", "facing": "west" }, "looks": [{ "cube": "command_block", "y": 270 }] },
+        { "when": { "conditional": "true", "facing": "down" }, "looks": [{ "cube": "command_block_conditional", "x": 90 }] },
+        { "when": { "conditional": "true", "facing": "east" }, "looks": [{ "cube": "command_block_conditional", "y": 90 }] },
+        { "when": { "conditional": "true", "facing": "north" }, "looks": [{ "cube": "command_block_conditional" }] },
+        { "when": { "conditional": "true", "facing": "south" }, "looks": [{ "cube": "command_block_conditional", "y": 180 }] },
+        { "when": { "conditional": "true", "facing": "up" }, "looks": [{ "cube": "command_block_conditional", "x": 270 }] },
+        { "when": { "conditional": "true", "facing": "west" }, "looks": [{ "cube": "command_block_conditional", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:jigsaw",
+      "kind": "cube",
+      "template": "cube_directional",
+      "faces": {
+        "top": { "texture": "block/jigsaw_lock", "rotation": 90 },
+        "bottom": { "texture": "block/jigsaw_side", "rotation": 90 },
+        "front": { "texture": "block/jigsaw_side", "rotation": 270 },
+        "back": { "texture": "block/jigsaw_side", "rotation": 90 },
+        "left": { "texture": "block/jigsaw_bottom" },
+        "right": { "texture": "block/jigsaw_top" }
+      },
+      "states": {
+        "orientation": [
+          "down_east",
+          "down_north",
+          "down_south",
+          "down_west",
+          "east_up",
+          "north_up",
+          "south_up",
+          "up_east",
+          "up_north",
+          "up_south",
+          "up_west",
+          "west_up"
+        ]
+      },
+      "tags": ["default_rotated_x"],
+      "cubes": {
+        "jigsaw": {
+          "top": { "texture": "block/jigsaw_lock" },
+          "bottom": { "texture": "block/jigsaw_side", "rotation": 180 },
+          "front": { "texture": "block/jigsaw_top" },
+          "back": { "texture": "block/jigsaw_bottom" },
+          "left": { "texture": "block/jigsaw_side", "rotation": 270 },
+          "right": { "texture": "block/jigsaw_side", "rotation": 90 }
+        }
+      },
+      "variants": [
+        { "when": { "orientation": "down_east" }, "looks": [{ "cube": "jigsaw", "x": 90, "y": 90 }] },
+        { "when": { "orientation": "down_north" }, "looks": [{ "cube": "jigsaw", "x": 90 }] },
+        { "when": { "orientation": "down_south" }, "looks": [{ "cube": "jigsaw", "x": 90, "y": 180 }] },
+        { "when": { "orientation": "down_west" }, "looks": [{ "cube": "jigsaw", "x": 90, "y": 270 }] },
+        { "when": { "orientation": "east_up" }, "looks": [{ "cube": "jigsaw", "y": 90 }] },
+        { "when": { "orientation": "north_up" }, "looks": [{ "cube": "jigsaw" }] },
+        { "when": { "orientation": "south_up" }, "looks": [{ "cube": "jigsaw", "y": 180 }] },
+        { "when": { "orientation": "up_east" }, "looks": [{ "cube": "jigsaw", "x": 270, "y": 270 }] },
+        { "when": { "orientation": "up_north" }, "looks": [{ "cube": "jigsaw", "x": 270, "y": 180 }] },
+        { "when": { "orientation": "up_south" }, "looks": [{ "cube": "jigsaw", "x": 270 }] },
+        { "when": { "orientation": "up_west" }, "looks": [{ "cube": "jigsaw", "x": 270, "y": 90 }] },
+        { "when": { "orientation": "west_up" }, "looks": [{ "cube": "jigsaw", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:light",
+      "kind": "entity",
+      "textures": { "particle": "item/light_00" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#fffcdd" },
+      "states": { "level": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "tags": ["placeholder"],
+      "cubes": {
+        "light_00": { "all": { "texture": "item/light_00" } },
+        "light_01": { "all": { "texture": "item/light_01" } },
+        "light_02": { "all": { "texture": "item/light_02" } },
+        "light_03": { "all": { "texture": "item/light_03" } },
+        "light_04": { "all": { "texture": "item/light_04" } },
+        "light_05": { "all": { "texture": "item/light_05" } },
+        "light_06": { "all": { "texture": "item/light_06" } },
+        "light_07": { "all": { "texture": "item/light_07" } },
+        "light_08": { "all": { "texture": "item/light_08" } },
+        "light_09": { "all": { "texture": "item/light_09" } },
+        "light_10": { "all": { "texture": "item/light_10" } },
+        "light_11": { "all": { "texture": "item/light_11" } },
+        "light_12": { "all": { "texture": "item/light_12" } },
+        "light_13": { "all": { "texture": "item/light_13" } },
+        "light_14": { "all": { "texture": "item/light_14" } },
+        "light_15": { "all": { "texture": "item/light_15" } }
+      },
+      "variants": [
+        { "when": { "level": "0" }, "looks": [{ "cube": "light_00" }] },
+        { "when": { "level": "1" }, "looks": [{ "cube": "light_01" }] },
+        { "when": { "level": "10" }, "looks": [{ "cube": "light_10" }] },
+        { "when": { "level": "11" }, "looks": [{ "cube": "light_11" }] },
+        { "when": { "level": "12" }, "looks": [{ "cube": "light_12" }] },
+        { "when": { "level": "13" }, "looks": [{ "cube": "light_13" }] },
+        { "when": { "level": "14" }, "looks": [{ "cube": "light_14" }] },
+        { "when": { "level": "15" }, "looks": [{ "cube": "light_15" }] },
+        { "when": { "level": "2" }, "looks": [{ "cube": "light_02" }] },
+        { "when": { "level": "3" }, "looks": [{ "cube": "light_03" }] },
+        { "when": { "level": "4" }, "looks": [{ "cube": "light_04" }] },
+        { "when": { "level": "5" }, "looks": [{ "cube": "light_05" }] },
+        { "when": { "level": "6" }, "looks": [{ "cube": "light_06" }] },
+        { "when": { "level": "7" }, "looks": [{ "cube": "light_07" }] },
+        { "when": { "level": "8" }, "looks": [{ "cube": "light_08" }] },
+        { "when": { "level": "9" }, "looks": [{ "cube": "light_09" }] }
+      ]
+    },
+    {
+      "id": "base:moving_piston",
+      "kind": "entity",
+      "textures": { "particle": "block/piston_side" },
+      "tags": ["placeholder"],
+      "cubes": { "moving_piston": { "all": { "texture": "block/piston_side" } } },
+      "variants": [{ "looks": [{ "cube": "moving_piston" }] }]
+    },
+    {
+      "id": "base:repeating_command_block",
+      "kind": "cube",
+      "template": "template_command_block",
+      "faces": {
+        "top": { "texture": "block/repeating_command_block_side", "emission": 0.007 },
+        "bottom": { "texture": "block/repeating_command_block_side", "rotation": 180, "emission": 0.007 },
+        "front": { "texture": "block/repeating_command_block_front", "emission": 0.008 },
+        "back": { "texture": "block/repeating_command_block_back", "emission": 0.005 },
+        "left": { "texture": "block/repeating_command_block_side", "rotation": 270, "emission": 0.007 },
+        "right": { "texture": "block/repeating_command_block_side", "rotation": 90, "emission": 0.007 }
+      },
+      "orientation": "facing",
+      "states": { "conditional": ["false", "true"], "facing": ["down", "east", "north", "south", "up", "west"] },
+      "tags": ["animated"],
+      "cubes": {
+        "repeating_command_block": {
+          "top": { "texture": "block/repeating_command_block_side", "emission": 0.007 },
+          "bottom": { "texture": "block/repeating_command_block_side", "rotation": 180, "emission": 0.007 },
+          "front": { "texture": "block/repeating_command_block_front", "emission": 0.008 },
+          "back": { "texture": "block/repeating_command_block_back", "emission": 0.005 },
+          "left": { "texture": "block/repeating_command_block_side", "rotation": 270, "emission": 0.007 },
+          "right": { "texture": "block/repeating_command_block_side", "rotation": 90, "emission": 0.007 }
+        },
+        "repeating_command_block_conditional": {
+          "top": { "texture": "block/repeating_command_block_conditional", "emission": 0.007 },
+          "bottom": { "texture": "block/repeating_command_block_conditional", "rotation": 180, "emission": 0.007 },
+          "front": { "texture": "block/repeating_command_block_front", "emission": 0.008 },
+          "back": { "texture": "block/repeating_command_block_back", "emission": 0.005 },
+          "left": { "texture": "block/repeating_command_block_conditional", "rotation": 270, "emission": 0.007 },
+          "right": { "texture": "block/repeating_command_block_conditional", "rotation": 90, "emission": 0.007 }
+        }
+      },
+      "variants": [
+        { "when": { "conditional": "false", "facing": "down" }, "looks": [{ "cube": "repeating_command_block", "x": 90 }] },
+        { "when": { "conditional": "false", "facing": "east" }, "looks": [{ "cube": "repeating_command_block", "y": 90 }] },
+        { "when": { "conditional": "false", "facing": "north" }, "looks": [{ "cube": "repeating_command_block" }] },
+        { "when": { "conditional": "false", "facing": "south" }, "looks": [{ "cube": "repeating_command_block", "y": 180 }] },
+        { "when": { "conditional": "false", "facing": "up" }, "looks": [{ "cube": "repeating_command_block", "x": 270 }] },
+        { "when": { "conditional": "false", "facing": "west" }, "looks": [{ "cube": "repeating_command_block", "y": 270 }] },
+        { "when": { "conditional": "true", "facing": "down" }, "looks": [{ "cube": "repeating_command_block_conditional", "x": 90 }] },
+        { "when": { "conditional": "true", "facing": "east" }, "looks": [{ "cube": "repeating_command_block_conditional", "y": 90 }] },
+        { "when": { "conditional": "true", "facing": "north" }, "looks": [{ "cube": "repeating_command_block_conditional" }] },
+        { "when": { "conditional": "true", "facing": "south" }, "looks": [{ "cube": "repeating_command_block_conditional", "y": 180 }] },
+        { "when": { "conditional": "true", "facing": "up" }, "looks": [{ "cube": "repeating_command_block_conditional", "x": 270 }] },
+        { "when": { "conditional": "true", "facing": "west" }, "looks": [{ "cube": "repeating_command_block_conditional", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:spawner",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/spawner" } },
+      "surface": "cutout",
+      "tags": ["extra_geometry"],
+      "cubes": { "spawner": { "all": { "texture": "block/spawner" } } },
+      "variants": [{ "looks": [{ "cube": "spawner" }] }]
+    },
+    {
+      "id": "base:structure_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/structure_block_corner" } },
+      "states": { "mode": ["corner", "data", "load", "save"] },
+      "cubes": {
+        "structure_block_corner": { "all": { "texture": "block/structure_block_corner" } },
+        "structure_block_data": { "all": { "texture": "block/structure_block_data" } },
+        "structure_block_load": { "all": { "texture": "block/structure_block_load" } },
+        "structure_block_save": { "all": { "texture": "block/structure_block_save" } }
+      },
+      "variants": [
+        { "when": { "mode": "corner" }, "looks": [{ "cube": "structure_block_corner" }] },
+        { "when": { "mode": "data" }, "looks": [{ "cube": "structure_block_data" }] },
+        { "when": { "mode": "load" }, "looks": [{ "cube": "structure_block_load" }] },
+        { "when": { "mode": "save" }, "looks": [{ "cube": "structure_block_save" }] }
+      ]
+    },
+    {
+      "id": "base:structure_void",
+      "kind": "entity",
+      "textures": { "particle": "item/structure_void" },
+      "surface": "cutout",
+      "tags": ["placeholder"],
+      "cubes": { "structure_void": { "all": { "texture": "item/structure_void" } } },
+      "variants": [{ "looks": [{ "cube": "structure_void" }] }]
+    },
+    {
+      "id": "base:test_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/test_block_accept" } },
+      "states": { "mode": ["accept", "fail", "log", "start"] },
+      "cubes": {
+        "test_block_accept": { "all": { "texture": "block/test_block_accept" } },
+        "test_block_fail": { "all": { "texture": "block/test_block_fail" } },
+        "test_block_log": { "all": { "texture": "block/test_block_log" } },
+        "test_block_start": { "all": { "texture": "block/test_block_start" } }
+      },
+      "variants": [
+        { "when": { "mode": "accept" }, "looks": [{ "cube": "test_block_accept" }] },
+        { "when": { "mode": "fail" }, "looks": [{ "cube": "test_block_fail" }] },
+        { "when": { "mode": "log" }, "looks": [{ "cube": "test_block_log" }] },
+        { "when": { "mode": "start" }, "looks": [{ "cube": "test_block_start" }] }
+      ]
+    },
+    {
+      "id": "base:test_instance_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/test_instance_block" } },
+      "cubes": { "test_instance_block": { "all": { "texture": "block/test_instance_block" } } },
+      "variants": [{ "looks": [{ "cube": "test_instance_block" }] }]
+    },
+    {
+      "id": "base:trial_spawner",
+      "kind": "cube",
+      "template": "cube_bottom_top",
+      "faces": {
+        "top": { "texture": "block/trial_spawner_top_active" },
+        "bottom": { "texture": "block/trial_spawner_bottom" },
+        "side": { "texture": "block/trial_spawner_side_active", "emission": 0.011 }
+      },
+      "surface": "cutout",
+      "light": { "level": 4, "color": "#ff7e07" },
+      "states": {
+        "ominous": ["false", "true"],
+        "trial_spawner_state": ["active", "cooldown", "ejecting_reward", "inactive", "waiting_for_players", "waiting_for_reward_ejection"]
+      },
+      "tags": ["extra_geometry"],
+      "cubes": {
+        "trial_spawner": {
+          "top": { "texture": "block/trial_spawner_top_inactive" },
+          "bottom": { "texture": "block/trial_spawner_bottom" },
+          "side": { "texture": "block/trial_spawner_side_inactive" }
+        },
+        "trial_spawner_active": {
+          "top": { "texture": "block/trial_spawner_top_active" },
+          "bottom": { "texture": "block/trial_spawner_bottom" },
+          "side": { "texture": "block/trial_spawner_side_active", "emission": 0.011 }
+        },
+        "trial_spawner_active_ominous": {
+          "top": { "texture": "block/trial_spawner_top_active_ominous" },
+          "bottom": { "texture": "block/trial_spawner_bottom" },
+          "side": { "texture": "block/trial_spawner_side_active_ominous", "emission": 0.011 }
+        },
+        "trial_spawner_ejecting_reward": {
+          "top": { "texture": "block/trial_spawner_top_ejecting_reward" },
+          "bottom": { "texture": "block/trial_spawner_bottom" },
+          "side": { "texture": "block/trial_spawner_side_active", "emission": 0.011 }
+        },
+        "trial_spawner_ejecting_reward_ominous": {
+          "top": { "texture": "block/trial_spawner_top_ejecting_reward_ominous" },
+          "bottom": { "texture": "block/trial_spawner_bottom" },
+          "side": { "texture": "block/trial_spawner_side_active_ominous", "emission": 0.011 }
+        },
+        "trial_spawner_inactive_ominous": {
+          "top": { "texture": "block/trial_spawner_top_inactive_ominous" },
+          "bottom": { "texture": "block/trial_spawner_bottom" },
+          "side": { "texture": "block/trial_spawner_side_inactive_ominous" }
+        }
+      },
+      "variants": [
+        { "when": { "ominous": "false", "trial_spawner_state": "active" }, "looks": [{ "cube": "trial_spawner_active" }] },
+        { "when": { "ominous": "false", "trial_spawner_state": "cooldown" }, "looks": [{ "cube": "trial_spawner" }] },
+        { "when": { "ominous": "false", "trial_spawner_state": "ejecting_reward" }, "looks": [{ "cube": "trial_spawner_ejecting_reward" }] },
+        { "when": { "ominous": "false", "trial_spawner_state": "inactive" }, "looks": [{ "cube": "trial_spawner" }] },
+        { "when": { "ominous": "false", "trial_spawner_state": "waiting_for_players" }, "looks": [{ "cube": "trial_spawner_active" }] },
+        { "when": { "ominous": "false", "trial_spawner_state": "waiting_for_reward_ejection" }, "looks": [{ "cube": "trial_spawner_active" }] },
+        { "when": { "ominous": "true", "trial_spawner_state": "active" }, "looks": [{ "cube": "trial_spawner_active_ominous" }] },
+        { "when": { "ominous": "true", "trial_spawner_state": "cooldown" }, "looks": [{ "cube": "trial_spawner_inactive_ominous" }] },
+        { "when": { "ominous": "true", "trial_spawner_state": "ejecting_reward" }, "looks": [{ "cube": "trial_spawner_ejecting_reward_ominous" }] },
+        { "when": { "ominous": "true", "trial_spawner_state": "inactive" }, "looks": [{ "cube": "trial_spawner_inactive_ominous" }] },
+        { "when": { "ominous": "true", "trial_spawner_state": "waiting_for_players" }, "looks": [{ "cube": "trial_spawner_active_ominous" }] },
+        { "when": { "ominous": "true", "trial_spawner_state": "waiting_for_reward_ejection" }, "looks": [{ "cube": "trial_spawner_active_ominous" }] }
+      ]
+    },
+    {
+      "id": "base:vault",
+      "kind": "cube",
+      "template": "elements",
+      "faces": {
+        "top": { "texture": "block/vault_top" },
+        "bottom": { "texture": "block/vault_bottom" },
+        "front": { "texture": "block/vault_front_on", "emission": 0.014 },
+        "back": { "texture": "block/vault_side_on", "emission": 0.009 },
+        "left": { "texture": "block/vault_side_on", "emission": 0.009 },
+        "right": { "texture": "block/vault_side_on", "emission": 0.009 }
+      },
+      "surface": "cutout",
+      "light": { "level": 6, "color": "#ff842f" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "ominous": ["false", "true"], "vault_state": ["active", "ejecting", "inactive", "unlocking"] },
+      "tags": ["extra_geometry"],
+      "cubes": {
+        "vault": {
+          "top": { "texture": "block/vault_top" },
+          "bottom": { "texture": "block/vault_bottom" },
+          "front": { "texture": "block/vault_front_off" },
+          "back": { "texture": "block/vault_side_off" },
+          "left": { "texture": "block/vault_side_off" },
+          "right": { "texture": "block/vault_side_off" }
+        },
+        "vault_active": {
+          "top": { "texture": "block/vault_top" },
+          "bottom": { "texture": "block/vault_bottom" },
+          "front": { "texture": "block/vault_front_on", "emission": 0.014 },
+          "back": { "texture": "block/vault_side_on", "emission": 0.009 },
+          "left": { "texture": "block/vault_side_on", "emission": 0.009 },
+          "right": { "texture": "block/vault_side_on", "emission": 0.009 }
+        },
+        "vault_active_ominous": {
+          "top": { "texture": "block/vault_top_ominous" },
+          "bottom": { "texture": "block/vault_bottom_ominous" },
+          "front": { "texture": "block/vault_front_on_ominous", "emission": 0.017 },
+          "back": { "texture": "block/vault_side_on_ominous", "emission": 0.009 },
+          "left": { "texture": "block/vault_side_on_ominous", "emission": 0.009 },
+          "right": { "texture": "block/vault_side_on_ominous", "emission": 0.009 }
+        },
+        "vault_ejecting_reward": {
+          "top": { "texture": "block/vault_top_ejecting" },
+          "bottom": { "texture": "block/vault_bottom" },
+          "front": { "texture": "block/vault_front_ejecting", "emission": 0.014 },
+          "back": { "texture": "block/vault_side_on", "emission": 0.009 },
+          "left": { "texture": "block/vault_side_on", "emission": 0.009 },
+          "right": { "texture": "block/vault_side_on", "emission": 0.009 }
+        },
+        "vault_ejecting_reward_ominous": {
+          "top": { "texture": "block/vault_top_ejecting_ominous" },
+          "bottom": { "texture": "block/vault_bottom_ominous" },
+          "front": { "texture": "block/vault_front_ejecting_ominous", "emission": 0.017 },
+          "back": { "texture": "block/vault_side_on_ominous", "emission": 0.009 },
+          "left": { "texture": "block/vault_side_on_ominous", "emission": 0.009 },
+          "right": { "texture": "block/vault_side_on_ominous", "emission": 0.009 }
+        },
+        "vault_ominous": {
+          "top": { "texture": "block/vault_top_ominous" },
+          "bottom": { "texture": "block/vault_bottom_ominous" },
+          "front": { "texture": "block/vault_front_off_ominous" },
+          "back": { "texture": "block/vault_side_off_ominous" },
+          "left": { "texture": "block/vault_side_off_ominous" },
+          "right": { "texture": "block/vault_side_off_ominous" }
+        },
+        "vault_unlocking": {
+          "top": { "texture": "block/vault_top" },
+          "bottom": { "texture": "block/vault_bottom" },
+          "front": { "texture": "block/vault_front_ejecting", "emission": 0.014 },
+          "back": { "texture": "block/vault_side_on", "emission": 0.009 },
+          "left": { "texture": "block/vault_side_on", "emission": 0.009 },
+          "right": { "texture": "block/vault_side_on", "emission": 0.009 }
+        },
+        "vault_unlocking_ominous": {
+          "top": { "texture": "block/vault_top_ominous" },
+          "bottom": { "texture": "block/vault_bottom_ominous" },
+          "front": { "texture": "block/vault_front_ejecting_ominous", "emission": 0.017 },
+          "back": { "texture": "block/vault_side_on_ominous", "emission": 0.009 },
+          "left": { "texture": "block/vault_side_on_ominous", "emission": 0.009 },
+          "right": { "texture": "block/vault_side_on_ominous", "emission": 0.009 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east", "ominous": "false", "vault_state": "active" }, "looks": [{ "cube": "vault_active", "y": 90 }] },
+        { "when": { "facing": "east", "ominous": "false", "vault_state": "ejecting" }, "looks": [{ "cube": "vault_ejecting_reward", "y": 90 }] },
+        { "when": { "facing": "east", "ominous": "false", "vault_state": "inactive" }, "looks": [{ "cube": "vault", "y": 90 }] },
+        { "when": { "facing": "east", "ominous": "false", "vault_state": "unlocking" }, "looks": [{ "cube": "vault_unlocking", "y": 90 }] },
+        { "when": { "facing": "east", "ominous": "true", "vault_state": "active" }, "looks": [{ "cube": "vault_active_ominous", "y": 90 }] },
+        { "when": { "facing": "east", "ominous": "true", "vault_state": "ejecting" }, "looks": [{ "cube": "vault_ejecting_reward_ominous", "y": 90 }] },
+        { "when": { "facing": "east", "ominous": "true", "vault_state": "inactive" }, "looks": [{ "cube": "vault_ominous", "y": 90 }] },
+        { "when": { "facing": "east", "ominous": "true", "vault_state": "unlocking" }, "looks": [{ "cube": "vault_unlocking_ominous", "y": 90 }] },
+        { "when": { "facing": "north", "ominous": "false", "vault_state": "active" }, "looks": [{ "cube": "vault_active" }] },
+        { "when": { "facing": "north", "ominous": "false", "vault_state": "ejecting" }, "looks": [{ "cube": "vault_ejecting_reward" }] },
+        { "when": { "facing": "north", "ominous": "false", "vault_state": "inactive" }, "looks": [{ "cube": "vault" }] },
+        { "when": { "facing": "north", "ominous": "false", "vault_state": "unlocking" }, "looks": [{ "cube": "vault_unlocking" }] },
+        { "when": { "facing": "north", "ominous": "true", "vault_state": "active" }, "looks": [{ "cube": "vault_active_ominous" }] },
+        { "when": { "facing": "north", "ominous": "true", "vault_state": "ejecting" }, "looks": [{ "cube": "vault_ejecting_reward_ominous" }] },
+        { "when": { "facing": "north", "ominous": "true", "vault_state": "inactive" }, "looks": [{ "cube": "vault_ominous" }] },
+        { "when": { "facing": "north", "ominous": "true", "vault_state": "unlocking" }, "looks": [{ "cube": "vault_unlocking_ominous" }] },
+        { "when": { "facing": "south", "ominous": "false", "vault_state": "active" }, "looks": [{ "cube": "vault_active", "y": 180 }] },
+        { "when": { "facing": "south", "ominous": "false", "vault_state": "ejecting" }, "looks": [{ "cube": "vault_ejecting_reward", "y": 180 }] },
+        { "when": { "facing": "south", "ominous": "false", "vault_state": "inactive" }, "looks": [{ "cube": "vault", "y": 180 }] },
+        { "when": { "facing": "south", "ominous": "false", "vault_state": "unlocking" }, "looks": [{ "cube": "vault_unlocking", "y": 180 }] },
+        { "when": { "facing": "south", "ominous": "true", "vault_state": "active" }, "looks": [{ "cube": "vault_active_ominous", "y": 180 }] },
+        { "when": { "facing": "south", "ominous": "true", "vault_state": "ejecting" }, "looks": [{ "cube": "vault_ejecting_reward_ominous", "y": 180 }] },
+        { "when": { "facing": "south", "ominous": "true", "vault_state": "inactive" }, "looks": [{ "cube": "vault_ominous", "y": 180 }] },
+        { "when": { "facing": "south", "ominous": "true", "vault_state": "unlocking" }, "looks": [{ "cube": "vault_unlocking_ominous", "y": 180 }] },
+        { "when": { "facing": "west", "ominous": "false", "vault_state": "active" }, "looks": [{ "cube": "vault_active", "y": 270 }] },
+        { "when": { "facing": "west", "ominous": "false", "vault_state": "ejecting" }, "looks": [{ "cube": "vault_ejecting_reward", "y": 270 }] },
+        { "when": { "facing": "west", "ominous": "false", "vault_state": "inactive" }, "looks": [{ "cube": "vault", "y": 270 }] },
+        { "when": { "facing": "west", "ominous": "false", "vault_state": "unlocking" }, "looks": [{ "cube": "vault_unlocking", "y": 270 }] },
+        { "when": { "facing": "west", "ominous": "true", "vault_state": "active" }, "looks": [{ "cube": "vault_active_ominous", "y": 270 }] },
+        { "when": { "facing": "west", "ominous": "true", "vault_state": "ejecting" }, "looks": [{ "cube": "vault_ejecting_reward_ominous", "y": 270 }] },
+        { "when": { "facing": "west", "ominous": "true", "vault_state": "inactive" }, "looks": [{ "cube": "vault_ominous", "y": 270 }] },
+        { "when": { "facing": "west", "ominous": "true", "vault_state": "unlocking" }, "looks": [{ "cube": "vault_unlocking_ominous", "y": 270 }] }
+      ]
+    },
+    { "id": "base:void_air", "kind": "entity", "textures": { "particle": "block/missingno" }, "tags": ["missing_texture"] }
+  ]
+}

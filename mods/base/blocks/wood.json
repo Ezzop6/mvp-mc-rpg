@@ -1,0 +1,1292 @@
+{
+  "category": "wood",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:acacia_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/acacia_log_top" }, "bottom": { "texture": "block/acacia_log_top" }, "side": { "texture": "block/acacia_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:acacia"],
+      "cubes": {
+        "acacia_log": {
+          "top": { "texture": "block/acacia_log_top" },
+          "bottom": { "texture": "block/acacia_log_top" },
+          "side": { "texture": "block/acacia_log" }
+        },
+        "acacia_log_horizontal": {
+          "top": { "texture": "block/acacia_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/acacia_log_top" },
+          "side": { "texture": "block/acacia_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "acacia_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "acacia_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "acacia_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:acacia_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/acacia_planks" } },
+      "tags": ["wood:acacia"],
+      "cubes": { "acacia_planks": { "all": { "texture": "block/acacia_planks" } } },
+      "variants": [{ "looks": [{ "cube": "acacia_planks" }] }]
+    },
+    {
+      "id": "base:acacia_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/acacia_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:acacia"],
+      "cubes": { "acacia_wood": { "all": { "texture": "block/acacia_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "acacia_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "acacia_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "acacia_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:bamboo_block",
+      "kind": "cube",
+      "template": "cube_column_uv_locked_y",
+      "faces": {
+        "top": { "texture": "block/bamboo_block_top" },
+        "bottom": { "texture": "block/bamboo_block_top" },
+        "side": { "texture": "block/bamboo_block" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:bamboo"],
+      "cubes": {
+        "bamboo_block_x": {
+          "top": { "texture": "block/bamboo_block", "rotation": 90 },
+          "bottom": { "texture": "block/bamboo_block", "rotation": 90 },
+          "front": { "texture": "block/bamboo_block", "rotation": 90 },
+          "back": { "texture": "block/bamboo_block", "rotation": 90 },
+          "left": { "texture": "block/bamboo_block_top" },
+          "right": { "texture": "block/bamboo_block_top" }
+        },
+        "bamboo_block_y": {
+          "top": { "texture": "block/bamboo_block_top" },
+          "bottom": { "texture": "block/bamboo_block_top" },
+          "side": { "texture": "block/bamboo_block" }
+        },
+        "bamboo_block_z": {
+          "top": { "texture": "block/bamboo_block" },
+          "bottom": { "texture": "block/bamboo_block" },
+          "front": { "texture": "block/bamboo_block_top" },
+          "back": { "texture": "block/bamboo_block_top" },
+          "left": { "texture": "block/bamboo_block", "rotation": 90 },
+          "right": { "texture": "block/bamboo_block", "rotation": 90 }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "bamboo_block_x" }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "bamboo_block_y" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "bamboo_block_z" }] }
+      ]
+    },
+    {
+      "id": "base:bamboo_mosaic",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/bamboo_mosaic" } },
+      "tags": ["wood:bamboo"],
+      "cubes": { "bamboo_mosaic": { "all": { "texture": "block/bamboo_mosaic" } } },
+      "variants": [{ "looks": [{ "cube": "bamboo_mosaic" }] }]
+    },
+    {
+      "id": "base:bamboo_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/bamboo_planks" } },
+      "tags": ["wood:bamboo"],
+      "cubes": { "bamboo_planks": { "all": { "texture": "block/bamboo_planks" } } },
+      "variants": [{ "looks": [{ "cube": "bamboo_planks" }] }]
+    },
+    {
+      "id": "base:birch_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/birch_log_top" }, "bottom": { "texture": "block/birch_log_top" }, "side": { "texture": "block/birch_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:birch"],
+      "cubes": {
+        "birch_log": { "top": { "texture": "block/birch_log_top" }, "bottom": { "texture": "block/birch_log_top" }, "side": { "texture": "block/birch_log" } },
+        "birch_log_horizontal": {
+          "top": { "texture": "block/birch_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/birch_log_top" },
+          "side": { "texture": "block/birch_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "birch_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "birch_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "birch_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:birch_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/birch_planks" } },
+      "tags": ["wood:birch"],
+      "cubes": { "birch_planks": { "all": { "texture": "block/birch_planks" } } },
+      "variants": [{ "looks": [{ "cube": "birch_planks" }] }]
+    },
+    {
+      "id": "base:birch_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/birch_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:birch"],
+      "cubes": { "birch_wood": { "all": { "texture": "block/birch_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "birch_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "birch_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "birch_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:cherry_log",
+      "kind": "cube",
+      "template": "cube_column_uv_locked_y",
+      "faces": { "top": { "texture": "block/cherry_log_top" }, "bottom": { "texture": "block/cherry_log_top" }, "side": { "texture": "block/cherry_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:cherry"],
+      "cubes": {
+        "cherry_log_x": {
+          "top": { "texture": "block/cherry_log", "rotation": 90 },
+          "bottom": { "texture": "block/cherry_log", "rotation": 90 },
+          "front": { "texture": "block/cherry_log", "rotation": 90 },
+          "back": { "texture": "block/cherry_log", "rotation": 90 },
+          "left": { "texture": "block/cherry_log_top" },
+          "right": { "texture": "block/cherry_log_top" }
+        },
+        "cherry_log_y": {
+          "top": { "texture": "block/cherry_log_top" },
+          "bottom": { "texture": "block/cherry_log_top" },
+          "side": { "texture": "block/cherry_log" }
+        },
+        "cherry_log_z": {
+          "top": { "texture": "block/cherry_log" },
+          "bottom": { "texture": "block/cherry_log" },
+          "front": { "texture": "block/cherry_log_top" },
+          "back": { "texture": "block/cherry_log_top" },
+          "left": { "texture": "block/cherry_log", "rotation": 90 },
+          "right": { "texture": "block/cherry_log", "rotation": 90 }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "cherry_log_x" }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "cherry_log_y" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "cherry_log_z" }] }
+      ]
+    },
+    {
+      "id": "base:cherry_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cherry_planks" } },
+      "tags": ["wood:cherry"],
+      "cubes": { "cherry_planks": { "all": { "texture": "block/cherry_planks" } } },
+      "variants": [{ "looks": [{ "cube": "cherry_planks" }] }]
+    },
+    {
+      "id": "base:cherry_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/cherry_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:cherry"],
+      "cubes": { "cherry_wood": { "all": { "texture": "block/cherry_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "cherry_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "cherry_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "cherry_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:crimson_hyphae",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/crimson_stem", "emission": 0.041 } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["animated", "wood:crimson"],
+      "cubes": { "crimson_hyphae": { "all": { "texture": "block/crimson_stem", "emission": 0.041 } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "crimson_hyphae", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "crimson_hyphae" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "crimson_hyphae", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:crimson_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/crimson_planks" } },
+      "tags": ["wood:crimson"],
+      "cubes": { "crimson_planks": { "all": { "texture": "block/crimson_planks" } } },
+      "variants": [{ "looks": [{ "cube": "crimson_planks" }] }]
+    },
+    {
+      "id": "base:crimson_stem",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/crimson_stem_top", "emission": 0.021 },
+        "bottom": { "texture": "block/crimson_stem_top", "emission": 0.021 },
+        "side": { "texture": "block/crimson_stem", "emission": 0.041 }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["animated", "wood:crimson"],
+      "cubes": {
+        "crimson_stem": {
+          "top": { "texture": "block/crimson_stem_top", "emission": 0.021 },
+          "bottom": { "texture": "block/crimson_stem_top", "emission": 0.021 },
+          "side": { "texture": "block/crimson_stem", "emission": 0.041 }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "crimson_stem", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "crimson_stem" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "crimson_stem", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:dark_oak_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/dark_oak_log_top" },
+        "bottom": { "texture": "block/dark_oak_log_top" },
+        "side": { "texture": "block/dark_oak_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:dark_oak"],
+      "cubes": {
+        "dark_oak_log": {
+          "top": { "texture": "block/dark_oak_log_top" },
+          "bottom": { "texture": "block/dark_oak_log_top" },
+          "side": { "texture": "block/dark_oak_log" }
+        },
+        "dark_oak_log_horizontal": {
+          "top": { "texture": "block/dark_oak_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/dark_oak_log_top" },
+          "side": { "texture": "block/dark_oak_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "dark_oak_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "dark_oak_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "dark_oak_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:dark_oak_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/dark_oak_planks" } },
+      "tags": ["wood:dark_oak"],
+      "cubes": { "dark_oak_planks": { "all": { "texture": "block/dark_oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "dark_oak_planks" }] }]
+    },
+    {
+      "id": "base:dark_oak_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/dark_oak_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:dark_oak"],
+      "cubes": { "dark_oak_wood": { "all": { "texture": "block/dark_oak_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "dark_oak_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "dark_oak_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "dark_oak_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:jungle_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/jungle_log_top" }, "bottom": { "texture": "block/jungle_log_top" }, "side": { "texture": "block/jungle_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:jungle"],
+      "cubes": {
+        "jungle_log": {
+          "top": { "texture": "block/jungle_log_top" },
+          "bottom": { "texture": "block/jungle_log_top" },
+          "side": { "texture": "block/jungle_log" }
+        },
+        "jungle_log_horizontal": {
+          "top": { "texture": "block/jungle_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/jungle_log_top" },
+          "side": { "texture": "block/jungle_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "jungle_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "jungle_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "jungle_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:jungle_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/jungle_planks" } },
+      "tags": ["wood:jungle"],
+      "cubes": { "jungle_planks": { "all": { "texture": "block/jungle_planks" } } },
+      "variants": [{ "looks": [{ "cube": "jungle_planks" }] }]
+    },
+    {
+      "id": "base:jungle_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/jungle_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:jungle"],
+      "cubes": { "jungle_wood": { "all": { "texture": "block/jungle_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "jungle_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "jungle_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "jungle_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:mangrove_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/mangrove_log_top" },
+        "bottom": { "texture": "block/mangrove_log_top" },
+        "side": { "texture": "block/mangrove_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:mangrove"],
+      "cubes": {
+        "mangrove_log": {
+          "top": { "texture": "block/mangrove_log_top" },
+          "bottom": { "texture": "block/mangrove_log_top" },
+          "side": { "texture": "block/mangrove_log" }
+        },
+        "mangrove_log_horizontal": {
+          "top": { "texture": "block/mangrove_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/mangrove_log_top" },
+          "side": { "texture": "block/mangrove_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "mangrove_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "mangrove_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "mangrove_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:mangrove_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/mangrove_planks" } },
+      "tags": ["wood:mangrove"],
+      "cubes": { "mangrove_planks": { "all": { "texture": "block/mangrove_planks" } } },
+      "variants": [{ "looks": [{ "cube": "mangrove_planks" }] }]
+    },
+    {
+      "id": "base:mangrove_roots",
+      "kind": "custom",
+      "textures": { "particle": "block/mangrove_roots_side", "side": "block/mangrove_roots_side", "top": "block/mangrove_roots_top" },
+      "surface": "cutout",
+      "tags": ["animated", "wood:mangrove"],
+      "variants": [{ "looks": [{ "model": "mangrove_roots" }] }]
+    },
+    {
+      "id": "base:mangrove_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/mangrove_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:mangrove"],
+      "cubes": { "mangrove_wood": { "all": { "texture": "block/mangrove_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "mangrove_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "mangrove_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "mangrove_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:muddy_mangrove_roots",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/muddy_mangrove_roots_top" },
+        "bottom": { "texture": "block/muddy_mangrove_roots_top" },
+        "side": { "texture": "block/muddy_mangrove_roots_side" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "cubes": {
+        "muddy_mangrove_roots": {
+          "top": { "texture": "block/muddy_mangrove_roots_top" },
+          "bottom": { "texture": "block/muddy_mangrove_roots_top" },
+          "side": { "texture": "block/muddy_mangrove_roots_side" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "muddy_mangrove_roots", "x": 90, "y": 90, "uvlock": true }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "muddy_mangrove_roots" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "muddy_mangrove_roots", "x": 90, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:oak_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/oak_log_top" }, "bottom": { "texture": "block/oak_log_top" }, "side": { "texture": "block/oak_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:oak"],
+      "cubes": {
+        "oak_log": { "top": { "texture": "block/oak_log_top" }, "bottom": { "texture": "block/oak_log_top" }, "side": { "texture": "block/oak_log" } },
+        "oak_log_horizontal": {
+          "top": { "texture": "block/oak_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/oak_log_top" },
+          "side": { "texture": "block/oak_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "oak_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "oak_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "oak_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:oak_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/oak_planks" } },
+      "tags": ["wood:oak"],
+      "cubes": { "oak_planks": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "oak_planks" }] }]
+    },
+    {
+      "id": "base:oak_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/oak_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:oak"],
+      "cubes": { "oak_wood": { "all": { "texture": "block/oak_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "oak_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "oak_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "oak_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:pale_oak_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/pale_oak_log_top" },
+        "bottom": { "texture": "block/pale_oak_log_top" },
+        "side": { "texture": "block/pale_oak_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:pale_oak"],
+      "cubes": {
+        "pale_oak_log": {
+          "top": { "texture": "block/pale_oak_log_top" },
+          "bottom": { "texture": "block/pale_oak_log_top" },
+          "side": { "texture": "block/pale_oak_log" }
+        },
+        "pale_oak_log_horizontal": {
+          "top": { "texture": "block/pale_oak_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/pale_oak_log_top" },
+          "side": { "texture": "block/pale_oak_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "pale_oak_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "pale_oak_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "pale_oak_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:pale_oak_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/pale_oak_planks" } },
+      "tags": ["wood:pale_oak"],
+      "cubes": { "pale_oak_planks": { "all": { "texture": "block/pale_oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "pale_oak_planks" }] }]
+    },
+    {
+      "id": "base:pale_oak_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/pale_oak_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:pale_oak"],
+      "cubes": { "pale_oak_wood": { "all": { "texture": "block/pale_oak_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "pale_oak_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "pale_oak_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "pale_oak_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:poplar_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/poplar_log_top" }, "bottom": { "texture": "block/poplar_log_top" }, "side": { "texture": "block/poplar_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:poplar"],
+      "cubes": {
+        "poplar_log": {
+          "top": { "texture": "block/poplar_log_top" },
+          "bottom": { "texture": "block/poplar_log_top" },
+          "side": { "texture": "block/poplar_log" }
+        },
+        "poplar_log_horizontal": {
+          "top": { "texture": "block/poplar_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/poplar_log_top" },
+          "side": { "texture": "block/poplar_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "poplar_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "poplar_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "poplar_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:poplar_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/poplar_planks" } },
+      "tags": ["wood:poplar"],
+      "cubes": { "poplar_planks": { "all": { "texture": "block/poplar_planks" } } },
+      "variants": [{ "looks": [{ "cube": "poplar_planks" }] }]
+    },
+    {
+      "id": "base:poplar_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/poplar_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:poplar"],
+      "cubes": { "poplar_wood": { "all": { "texture": "block/poplar_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "poplar_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "poplar_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "poplar_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:spruce_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/spruce_log_top" }, "bottom": { "texture": "block/spruce_log_top" }, "side": { "texture": "block/spruce_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:spruce"],
+      "cubes": {
+        "spruce_log": {
+          "top": { "texture": "block/spruce_log_top" },
+          "bottom": { "texture": "block/spruce_log_top" },
+          "side": { "texture": "block/spruce_log" }
+        },
+        "spruce_log_horizontal": {
+          "top": { "texture": "block/spruce_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/spruce_log_top" },
+          "side": { "texture": "block/spruce_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "spruce_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "spruce_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "spruce_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:spruce_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/spruce_planks" } },
+      "tags": ["wood:spruce"],
+      "cubes": { "spruce_planks": { "all": { "texture": "block/spruce_planks" } } },
+      "variants": [{ "looks": [{ "cube": "spruce_planks" }] }]
+    },
+    {
+      "id": "base:spruce_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/spruce_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:spruce"],
+      "cubes": { "spruce_wood": { "all": { "texture": "block/spruce_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "spruce_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "spruce_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "spruce_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_acacia_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/stripped_acacia_log_top" },
+        "bottom": { "texture": "block/stripped_acacia_log_top" },
+        "side": { "texture": "block/stripped_acacia_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:acacia"],
+      "cubes": {
+        "stripped_acacia_log": {
+          "top": { "texture": "block/stripped_acacia_log_top" },
+          "bottom": { "texture": "block/stripped_acacia_log_top" },
+          "side": { "texture": "block/stripped_acacia_log" }
+        },
+        "stripped_acacia_log_horizontal": {
+          "top": { "texture": "block/stripped_acacia_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/stripped_acacia_log_top" },
+          "side": { "texture": "block/stripped_acacia_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_acacia_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_acacia_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_acacia_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_acacia_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_acacia_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:acacia"],
+      "cubes": { "stripped_acacia_wood": { "all": { "texture": "block/stripped_acacia_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_acacia_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_acacia_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_acacia_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_bamboo_block",
+      "kind": "cube",
+      "template": "cube_column_uv_locked_y",
+      "faces": {
+        "top": { "texture": "block/stripped_bamboo_block_top" },
+        "bottom": { "texture": "block/stripped_bamboo_block_top" },
+        "side": { "texture": "block/stripped_bamboo_block" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:bamboo"],
+      "cubes": {
+        "stripped_bamboo_block_x": {
+          "top": { "texture": "block/stripped_bamboo_block", "rotation": 90 },
+          "bottom": { "texture": "block/stripped_bamboo_block", "rotation": 90 },
+          "front": { "texture": "block/stripped_bamboo_block", "rotation": 90 },
+          "back": { "texture": "block/stripped_bamboo_block", "rotation": 90 },
+          "left": { "texture": "block/stripped_bamboo_block_top" },
+          "right": { "texture": "block/stripped_bamboo_block_top" }
+        },
+        "stripped_bamboo_block_y": {
+          "top": { "texture": "block/stripped_bamboo_block_top" },
+          "bottom": { "texture": "block/stripped_bamboo_block_top" },
+          "side": { "texture": "block/stripped_bamboo_block" }
+        },
+        "stripped_bamboo_block_z": {
+          "top": { "texture": "block/stripped_bamboo_block" },
+          "bottom": { "texture": "block/stripped_bamboo_block" },
+          "front": { "texture": "block/stripped_bamboo_block_top" },
+          "back": { "texture": "block/stripped_bamboo_block_top" },
+          "left": { "texture": "block/stripped_bamboo_block", "rotation": 90 },
+          "right": { "texture": "block/stripped_bamboo_block", "rotation": 90 }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_bamboo_block_x" }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_bamboo_block_y" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_bamboo_block_z" }] }
+      ]
+    },
+    {
+      "id": "base:stripped_birch_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/stripped_birch_log_top" },
+        "bottom": { "texture": "block/stripped_birch_log_top" },
+        "side": { "texture": "block/stripped_birch_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:birch"],
+      "cubes": {
+        "stripped_birch_log": {
+          "top": { "texture": "block/stripped_birch_log_top" },
+          "bottom": { "texture": "block/stripped_birch_log_top" },
+          "side": { "texture": "block/stripped_birch_log" }
+        },
+        "stripped_birch_log_horizontal": {
+          "top": { "texture": "block/stripped_birch_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/stripped_birch_log_top" },
+          "side": { "texture": "block/stripped_birch_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_birch_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_birch_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_birch_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_birch_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_birch_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:birch"],
+      "cubes": { "stripped_birch_wood": { "all": { "texture": "block/stripped_birch_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_birch_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_birch_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_birch_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_cherry_log",
+      "kind": "cube",
+      "template": "cube_column_uv_locked_y",
+      "faces": {
+        "top": { "texture": "block/stripped_cherry_log_top" },
+        "bottom": { "texture": "block/stripped_cherry_log_top" },
+        "side": { "texture": "block/stripped_cherry_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:cherry"],
+      "cubes": {
+        "stripped_cherry_log_x": {
+          "top": { "texture": "block/stripped_cherry_log", "rotation": 90 },
+          "bottom": { "texture": "block/stripped_cherry_log", "rotation": 90 },
+          "front": { "texture": "block/stripped_cherry_log", "rotation": 90 },
+          "back": { "texture": "block/stripped_cherry_log", "rotation": 90 },
+          "left": { "texture": "block/stripped_cherry_log_top" },
+          "right": { "texture": "block/stripped_cherry_log_top" }
+        },
+        "stripped_cherry_log_y": {
+          "top": { "texture": "block/stripped_cherry_log_top" },
+          "bottom": { "texture": "block/stripped_cherry_log_top" },
+          "side": { "texture": "block/stripped_cherry_log" }
+        },
+        "stripped_cherry_log_z": {
+          "top": { "texture": "block/stripped_cherry_log" },
+          "bottom": { "texture": "block/stripped_cherry_log" },
+          "front": { "texture": "block/stripped_cherry_log_top" },
+          "back": { "texture": "block/stripped_cherry_log_top" },
+          "left": { "texture": "block/stripped_cherry_log", "rotation": 90 },
+          "right": { "texture": "block/stripped_cherry_log", "rotation": 90 }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_cherry_log_x" }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_cherry_log_y" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_cherry_log_z" }] }
+      ]
+    },
+    {
+      "id": "base:stripped_cherry_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_cherry_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:cherry"],
+      "cubes": { "stripped_cherry_wood": { "all": { "texture": "block/stripped_cherry_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_cherry_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_cherry_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_cherry_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_crimson_hyphae",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_crimson_stem" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:crimson"],
+      "cubes": { "stripped_crimson_hyphae": { "all": { "texture": "block/stripped_crimson_stem" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_crimson_hyphae", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_crimson_hyphae" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_crimson_hyphae", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_crimson_stem",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/stripped_crimson_stem_top" },
+        "bottom": { "texture": "block/stripped_crimson_stem_top" },
+        "side": { "texture": "block/stripped_crimson_stem" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:crimson"],
+      "cubes": {
+        "stripped_crimson_stem": {
+          "top": { "texture": "block/stripped_crimson_stem_top" },
+          "bottom": { "texture": "block/stripped_crimson_stem_top" },
+          "side": { "texture": "block/stripped_crimson_stem" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_crimson_stem", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_crimson_stem" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_crimson_stem", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_dark_oak_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/stripped_dark_oak_log_top" },
+        "bottom": { "texture": "block/stripped_dark_oak_log_top" },
+        "side": { "texture": "block/stripped_dark_oak_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:dark_oak"],
+      "cubes": {
+        "stripped_dark_oak_log": {
+          "top": { "texture": "block/stripped_dark_oak_log_top" },
+          "bottom": { "texture": "block/stripped_dark_oak_log_top" },
+          "side": { "texture": "block/stripped_dark_oak_log" }
+        },
+        "stripped_dark_oak_log_horizontal": {
+          "top": { "texture": "block/stripped_dark_oak_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/stripped_dark_oak_log_top" },
+          "side": { "texture": "block/stripped_dark_oak_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_dark_oak_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_dark_oak_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_dark_oak_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_dark_oak_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_dark_oak_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:dark_oak"],
+      "cubes": { "stripped_dark_oak_wood": { "all": { "texture": "block/stripped_dark_oak_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_dark_oak_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_dark_oak_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_dark_oak_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_jungle_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/stripped_jungle_log_top" },
+        "bottom": { "texture": "block/stripped_jungle_log_top" },
+        "side": { "texture": "block/stripped_jungle_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:jungle"],
+      "cubes": {
+        "stripped_jungle_log": {
+          "top": { "texture": "block/stripped_jungle_log_top" },
+          "bottom": { "texture": "block/stripped_jungle_log_top" },
+          "side": { "texture": "block/stripped_jungle_log" }
+        },
+        "stripped_jungle_log_horizontal": {
+          "top": { "texture": "block/stripped_jungle_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/stripped_jungle_log_top" },
+          "side": { "texture": "block/stripped_jungle_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_jungle_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_jungle_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_jungle_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_jungle_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_jungle_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:jungle"],
+      "cubes": { "stripped_jungle_wood": { "all": { "texture": "block/stripped_jungle_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_jungle_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_jungle_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_jungle_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_mangrove_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/stripped_mangrove_log_top" },
+        "bottom": { "texture": "block/stripped_mangrove_log_top" },
+        "side": { "texture": "block/stripped_mangrove_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:mangrove"],
+      "cubes": {
+        "stripped_mangrove_log": {
+          "top": { "texture": "block/stripped_mangrove_log_top" },
+          "bottom": { "texture": "block/stripped_mangrove_log_top" },
+          "side": { "texture": "block/stripped_mangrove_log" }
+        },
+        "stripped_mangrove_log_horizontal": {
+          "top": { "texture": "block/stripped_mangrove_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/stripped_mangrove_log_top" },
+          "side": { "texture": "block/stripped_mangrove_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_mangrove_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_mangrove_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_mangrove_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_mangrove_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_mangrove_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:mangrove"],
+      "cubes": { "stripped_mangrove_wood": { "all": { "texture": "block/stripped_mangrove_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_mangrove_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_mangrove_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_mangrove_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_oak_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/stripped_oak_log_top" },
+        "bottom": { "texture": "block/stripped_oak_log_top" },
+        "side": { "texture": "block/stripped_oak_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:oak"],
+      "cubes": {
+        "stripped_oak_log": {
+          "top": { "texture": "block/stripped_oak_log_top" },
+          "bottom": { "texture": "block/stripped_oak_log_top" },
+          "side": { "texture": "block/stripped_oak_log" }
+        },
+        "stripped_oak_log_horizontal": {
+          "top": { "texture": "block/stripped_oak_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/stripped_oak_log_top" },
+          "side": { "texture": "block/stripped_oak_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_oak_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_oak_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_oak_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_oak_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_oak_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:oak"],
+      "cubes": { "stripped_oak_wood": { "all": { "texture": "block/stripped_oak_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_oak_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_oak_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_oak_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_pale_oak_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/stripped_pale_oak_log_top" },
+        "bottom": { "texture": "block/stripped_pale_oak_log_top" },
+        "side": { "texture": "block/stripped_pale_oak_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:pale_oak"],
+      "cubes": {
+        "stripped_pale_oak_log": {
+          "top": { "texture": "block/stripped_pale_oak_log_top" },
+          "bottom": { "texture": "block/stripped_pale_oak_log_top" },
+          "side": { "texture": "block/stripped_pale_oak_log" }
+        },
+        "stripped_pale_oak_log_horizontal": {
+          "top": { "texture": "block/stripped_pale_oak_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/stripped_pale_oak_log_top" },
+          "side": { "texture": "block/stripped_pale_oak_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_pale_oak_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_pale_oak_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_pale_oak_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_pale_oak_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_pale_oak_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:pale_oak"],
+      "cubes": { "stripped_pale_oak_wood": { "all": { "texture": "block/stripped_pale_oak_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_pale_oak_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_pale_oak_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_pale_oak_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_poplar_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/stripped_poplar_log_top" },
+        "bottom": { "texture": "block/stripped_poplar_log_top" },
+        "side": { "texture": "block/stripped_poplar_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:poplar"],
+      "cubes": {
+        "stripped_poplar_log": {
+          "top": { "texture": "block/stripped_poplar_log_top" },
+          "bottom": { "texture": "block/stripped_poplar_log_top" },
+          "side": { "texture": "block/stripped_poplar_log" }
+        },
+        "stripped_poplar_log_horizontal": {
+          "top": { "texture": "block/stripped_poplar_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/stripped_poplar_log_top" },
+          "side": { "texture": "block/stripped_poplar_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_poplar_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_poplar_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_poplar_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_poplar_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_poplar_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:poplar"],
+      "cubes": { "stripped_poplar_wood": { "all": { "texture": "block/stripped_poplar_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_poplar_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_poplar_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_poplar_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_spruce_log",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/stripped_spruce_log_top" },
+        "bottom": { "texture": "block/stripped_spruce_log_top" },
+        "side": { "texture": "block/stripped_spruce_log" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:spruce"],
+      "cubes": {
+        "stripped_spruce_log": {
+          "top": { "texture": "block/stripped_spruce_log_top" },
+          "bottom": { "texture": "block/stripped_spruce_log_top" },
+          "side": { "texture": "block/stripped_spruce_log" }
+        },
+        "stripped_spruce_log_horizontal": {
+          "top": { "texture": "block/stripped_spruce_log_top", "rotation": 180 },
+          "bottom": { "texture": "block/stripped_spruce_log_top" },
+          "side": { "texture": "block/stripped_spruce_log" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_spruce_log_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_spruce_log" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_spruce_log_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_spruce_wood",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_spruce_log" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:spruce"],
+      "cubes": { "stripped_spruce_wood": { "all": { "texture": "block/stripped_spruce_log" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_spruce_wood", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_spruce_wood" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_spruce_wood", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_warped_hyphae",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/stripped_warped_stem" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:warped"],
+      "cubes": { "stripped_warped_hyphae": { "all": { "texture": "block/stripped_warped_stem" } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_warped_hyphae", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_warped_hyphae" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_warped_hyphae", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:stripped_warped_stem",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/stripped_warped_stem_top" },
+        "bottom": { "texture": "block/stripped_warped_stem_top" },
+        "side": { "texture": "block/stripped_warped_stem" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["wood:warped"],
+      "cubes": {
+        "stripped_warped_stem": {
+          "top": { "texture": "block/stripped_warped_stem_top" },
+          "bottom": { "texture": "block/stripped_warped_stem_top" },
+          "side": { "texture": "block/stripped_warped_stem" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "stripped_warped_stem", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "stripped_warped_stem" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "stripped_warped_stem", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:warped_hyphae",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "all": { "texture": "block/warped_stem", "emission": 0.041 } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["animated", "wood:warped"],
+      "cubes": { "warped_hyphae": { "all": { "texture": "block/warped_stem", "emission": 0.041 } } },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "warped_hyphae", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "warped_hyphae" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "warped_hyphae", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:warped_planks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/warped_planks" } },
+      "tags": ["wood:warped"],
+      "cubes": { "warped_planks": { "all": { "texture": "block/warped_planks" } } },
+      "variants": [{ "looks": [{ "cube": "warped_planks" }] }]
+    },
+    {
+      "id": "base:warped_stem",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/warped_stem_top", "emission": 0.021 },
+        "bottom": { "texture": "block/warped_stem_top", "emission": 0.021 },
+        "side": { "texture": "block/warped_stem", "emission": 0.041 }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["animated", "wood:warped"],
+      "cubes": {
+        "warped_stem": {
+          "top": { "texture": "block/warped_stem_top", "emission": 0.021 },
+          "bottom": { "texture": "block/warped_stem_top", "emission": 0.021 },
+          "side": { "texture": "block/warped_stem", "emission": 0.041 }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "warped_stem", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "warped_stem" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "warped_stem", "x": 90 }] }
+      ]
+    }
+  ]
+}

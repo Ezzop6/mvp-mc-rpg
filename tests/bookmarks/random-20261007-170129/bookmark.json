@@ -1,0 +1,116 @@
+{
+  "Note": "Viditelny kruh",
+  "Created": "2026-10-07T17:01:29",
+  "Commit": "590e6fd",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": -1,
+      "Y": 69,
+      "Z": 5
+    },
+    "Local": {
+      "X": 12.237653,
+      "Y": 6.966957,
+      "Z": 8.269487
+    },
+    "Yaw": -3.1710975,
+    "Pitch": -0.7458649
+  },
+  "TimeOfDay": 11.25,
+  "Width": 3840,
+  "Height": 2160,
+  "Render": {
+    "Passes": {
+      "Raster": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "meshes"
+      },
+      "Primary": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "dda"
+      },
+      "Shade": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "lambert"
+      },
+      "Sky": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "gradient"
+      },
+      "Stars": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "cells"
+      },
+      "Moon": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "disc"
+      },
+      "Sun": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "disc"
+      },
+      "Clouds": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "layer"
+      },
+      "Haze": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "analytic"
+      },
+      "HeightFog": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "analytic"
+      },
+      "Shafts": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "quarter-res"
+      },
+      "Temporal": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "catmull-variance"
+      },
+      "Sharpen": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "clamp4"
+      },
+      "Present": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "godot-quad"
+      }
+    },
+    "EffectsOff": false,
+    "DebugView": "None",
+    "RenderScale": 1,
+    "EffectiveScale": 1,
+    "View": "Ultra",
+    "HorizonM": 0,
+    "LodPixels": 0,
+    "LodLevels": 4,
+    "LodRef": 0,
+    "FixedBudget": false,
+    "GenTargetMs": 2,
+    "StreamCpuMs": 3,
+    "EditChunksPerFrame": 64,
+    "Preset": null,
+    "Tune": {
+      "Values": {},
+      "Variants": {}
+    }
+  }
+}

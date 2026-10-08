@@ -1,0 +1,428 @@
+{
+  "category": "soil",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:black_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/black_concrete_powder" } },
+      "tags": ["color:black"],
+      "cubes": { "black_concrete_powder": { "all": { "texture": "block/black_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "black_concrete_powder" }] }]
+    },
+    {
+      "id": "base:blue_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/blue_concrete_powder" } },
+      "tags": ["color:blue"],
+      "cubes": { "blue_concrete_powder": { "all": { "texture": "block/blue_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "blue_concrete_powder" }] }]
+    },
+    {
+      "id": "base:brown_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/brown_concrete_powder" } },
+      "tags": ["color:brown"],
+      "cubes": { "brown_concrete_powder": { "all": { "texture": "block/brown_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "brown_concrete_powder" }] }]
+    },
+    {
+      "id": "base:clay",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/clay" } },
+      "cubes": { "clay": { "all": { "texture": "block/clay" } } },
+      "variants": [{ "looks": [{ "cube": "clay" }] }]
+    },
+    {
+      "id": "base:coarse_dirt",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/coarse_dirt" } },
+      "cubes": { "coarse_dirt": { "all": { "texture": "block/coarse_dirt" } } },
+      "variants": [{ "looks": [{ "cube": "coarse_dirt" }] }]
+    },
+    {
+      "id": "base:cyan_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cyan_concrete_powder" } },
+      "tags": ["color:cyan"],
+      "cubes": { "cyan_concrete_powder": { "all": { "texture": "block/cyan_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "cyan_concrete_powder" }] }]
+    },
+    {
+      "id": "base:dirt",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/dirt" } },
+      "cubes": { "dirt": { "all": { "texture": "block/dirt" } } },
+      "variants": [{ "looks": [{ "cube": "dirt" }] }]
+    },
+    {
+      "id": "base:dirt_path",
+      "kind": "custom",
+      "textures": { "bottom": "block/dirt", "particle": "block/dirt_path_side", "side": "block/dirt_path_side", "top": "block/dirt_path_top" },
+      "variants": [{ "looks": [{ "model": "dirt_path" }] }]
+    },
+    {
+      "id": "base:farmland",
+      "kind": "custom",
+      "textures": { "bottom": "block/dirt", "particle": "block/dirt", "side": "block/dirt", "top": "block/farmland" },
+      "states": { "moisture": ["0", "1", "2", "3", "4", "5", "6", "7"] },
+      "variants": [
+        { "when": { "moisture": "0" }, "looks": [{ "model": "farmland" }] },
+        { "when": { "moisture": "1" }, "looks": [{ "model": "farmland" }] },
+        { "when": { "moisture": "2" }, "looks": [{ "model": "farmland" }] },
+        { "when": { "moisture": "3" }, "looks": [{ "model": "farmland" }] },
+        { "when": { "moisture": "4" }, "looks": [{ "model": "farmland" }] },
+        { "when": { "moisture": "5" }, "looks": [{ "model": "farmland" }] },
+        { "when": { "moisture": "6" }, "looks": [{ "model": "farmland" }] },
+        { "when": { "moisture": "7" }, "looks": [{ "model": "farmland_moist" }] }
+      ]
+    },
+    {
+      "id": "base:grass_block",
+      "kind": "cube",
+      "template": "cube_bottom_top",
+      "faces": {
+        "top": { "texture": "block/grass_block_top", "tint": true },
+        "bottom": { "texture": "block/dirt" },
+        "side": { "texture": "block/grass_block_side", "tint": true, "overlay": "block/grass_block_side_overlay" }
+      },
+      "tint": { "source": "grass", "color": "#8db650" },
+      "states": { "snowy": ["false", "true"] },
+      "cubes": {
+        "grass_block": {
+          "top": { "texture": "block/grass_block_top", "tint": true },
+          "bottom": { "texture": "block/dirt" },
+          "side": { "texture": "block/grass_block_side", "tint": true, "overlay": "block/grass_block_side_overlay" }
+        },
+        "grass_block_snow": {
+          "top": { "texture": "block/grass_block_top" },
+          "bottom": { "texture": "block/dirt" },
+          "side": { "texture": "block/grass_block_snow" }
+        }
+      },
+      "multipart": [
+        { "when": [{ "snowy": "false" }], "looks": [{ "cube": "grass_block" }] },
+        {
+          "when": [{ "snowy": "false" }],
+          "looks": [
+            { "model": "grass_extra1a", "weight": 2 },
+            { "model": "grass_extra1a", "y": 90, "weight": 2 },
+            { "model": "grass_extra1a", "y": 180, "weight": 2 },
+            { "model": "grass_extra1a", "y": 270, "weight": 2 },
+            { "model": "grass_extra1b" },
+            { "model": "grass_extra1b", "y": 90 },
+            { "model": "grass_extra1b", "y": 180 },
+            { "model": "grass_extra1b", "y": 270 }
+          ]
+        },
+        { "when": [{ "snowy": "true" }], "looks": [{ "cube": "grass_block_snow" }] }
+      ]
+    },
+    {
+      "id": "base:gravel",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/gravel" } },
+      "cubes": { "gravel": { "all": { "texture": "block/gravel" } } },
+      "variants": [{ "looks": [{ "cube": "gravel" }] }]
+    },
+    {
+      "id": "base:gray_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/gray_concrete_powder" } },
+      "tags": ["color:gray"],
+      "cubes": { "gray_concrete_powder": { "all": { "texture": "block/gray_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "gray_concrete_powder" }] }]
+    },
+    {
+      "id": "base:green_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/green_concrete_powder" } },
+      "tags": ["color:green"],
+      "cubes": { "green_concrete_powder": { "all": { "texture": "block/green_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "green_concrete_powder" }] }]
+    },
+    {
+      "id": "base:light_blue_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/light_blue_concrete_powder" } },
+      "tags": ["color:light_blue"],
+      "cubes": { "light_blue_concrete_powder": { "all": { "texture": "block/light_blue_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "light_blue_concrete_powder" }] }]
+    },
+    {
+      "id": "base:light_gray_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/light_gray_concrete_powder" } },
+      "tags": ["color:light_gray"],
+      "cubes": { "light_gray_concrete_powder": { "all": { "texture": "block/light_gray_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "light_gray_concrete_powder" }] }]
+    },
+    {
+      "id": "base:lime_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/lime_concrete_powder" } },
+      "tags": ["color:lime"],
+      "cubes": { "lime_concrete_powder": { "all": { "texture": "block/lime_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "lime_concrete_powder" }] }]
+    },
+    {
+      "id": "base:magenta_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/magenta_concrete_powder" } },
+      "tags": ["color:magenta"],
+      "cubes": { "magenta_concrete_powder": { "all": { "texture": "block/magenta_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "magenta_concrete_powder" }] }]
+    },
+    {
+      "id": "base:moss_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/moss_block" } },
+      "cubes": { "moss_block": { "all": { "texture": "block/moss_block" } } },
+      "variants": [{ "looks": [{ "cube": "moss_block" }] }]
+    },
+    {
+      "id": "base:mud",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/mud" } },
+      "cubes": { "mud": { "all": { "texture": "block/mud" } } },
+      "variants": [{ "looks": [{ "cube": "mud" }] }]
+    },
+    {
+      "id": "base:mycelium",
+      "kind": "cube",
+      "template": "cube_bottom_top",
+      "faces": { "top": { "texture": "block/mycelium_top" }, "bottom": { "texture": "block/dirt" }, "side": { "texture": "block/mycelium_side" } },
+      "states": { "snowy": ["false", "true"] },
+      "cubes": {
+        "grass_block_snow": {
+          "top": { "texture": "block/grass_block_top" },
+          "bottom": { "texture": "block/dirt" },
+          "side": { "texture": "block/grass_block_snow" }
+        },
+        "mycelium": { "top": { "texture": "block/mycelium_top" }, "bottom": { "texture": "block/dirt" }, "side": { "texture": "block/mycelium_side" } }
+      },
+      "variants": [
+        { "when": { "snowy": "false" }, "looks": [{ "cube": "mycelium" }] },
+        { "when": { "snowy": "true" }, "looks": [{ "cube": "grass_block_snow" }] }
+      ]
+    },
+    {
+      "id": "base:orange_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/orange_concrete_powder" } },
+      "tags": ["color:orange"],
+      "cubes": { "orange_concrete_powder": { "all": { "texture": "block/orange_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "orange_concrete_powder" }] }]
+    },
+    {
+      "id": "base:packed_mud",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/packed_mud" } },
+      "cubes": { "packed_mud": { "all": { "texture": "block/packed_mud" } } },
+      "variants": [{ "looks": [{ "cube": "packed_mud" }] }]
+    },
+    {
+      "id": "base:pale_moss_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/pale_moss_block" } },
+      "cubes": { "pale_moss_block": { "all": { "texture": "block/pale_moss_block" } } },
+      "variants": [{ "looks": [{ "cube": "pale_moss_block" }] }]
+    },
+    {
+      "id": "base:pink_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/pink_concrete_powder" } },
+      "tags": ["color:pink"],
+      "cubes": { "pink_concrete_powder": { "all": { "texture": "block/pink_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "pink_concrete_powder" }] }]
+    },
+    {
+      "id": "base:podzol",
+      "kind": "cube",
+      "template": "cube_bottom_top",
+      "faces": { "top": { "texture": "block/podzol_top" }, "bottom": { "texture": "block/dirt" }, "side": { "texture": "block/podzol_side" } },
+      "surface": "cutout",
+      "states": { "snowy": ["false", "true"] },
+      "cubes": {
+        "grass_block_snow": {
+          "top": { "texture": "block/grass_block_top" },
+          "bottom": { "texture": "block/dirt" },
+          "side": { "texture": "block/grass_block_snow" }
+        },
+        "podzol": { "top": { "texture": "block/podzol_top" }, "bottom": { "texture": "block/dirt" }, "side": { "texture": "block/podzol_side" } }
+      },
+      "variants": [
+        { "when": { "snowy": "false" }, "looks": [{ "cube": "podzol" }] },
+        { "when": { "snowy": "true" }, "looks": [{ "cube": "grass_block_snow" }] }
+      ]
+    },
+    {
+      "id": "base:powder_snow",
+      "kind": "custom",
+      "textures": { "particle": "block/powder_snow", "texture": "block/powder_snow" },
+      "variants": [{ "looks": [{ "model": "powder_snow" }] }]
+    },
+    {
+      "id": "base:purple_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/purple_concrete_powder" } },
+      "tags": ["color:purple"],
+      "cubes": { "purple_concrete_powder": { "all": { "texture": "block/purple_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "purple_concrete_powder" }] }]
+    },
+    {
+      "id": "base:red_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/red_concrete_powder" } },
+      "tags": ["color:red"],
+      "cubes": { "red_concrete_powder": { "all": { "texture": "block/red_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "red_concrete_powder" }] }]
+    },
+    {
+      "id": "base:red_sand",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/red_sand" } },
+      "tags": ["color:red"],
+      "cubes": { "red_sand": { "all": { "texture": "block/red_sand" } } },
+      "variants": [{ "looks": [{ "cube": "red_sand" }] }]
+    },
+    {
+      "id": "base:rooted_dirt",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/rooted_dirt" } },
+      "surface": "cutout",
+      "cubes": { "rooted_dirt": { "all": { "texture": "block/rooted_dirt" } } },
+      "variants": [{ "looks": [{ "cube": "rooted_dirt" }] }]
+    },
+    {
+      "id": "base:sand",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/sand" } },
+      "cubes": { "sand": { "all": { "texture": "block/sand" } } },
+      "variants": [{ "looks": [{ "cube": "sand" }] }]
+    },
+    {
+      "id": "base:snow",
+      "kind": "thinBlock",
+      "template": "thin_block",
+      "textures": { "particle": "block/snow", "texture": "block/snow" },
+      "states": { "layers": ["1", "2", "3", "4", "5", "6", "7", "8"] },
+      "cubes": { "snow_block": { "all": { "texture": "block/snow" } } },
+      "variants": [
+        { "when": { "layers": "1" }, "looks": [{ "model": "snow_height2" }] },
+        { "when": { "layers": "2" }, "looks": [{ "model": "snow_height4" }] },
+        { "when": { "layers": "3" }, "looks": [{ "model": "snow_height6" }] },
+        { "when": { "layers": "4" }, "looks": [{ "model": "snow_height8" }] },
+        { "when": { "layers": "5" }, "looks": [{ "model": "snow_height10" }] },
+        { "when": { "layers": "6" }, "looks": [{ "model": "snow_height12" }] },
+        { "when": { "layers": "7" }, "looks": [{ "model": "snow_height14" }] },
+        { "when": { "layers": "8" }, "looks": [{ "cube": "snow_block" }] }
+      ]
+    },
+    {
+      "id": "base:snow_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/snow" } },
+      "cubes": { "snow_block": { "all": { "texture": "block/snow" } } },
+      "variants": [{ "looks": [{ "cube": "snow_block" }] }]
+    },
+    {
+      "id": "base:soul_sand",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/soul_sand" } },
+      "cubes": { "soul_sand": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "soul_sand" }] }]
+    },
+    {
+      "id": "base:soul_soil",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/soul_soil" } },
+      "cubes": { "soul_soil": { "all": { "texture": "block/soul_soil" } } },
+      "variants": [{ "looks": [{ "cube": "soul_soil" }] }]
+    },
+    {
+      "id": "base:suspicious_gravel",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/suspicious_gravel_0" } },
+      "states": { "dusted": ["0", "1", "2", "3"] },
+      "cubes": {
+        "suspicious_gravel_0": { "all": { "texture": "block/suspicious_gravel_0" } },
+        "suspicious_gravel_1": { "all": { "texture": "block/suspicious_gravel_1" } },
+        "suspicious_gravel_2": { "all": { "texture": "block/suspicious_gravel_2" } },
+        "suspicious_gravel_3": { "all": { "texture": "block/suspicious_gravel_3" } }
+      },
+      "variants": [
+        { "when": { "dusted": "0" }, "looks": [{ "cube": "suspicious_gravel_0" }] },
+        { "when": { "dusted": "1" }, "looks": [{ "cube": "suspicious_gravel_1" }] },
+        { "when": { "dusted": "2" }, "looks": [{ "cube": "suspicious_gravel_2" }] },
+        { "when": { "dusted": "3" }, "looks": [{ "cube": "suspicious_gravel_3" }] }
+      ]
+    },
+    {
+      "id": "base:suspicious_sand",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/suspicious_sand_0" } },
+      "states": { "dusted": ["0", "1", "2", "3"] },
+      "cubes": {
+        "suspicious_sand_0": { "all": { "texture": "block/suspicious_sand_0" } },
+        "suspicious_sand_1": { "all": { "texture": "block/suspicious_sand_1" } },
+        "suspicious_sand_2": { "all": { "texture": "block/suspicious_sand_2" } },
+        "suspicious_sand_3": { "all": { "texture": "block/suspicious_sand_3" } }
+      },
+      "variants": [
+        { "when": { "dusted": "0" }, "looks": [{ "cube": "suspicious_sand_0" }] },
+        { "when": { "dusted": "1" }, "looks": [{ "cube": "suspicious_sand_1" }] },
+        { "when": { "dusted": "2" }, "looks": [{ "cube": "suspicious_sand_2" }] },
+        { "when": { "dusted": "3" }, "looks": [{ "cube": "suspicious_sand_3" }] }
+      ]
+    },
+    {
+      "id": "base:white_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/white_concrete_powder" } },
+      "tags": ["color:white"],
+      "cubes": { "white_concrete_powder": { "all": { "texture": "block/white_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "white_concrete_powder" }] }]
+    },
+    {
+      "id": "base:yellow_concrete_powder",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/yellow_concrete_powder" } },
+      "tags": ["color:yellow"],
+      "cubes": { "yellow_concrete_powder": { "all": { "texture": "block/yellow_concrete_powder" } } },
+      "variants": [{ "looks": [{ "cube": "yellow_concrete_powder" }] }]
+    }
+  ]
+}

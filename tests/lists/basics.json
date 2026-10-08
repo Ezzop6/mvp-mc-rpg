@@ -1,0 +1,18 @@
+{
+  "Note": "wave 1 basics: animated textures, block emission and the game clock on a small flat world with edits; *-emission / -anim against their base, sky-a against sky-b",
+  "Bookmarks": [
+    "basics-near-night",
+    "basics-near-night-emission",
+    "basics-near-day",
+    "basics-near-day-emission",
+    "basics-near-anim",
+    "basics-sky-a",
+    "basics-sky-b",
+    "basics-clouds-a",
+    "basics-clouds-b"
+  ],
+  "Capture": [
+    "Shot",
+    "PassMs"
+  ]
+}

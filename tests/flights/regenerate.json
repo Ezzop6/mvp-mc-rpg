@@ -1,0 +1,41 @@
+{
+  "Note": "generator parameters change in flight: Regenerate without a freeze after GraceFrames",
+  "Scene": "random-default",
+  "TimeOfDay": 12,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": 0,
+        "Y": 80,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -15
+    },
+    {
+      "T": 8,
+      "Pos": {
+        "X": 400,
+        "Y": 80,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -15
+    }
+  ],
+  "Actions": [
+    {
+      "T": 3,
+      "Kind": "Regenerate",
+      "Params": {
+        "Seed": 7,
+        "Height": 60
+      }
+    }
+  ],
+  "Shots": [
+    2.5,
+    5.5
+  ]
+}

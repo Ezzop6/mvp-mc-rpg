@@ -1,0 +1,32 @@
+layout(set = 0, binding = 1, std430) restrict readonly buffer CameraBuf { // Renderer.CameraData
+	ivec4 anchor;  // L0 chunk (docs/v2.md §3.1); rays start at frac relative to its origin
+	vec4 frac;     // blocks, < CHUNK per axis
+	vec4 right;    // w = aspect
+	vec4 up;
+	vec4 fwd;      // w = tan(fov / 2)
+	vec4 sun_dir;  // towards the sun (the moon at night)
+	vec4 sun_col;
+	vec4 amb_col;  // w = AmbientTopBias (Shade with AO)
+	vec4 lens;     // x = pixel angle (rad), y = max distance (blocks), z = pixel angle of texture and model levels (the output's with Temporal)
+	vec4 prev_frac, prev_right, prev_up, prev_fwd; // last frame's camera, prev_frac in this frame's anchor
+	vec4 jitter;   // xy = sub-pixel sample offset in render pixels, 0 without Temporal
+	vec4 cutout;   // cutout faces turn solid from texture level x over y levels (0 = never)
+	vec4 glass;    // Transparency: tint per crossing, reflectance (F0), sun on glass, sky in its reflection
+	vec4 media;    // Transparency: water absorption, fog density scale, sun in fog; w = Liquid: fade end (blocks)
+	vec4 water;    // Water: wave height, wave phase (clock × speed), index of refraction, reflectance (F0)
+	vec4 water_deep; // Water: deep water brightness, sun in deep water, sun glint, glint sharpness
+	vec4 sky_top, sky_horizon; // the air (Renderer: sky, haze, fog, reflections), w = HazeSun, HazeSunFocus
+	vec4 ground;     // Shade: ambient added on faces turned down (x -n.y)
+	vec4 water_tint; // Water: deep water colour tint
+	uvec4 frame;
+} cam;
+
+vec3 view_dir(vec2 ndc) { return normalize(cam.fwd.xyz + cam.right.xyz * (ndc.x * cam.fwd.w * cam.right.w) - cam.up.xyz * (ndc.y * cam.fwd.w)); }
+// Normal of a water surface at anchor-relative p (v1 waves).
+vec3 water_normal(vec3 p) {
+	vec2 q = p.xz + vec2(cam.anchor.xz * CHUNK);
+	float w = cam.water.x, ph = cam.water.y;
+	return normalize(vec3(w * (0.03 * sin(q.x * 0.9 + ph * 1.7) + 0.02 * sin(q.y * 1.3 - ph * 1.1)), 1.0, w * (0.03 * sin(q.y * 0.8 + ph * 1.3) + 0.02 * sin(q.x * 1.7 + ph * 0.9))));
+}
+
+vec3 pixel_dir(ivec2 px, ivec2 size) { return view_dir((vec2(px) + 0.5 + cam.jitter.xy) / vec2(size) * 2.0 - 1.0); }

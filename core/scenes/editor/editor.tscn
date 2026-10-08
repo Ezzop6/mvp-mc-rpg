@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://ca7vn4vi8bemo"]
+
+[ext_resource type="Script" uid="uid://bh5s4k0fw2vtj" path="res://core/scenes/editor/CreativeEditor.cs" id="1_u4px5"]
+[ext_resource type="Script" uid="uid://j6xuq4pd0c0p" path="res://core/scenes/editor/Inventory.cs" id="2_lyeia"]
+
+[node name="Editor" type="CanvasLayer" unique_id=1514782274]
+script = ExtResource("1_u4px5")
+
+[node name="Inventory" type="Control" parent="." unique_id=431397351]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_lyeia")
+
+[node name="Dim" type="ColorRect" parent="Inventory" unique_id=512523433]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="Window" type="PanelContainer" parent="Inventory" unique_id=1317235702]
+layout_mode = 0
+anchor_left = 0.15
+anchor_top = 0.06
+anchor_right = 0.85
+anchor_bottom = 1.0
+offset_bottom = -150.0
+
+[node name="Box" type="VBoxContainer" parent="Inventory/Window" unique_id=54154350]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Top" type="HBoxContainer" parent="Inventory/Window/Box" unique_id=640128529]
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="Inventory/Window/Box/Top" unique_id=227132472]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Search (name, id, category)"
+clear_button_enabled = true
+
+[node name="Sort" type="OptionButton" parent="Inventory/Window/Box/Top" unique_id=1132573026]
+layout_mode = 2
+
+[node name="Split" type="HSplitContainer" parent="Inventory/Window/Box" unique_id=1474327788]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Categories" type="Tree" parent="Inventory/Window/Box/Split" unique_id=271874104]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+hide_root = true
+
+[node name="Scroll" type="ScrollContainer" parent="Inventory/Window/Box/Split" unique_id=2130617971]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="Grid" type="GridContainer" parent="Inventory/Window/Box/Split/Scroll" unique_id=867944003]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 12
+
+[node name="Menu" type="Control" parent="." unique_id=1472130620]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="Menu" unique_id=687747739]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Center" type="CenterContainer" parent="Menu" unique_id=1611265167]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Box" type="VBoxContainer" parent="Menu/Center" unique_id=756636946]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Resume" type="Button" parent="Menu/Center/Box" unique_id=375475737]
+layout_mode = 2
+text = "Resume"
+
+[node name="NewFlat" type="Button" parent="Menu/Center/Box" unique_id=2004770969]
+layout_mode = 2
+text = "New world (flat)"
+
+[node name="NewShowcase" type="Button" parent="Menu/Center/Box" unique_id=1188524301]
+layout_mode = 2
+text = "New world (showcase)"
+
+[node name="NewRandom" type="Button" parent="Menu/Center/Box" unique_id=1460813377]
+layout_mode = 2
+text = "New world (random)"
+
+[node name="Save" type="Button" parent="Menu/Center/Box" unique_id=574957063]
+layout_mode = 2
+text = "Save"
+
+[node name="Load" type="Button" parent="Menu/Center/Box" unique_id=1629836104]
+layout_mode = 2
+text = "Load"
+
+[node name="Bookmarks" type="Button" parent="Menu/Center/Box" unique_id=1925972929]
+layout_mode = 2
+text = "Bookmarks"
+
+[node name="Hud" type="Control" parent="." unique_id=1208417497]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ItemName" type="Label" parent="Hud" unique_id=456576054]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+offset_bottom = -115.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+
+[node name="Hotbar" type="HBoxContainer" parent="Hud" unique_id=961056865]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 4
+alignment = 1

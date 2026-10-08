@@ -1,0 +1,28 @@
+{
+  "category": "doors",
+  "source": "import",
+  "entries": [
+    { "id": "base:acacia_door", "block": "base:acacia_door" },
+    { "id": "base:bamboo_door", "block": "base:bamboo_door" },
+    { "id": "base:birch_door", "block": "base:birch_door" },
+    { "id": "base:cherry_door", "block": "base:cherry_door" },
+    { "id": "base:copper_door", "block": "base:copper_door" },
+    { "id": "base:crimson_door", "block": "base:crimson_door" },
+    { "id": "base:dark_oak_door", "block": "base:dark_oak_door" },
+    { "id": "base:exposed_copper_door", "block": "base:exposed_copper_door" },
+    { "id": "base:iron_door", "block": "base:iron_door" },
+    { "id": "base:jungle_door", "block": "base:jungle_door" },
+    { "id": "base:mangrove_door", "block": "base:mangrove_door" },
+    { "id": "base:oak_door", "block": "base:oak_door" },
+    { "id": "base:oxidized_copper_door", "block": "base:oxidized_copper_door" },
+    { "id": "base:pale_oak_door", "block": "base:pale_oak_door" },
+    { "id": "base:poplar_door", "block": "base:poplar_door" },
+    { "id": "base:spruce_door", "block": "base:spruce_door" },
+    { "id": "base:warped_door", "block": "base:warped_door" },
+    { "id": "base:waxed_copper_door", "block": "base:waxed_copper_door" },
+    { "id": "base:waxed_exposed_copper_door", "block": "base:waxed_exposed_copper_door" },
+    { "id": "base:waxed_oxidized_copper_door", "block": "base:waxed_oxidized_copper_door" },
+    { "id": "base:waxed_weathered_copper_door", "block": "base:waxed_weathered_copper_door" },
+    { "id": "base:weathered_copper_door", "block": "base:weathered_copper_door" }
+  ]
+}

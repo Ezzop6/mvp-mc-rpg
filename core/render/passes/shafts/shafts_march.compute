@@ -1,0 +1,42 @@
+// v1 sun shafts at a quarter of the render size per axis: march towards the sun on screen, counting sky pixels with decay, each by the light the cloud layer lets through.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "camera.glsli"
+#include "res://core/render/passes/clouds/clouds.glsli"
+layout(set = 0, binding = 0, std430) restrict readonly buffer ParamBuf { PARAMS } P;
+layout(set = 0, binding = 4, r32f) restrict readonly uniform image2D depth_in;
+layout(set = 0, binding = 6, rgba16f) restrict writeonly uniform image2D shafts;
+
+const int STEPS = 16;
+
+// Clouds' opacity along d (clouds_layer.compute with 3 octaves at the quarter pixel).
+float sky_open(vec3 d) {
+	vec3 o = cam_pos_m();
+	float ct = (P.cloud_cover.z - o.y) / d.y;
+	if (!(ct > 0.0 && ct < P.cloud_drift.w * 3.0)) return 1.0;
+	vec2 p = (o.xz + d.xz * ct + P.cloud_drift.xy) / P.cloud_cover.w;
+	float dens = cloud_shape(p, 4.0 * ct * cam.lens.x / (max(abs(d.y), 1e-3) * P.cloud_cover.w), 3, P.cloud_cover.x, P.cloud_cover.y);
+	return 1.0 - P.shaft_clouds * cloud_alpha(dens, ct, d.y, P.cloud_drift.z, P.cloud_drift.w);
+}
+
+void main() {
+	ivec2 o = ivec2(gl_GlobalInvocationID.xy), osize = imageSize(shafts), isize = imageSize(depth_in);
+	if (any(greaterThanEqual(o, osize))) return;
+	vec2 uv = (vec2(o) + 0.5) / vec2(osize);
+	vec3 col = vec3(0.0);
+	float facing = dot(cam.sun_dir.xyz, cam.fwd.xyz);
+	if (facing > 0.0) {
+		vec3 s = cam.sun_dir.xyz / facing;
+		vec2 sun_uv = vec2(dot(s, cam.right.xyz) / (cam.fwd.w * cam.right.w), -dot(s, cam.up.xyz) / cam.fwd.w) * 0.5 + 0.5;
+		vec2 step_uv = (sun_uv - uv) / float(STEPS), p = uv;
+		float acc = 0.0, decay = 1.0;
+		bool clouds = P.cloud_cover.x > 0.0;
+		for (int k = 0; k < STEPS; k++) {
+			p += step_uv;
+			if (any(lessThan(p, vec2(0.0))) || any(greaterThan(p, vec2(1.0)))) break;
+			if (imageLoad(depth_in, ivec2(p * vec2(isize))).r == 0.0) acc += clouds ? decay * sky_open(view_dir(p * 2.0 - 1.0)) : decay;
+			decay *= P.shaft_decay;
+		}
+		col = cam.sun_col.rgb * acc / float(STEPS) * pow(max(dot(pixel_dir(o, osize), cam.sun_dir.xyz), 0.0), P.shaft_focus) * P.shaft_intensity;
+	}
+	imageStore(shafts, o, vec4(col, 0.0));
+}

@@ -1,0 +1,16 @@
+// v1 present.gdshader: unsharp mask over the 4 neighbours, clamped to them (no halos).
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+layout(set = 0, binding = 0, std430) restrict readonly buffer ParamsBuf { PARAMS } P;
+layout(set = 0, binding = 2, rgba16f) restrict readonly uniform image2D source;
+layout(set = 0, binding = 3, rgba16f) restrict writeonly uniform image2D color_out;
+
+vec3 at(ivec2 p, ivec2 size) { return imageLoad(source, clamp(p, ivec2(0), size - 1)).rgb; }
+
+void main() {
+	ivec2 p = ivec2(gl_GlobalInvocationID.xy), size = imageSize(source);
+	if (any(greaterThanEqual(p, size))) return;
+	vec4 e = imageLoad(source, p);
+	vec3 b = at(p - ivec2(0, 1), size), h = at(p + ivec2(0, 1), size), d = at(p - ivec2(1, 0), size), f = at(p + ivec2(1, 0), size);
+	vec3 s = clamp(e.rgb + P.sharpness * (e.rgb - 0.25 * (b + d + f + h)), min(e.rgb, min(min(b, d), min(f, h))), max(e.rgb, max(max(b, d), max(f, h))));
+	imageStore(color_out, p, vec4(s, e.a));
+}

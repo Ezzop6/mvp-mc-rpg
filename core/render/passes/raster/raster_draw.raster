@@ -1,0 +1,66 @@
+// Raster/meshes: draws the visible mesh pages into the vis target (anchor-relative cell per pixel, w = 1 + the face axis) with Primary/dda's projection and jitter.
+#include "faces.glsli"
+#include "camera.glsli"
+#include "mesh.glsli"
+
+layout(set = 0, binding = 2, std430) restrict readonly buffer Quads { uint quads[]; };
+layout(set = 0, binding = 3, std430) restrict readonly buffer Pages { Page pages[]; };
+layout(set = 0, binding = 11, std430) restrict readonly buffer Visible { uint visible[]; };
+
+layout(push_constant, std430) uniform PC { uint first; uint pad0, pad1, pad2; } pc; // first entry of this draw in `visible`
+
+#ifdef VERTEX
+layout(location = 0) out vec3 v_pos;        // anchor-relative, blocks
+layout(location = 1) flat out ivec4 v_cell; // block (u, v = the quad's first block), w = axis
+layout(location = 2) flat out ivec2 v_last; // the quad's last block along u, v
+
+// Quad corners, triangles (0, 1, 2), (0, 2, 3); faces towards -axis swap u and v to stay counter-clockwise.
+const ivec2 CORNER[4] = ivec2[](ivec2(0, 0), ivec2(1, 0), ivec2(1, 1), ivec2(0, 1));
+
+void main() {
+	uint page = visible[pc.first + gl_InstanceIndex];
+	Page P = pages[page];
+	uint qi = uint(gl_VertexIndex) / 4u;
+	if (qi >= uint(page_quads(P.chunk.w))) { gl_Position = vec4(-2.0, -2.0, 0.0, 1.0); return; }
+	uint q = quads[page * PAGE_QUADS + qi];
+	int d = page_dir(P.chunk.w), axis = d >> 1;
+	bool positive = (d & 1) != 0;
+	ivec2 uv = face_axes(axis), size = ivec2(quad_size(q)), k = CORNER[gl_VertexIndex % 4];
+	if (!positive) k = k.yx;
+
+	ivec3 cell = (P.chunk.xyz - cam.anchor.xyz) * CHUNK + ivec3(unpack5(q));
+	vec3 p = vec3(cell);
+	p[axis] += positive ? 1.0 : 0.0;
+	p[uv.x] += float(k.x * size.x);
+	p[uv.y] += float(k.y * size.y);
+	// Sub-pixel overlap: greedy quads meet in T-junctions, where rounding would leave uncovered pixels.
+	float grow = 2e-3 + abs(dot(p - cam.frac.xyz, cam.fwd.xyz)) * 1e-5;
+	p[uv.x] += k.x == 1 ? grow : -grow;
+	p[uv.y] += k.y == 1 ? grow : -grow;
+
+	vec3 rel = p - cam.frac.xyz;
+	float th = cam.fwd.w, asp = cam.right.w, z = dot(rel, cam.fwd.xyz);
+	vec2 jitter = 2.0 * cam.jitter.xy * cam.lens.x / (2.0 * th) * vec2(1.0 / asp, 1.0);
+	gl_Position = vec4(dot(rel, cam.right.xyz) / (th * asp) - jitter.x * z, -dot(rel, cam.up.xyz) / th - jitter.y * z, RASTER_NEAR, z);
+
+	v_pos = p;
+	v_cell = ivec4(cell, axis);
+	v_last = ivec2(cell[uv.x], cell[uv.y]) + size - 1;
+}
+#endif
+
+#ifdef FRAGMENT
+layout(location = 0) in vec3 v_pos;
+layout(location = 1) flat in ivec4 v_cell;
+layout(location = 2) flat in ivec2 v_last;
+layout(location = 0) out uvec4 out_vis;
+layout(early_fragment_tests) in;
+
+void main() {
+	ivec2 uv = face_axes(v_cell.w);
+	ivec3 cell = v_cell.xyz;
+	cell[uv.x] = clamp(int(floor(v_pos[uv.x])), cell[uv.x], v_last.x);
+	cell[uv.y] = clamp(int(floor(v_pos[uv.y])), cell[uv.y], v_last.y);
+	out_vis = uvec4(uvec3(cell + CELL_BIAS), uint(v_cell.w) + 1u);
+}
+#endif

@@ -1,0 +1,1319 @@
+{
+  "category": "doors",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:acacia_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/acacia_door_bottom", "particle": "block/acacia_door_bottom", "top": "block/acacia_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:acacia"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "acacia_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "acacia_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "acacia_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "acacia_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "acacia_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "acacia_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "acacia_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "acacia_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "acacia_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "acacia_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "acacia_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "acacia_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "acacia_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "acacia_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "acacia_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "acacia_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "acacia_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "acacia_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "acacia_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "acacia_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "acacia_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "acacia_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "acacia_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "acacia_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "acacia_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "acacia_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "acacia_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "acacia_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "acacia_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "acacia_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "acacia_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "acacia_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:bamboo_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/bamboo_door_bottom", "particle": "block/bamboo_door_bottom", "top": "block/bamboo_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:bamboo"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "bamboo_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "bamboo_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "bamboo_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "bamboo_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "bamboo_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "bamboo_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "bamboo_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "bamboo_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "bamboo_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "bamboo_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "bamboo_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "bamboo_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "bamboo_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "bamboo_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "bamboo_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "bamboo_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "bamboo_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "bamboo_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "bamboo_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "bamboo_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "bamboo_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "bamboo_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "bamboo_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "bamboo_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "bamboo_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "bamboo_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "bamboo_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "bamboo_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "bamboo_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "bamboo_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "bamboo_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "bamboo_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:birch_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/birch_door_bottom", "particle": "block/birch_door_bottom", "top": "block/birch_door_top" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:birch"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "birch_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "birch_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "birch_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "birch_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "birch_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "birch_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "birch_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "birch_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "birch_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "birch_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "birch_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "birch_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "birch_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "birch_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "birch_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "birch_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "birch_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "birch_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "birch_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "birch_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "birch_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "birch_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "birch_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "birch_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "birch_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "birch_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "birch_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "birch_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "birch_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "birch_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "birch_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "birch_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:cherry_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/cherry_door_bottom", "particle": "block/cherry_door_bottom", "top": "block/cherry_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:cherry"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "cherry_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "cherry_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "cherry_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "cherry_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "cherry_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "cherry_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "cherry_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "cherry_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "cherry_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "cherry_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "cherry_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "cherry_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "cherry_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "cherry_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "cherry_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "cherry_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "cherry_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "cherry_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "cherry_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "cherry_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "cherry_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "cherry_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "cherry_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "cherry_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "cherry_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "cherry_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "cherry_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "cherry_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "cherry_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "cherry_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "cherry_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "cherry_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:copper_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/copper_door_bottom", "particle": "block/copper_door_bottom", "top": "block/copper_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:crimson_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/crimson_door_bottom", "particle": "block/crimson_door_bottom", "top": "block/crimson_door_top" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:crimson"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "crimson_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "crimson_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "crimson_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "crimson_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "crimson_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "crimson_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "crimson_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "crimson_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "crimson_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "crimson_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "crimson_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "crimson_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "crimson_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "crimson_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "crimson_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "crimson_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "crimson_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "crimson_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "crimson_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "crimson_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "crimson_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "crimson_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "crimson_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "crimson_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "crimson_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "crimson_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "crimson_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "crimson_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "crimson_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "crimson_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "crimson_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "crimson_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:dark_oak_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/dark_oak_door_bottom", "particle": "block/dark_oak_door_bottom", "top": "block/dark_oak_door_top" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:dark_oak"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "dark_oak_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "dark_oak_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "dark_oak_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "dark_oak_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "dark_oak_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "dark_oak_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "dark_oak_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "dark_oak_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "dark_oak_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "dark_oak_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "dark_oak_door_bottom_right", "y": 270 }] },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "dark_oak_door_bottom_right_open", "y": 180 }]
+        },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "dark_oak_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "dark_oak_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "dark_oak_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "dark_oak_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "dark_oak_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "dark_oak_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "dark_oak_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "dark_oak_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "dark_oak_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "dark_oak_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "dark_oak_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "dark_oak_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "dark_oak_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "dark_oak_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "dark_oak_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "dark_oak_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "dark_oak_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "dark_oak_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "dark_oak_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "dark_oak_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:exposed_copper_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/exposed_copper_door_bottom", "particle": "block/exposed_copper_door_bottom", "top": "block/exposed_copper_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_bottom_left" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_left_open", "y": 90 }]
+        },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "exposed_copper_door_bottom_right" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right_open", "y": 270 }]
+        },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "exposed_copper_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_right" }] },
+        {
+          "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_top_right_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "exposed_copper_door_bottom_left", "y": 270 }]
+        },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "exposed_copper_door_bottom_left_open" }] },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right_open", "y": 180 }]
+        },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "exposed_copper_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_right", "y": 270 }] },
+        {
+          "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_top_right_open", "y": 180 }]
+        },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_bottom_left", "y": 90 }] },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_left_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right", "y": 90 }]
+        },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "exposed_copper_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_left", "y": 90 }] },
+        {
+          "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_top_left_open", "y": 180 }]
+        },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "exposed_copper_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_bottom_left", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_left_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right_open", "y": 90 }]
+        },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_left", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_top_left_open", "y": 270 }]
+        },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_right", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_top_right_open", "y": 90 }]
+        }
+      ]
+    },
+    {
+      "id": "base:iron_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/iron_door_bottom", "particle": "block/iron_door_bottom", "top": "block/iron_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "iron_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "iron_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "iron_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "iron_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "iron_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "iron_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "iron_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "iron_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "iron_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "iron_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "iron_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "iron_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "iron_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "iron_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "iron_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "iron_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "iron_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "iron_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "iron_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "iron_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "iron_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "iron_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "iron_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "iron_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "iron_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "iron_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "iron_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "iron_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "iron_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "iron_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "iron_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "iron_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:jungle_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/jungle_door_bottom", "particle": "block/jungle_door_bottom", "top": "block/jungle_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:jungle"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "jungle_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "jungle_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "jungle_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "jungle_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "jungle_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "jungle_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "jungle_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "jungle_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "jungle_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "jungle_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "jungle_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "jungle_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "jungle_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "jungle_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "jungle_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "jungle_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "jungle_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "jungle_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "jungle_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "jungle_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "jungle_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "jungle_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "jungle_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "jungle_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "jungle_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "jungle_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "jungle_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "jungle_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "jungle_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "jungle_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "jungle_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "jungle_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:mangrove_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/mangrove_door_bottom", "particle": "block/mangrove_door_bottom", "top": "block/mangrove_door_top" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:mangrove"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "mangrove_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "mangrove_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "mangrove_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "mangrove_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "mangrove_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "mangrove_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "mangrove_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "mangrove_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "mangrove_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "mangrove_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "mangrove_door_bottom_right", "y": 270 }] },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "mangrove_door_bottom_right_open", "y": 180 }]
+        },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "mangrove_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "mangrove_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "mangrove_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "mangrove_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "mangrove_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "mangrove_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "mangrove_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "mangrove_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "mangrove_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "mangrove_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "mangrove_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "mangrove_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "mangrove_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "mangrove_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "mangrove_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "mangrove_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "mangrove_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "mangrove_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "mangrove_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "mangrove_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:oak_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/oak_door_bottom", "particle": "block/oak_door_bottom", "top": "block/oak_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:oak"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "oak_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "oak_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "oak_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "oak_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oak_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "oak_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "oak_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "oak_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "oak_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "oak_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "oak_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "oak_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oak_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "oak_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "oak_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "oak_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "oak_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "oak_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "oak_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "oak_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oak_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "oak_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "oak_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "oak_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "oak_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "oak_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "oak_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "oak_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oak_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "oak_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "oak_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "oak_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:oxidized_copper_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/oxidized_copper_door_bottom", "particle": "block/oxidized_copper_door_bottom", "top": "block/oxidized_copper_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_bottom_left" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left_open", "y": 90 }]
+        },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_bottom_right" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right_open", "y": 270 }]
+        },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_left" }] },
+        {
+          "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_left_open", "y": 90 }]
+        },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_right" }] },
+        {
+          "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_right_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left", "y": 270 }]
+        },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "oxidized_copper_door_bottom_left_open" }] },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right_open", "y": 180 }]
+        },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "oxidized_copper_door_top_left_open" }] },
+        {
+          "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_top_right", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_right_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left", "y": 90 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right", "y": 90 }]
+        },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "oxidized_copper_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_left", "y": 90 }] },
+        {
+          "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_left_open", "y": 180 }]
+        },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "oxidized_copper_door_top_right_open" }] },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right_open", "y": 90 }]
+        },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_left", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_left_open", "y": 270 }]
+        },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_right", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_right_open", "y": 90 }]
+        }
+      ]
+    },
+    {
+      "id": "base:pale_oak_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/pale_oak_door_bottom", "particle": "block/pale_oak_door_bottom", "top": "block/pale_oak_door_top" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:pale_oak"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "pale_oak_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "pale_oak_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "pale_oak_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "pale_oak_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "pale_oak_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "pale_oak_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "pale_oak_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "pale_oak_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "pale_oak_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "pale_oak_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "pale_oak_door_bottom_right", "y": 270 }] },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "pale_oak_door_bottom_right_open", "y": 180 }]
+        },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "pale_oak_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "pale_oak_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "pale_oak_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "pale_oak_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "pale_oak_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "pale_oak_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "pale_oak_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "pale_oak_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "pale_oak_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "pale_oak_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "pale_oak_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "pale_oak_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "pale_oak_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "pale_oak_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "pale_oak_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "pale_oak_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "pale_oak_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "pale_oak_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "pale_oak_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "pale_oak_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:poplar_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/poplar_door_bottom", "particle": "block/poplar_door_bottom", "top": "block/poplar_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:poplar"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "poplar_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "poplar_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "poplar_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "poplar_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "poplar_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "poplar_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "poplar_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "poplar_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "poplar_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "poplar_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "poplar_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "poplar_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "poplar_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "poplar_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "poplar_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "poplar_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "poplar_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "poplar_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "poplar_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "poplar_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "poplar_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "poplar_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "poplar_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "poplar_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "poplar_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "poplar_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "poplar_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "poplar_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "poplar_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "poplar_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "poplar_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "poplar_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:spruce_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/spruce_door_bottom", "particle": "block/spruce_door_bottom", "top": "block/spruce_door_top" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:spruce"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "spruce_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "spruce_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "spruce_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "spruce_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "spruce_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "spruce_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "spruce_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "spruce_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "spruce_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "spruce_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "spruce_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "spruce_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "spruce_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "spruce_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "spruce_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "spruce_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "spruce_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "spruce_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "spruce_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "spruce_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "spruce_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "spruce_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "spruce_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "spruce_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "spruce_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "spruce_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "spruce_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "spruce_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "spruce_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "spruce_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "spruce_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "spruce_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:warped_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/warped_door_bottom", "particle": "block/warped_door_bottom", "top": "block/warped_door_top" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "tags": ["wood:warped"],
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "warped_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "warped_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "warped_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "warped_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "warped_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "warped_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "warped_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "warped_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "warped_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "warped_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "warped_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "warped_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "warped_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "warped_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "warped_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "warped_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "warped_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "warped_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "warped_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "warped_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "warped_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "warped_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "warped_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "warped_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "warped_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "warped_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "warped_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "warped_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "warped_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "warped_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "warped_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "warped_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:waxed_copper_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/copper_door_bottom", "particle": "block/copper_door_bottom", "top": "block/copper_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_bottom_left" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_bottom_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_bottom_right" }] },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_bottom_right_open", "y": 270 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_top_right" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_top_right_open", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_bottom_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_bottom_left_open" }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_bottom_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_bottom_right_open", "y": 180 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_top_right", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_top_right_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_bottom_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_bottom_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_bottom_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_top_left", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_top_left_open", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_bottom_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_bottom_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_bottom_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_bottom_right_open", "y": 90 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "copper_door_top_left", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "copper_door_top_left_open", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "copper_door_top_right", "y": 180 }] },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "copper_door_top_right_open", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:waxed_exposed_copper_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/exposed_copper_door_bottom", "particle": "block/exposed_copper_door_bottom", "top": "block/exposed_copper_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_bottom_left" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_left_open", "y": 90 }]
+        },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "exposed_copper_door_bottom_right" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right_open", "y": 270 }]
+        },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_left" }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "exposed_copper_door_top_left_open", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_right" }] },
+        {
+          "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_top_right_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "exposed_copper_door_bottom_left", "y": 270 }]
+        },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "exposed_copper_door_bottom_left_open" }] },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right_open", "y": 180 }]
+        },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "exposed_copper_door_top_left_open" }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_right", "y": 270 }] },
+        {
+          "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_top_right_open", "y": 180 }]
+        },
+        { "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_bottom_left", "y": 90 }] },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_left_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right", "y": 90 }]
+        },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "exposed_copper_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_left", "y": 90 }] },
+        {
+          "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_top_left_open", "y": 180 }]
+        },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "exposed_copper_door_top_right_open" }] },
+        { "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_bottom_left", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_left_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_bottom_right_open", "y": 90 }]
+        },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_left", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_top_left_open", "y": 270 }]
+        },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "exposed_copper_door_top_right", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "exposed_copper_door_top_right_open", "y": 90 }]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_oxidized_copper_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/oxidized_copper_door_bottom", "particle": "block/oxidized_copper_door_bottom", "top": "block/oxidized_copper_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_bottom_left" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left_open", "y": 90 }]
+        },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_bottom_right" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right_open", "y": 270 }]
+        },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_left" }] },
+        {
+          "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_left_open", "y": 90 }]
+        },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_right" }] },
+        {
+          "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_right_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left", "y": 270 }]
+        },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "oxidized_copper_door_bottom_left_open" }] },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right_open", "y": 180 }]
+        },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "oxidized_copper_door_top_left_open" }] },
+        {
+          "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_top_right", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_right_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left", "y": 90 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right", "y": 90 }]
+        },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "oxidized_copper_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_left", "y": 90 }] },
+        {
+          "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_left_open", "y": 180 }]
+        },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_right", "y": 90 }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "oxidized_copper_door_top_right_open" }] },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_left_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_bottom_right_open", "y": 90 }]
+        },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_left", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_left_open", "y": 270 }]
+        },
+        { "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "oxidized_copper_door_top_right", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "oxidized_copper_door_top_right_open", "y": 90 }]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_weathered_copper_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/weathered_copper_door_bottom", "particle": "block/weathered_copper_door_bottom", "top": "block/weathered_copper_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "weathered_copper_door_bottom_left" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left_open", "y": 90 }]
+        },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "weathered_copper_door_bottom_right" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right_open", "y": 270 }]
+        },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "weathered_copper_door_top_left" }] },
+        {
+          "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_left_open", "y": 90 }]
+        },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "weathered_copper_door_top_right" }] },
+        {
+          "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_right_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left", "y": 270 }]
+        },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "weathered_copper_door_bottom_left_open" }] },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right_open", "y": 180 }]
+        },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "weathered_copper_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "weathered_copper_door_top_left_open" }] },
+        {
+          "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_top_right", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_right_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left", "y": 90 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right", "y": 90 }]
+        },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "weathered_copper_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "weathered_copper_door_top_left", "y": 90 }] },
+        {
+          "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_left_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_top_right", "y": 90 }]
+        },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "weathered_copper_door_top_right_open" }] },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right_open", "y": 90 }]
+        },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "weathered_copper_door_top_left", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_left_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_top_right", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_right_open", "y": 90 }]
+        }
+      ]
+    },
+    {
+      "id": "base:weathered_copper_door",
+      "kind": "door",
+      "template": "door_bottom_left",
+      "textures": { "bottom": "block/weathered_copper_door_bottom", "particle": "block/weathered_copper_door_bottom", "top": "block/weathered_copper_door_top" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"], "hinge": ["left", "right"], "open": ["false", "true"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "false" }, "looks": [{ "model": "weathered_copper_door_bottom_left" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left_open", "y": 90 }]
+        },
+        { "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "false" }, "looks": [{ "model": "weathered_copper_door_bottom_right" }] },
+        {
+          "when": { "facing": "east", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right_open", "y": 270 }]
+        },
+        { "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "weathered_copper_door_top_left" }] },
+        {
+          "when": { "facing": "east", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_left_open", "y": 90 }]
+        },
+        { "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "false" }, "looks": [{ "model": "weathered_copper_door_top_right" }] },
+        {
+          "when": { "facing": "east", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_right_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left", "y": 270 }]
+        },
+        { "when": { "facing": "north", "half": "lower", "hinge": "left", "open": "true" }, "looks": [{ "model": "weathered_copper_door_bottom_left_open" }] },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right_open", "y": 180 }]
+        },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "weathered_copper_door_top_left", "y": 270 }] },
+        { "when": { "facing": "north", "half": "upper", "hinge": "left", "open": "true" }, "looks": [{ "model": "weathered_copper_door_top_left_open" }] },
+        {
+          "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_top_right", "y": 270 }]
+        },
+        {
+          "when": { "facing": "north", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_right_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left", "y": 90 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right", "y": 90 }]
+        },
+        { "when": { "facing": "south", "half": "lower", "hinge": "right", "open": "true" }, "looks": [{ "model": "weathered_copper_door_bottom_right_open" }] },
+        { "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "weathered_copper_door_top_left", "y": 90 }] },
+        {
+          "when": { "facing": "south", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_left_open", "y": 180 }]
+        },
+        {
+          "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_top_right", "y": 90 }]
+        },
+        { "when": { "facing": "south", "half": "upper", "hinge": "right", "open": "true" }, "looks": [{ "model": "weathered_copper_door_top_right_open" }] },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_left_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "lower", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_bottom_right_open", "y": 90 }]
+        },
+        { "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "false" }, "looks": [{ "model": "weathered_copper_door_top_left", "y": 180 }] },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "left", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_left_open", "y": 270 }]
+        },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "false" },
+          "looks": [{ "model": "weathered_copper_door_top_right", "y": 180 }]
+        },
+        {
+          "when": { "facing": "west", "half": "upper", "hinge": "right", "open": "true" },
+          "looks": [{ "model": "weathered_copper_door_top_right_open", "y": 90 }]
+        }
+      ]
+    }
+  ]
+}

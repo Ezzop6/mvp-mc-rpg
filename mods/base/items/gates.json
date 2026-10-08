@@ -1,0 +1,19 @@
+{
+  "category": "gates",
+  "source": "import",
+  "entries": [
+    { "id": "base:acacia_fence_gate", "block": "base:acacia_fence_gate" },
+    { "id": "base:bamboo_fence_gate", "block": "base:bamboo_fence_gate" },
+    { "id": "base:birch_fence_gate", "block": "base:birch_fence_gate" },
+    { "id": "base:cherry_fence_gate", "block": "base:cherry_fence_gate" },
+    { "id": "base:crimson_fence_gate", "block": "base:crimson_fence_gate" },
+    { "id": "base:dark_oak_fence_gate", "block": "base:dark_oak_fence_gate" },
+    { "id": "base:jungle_fence_gate", "block": "base:jungle_fence_gate" },
+    { "id": "base:mangrove_fence_gate", "block": "base:mangrove_fence_gate" },
+    { "id": "base:oak_fence_gate", "block": "base:oak_fence_gate" },
+    { "id": "base:pale_oak_fence_gate", "block": "base:pale_oak_fence_gate" },
+    { "id": "base:poplar_fence_gate", "block": "base:poplar_fence_gate" },
+    { "id": "base:spruce_fence_gate", "block": "base:spruce_fence_gate" },
+    { "id": "base:warped_fence_gate", "block": "base:warped_fence_gate" }
+  ]
+}

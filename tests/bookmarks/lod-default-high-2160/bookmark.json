@@ -1,0 +1,28 @@
+{
+  "Note": "lod-default at High, 3840x2160",
+  "Created": "2026-10-07T00:00:00",
+  "Commit": "LOD phase 5",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 0,
+      "Y": 6,
+      "Z": 0
+    },
+    "Local": {
+      "X": 0.0,
+      "Y": 5.0,
+      "Z": 0.0
+    },
+    "Yaw": -1.5707963267948966,
+    "Pitch": -0.10471975511965978
+  },
+  "TimeOfDay": 12,
+  "Width": 3840,
+  "Height": 2160,
+  "Render": {
+    "View": "High",
+    "Lod": true
+  }
+}

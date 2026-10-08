@@ -1,0 +1,24 @@
+// Block lights of L0 chunks (docs/v2.md §5.22) in set 1: a mixed chunk's directory y = list + 1 | lights << LIGHT_COUNT_SHIFT, a list = MAX_CHUNK_LIGHTS (chunk-local block, variant id). After world.glsli.
+layout(set = WORLD_SET, binding = WB_LIGHTS, std430) restrict buffer Lights {
+	int free_top; uint used; uint cap; uint fail; // list pool as gen.compute's: free stack height, bump high water, capacity, chunks whose list did not fit
+	uint changes; uint pad0, pad1, pad2;          // L0 chunks generated with a light list within reach since Lights read them (LIGHT_CHANGES kept)
+	ivec4 change[LIGHT_CHANGES];
+	uint words[];                                 // free stack (cap), then the lists
+} LL;
+
+const uint LIGHT_COUNT_SHIFT = 24u, LIGHT_LIST_WORDS = 2u * MAX_CHUNK_LIGHTS;
+const float LIGHT_REACH = float(CHUNK); // blocks: a light reaches the chunks next to its own, never further
+
+bool has_lights(uvec2 e) { return e.x != NONE && (e.x & UNI) == 0u && e.y != 0u; }
+uint light_count(uint y) { return y >> LIGHT_COUNT_SHIFT; }
+uint light_list(uint y) { return (y & ((1u << LIGHT_COUNT_SHIFT) - 1u)) - 1u; }
+uint light_word(uint list, uint k) { return LL.cap + list * LIGHT_LIST_WORDS + 2u * k; }
+uvec2 light_at(uint y, uint k) { uint o = light_word(light_list(y), k); return uvec2(LL.words[o], LL.words[o + 1u]); }
+ivec3 light_block(uint i) { return ivec3(i % uint(CHUNK), i / uint(CHUNK) % uint(CHUNK), i / uint(CHUNK * CHUNK)); }
+
+// L0 ring slot of world chunk wc, only inside the ring's window (outside, a slot holds another chunk).
+bool in_ring0(ivec3 wc) { ivec3 r = wc - W.lv[0].min.xyz; return all(greaterThanEqual(r, ivec3(0))) && all(lessThan(r, W.lv[0].size.xyz)); }
+uint slot0(ivec3 wc) { ivec3 d = W.lv[0].size.xyz; return W.lv[0].base.x + uint(pmod(wc.x, d.x) + d.x * (pmod(wc.y, d.y) + d.y * pmod(wc.z, d.z))); }
+
+// Distance from point c (blocks) to the box of world chunk wc.
+float chunk_distance(vec3 c, ivec3 wc) { vec3 lo = vec3(wc * CHUNK); return length(c - clamp(c, lo, lo + float(CHUNK))); }

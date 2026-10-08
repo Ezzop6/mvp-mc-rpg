@@ -1,0 +1,81 @@
+{
+  "Note": "shafts at 16.5 h towards the sun without clouds (coverage 0): the reference glow",
+  "Created": "2026-10-08T09:00:00",
+  "Commit": "copy of basics-clouds-a (flat + 35 edits) with another camera, time and tuning",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0
+    },
+    "Local": {
+      "X": 5.5,
+      "Y": 1.0,
+      "Z": 6.5
+    },
+    "Yaw": -0.6926,
+    "Pitch": 0.3
+  },
+  "TimeOfDay": 16.5,
+  "Day": 0,
+  "TimePaused": true,
+  "Clock": 1070.0,
+  "Width": 3840,
+  "Height": 2160,
+  "Render": {
+    "Passes": {
+      "Sky": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "gradient"
+      },
+      "Sun": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "disc"
+      },
+      "Clouds": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "layer"
+      },
+      "Haze": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "analytic"
+      },
+      "HeightFog": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "analytic"
+      },
+      "Shafts": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "quarter-res"
+      }
+    },
+    "Tune": {
+      "Values": {
+        "day": {
+          "Clouds.layer.CloudCoverage": [
+            0
+          ]
+        },
+        "dusk": {
+          "Clouds.layer.CloudCoverage": [
+            0
+          ]
+        },
+        "night": {
+          "Clouds.layer.CloudCoverage": [
+            0
+          ]
+        }
+      },
+      "Variants": {}
+    }
+  }
+}

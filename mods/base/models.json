@@ -1,0 +1,7380 @@
+[
+  {
+    "name": "office_barberchair",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      67,
+      100,
+      59
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/barberChair.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_bench1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      80,
+      40,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/bench1.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_bin",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      40,
+      20
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/bin.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_chairback1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      60,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/chairBack1.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_chairback2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      60,
+      38
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/chairBack2.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_chairbase",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      24,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/chairBase.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_cupboard1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      126,
+      80,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/cupboard1.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_desk1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      90,
+      35,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/desk1.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_desk2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      90,
+      35,
+      36
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/desk2.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_diary",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      7,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/diary.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_documents",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      34,
+      4,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/documents.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_documenttray",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      20,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/documentTray.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_fillingcabinet",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      80,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/fillingCabinet.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_fillingcabinetdraw",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      32,
+      36,
+      35
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/fillingCabinetDraw.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_fillingcabinetdrawdocs",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      27,
+      5
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/fillingCabinetDrawDocs.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_fillingcabinetnodraws",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      80,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/fillingCabinetNoDraws.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_glassdoor",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      120,
+      7
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/glassDoor.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_glasswall",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      120,
+      7
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/glassWall.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_glasswallcorner",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      120,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/glassWallCorner.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_glasswallend",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      120,
+      7
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/glassWallEnd.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_halltable",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      90,
+      40,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/hallTable.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_keyboard_mouse",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      62,
+      5,
+      16
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/keyboard\u002Bmouse.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_keypad",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      40,
+      2
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/keypad.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_lamp",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      65,
+      46
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/lamp.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_laptop",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      26,
+      28
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/laptop.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_monitor",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      38,
+      10
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/monitor.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_pc",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      40,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/pc.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_phone",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      34,
+      15,
+      38
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/phone.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_planterbench",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      80,
+      4,
+      80
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/planterBench.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_planterbox",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      46,
+      40,
+      46
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/planterBox.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_printer",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      80,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/printer.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_printer2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      40,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/printer2.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_projector",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      21,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/projector.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_recyclebin",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      40,
+      20
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/recycleBin.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_smartphone",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      4,
+      86
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/smartPhone.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_table2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      80,
+      40,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/table2.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_tablecentre",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      38,
+      20,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/tableCentre.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_tableend",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      38,
+      20,
+      40
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/tableEnd.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_vending_machine",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      45,
+      60,
+      45
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/Vending Machine.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "office_watercooler",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      32,
+      80,
+      36
+    ],
+    "anchor": null,
+    "source": "Voxel Office Pack (Air Dinghy): office/Office Set/Vox Files/waterCooler.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_0",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      72,
+      21,
+      45
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-0.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      75,
+      105,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-1.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_10",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      75,
+      33,
+      96
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-10.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_11",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      21,
+      30,
+      24
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-11.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_12",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      21,
+      51,
+      21
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-12.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_13",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      126,
+      75
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-13.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_14",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      15,
+      36,
+      27
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-14.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_15",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      36,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-15.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_16",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      84,
+      90,
+      24
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-16.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_17",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      15,
+      3,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-17.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_18",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      24,
+      63,
+      27
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-18.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_19",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      63,
+      33
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-19.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      120,
+      105,
+      45
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-2.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_20",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      39,
+      42
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-20.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_21",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      57,
+      45,
+      21
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-21.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_22",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      15,
+      18,
+      15
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-22.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_23",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      96,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-23.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_24",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      60,
+      36,
+      24
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-24.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_25",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      39,
+      57,
+      39
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-25.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_26",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      39,
+      57,
+      39
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-26.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_27",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      21,
+      81,
+      78
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-27.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_28",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      33,
+      69,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-28.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_29",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      69,
+      21,
+      21
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-29.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      60,
+      99,
+      21
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-3.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_30",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      78,
+      87,
+      78
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-30.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_31",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      51,
+      114,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-31.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_32",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      78,
+      30,
+      42
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-32.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_33",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      45,
+      75,
+      27
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-33.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_34",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      60,
+      21,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-34.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_35",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      18,
+      18,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-35.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_36",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      27,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-36.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_37",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      27,
+      21,
+      27
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-37.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_38",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      39,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-38.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_39",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      69,
+      42,
+      21
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-39.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_4",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      78,
+      36,
+      45
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-4.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_40",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      99,
+      126,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-40.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_42",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      24,
+      54,
+      21
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-42.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_43",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      114,
+      33,
+      45
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-43.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_44",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      72,
+      96,
+      21
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-44.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_45",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      45,
+      21,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-45.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_46",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      60,
+      105,
+      51
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-46.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_5",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      48,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-5.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_6",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      57,
+      45,
+      42
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-6.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_7",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      108,
+      18,
+      24
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-7.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_8",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      54,
+      51,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-8.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_property_9",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      75,
+      33,
+      96
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Property/Property-9.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_weapon_0",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      16,
+      74,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Weapon/weapon-0.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_weapon_1",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      4,
+      4,
+      39
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Weapon/weapon-1.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_weapon_2",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      16,
+      76,
+      5
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Weapon/weapon-2.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_weapon_3",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      17,
+      75,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Weapon/weapon-3.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_weapon_4",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      32,
+      69,
+      11
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Weapon/weapon-4.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_weapon_5",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      26,
+      26,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Weapon/weapon-5.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_weapon_6",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      7,
+      32,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Weapon/weapon-6.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_weapon_7",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      39,
+      51,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Weapon/weapon-7.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_weapon_8",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      29,
+      106,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Weapon/weapon-8.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "dhil_weapon_9",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      6,
+      116,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Voxel Pack (Dhil, based on Quaternius, CC0): dhil/3D Voxel Medieval Pack/Source/Weapon/weapon-9.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_0",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      64,
+      120,
+      86
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      60,
+      32,
+      54
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      70,
+      10,
+      70
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      12,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_4",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      12,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_5",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      12,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_6",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      12,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_7",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      12,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_8",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      12,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_9",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      46,
+      46,
+      42
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_10",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      12,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_11",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      56,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_12",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      60,
+      40,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_13",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      54,
+      4,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_14",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      26,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_15",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      18,
+      26,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_16",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      26,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_17",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      14,
+      20,
+      14
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_18",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      14,
+      20,
+      14
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_19",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      12,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_20",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      12,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_21",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      24,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_22",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      6,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_23",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      12,
+      8,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_25",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      14,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_26",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      14,
+      20,
+      14
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_27",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      6,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_28",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      72,
+      34
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_29",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      72,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_30",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      72,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_31",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      50,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_32",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      48,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_33",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      46,
+      48,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_34",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      34,
+      30,
+      24
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_35",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      46,
+      34,
+      42
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_36",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      46,
+      22,
+      42
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_37",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      46,
+      12,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_38",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      42,
+      58
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_39",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      80,
+      6,
+      80
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_40",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      14,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_43",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      12,
+      6,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_44",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      24,
+      8,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_46",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      14,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_47",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      18,
+      20,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_48",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      20,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_49",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      20,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_50",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      20,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_51",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      20,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_52",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      2,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_53",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      36,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_54",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      36,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_55",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      20,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_56",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      16,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_57",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      16,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_58",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      18,
+      12,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_59",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      4,
+      20,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_60",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      28,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_61",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      18,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_62",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      12,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_63",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      14,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_64",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      18,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_65",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      18,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_66",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_67",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      8,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_68",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      2,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_69",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      2,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_70",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      34,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_71",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      34,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_72",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      34,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_73",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      34,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_74",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      34,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_75",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      34,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_76",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      14,
+      18,
+      14
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_77",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      30,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_78",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      38,
+      4,
+      34
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_79",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      88,
+      40,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_80",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      4,
+      34
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_81",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      26,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_82",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      40,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_83",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      32,
+      24,
+      56
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_84",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      18,
+      14,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_85",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      14,
+      30,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_86",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      30,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_87",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      16,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_88",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      8,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_90",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      42,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_91",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      42,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_92",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      42,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_93",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      42,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_94",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      42,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_95",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      42,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_96",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      56,
+      12,
+      42
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_97",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      34,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_98",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      34,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_99",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      34,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_100",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      8,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_101",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      24,
+      20,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_102",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      24,
+      34,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_103",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      16,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_104",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      18,
+      20,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_105",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      54,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_106",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      14,
+      54,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_107",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      42,
+      44
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_108",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      8,
+      38
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_109",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      90,
+      114,
+      72
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_110",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      22,
+      14
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_111",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      10,
+      22
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_112",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      16,
+      32
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_113",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      60,
+      16,
+      32
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_114",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      52,
+      32
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_115",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      30,
+      32
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_116",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      20,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_117",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      12,
+      20,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_118",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      20,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_119",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      24,
+      14,
+      44
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_120",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      30,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_121",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      18,
+      4,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_122",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      12,
+      20,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_123",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      16,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_124",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      12,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_126",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      2,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_127",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      2,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_131",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      56,
+      30,
+      46
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_132",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      94,
+      40,
+      98
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_133",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      100,
+      40,
+      70
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_134",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      22,
+      22
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_135",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      22,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_136",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      22,
+      14
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_137",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      22,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_138",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      26,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_139",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      52,
+      14
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_140",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      22,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_141",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      52,
+      14
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_142",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      32,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_143",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      46,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_144",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      32,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_145",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      52,
+      56,
+      120
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_147",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      32,
+      2,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_149",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      6,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_150",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      12,
+      6,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_151",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      24,
+      2,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_152",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      26,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_153",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      18,
+      34,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_154",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      18,
+      14,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_155",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      16,
+      68
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_156",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      30,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_158",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      44,
+      56
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_159",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      68,
+      40,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_160",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      44,
+      44
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_161",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      12,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_162",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      8,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_163",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      14,
+      18,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_164",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      14,
+      18,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_165",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      14,
+      10,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_166",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      6,
+      60
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_167",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      6,
+      60
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_168",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      12,
+      2,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_170",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      14,
+      4,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_171",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      24,
+      24,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_172",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      16,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_173",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      8,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_174",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      30,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_175",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      30,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_176",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      26,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_177",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      12,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_178",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      16,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_179",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      16,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_180",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      16,
+      60
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_181",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      12,
+      60
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_182",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      12,
+      60
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_183",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      16,
+      60
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_184",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      32,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_185",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      90,
+      12,
+      90
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_186",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      24,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_187",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      32,
+      14,
+      32
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_188",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      90,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_189",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      28,
+      80,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_190",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      2,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_191",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      86,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_192",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      86,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_193",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      38,
+      26
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_194",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      20,
+      14
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_195",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      24,
+      20,
+      14
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_196",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      2,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_197",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      82,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_198",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      56,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_199",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      34,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_200",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      18,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_201",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      32,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_202",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      20,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_203",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      82,
+      4,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_204",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      82,
+      4,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_205",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      4,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_206",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      4,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_207",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      82,
+      14,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_208",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      34,
+      4,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_209",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      28,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_210",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      14,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_211",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      32,
+      38,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_212",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      34,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_213",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      38,
+      20,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_214",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      10,
+      2
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_215",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      32,
+      6,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_216",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      32,
+      6,
+      34
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_217",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      46,
+      30,
+      54
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_218",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      22,
+      22
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_219",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      20,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_220",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      20,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_221",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      22,
+      22
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_222",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      22,
+      22
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_223",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      22,
+      22
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_224",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      32,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_225",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      32,
+      6,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_226",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      26,
+      26,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_227",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      26,
+      28,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_228",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      26,
+      60,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_229",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      18,
+      8,
+      14
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_230",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      120,
+      128,
+      100
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_231",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      16,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_232",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      12,
+      32
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_233",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      16,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_234",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      16,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_235",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      14,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_236",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      36,
+      22
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_237",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      36,
+      46
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_238",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      50,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_239",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      18,
+      22
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_240",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      60,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_241",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      60,
+      44,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_242",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      68,
+      4,
+      56
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_243",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      60,
+      44,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_244",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      52,
+      60,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_245",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      46,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_246",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      46,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_247",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      44,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_248",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      18,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_249",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      14,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_250",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      18,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_251",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      14,
+      20
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_252",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      10,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_253",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      10,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_254",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      10,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_255",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      10,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_256",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      10,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_257",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      10,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_258",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      10,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_259",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      10,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_260",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      12,
+      26,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_261",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      54,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_262",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      54,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_263",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      36,
+      54,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_264",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      42,
+      8,
+      8
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_265",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      80
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_266",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      80
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_267",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      80
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_268",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      80
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_269",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      80
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_270",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      80
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_271",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_272",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_273",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_274",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_275",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_276",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      4,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_277",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      120,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_278",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      120,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_279",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      120,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_280",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      120,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_281",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      120,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_282",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      120,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_283",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      62,
+      14,
+      62
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_284",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      62,
+      14,
+      62
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_285",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      62,
+      14,
+      62
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_286",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      62,
+      14,
+      62
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_287",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      62,
+      14,
+      62
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_288",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      62,
+      14,
+      62
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_289",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      100,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_290",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      100,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_291",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      22,
+      100,
+      18
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_292",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      16,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_293",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      16,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_294",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      16,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_295",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      16,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_296",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      28,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_297",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      28,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_298",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      28,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_299",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      28,
+      16
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_300",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      14,
+      30,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_301",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      16,
+      20,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_302",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      60,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_303",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      60,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_304",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      60,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_305",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      60,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_306",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      60,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_307",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      60,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_308",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      60,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_309",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      60,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_310",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      60,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_311",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      60,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_312",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      20,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_313",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      20,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_314",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      20,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_315",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      20,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_316",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      20,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_317",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      20,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_318",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      20,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_319",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      20,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_320",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      20,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_321",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      48,
+      20,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_322",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      60,
+      38,
+      60
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_323",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      26,
+      16,
+      60
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_324",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      86,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_325",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      66,
+      18,
+      70
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_326",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      46,
+      2,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_327",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      44,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_328",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      40,
+      36
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_329",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      12,
+      12
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_330",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      86,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_331",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      24,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_332",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      34,
+      22,
+      34
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_333",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      24,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_334",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      68,
+      10
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_335",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      8,
+      6
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_336",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_337",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_338",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_339",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_340",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_341",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_342",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_343",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_344",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_345",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_346",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_347",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_348",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_349",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_350",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      18,
+      28
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_351",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      52,
+      16,
+      78
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_352",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      44,
+      26,
+      70
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_353",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      8,
+      48,
+      40
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_354",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      26,
+      24,
+      26
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_355",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      8,
+      4
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_356",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      30,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_357",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      2,
+      30,
+      30
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_358",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      56,
+      8,
+      56
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_359",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      42,
+      54,
+      50
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_360",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      42,
+      48,
+      50
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_361",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      16,
+      44
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "medieval-theme_models_362",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      6,
+      20,
+      48
+    ],
+    "anchor": null,
+    "source": "Medieval Theme Voxels (FuzzyManStudios): medieval_theme/Models.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "kytric_bones_1",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      12,
+      3,
+      15
+    ],
+    "anchor": null,
+    "source": "Voxel Path And Terrain (Kytric): kytric/vox/Bones/bones-1.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "kytric_bones_2",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      27,
+      9,
+      21
+    ],
+    "anchor": null,
+    "source": "Voxel Path And Terrain (Kytric): kytric/vox/Bones/bones-2.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "kytric_stone_1",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      15,
+      6,
+      12
+    ],
+    "anchor": null,
+    "source": "Voxel Path And Terrain (Kytric): kytric/vox/Stones/stone-1.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "kytric_stone_2",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      15,
+      9,
+      15
+    ],
+    "anchor": null,
+    "source": "Voxel Path And Terrain (Kytric): kytric/vox/Stones/stone-2.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "kytric_stone_3",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      24,
+      15,
+      24
+    ],
+    "anchor": null,
+    "source": "Voxel Path And Terrain (Kytric): kytric/vox/Stones/stone-3.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "kytric_stone_4",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      30,
+      18,
+      30
+    ],
+    "anchor": null,
+    "source": "Voxel Path And Terrain (Kytric): kytric/vox/Stones/stone-4.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "kytric_stone_5",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      36,
+      21,
+      36
+    ],
+    "anchor": null,
+    "source": "Voxel Path And Terrain (Kytric): kytric/vox/Stones/stone-5.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "kytric_stone_6",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      48,
+      24,
+      48
+    ],
+    "anchor": null,
+    "source": "Voxel Path And Terrain (Kytric): kytric/vox/Stones/stone-6.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "kytric_wood_1",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      69,
+      3,
+      3
+    ],
+    "anchor": null,
+    "source": "Voxel Path And Terrain (Kytric): kytric/vox/Wood/wood-1.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "kytric_wood_2",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      69,
+      6,
+      6
+    ],
+    "anchor": null,
+    "source": "Voxel Path And Terrain (Kytric): kytric/vox/Wood/wood-2.vox",
+    "license": "CC0 1.0"
+  },
+  {
+    "name": "mmmm_obj_arcade1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      50,
+      65,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_arcade1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_arcade2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      50,
+      65,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_arcade2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_arcade3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      50,
+      65,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_arcade3.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_arcade4",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      50,
+      65,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_arcade4.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_arcade5",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      50,
+      65,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_arcade5.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_bench1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      75,
+      40,
+      40
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_bench1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_bench2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      75,
+      55,
+      40
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_bench2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_bench3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      75,
+      35,
+      30
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_bench3.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_bench4",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      75,
+      35,
+      30
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_bench4.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_bench5",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      75,
+      35,
+      30
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_bench5.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_campfire",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      35,
+      40
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_campfire.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_cart1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      45,
+      40,
+      60
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_cart1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_cart1a",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      45,
+      40,
+      60
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_cart1a.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_cart1b",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      45,
+      50,
+      60
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_cart1b.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_cart2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      35,
+      40,
+      60
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_cart2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_cart2a",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      35,
+      40,
+      60
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_cart2a.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_cart2b",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      35,
+      50,
+      60
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_cart2b.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_chair1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      25,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_chair1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_chair2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      15,
+      15,
+      40
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_chair2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_column1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      15,
+      80,
+      15
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_column1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_column2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      15,
+      65,
+      15
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_column2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_column3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      15,
+      40,
+      15
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_column3.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_cone1",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      15,
+      35,
+      15
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_cone1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_dogstand",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      70,
+      80,
+      55
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_dogstand.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_fountain",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      100,
+      40,
+      105
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_fountain.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_grave1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      25,
+      80,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_grave1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_grave2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      50,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_grave2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_grave3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      50,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_grave3.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_grave4",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      10,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_grave4.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_grill",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      35,
+      35,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_grill.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_guitarcase",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      60,
+      10,
+      30
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_guitarcase.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_hydrant",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      30,
+      20
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_hydrant.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_mailbox",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      55,
+      30
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_mailbox.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_mailbox2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      25,
+      65,
+      55
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_mailbox2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_mailbox2a",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      25,
+      65,
+      55
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_mailbox2a.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_mailbox2b",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      25,
+      65,
+      55
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_mailbox2b.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_newsbox1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      55,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_newsbox1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_newsbox2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      55,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_newsbox2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_newsbox3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      55,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_newsbox3.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_newsbox4",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      55,
+      50
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_newsbox4.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_planter1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      65,
+      40
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_planter1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_planter2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      65,
+      65,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_planter2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_planter3a",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      55,
+      30,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_planter3a.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_planter3b",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      55,
+      30,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_planter3b.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_potty1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      55,
+      70,
+      40
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_potty1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_potty2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      55,
+      70,
+      40
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_potty2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_potty3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      55,
+      70,
+      40
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_potty3.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_pumpkin",
+    "file": "models.rvml",
+    "category": "item",
+    "weight": 1,
+    "size": [
+      35,
+      30,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_pumpkin.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_sign1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      20,
+      95,
+      5
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_sign1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_sign2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      25,
+      55,
+      10
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_sign2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_sign3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      25,
+      50,
+      10
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_sign3.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_sign4",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      15,
+      95,
+      10
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_sign4.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_sign5",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      25,
+      95,
+      10
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_sign5.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_sign6",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      25,
+      95,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_sign6.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_sign7",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      35,
+      55,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_sign7.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_sign8",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      45,
+      55,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_sign8.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_sign9",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      10,
+      85,
+      60
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_sign9.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_statue1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      80,
+      85,
+      70
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_statue1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_statue2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      80,
+      95,
+      70
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_statue2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_statue3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      80,
+      90,
+      70
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_statue3.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_stretcher",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      35,
+      30,
+      75
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_stretcher.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_table1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      50,
+      25,
+      50
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_table1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_table2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      50,
+      25,
+      50
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_table2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_table3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      90,
+      35,
+      100
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_table3.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_table3a",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      90,
+      35,
+      100
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_table3a.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_table3b",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      90,
+      35,
+      100
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_table3b.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_trashcan1",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      30,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_trashcan1.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_trashcan2",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      30,
+      60,
+      25
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_trashcan2.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_trashcan3",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      40,
+      35,
+      35
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_trashcan3.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_trashcan4",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      100,
+      50,
+      60
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_trashcan4.vox",
+    "license": "CC BY 4.0"
+  },
+  {
+    "name": "mmmm_obj_trellis",
+    "file": "models.rvml",
+    "category": "prop",
+    "weight": 1,
+    "size": [
+      90,
+      85,
+      85
+    ],
+    "anchor": null,
+    "source": "Mini Mike\u0027s Metro Minis (Mike Judge): mmmm/vox/obj_trellis.vox",
+    "license": "CC BY 4.0"
+  }
+]

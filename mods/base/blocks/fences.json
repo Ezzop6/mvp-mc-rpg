@@ -1,0 +1,215 @@
+{
+  "category": "fences",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:acacia_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/acacia_planks", "texture": "block/acacia_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:acacia"],
+      "multipart": [
+        { "looks": [{ "model": "acacia_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "acacia_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "acacia_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "acacia_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "acacia_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:bamboo_fence",
+      "kind": "fence",
+      "template": "custom_fence_post",
+      "textures": { "particle": "block/bamboo_fence_particle", "texture": "block/bamboo_fence" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:bamboo"],
+      "multipart": [
+        { "looks": [{ "model": "bamboo_fence_post" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "bamboo_fence_side" }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "bamboo_fence_side", "y": 90 }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "bamboo_fence_side", "y": 180 }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "bamboo_fence_side", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:birch_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/birch_planks", "texture": "block/birch_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:birch"],
+      "multipart": [
+        { "looks": [{ "model": "birch_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "birch_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "birch_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "birch_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "birch_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:cherry_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/cherry_planks", "texture": "block/cherry_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:cherry"],
+      "multipart": [
+        { "looks": [{ "model": "cherry_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "cherry_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "cherry_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "cherry_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "cherry_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:crimson_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/crimson_planks", "texture": "block/crimson_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:crimson"],
+      "multipart": [
+        { "looks": [{ "model": "crimson_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "crimson_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "crimson_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "crimson_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "crimson_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:dark_oak_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/dark_oak_planks", "texture": "block/dark_oak_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:dark_oak"],
+      "multipart": [
+        { "looks": [{ "model": "dark_oak_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "dark_oak_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "dark_oak_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "dark_oak_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "dark_oak_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:jungle_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/jungle_planks", "texture": "block/jungle_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:jungle"],
+      "multipart": [
+        { "looks": [{ "model": "jungle_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "jungle_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "jungle_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "jungle_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "jungle_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:mangrove_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/mangrove_planks", "texture": "block/mangrove_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:mangrove"],
+      "multipart": [
+        { "looks": [{ "model": "mangrove_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "mangrove_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "mangrove_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "mangrove_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "mangrove_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:nether_brick_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/nether_bricks", "texture": "block/nether_bricks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "multipart": [
+        { "looks": [{ "model": "nether_brick_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "nether_brick_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "nether_brick_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "nether_brick_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "nether_brick_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:oak_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/oak_planks", "texture": "block/oak_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:oak"],
+      "multipart": [
+        { "looks": [{ "model": "oak_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "oak_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "oak_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "oak_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "oak_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:pale_oak_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/pale_oak_planks", "texture": "block/pale_oak_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:pale_oak"],
+      "multipart": [
+        { "looks": [{ "model": "pale_oak_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "pale_oak_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "pale_oak_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "pale_oak_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "pale_oak_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:poplar_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/poplar_planks", "texture": "block/poplar_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:poplar"],
+      "multipart": [
+        { "looks": [{ "model": "poplar_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "poplar_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "poplar_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "poplar_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "poplar_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:spruce_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/spruce_planks", "texture": "block/spruce_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:spruce"],
+      "multipart": [
+        { "looks": [{ "model": "spruce_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "spruce_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "spruce_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "spruce_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "spruce_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:warped_fence",
+      "kind": "fence",
+      "template": "fence_post",
+      "textures": { "particle": "block/warped_planks", "texture": "block/warped_planks" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["wood:warped"],
+      "multipart": [
+        { "looks": [{ "model": "warped_fence_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "warped_fence_side", "uvlock": true }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "warped_fence_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "warped_fence_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "warped_fence_side", "y": 270, "uvlock": true }] }
+      ]
+    }
+  ]
+}

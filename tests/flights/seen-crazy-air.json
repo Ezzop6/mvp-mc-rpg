@@ -1,0 +1,29 @@
+{
+  "Note": "Primary/dda-seen measurement: the random-crazy bookmark view (300 m over the terrain), still then a 360 degree pan",
+  "Scene": "random-crazy",
+  "TimeOfDay": 14,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": 0,
+        "Y": 300,
+        "Z": 0
+      },
+      "Yaw": 20,
+      "Pitch": -30
+    }
+  ],
+  "Actions": [
+    {
+      "T": 1.2,
+      "Kind": "Turn",
+      "Yaw": 360,
+      "Seconds": 6
+    }
+  ],
+  "Shots": [
+    1,
+    8
+  ]
+}

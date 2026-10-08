@@ -1,0 +1,83 @@
+// Block light at a point from the lights' cube maps (Lights/cubemaps, GI bounce hits); after light_maps.glsli and lights.glsli, with lm_map[] and LM_FRAME (the frame asks for maps); LM_TAPS overrides LightMapTaps.
+#ifndef LM_TAPS
+#define LM_TAPS P.light_map_taps
+#endif
+// Slot of the map of the light at world block b; asks for one while it has none (and keeps asking): -1.
+int lm_slot(ivec3 b) {
+	uvec2 h = lm_hash(b);
+	uint bk = lm_bucket(h);
+	uvec4 k = lm_keys[bk];
+	bvec4 m = equal(k, uvec4(h.y));
+	if (!any(m)) {
+		m = equal(k, uvec4(0u));
+		uint e = bk * 4u + first_true(m);
+		if (any(m) && atomicCompSwap(lm_keys[bk][e % 4u], 0u, h.y) == 0u) lm[e] = LightMapEntry(ivec4(b, 0), LM_WANT, LM_FRAME, 0u, 0u);
+		return -1;
+	}
+	uint e = bk * 4u + first_true(m), st = lm[e].state;
+	if (LM_FRAME - lm[e].last >= LM_TOUCH_FRAMES) lm[e].last = LM_FRAME;
+	return (st & LM_READY) != 0u ? int(st & LM_SLOT_MASK) : -1;
+}
+
+// A ready map of a far light, never asked for.
+int lm_ready(ivec3 b) {
+	int e = lm_find(lm_hash(b));
+	uint st = e >= 0 ? lm[e].state : 0u;
+	return (st & LM_READY) != 0u ? int(st & LM_SLOT_MASK) : -1;
+}
+
+// Lit share of p, moved off its face by the kernel's footprint, from the map in slot of the light at c: LightMapTaps (1, 2x2 or v1's 3x3) bilinear depth compares over the softness footprint, slope-scaled bias (v1); SEE_THROUGH: the share past a see-through entry tinted by the nearest texel to the light's direction.
+vec3 lm_visibility(uint slot, vec3 c, vec3 p, vec3 n) {
+	int size = lm_size(), k = LM_TAPS >= 8.5 ? 3 : LM_TAPS >= 3.5 ? 2 : 1;
+	float off = P.light_map_bias * 2.0 * distance(p, c) / float(size) * (1.0 + P.light_map_softness);
+	vec3 l = p + n * off - c, a = abs(l);
+	int ax = lm_axis(l);
+	float d = length(l), ndl = clamp(-dot(n, l) / d, 0.05, 1.0), spacing = P.light_map_softness * 2.0 / float(size);
+	float z = d - off * (1.0 + min(sqrt(1.0 - ndl * ndl) / ndl, 4.0)), lit = 0.0, span = 0.0;
+	vec3 q0 = l / max(a.x, max(a.y, a.z)), du = vec3(equal(ivec3(ax), ivec3(2, 0, 1))) * spacing, dv = vec3(equal(ivec3(ax), ivec3(1, 2, 0))) * spacing;
+	uint base = slot * LIGHT_MAP_TEXELS;
+	for (int t = 0; t < k * k; t++) {
+		vec2 o = k == 1 ? vec2(0.0) : vec2(t % k, t / k) * (2.0 / float(k - 1)) - 1.0, st;
+		int face = lm_face(q0 + du * o.x + dv * o.y, size, st);
+		ivec2 i0 = ivec2(floor(st));
+		vec2 f = st - vec2(i0);
+		[[dont_unroll]] for (int m = 0; m < 4; m++) {
+			ivec2 b = ivec2(m & 1, m >> 1), tc = clamp(i0 + b, ivec2(0), ivec2(size - 1));
+			vec2 w = mix(1.0 - f, f, vec2(b));
+			vec2 h = unpackHalf2x16(lm_map[base + uint((face * size + tc.y) * size + tc.x)]);
+			lit += z <= h.x ? w.x * w.y : 0.0;
+			span += z <= h.x && z > h.y ? w.x * w.y : 0.0;
+		}
+	}
+#ifdef LM_TINT_PLANE
+	if (span > 0.0) {
+		vec2 st;
+		int face = lm_face(q0, size, st);
+		uint i = base + uint((face * size + clamp(int(st.y + 0.5), 0, size - 1)) * size + clamp(int(st.x + 0.5), 0, size - 1));
+		return (vec3(lit - span) + span * lm_trans(lm_map[i], lm_map[LM_TINT + i], z)) / float(k * k);
+	}
+#endif
+	return vec3(lit / float(k * k));
+}
+
+// How far past LightShadowDistance the light at c is (0 shadowed .. 1 unshadowed) and its map slot (asked for when it is not that far), -1 = none.
+int light_slot(ivec3 b, vec3 c, out float open) {
+	open = smoothstep(0.75, 1.0, distance(c, cam.frac.xyz) * BS / P.light_shadow_distance);
+	ivec3 w = b + cam.anchor.xyz * CHUNK;
+	return open < 1.0 ? lm_slot(w) : lm_ready(w);
+}
+
+// Light b (anchor-relative block) of variant id at p: (1 - d / range)^falloff x wrapped N.L, faces turned away get none; past LightShadowDistance unshadowed (fading) unless its map is still there.
+// slot = -2: not looked up yet (the per pixel path).
+void add_light(ivec3 b, uint id, int slot, float open, vec3 p, vec3 n, inout vec3 sum, inout uint count) {
+	vec4 lc = types[id].light_color;
+	vec3 c = vec3(b) + 0.5, d = c - p;
+	float dist = length(d), range = min(lc.w, LIGHT_REACH), ndl = dot(n, d);
+	if (dist >= range) return;
+	count++;
+	if (ndl <= -1e-3) return;
+	vec3 rad = lc.rgb * P.light_intensity * pow(1.0 - dist / range, P.light_falloff) * (ndl / max(dist, 1e-4) + P.light_wrap) / (1.0 + P.light_wrap);
+	if (max(rad.r, max(rad.g, rad.b)) < 1e-3) return; // too dim to see: no map lookups
+	if (slot == -2) slot = light_slot(b, c, open);
+	sum += rad * (slot >= 0 ? lm_visibility(uint(slot), c, p, n) : vec3(open));
+}

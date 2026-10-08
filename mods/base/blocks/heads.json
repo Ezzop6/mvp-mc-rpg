@@ -1,0 +1,118 @@
+{
+  "category": "heads",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:creeper_head",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:creeper_wall_head",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:dragon_head",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:dragon_wall_head",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:piglin_head",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:piglin_wall_head",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:player_head",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:player_wall_head",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:skeleton_skull",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:skeleton_wall_skull",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:wither_skeleton_skull",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:wither_skeleton_wall_skull",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:zombie_head",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    },
+    {
+      "id": "base:zombie_wall_head",
+      "kind": "entity",
+      "textures": { "particle": "block/soul_sand" },
+      "tags": ["placeholder"],
+      "cubes": { "skull": { "all": { "texture": "block/soul_sand" } } },
+      "variants": [{ "looks": [{ "cube": "skull" }] }]
+    }
+  ]
+}

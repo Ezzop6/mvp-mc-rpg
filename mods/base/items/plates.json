@@ -1,0 +1,23 @@
+{
+  "category": "plates",
+  "source": "import",
+  "entries": [
+    { "id": "base:acacia_pressure_plate", "block": "base:acacia_pressure_plate" },
+    { "id": "base:bamboo_pressure_plate", "block": "base:bamboo_pressure_plate" },
+    { "id": "base:birch_pressure_plate", "block": "base:birch_pressure_plate" },
+    { "id": "base:cherry_pressure_plate", "block": "base:cherry_pressure_plate" },
+    { "id": "base:crimson_pressure_plate", "block": "base:crimson_pressure_plate" },
+    { "id": "base:dark_oak_pressure_plate", "block": "base:dark_oak_pressure_plate" },
+    { "id": "base:heavy_weighted_pressure_plate", "block": "base:heavy_weighted_pressure_plate" },
+    { "id": "base:jungle_pressure_plate", "block": "base:jungle_pressure_plate" },
+    { "id": "base:light_weighted_pressure_plate", "block": "base:light_weighted_pressure_plate" },
+    { "id": "base:mangrove_pressure_plate", "block": "base:mangrove_pressure_plate" },
+    { "id": "base:oak_pressure_plate", "block": "base:oak_pressure_plate" },
+    { "id": "base:pale_oak_pressure_plate", "block": "base:pale_oak_pressure_plate" },
+    { "id": "base:polished_blackstone_pressure_plate", "block": "base:polished_blackstone_pressure_plate" },
+    { "id": "base:poplar_pressure_plate", "block": "base:poplar_pressure_plate" },
+    { "id": "base:spruce_pressure_plate", "block": "base:spruce_pressure_plate" },
+    { "id": "base:stone_pressure_plate", "block": "base:stone_pressure_plate" },
+    { "id": "base:warped_pressure_plate", "block": "base:warped_pressure_plate" }
+  ]
+}

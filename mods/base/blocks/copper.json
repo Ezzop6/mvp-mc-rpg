@@ -1,0 +1,870 @@
+{
+  "category": "copper",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:chiseled_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/chiseled_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "chiseled_copper": { "all": { "texture": "block/chiseled_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "chiseled_copper" },
+            { "cube": "chiseled_copper", "y": 90 },
+            { "cube": "chiseled_copper", "y": 180 },
+            { "cube": "chiseled_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:copper_bars",
+      "kind": "custom",
+      "textures": { "bars": "block/copper_bars", "edge": "block/copper_bars", "particle": "block/copper_bars" },
+      "surface": "cutout",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "multipart": [
+        { "looks": [{ "model": "copper_bars_post_ends" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "copper_bars_post" }] },
+        { "when": [{ "east": "false", "north": "true", "south": "false", "west": "false" }], "looks": [{ "model": "copper_bars_cap" }] },
+        { "when": [{ "east": "true", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "copper_bars_cap", "y": 90 }] },
+        { "when": [{ "east": "false", "north": "false", "south": "true", "west": "false" }], "looks": [{ "model": "copper_bars_cap_alt" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "true" }], "looks": [{ "model": "copper_bars_cap_alt", "y": 90 }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "copper_bars_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "copper_bars_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "copper_bars_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "copper_bars_side_alt", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:copper_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/copper_block" } },
+      "tags": ["random_rotation"],
+      "cubes": { "copper_block": { "all": { "texture": "block/copper_block" } } },
+      "variants": [
+        {
+          "looks": [{ "cube": "copper_block" }, { "cube": "copper_block", "y": 90 }, { "cube": "copper_block", "y": 180 }, { "cube": "copper_block", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:copper_chain",
+      "kind": "custom",
+      "textures": { "all": "block/copper_chain", "particle": "block/copper_chain", "texture": "block/copper_chain" },
+      "surface": "cutout",
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "model": "copper_chain", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "model": "copper_chain" }] },
+        { "when": { "axis": "z" }, "looks": [{ "model": "copper_chain", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:copper_chest",
+      "kind": "entity",
+      "textures": { "particle": "block/copper_block" },
+      "tags": ["placeholder"],
+      "cubes": { "copper_chest": { "all": { "texture": "block/copper_block" } } },
+      "variants": [{ "looks": [{ "cube": "copper_chest" }] }]
+    },
+    {
+      "id": "base:copper_golem_statue",
+      "kind": "entity",
+      "textures": { "particle": "block/copper_block" },
+      "tags": ["placeholder"],
+      "cubes": { "copper_golem_statue": { "all": { "texture": "block/copper_block" } } },
+      "variants": [{ "looks": [{ "cube": "copper_golem_statue" }] }]
+    },
+    {
+      "id": "base:copper_grate",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/copper_grate" } },
+      "surface": "cutout",
+      "cubes": { "copper_grate": { "all": { "texture": "block/copper_grate" } } },
+      "variants": [{ "looks": [{ "cube": "copper_grate" }] }]
+    },
+    {
+      "id": "base:cut_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cut_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "cut_copper": { "all": { "texture": "block/cut_copper" } } },
+      "variants": [
+        { "looks": [{ "cube": "cut_copper" }, { "cube": "cut_copper", "y": 90 }, { "cube": "cut_copper", "y": 180 }, { "cube": "cut_copper", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:exposed_chiseled_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/exposed_chiseled_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "exposed_chiseled_copper": { "all": { "texture": "block/exposed_chiseled_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "exposed_chiseled_copper" },
+            { "cube": "exposed_chiseled_copper", "y": 90 },
+            { "cube": "exposed_chiseled_copper", "y": 180 },
+            { "cube": "exposed_chiseled_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:exposed_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/exposed_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "exposed_copper": { "all": { "texture": "block/exposed_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "exposed_copper" },
+            { "cube": "exposed_copper", "y": 90 },
+            { "cube": "exposed_copper", "y": 180 },
+            { "cube": "exposed_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:exposed_copper_bars",
+      "kind": "custom",
+      "textures": { "bars": "block/exposed_copper_bars", "edge": "block/exposed_copper_bars", "particle": "block/exposed_copper_bars" },
+      "surface": "cutout",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "multipart": [
+        { "looks": [{ "model": "exposed_copper_bars_post_ends" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "exposed_copper_bars_post" }] },
+        { "when": [{ "east": "false", "north": "true", "south": "false", "west": "false" }], "looks": [{ "model": "exposed_copper_bars_cap" }] },
+        { "when": [{ "east": "true", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "exposed_copper_bars_cap", "y": 90 }] },
+        { "when": [{ "east": "false", "north": "false", "south": "true", "west": "false" }], "looks": [{ "model": "exposed_copper_bars_cap_alt" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "true" }], "looks": [{ "model": "exposed_copper_bars_cap_alt", "y": 90 }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "exposed_copper_bars_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "exposed_copper_bars_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "exposed_copper_bars_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "exposed_copper_bars_side_alt", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:exposed_copper_chain",
+      "kind": "custom",
+      "textures": { "all": "block/exposed_copper_chain", "particle": "block/exposed_copper_chain", "texture": "block/exposed_copper_chain" },
+      "surface": "cutout",
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "model": "exposed_copper_chain", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "model": "exposed_copper_chain" }] },
+        { "when": { "axis": "z" }, "looks": [{ "model": "exposed_copper_chain", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:exposed_copper_chest",
+      "kind": "entity",
+      "textures": { "particle": "block/exposed_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "exposed_copper_chest": { "all": { "texture": "block/exposed_copper" } } },
+      "variants": [{ "looks": [{ "cube": "exposed_copper_chest" }] }]
+    },
+    {
+      "id": "base:exposed_copper_golem_statue",
+      "kind": "entity",
+      "textures": { "particle": "block/exposed_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "exposed_copper_golem_statue": { "all": { "texture": "block/exposed_copper" } } },
+      "variants": [{ "looks": [{ "cube": "exposed_copper_golem_statue" }] }]
+    },
+    {
+      "id": "base:exposed_copper_grate",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/exposed_copper_grate" } },
+      "surface": "cutout",
+      "cubes": { "exposed_copper_grate": { "all": { "texture": "block/exposed_copper_grate" } } },
+      "variants": [{ "looks": [{ "cube": "exposed_copper_grate" }] }]
+    },
+    {
+      "id": "base:exposed_cut_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/exposed_cut_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "exposed_cut_copper": { "all": { "texture": "block/exposed_cut_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "exposed_cut_copper" },
+            { "cube": "exposed_cut_copper", "y": 90 },
+            { "cube": "exposed_cut_copper", "y": 180 },
+            { "cube": "exposed_cut_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:oxidized_chiseled_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/oxidized_chiseled_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "oxidized_chiseled_copper": { "all": { "texture": "block/oxidized_chiseled_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "oxidized_chiseled_copper" },
+            { "cube": "oxidized_chiseled_copper", "y": 90 },
+            { "cube": "oxidized_chiseled_copper", "y": 180 },
+            { "cube": "oxidized_chiseled_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:oxidized_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/oxidized_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "oxidized_copper": { "all": { "texture": "block/oxidized_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "oxidized_copper" },
+            { "cube": "oxidized_copper", "y": 90 },
+            { "cube": "oxidized_copper", "y": 180 },
+            { "cube": "oxidized_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:oxidized_copper_bars",
+      "kind": "custom",
+      "textures": { "bars": "block/oxidized_copper_bars", "edge": "block/oxidized_copper_bars", "particle": "block/oxidized_copper_bars" },
+      "surface": "cutout",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "multipart": [
+        { "looks": [{ "model": "oxidized_copper_bars_post_ends" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "oxidized_copper_bars_post" }] },
+        { "when": [{ "east": "false", "north": "true", "south": "false", "west": "false" }], "looks": [{ "model": "oxidized_copper_bars_cap" }] },
+        { "when": [{ "east": "true", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "oxidized_copper_bars_cap", "y": 90 }] },
+        { "when": [{ "east": "false", "north": "false", "south": "true", "west": "false" }], "looks": [{ "model": "oxidized_copper_bars_cap_alt" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "true" }], "looks": [{ "model": "oxidized_copper_bars_cap_alt", "y": 90 }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "oxidized_copper_bars_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "oxidized_copper_bars_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "oxidized_copper_bars_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "oxidized_copper_bars_side_alt", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:oxidized_copper_chain",
+      "kind": "custom",
+      "textures": { "all": "block/oxidized_copper_chain", "particle": "block/oxidized_copper_chain", "texture": "block/oxidized_copper_chain" },
+      "surface": "cutout",
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "model": "oxidized_copper_chain", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "model": "oxidized_copper_chain" }] },
+        { "when": { "axis": "z" }, "looks": [{ "model": "oxidized_copper_chain", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:oxidized_copper_chest",
+      "kind": "entity",
+      "textures": { "particle": "block/oxidized_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "oxidized_copper_chest": { "all": { "texture": "block/oxidized_copper" } } },
+      "variants": [{ "looks": [{ "cube": "oxidized_copper_chest" }] }]
+    },
+    {
+      "id": "base:oxidized_copper_golem_statue",
+      "kind": "entity",
+      "textures": { "particle": "block/oxidized_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "oxidized_copper_golem_statue": { "all": { "texture": "block/oxidized_copper" } } },
+      "variants": [{ "looks": [{ "cube": "oxidized_copper_golem_statue" }] }]
+    },
+    {
+      "id": "base:oxidized_copper_grate",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/oxidized_copper_grate" } },
+      "surface": "cutout",
+      "cubes": { "oxidized_copper_grate": { "all": { "texture": "block/oxidized_copper_grate" } } },
+      "variants": [{ "looks": [{ "cube": "oxidized_copper_grate" }] }]
+    },
+    {
+      "id": "base:oxidized_cut_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/oxidized_cut_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "oxidized_cut_copper": { "all": { "texture": "block/oxidized_cut_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "oxidized_cut_copper" },
+            { "cube": "oxidized_cut_copper", "y": 90 },
+            { "cube": "oxidized_cut_copper", "y": 180 },
+            { "cube": "oxidized_cut_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_chiseled_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/chiseled_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "chiseled_copper": { "all": { "texture": "block/chiseled_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "chiseled_copper" },
+            { "cube": "chiseled_copper", "y": 90 },
+            { "cube": "chiseled_copper", "y": 180 },
+            { "cube": "chiseled_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_copper_bars",
+      "kind": "custom",
+      "textures": { "bars": "block/copper_bars", "edge": "block/copper_bars", "particle": "block/copper_bars" },
+      "surface": "cutout",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "multipart": [
+        { "looks": [{ "model": "copper_bars_post_ends" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "copper_bars_post" }] },
+        { "when": [{ "east": "false", "north": "true", "south": "false", "west": "false" }], "looks": [{ "model": "copper_bars_cap" }] },
+        { "when": [{ "east": "true", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "copper_bars_cap", "y": 90 }] },
+        { "when": [{ "east": "false", "north": "false", "south": "true", "west": "false" }], "looks": [{ "model": "copper_bars_cap_alt" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "true" }], "looks": [{ "model": "copper_bars_cap_alt", "y": 90 }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "copper_bars_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "copper_bars_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "copper_bars_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "copper_bars_side_alt", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:waxed_copper_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/copper_block" } },
+      "tags": ["random_rotation"],
+      "cubes": { "copper_block": { "all": { "texture": "block/copper_block" } } },
+      "variants": [
+        {
+          "looks": [{ "cube": "copper_block" }, { "cube": "copper_block", "y": 90 }, { "cube": "copper_block", "y": 180 }, { "cube": "copper_block", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_copper_chain",
+      "kind": "custom",
+      "textures": { "all": "block/copper_chain", "particle": "block/copper_chain", "texture": "block/copper_chain" },
+      "surface": "cutout",
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "model": "copper_chain", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "model": "copper_chain" }] },
+        { "when": { "axis": "z" }, "looks": [{ "model": "copper_chain", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:waxed_copper_chest",
+      "kind": "entity",
+      "textures": { "particle": "block/copper_block" },
+      "tags": ["placeholder"],
+      "cubes": { "copper_chest": { "all": { "texture": "block/copper_block" } } },
+      "variants": [{ "looks": [{ "cube": "copper_chest" }] }]
+    },
+    {
+      "id": "base:waxed_copper_golem_statue",
+      "kind": "entity",
+      "textures": { "particle": "block/copper_block" },
+      "tags": ["placeholder"],
+      "cubes": { "copper_golem_statue": { "all": { "texture": "block/copper_block" } } },
+      "variants": [{ "looks": [{ "cube": "copper_golem_statue" }] }]
+    },
+    {
+      "id": "base:waxed_copper_grate",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/copper_grate" } },
+      "surface": "cutout",
+      "cubes": { "copper_grate": { "all": { "texture": "block/copper_grate" } } },
+      "variants": [{ "looks": [{ "cube": "copper_grate" }] }]
+    },
+    {
+      "id": "base:waxed_cut_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cut_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "cut_copper": { "all": { "texture": "block/cut_copper" } } },
+      "variants": [
+        { "looks": [{ "cube": "cut_copper" }, { "cube": "cut_copper", "y": 90 }, { "cube": "cut_copper", "y": 180 }, { "cube": "cut_copper", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:waxed_exposed_chiseled_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/exposed_chiseled_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "exposed_chiseled_copper": { "all": { "texture": "block/exposed_chiseled_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "exposed_chiseled_copper" },
+            { "cube": "exposed_chiseled_copper", "y": 90 },
+            { "cube": "exposed_chiseled_copper", "y": 180 },
+            { "cube": "exposed_chiseled_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_exposed_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/exposed_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "exposed_copper": { "all": { "texture": "block/exposed_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "exposed_copper" },
+            { "cube": "exposed_copper", "y": 90 },
+            { "cube": "exposed_copper", "y": 180 },
+            { "cube": "exposed_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_exposed_copper_bars",
+      "kind": "custom",
+      "textures": { "bars": "block/exposed_copper_bars", "edge": "block/exposed_copper_bars", "particle": "block/exposed_copper_bars" },
+      "surface": "cutout",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "multipart": [
+        { "looks": [{ "model": "exposed_copper_bars_post_ends" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "exposed_copper_bars_post" }] },
+        { "when": [{ "east": "false", "north": "true", "south": "false", "west": "false" }], "looks": [{ "model": "exposed_copper_bars_cap" }] },
+        { "when": [{ "east": "true", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "exposed_copper_bars_cap", "y": 90 }] },
+        { "when": [{ "east": "false", "north": "false", "south": "true", "west": "false" }], "looks": [{ "model": "exposed_copper_bars_cap_alt" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "true" }], "looks": [{ "model": "exposed_copper_bars_cap_alt", "y": 90 }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "exposed_copper_bars_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "exposed_copper_bars_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "exposed_copper_bars_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "exposed_copper_bars_side_alt", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:waxed_exposed_copper_chain",
+      "kind": "custom",
+      "textures": { "all": "block/exposed_copper_chain", "particle": "block/exposed_copper_chain", "texture": "block/exposed_copper_chain" },
+      "surface": "cutout",
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "model": "exposed_copper_chain", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "model": "exposed_copper_chain" }] },
+        { "when": { "axis": "z" }, "looks": [{ "model": "exposed_copper_chain", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:waxed_exposed_copper_chest",
+      "kind": "entity",
+      "textures": { "particle": "block/exposed_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "exposed_copper_chest": { "all": { "texture": "block/exposed_copper" } } },
+      "variants": [{ "looks": [{ "cube": "exposed_copper_chest" }] }]
+    },
+    {
+      "id": "base:waxed_exposed_copper_golem_statue",
+      "kind": "entity",
+      "textures": { "particle": "block/exposed_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "exposed_copper_golem_statue": { "all": { "texture": "block/exposed_copper" } } },
+      "variants": [{ "looks": [{ "cube": "exposed_copper_golem_statue" }] }]
+    },
+    {
+      "id": "base:waxed_exposed_copper_grate",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/exposed_copper_grate" } },
+      "surface": "cutout",
+      "cubes": { "exposed_copper_grate": { "all": { "texture": "block/exposed_copper_grate" } } },
+      "variants": [{ "looks": [{ "cube": "exposed_copper_grate" }] }]
+    },
+    {
+      "id": "base:waxed_exposed_cut_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/exposed_cut_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "exposed_cut_copper": { "all": { "texture": "block/exposed_cut_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "exposed_cut_copper" },
+            { "cube": "exposed_cut_copper", "y": 90 },
+            { "cube": "exposed_cut_copper", "y": 180 },
+            { "cube": "exposed_cut_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_oxidized_chiseled_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/oxidized_chiseled_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "oxidized_chiseled_copper": { "all": { "texture": "block/oxidized_chiseled_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "oxidized_chiseled_copper" },
+            { "cube": "oxidized_chiseled_copper", "y": 90 },
+            { "cube": "oxidized_chiseled_copper", "y": 180 },
+            { "cube": "oxidized_chiseled_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_oxidized_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/oxidized_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "oxidized_copper": { "all": { "texture": "block/oxidized_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "oxidized_copper" },
+            { "cube": "oxidized_copper", "y": 90 },
+            { "cube": "oxidized_copper", "y": 180 },
+            { "cube": "oxidized_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_oxidized_copper_bars",
+      "kind": "custom",
+      "textures": { "bars": "block/oxidized_copper_bars", "edge": "block/oxidized_copper_bars", "particle": "block/oxidized_copper_bars" },
+      "surface": "cutout",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "multipart": [
+        { "looks": [{ "model": "oxidized_copper_bars_post_ends" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "oxidized_copper_bars_post" }] },
+        { "when": [{ "east": "false", "north": "true", "south": "false", "west": "false" }], "looks": [{ "model": "oxidized_copper_bars_cap" }] },
+        { "when": [{ "east": "true", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "oxidized_copper_bars_cap", "y": 90 }] },
+        { "when": [{ "east": "false", "north": "false", "south": "true", "west": "false" }], "looks": [{ "model": "oxidized_copper_bars_cap_alt" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "true" }], "looks": [{ "model": "oxidized_copper_bars_cap_alt", "y": 90 }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "oxidized_copper_bars_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "oxidized_copper_bars_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "oxidized_copper_bars_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "oxidized_copper_bars_side_alt", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:waxed_oxidized_copper_chain",
+      "kind": "custom",
+      "textures": { "all": "block/oxidized_copper_chain", "particle": "block/oxidized_copper_chain", "texture": "block/oxidized_copper_chain" },
+      "surface": "cutout",
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "model": "oxidized_copper_chain", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "model": "oxidized_copper_chain" }] },
+        { "when": { "axis": "z" }, "looks": [{ "model": "oxidized_copper_chain", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:waxed_oxidized_copper_chest",
+      "kind": "entity",
+      "textures": { "particle": "block/oxidized_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "oxidized_copper_chest": { "all": { "texture": "block/oxidized_copper" } } },
+      "variants": [{ "looks": [{ "cube": "oxidized_copper_chest" }] }]
+    },
+    {
+      "id": "base:waxed_oxidized_copper_golem_statue",
+      "kind": "entity",
+      "textures": { "particle": "block/oxidized_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "oxidized_copper_golem_statue": { "all": { "texture": "block/oxidized_copper" } } },
+      "variants": [{ "looks": [{ "cube": "oxidized_copper_golem_statue" }] }]
+    },
+    {
+      "id": "base:waxed_oxidized_copper_grate",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/oxidized_copper_grate" } },
+      "surface": "cutout",
+      "cubes": { "oxidized_copper_grate": { "all": { "texture": "block/oxidized_copper_grate" } } },
+      "variants": [{ "looks": [{ "cube": "oxidized_copper_grate" }] }]
+    },
+    {
+      "id": "base:waxed_oxidized_cut_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/oxidized_cut_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "oxidized_cut_copper": { "all": { "texture": "block/oxidized_cut_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "oxidized_cut_copper" },
+            { "cube": "oxidized_cut_copper", "y": 90 },
+            { "cube": "oxidized_cut_copper", "y": 180 },
+            { "cube": "oxidized_cut_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_weathered_chiseled_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/weathered_chiseled_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "weathered_chiseled_copper": { "all": { "texture": "block/weathered_chiseled_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "weathered_chiseled_copper" },
+            { "cube": "weathered_chiseled_copper", "y": 90 },
+            { "cube": "weathered_chiseled_copper", "y": 180 },
+            { "cube": "weathered_chiseled_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_weathered_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/weathered_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "weathered_copper": { "all": { "texture": "block/weathered_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "weathered_copper" },
+            { "cube": "weathered_copper", "y": 90 },
+            { "cube": "weathered_copper", "y": 180 },
+            { "cube": "weathered_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_weathered_copper_bars",
+      "kind": "custom",
+      "textures": { "bars": "block/weathered_copper_bars", "edge": "block/weathered_copper_bars", "particle": "block/weathered_copper_bars" },
+      "surface": "cutout",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "multipart": [
+        { "looks": [{ "model": "weathered_copper_bars_post_ends" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "weathered_copper_bars_post" }] },
+        { "when": [{ "east": "false", "north": "true", "south": "false", "west": "false" }], "looks": [{ "model": "weathered_copper_bars_cap" }] },
+        { "when": [{ "east": "true", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "weathered_copper_bars_cap", "y": 90 }] },
+        { "when": [{ "east": "false", "north": "false", "south": "true", "west": "false" }], "looks": [{ "model": "weathered_copper_bars_cap_alt" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "true" }], "looks": [{ "model": "weathered_copper_bars_cap_alt", "y": 90 }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "weathered_copper_bars_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "weathered_copper_bars_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "weathered_copper_bars_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "weathered_copper_bars_side_alt", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:waxed_weathered_copper_chain",
+      "kind": "custom",
+      "textures": { "all": "block/weathered_copper_chain", "particle": "block/weathered_copper_chain", "texture": "block/weathered_copper_chain" },
+      "surface": "cutout",
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "model": "weathered_copper_chain", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "model": "weathered_copper_chain" }] },
+        { "when": { "axis": "z" }, "looks": [{ "model": "weathered_copper_chain", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:waxed_weathered_copper_chest",
+      "kind": "entity",
+      "textures": { "particle": "block/weathered_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "weathered_copper_chest": { "all": { "texture": "block/weathered_copper" } } },
+      "variants": [{ "looks": [{ "cube": "weathered_copper_chest" }] }]
+    },
+    {
+      "id": "base:waxed_weathered_copper_golem_statue",
+      "kind": "entity",
+      "textures": { "particle": "block/weathered_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "weathered_copper_golem_statue": { "all": { "texture": "block/weathered_copper" } } },
+      "variants": [{ "looks": [{ "cube": "weathered_copper_golem_statue" }] }]
+    },
+    {
+      "id": "base:waxed_weathered_copper_grate",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/weathered_copper_grate" } },
+      "surface": "cutout",
+      "cubes": { "weathered_copper_grate": { "all": { "texture": "block/weathered_copper_grate" } } },
+      "variants": [{ "looks": [{ "cube": "weathered_copper_grate" }] }]
+    },
+    {
+      "id": "base:waxed_weathered_cut_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/weathered_cut_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "weathered_cut_copper": { "all": { "texture": "block/weathered_cut_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "weathered_cut_copper" },
+            { "cube": "weathered_cut_copper", "y": 90 },
+            { "cube": "weathered_cut_copper", "y": 180 },
+            { "cube": "weathered_cut_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:weathered_chiseled_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/weathered_chiseled_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "weathered_chiseled_copper": { "all": { "texture": "block/weathered_chiseled_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "weathered_chiseled_copper" },
+            { "cube": "weathered_chiseled_copper", "y": 90 },
+            { "cube": "weathered_chiseled_copper", "y": 180 },
+            { "cube": "weathered_chiseled_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:weathered_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/weathered_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "weathered_copper": { "all": { "texture": "block/weathered_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "weathered_copper" },
+            { "cube": "weathered_copper", "y": 90 },
+            { "cube": "weathered_copper", "y": 180 },
+            { "cube": "weathered_copper", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:weathered_copper_bars",
+      "kind": "custom",
+      "textures": { "bars": "block/weathered_copper_bars", "edge": "block/weathered_copper_bars", "particle": "block/weathered_copper_bars" },
+      "surface": "cutout",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "multipart": [
+        { "looks": [{ "model": "weathered_copper_bars_post_ends" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "weathered_copper_bars_post" }] },
+        { "when": [{ "east": "false", "north": "true", "south": "false", "west": "false" }], "looks": [{ "model": "weathered_copper_bars_cap" }] },
+        { "when": [{ "east": "true", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "weathered_copper_bars_cap", "y": 90 }] },
+        { "when": [{ "east": "false", "north": "false", "south": "true", "west": "false" }], "looks": [{ "model": "weathered_copper_bars_cap_alt" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "true" }], "looks": [{ "model": "weathered_copper_bars_cap_alt", "y": 90 }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "weathered_copper_bars_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "weathered_copper_bars_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "weathered_copper_bars_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "weathered_copper_bars_side_alt", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:weathered_copper_chain",
+      "kind": "custom",
+      "textures": { "all": "block/weathered_copper_chain", "particle": "block/weathered_copper_chain", "texture": "block/weathered_copper_chain" },
+      "surface": "cutout",
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "model": "weathered_copper_chain", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "model": "weathered_copper_chain" }] },
+        { "when": { "axis": "z" }, "looks": [{ "model": "weathered_copper_chain", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:weathered_copper_chest",
+      "kind": "entity",
+      "textures": { "particle": "block/weathered_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "weathered_copper_chest": { "all": { "texture": "block/weathered_copper" } } },
+      "variants": [{ "looks": [{ "cube": "weathered_copper_chest" }] }]
+    },
+    {
+      "id": "base:weathered_copper_golem_statue",
+      "kind": "entity",
+      "textures": { "particle": "block/weathered_copper" },
+      "tags": ["placeholder"],
+      "cubes": { "weathered_copper_golem_statue": { "all": { "texture": "block/weathered_copper" } } },
+      "variants": [{ "looks": [{ "cube": "weathered_copper_golem_statue" }] }]
+    },
+    {
+      "id": "base:weathered_copper_grate",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/weathered_copper_grate" } },
+      "surface": "cutout",
+      "cubes": { "weathered_copper_grate": { "all": { "texture": "block/weathered_copper_grate" } } },
+      "variants": [{ "looks": [{ "cube": "weathered_copper_grate" }] }]
+    },
+    {
+      "id": "base:weathered_cut_copper",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/weathered_cut_copper" } },
+      "tags": ["random_rotation"],
+      "cubes": { "weathered_cut_copper": { "all": { "texture": "block/weathered_cut_copper" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "weathered_cut_copper" },
+            { "cube": "weathered_cut_copper", "y": 90 },
+            { "cube": "weathered_cut_copper", "y": 180 },
+            { "cube": "weathered_cut_copper", "y": 270 }
+          ]
+        }
+      ]
+    }
+  ]
+}

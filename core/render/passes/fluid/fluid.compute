@@ -1,0 +1,58 @@
+// Fluid/fluid (docs/v2.md §5.24): over the lit bottom Primary found straight through a translucent liquid (Liquid), Beer-Lambert absorption, the deep tint and the camera-distance fade; analytic v1 wave normals, a Fresnel sky reflection (no ray trace) and the glow of an opaque liquid (lava) from the block table.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "world.glsli"
+#include "camera.glsli"
+#include "blocks.glsli"
+#include "gbuffer.glsli"
+layout(set = 0, binding = 0, std430) restrict readonly buffer Params { float fade_start; float fade_end; float reflectance; float waves; float phase; float deep; float deep_sun; float glint; float glint_focus; float emission; float pad0; float pad1; } P;
+layout(set = 0, binding = 2, rgba16f) restrict uniform image2D color;
+layout(set = 0, binding = 3, rgba16f) restrict readonly uniform image2D liquid_in;
+layout(set = 0, binding = 4, r32ui) restrict readonly uniform uimage2D liquid_id_in;
+layout(set = 0, binding = 5, r32ui) restrict readonly uniform uimage2D hit_in;
+layout(set = 0, binding = 6, rgba8) restrict readonly uniform image2D albedo_in;
+
+// Analytic v1 wave normal at anchor-relative p, flattened with distance (flatten 0 near, 1 far).
+vec3 fluid_normal(vec3 p, float flatten) {
+	vec2 q = p.xz + vec2(cam.anchor.xz * CHUNK);
+	float w = P.waves * (1.0 - flatten), ph = P.phase;
+	return normalize(vec3(w * (0.03 * sin(q.x * 0.9 + ph * 1.7) + 0.02 * sin(q.y * 1.3 - ph * 1.1)), 1.0, w * (0.03 * sin(q.y * 0.8 + ph * 1.3) + 0.02 * sin(q.x * 1.7 + ph * 0.9))));
+}
+
+// Schlick sky reflection of the surface plus the sun glint (v1 reflect-refract without its ray trace).
+vec3 fluid_sky(vec3 vd, vec3 n) {
+	vec3 rd = reflect(vd, n);
+	return mix(cam.sky_horizon.rgb, cam.sky_top.rgb, sqrt(clamp(rd.y, 0.0, 1.0)))
+		+ cam.sun_col.rgb * P.glint * pow(max(dot(rd, cam.sun_dir.xyz), 0.0), P.glint_focus);
+}
+
+void main() {
+	ivec2 px = ivec2(gl_GlobalInvocationID.xy), size = imageSize(color);
+	if (any(greaterThanEqual(px, size))) return;
+	vec4 lq = imageLoad(liquid_in, px);
+	uint hit = imageLoad(hit_in, px).r;
+	vec4 base = imageLoad(color, px);
+	bool has_liquid = lq.a != 0.0 || lq.rgb != vec3(1.0); // any transmittance < 1 or a surface means a translucent liquid on the ray (a = 0 for a ray straight to the bottom)
+	if (!has_liquid) { // no translucent liquid: only an opaque liquid (lava) adds its glow to its lit surface
+		uint hid = (hit >> HIT_VARIANT_SHIFT) & HIT_VARIANT_MASK;
+		if ((hit & HIT_FLUID) == 0u || (types[hid].flags & F_TRANSLUCENT) != 0u) return;
+		vec4 a = imageLoad(albedo_in, px);
+		imageStore(color, px, vec4(base.rgb + albedo_decode(a) * a.a * P.emission, 1.0));
+		return;
+	}
+	uint id = imageLoad(liquid_id_in, px).r;
+	float dist = abs(lq.a), fade = smoothstep(P.fade_start, P.fade_end, dist);
+	vec3 vd = pixel_dir(px, size), tint = types[id].tint.rgb;
+	vec3 deep = tint * (cam.amb_col.rgb + cam.sun_col.rgb * P.deep_sun) * P.deep;
+	vec3 tr = lq.rgb * (1.0 - fade); // fade drives actual transparency: the lit bottom is gone past fade_end
+	vec3 c = tr * base.rgb + (1.0 - tr) * deep;
+	if (lq.a > 0.0) { // surface from above: Fresnel sky reflection
+		vec3 n = fluid_normal(cam.frac.xyz + vd * lq.a, fade);
+		float f = P.reflectance + (1.0 - P.reflectance) * pow(1.0 - clamp(dot(-vd, n), 0.0, 1.0), 5.0);
+		c = mix(c, fluid_sky(vd, n), f);
+	} else if (lq.a < 0.0) { // surface from below: Fresnel to the deep colour (v1); a = 0 is a ray straight to the bottom, tint only
+		vec3 n = fluid_normal(cam.frac.xyz - vd * lq.a, fade);
+		float f = P.reflectance + (1.0 - P.reflectance) * pow(1.0 - clamp(dot(vd, n), 0.0, 1.0), 5.0);
+		c = mix(c, deep, f);
+	}
+	imageStore(color, px, vec4(c, 1.0));
+}

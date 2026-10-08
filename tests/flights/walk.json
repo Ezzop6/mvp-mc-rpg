@@ -1,0 +1,18 @@
+{
+  "Note": "walk mode on flat ground (top y = 0 m) along +x: fall and land (eye 1.62 m), auto-step onto a 1-block step, stop at a 2-block ledge, jump onto it (1 m above the step), stop at a wall",
+  "Generator": "flat",
+  "Resolution": "720p",
+  "Move": "Walk",
+  "Path": [
+    { "T": 0, "Pos": { "X": 0, "Y": 5, "Z": 0 }, "Yaw": -90, "Pitch": -10 }
+  ],
+  "Actions": [
+    { "T": 0, "Kind": "Edit", "Edits": "4,0,-4..9,0,3=base:stone;10,0,-4..15,2,3=base:stone;16,0,-4..17,11,3=base:stone" },
+    { "T": 1.5, "Kind": "Expect", "Pos": { "X": 0, "Y": 1.62, "Z": 0 } },
+    { "T": 2, "Kind": "Walk", "Move": { "X": 0, "Y": 0, "Z": 1 } },
+    { "T": 3.5, "Kind": "Expect", "Pos": { "X": 4.7, "Y": 2.12, "Z": 0 } },
+    { "T": 3.6, "Kind": "Walk", "Move": { "X": 0, "Y": 0, "Z": 1 }, "Jump": true },
+    { "T": 3.7, "Kind": "Walk", "Move": { "X": 0, "Y": 0, "Z": 1 } },
+    { "T": 5, "Kind": "Expect", "Pos": { "X": 7.7, "Y": 3.12, "Z": 0 } }
+  ]
+}

@@ -1,0 +1,181 @@
+// Primary/dda (docs/v2.md §5.5): the first surface along each pixel's ray through the L0 ring, model blocks and object parts by their micro-voxels.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "world.glsli"
+#include "camera.glsli"
+#include "blocks.glsli"
+#include "models.glsli"
+#include "gbuffer.glsli"
+#ifdef SEEN_FEEDBACK
+layout(set = 0, binding = 7, std430) restrict buffer Seen { uint seen[]; }; // DdaSeen: a bit per ring slot a ray stepped in
+#endif
+#include "rays.glsli"
+layout(set = 0, binding = 2, r32f) restrict writeonly uniform image2D depth_out;
+layout(set = 0, binding = 3, r32ui) restrict writeonly uniform uimage2D hit_out;
+layout(set = 0, binding = 4, rgba8) restrict writeonly uniform image2D albedo_out;
+layout(set = 0, binding = 5, r32f) restrict readonly uniform image2D start_in; // Raster: t the ray starts at
+#ifdef SEE_THROUGH
+layout(set = 0, binding = 9, rgba16f) restrict writeonly uniform image2D trans_out;     // Transparency: transmittance in front of the hit, a = fog in-scatter distance
+layout(set = 0, binding = 10, rgba16f) restrict writeonly uniform image2D inscatter_out; // light added in front, a = the sun's share in fog
+#endif
+#ifdef WATER
+layout(set = 0, binding = 11, rgba16f) restrict writeonly uniform image2D water_out;  // Water: transmittance of the path in water, a = first surface (> 0 from above, < 0 from below)
+layout(set = 0, binding = 12, rgba32f) restrict writeonly uniform image2D hitpos_out; // the hit of a bent ray, w = the water's variant
+#endif
+#ifdef LIQUID
+layout(set = 0, binding = 11, rgba16f) restrict writeonly uniform image2D liquid_out;   // Liquid: transmittance of the liquid path, a = first surface (> 0 from above, < 0 from below)
+layout(set = 0, binding = 12, r32ui) restrict writeonly uniform uimage2D liquid_id_out; // Liquid: variant of the first liquid surface
+#endif
+layout(set = 0, binding = 8, std430) restrict buffer LodStats { uint lod_stats[4]; }; // Dda.LodStats: pixels with a fallback hit, of them nearer than NearRadius, hits at L >= 1, sky through a missing coarsest chunk
+shared uint s_lod[4];
+// Coarse leaves are solid cubes lit from the top, L0 crowns show holes and side faces: per level the albedo factor that matches their mean luminance to the finer level (docs/v2-mereni.md, lod_vs_finer.py).
+const float LOD_CUTOUT_SHADE[4] = float[4](1.0, 1.0, 0.937, 0.877);
+#ifdef DEBUG_VIEW
+layout(set = 0, binding = 6, std430) restrict buffer Stats { uint stats[]; }; // Dda.DebugStats: pixels, DDA steps, model march steps, model cells entered, DDA steps at chunk / group / cell level, 32 x the slowest DDA of each warp, the slowest pixel (DDA + march steps << 18 | x / 8 << 9 | y / 8), pixels over 256 and 1024 steps, backstop restarts, pixels out of steps
+shared uint s_stats[10];
+#endif
+
+const int MAX_STEPS = 4096;
+vec2 footprint = vec2(-99.0, 0.0); // Footprint: texture level by distance (lod + log2 t), |cos| of the hit face to the ray
+float depth_t = -1.0; // Depth: t in blocks, raw (r, g = t * 2 as 16 bits, b = 1 on a hit) for tests/tools/lod_align.py
+
+// Debug views but Albedo replace the albedo by a heat map (v1 colours: blue 0, green half, red full), Footprint by r = texture level (lod + log2 t, (floor + 9) / 16), g = its fraction, b = |cos| of the face to the ray (black sky).
+void store_albedo(ivec2 px, vec4 a, bool model) {
+#ifdef DEBUG_VIEW
+#if defined(VIEW_STEPS)
+	float h = float(trace_cost.x) / 128.0;
+#elif defined(VIEW_COST)
+	float h = float(trace_cost.x + trace_cost.y) / 128.0;
+#elif defined(VIEW_MODEL_LEVEL)
+	float h = model ? float(hit_lvl) / 4.0 : -1.0;
+#elif defined(VIEW_LOD)
+	float h = -2.0;
+	const vec3 lod_rgb[4] = vec3[](vec3(0.1, 0.8, 0.2), vec3(0.9, 0.85, 0.1), vec3(0.95, 0.45, 0.05), vec3(0.85, 0.1, 0.1));
+	a = albedo_encode(footprint.x < -90.0 ? vec3(0.0) : lod_rgb[hit_level & 3] * (hit_fallback ? 0.4 : 1.0), 0.0);
+#elif defined(VIEW_DEPTH)
+	float h = -2.0;
+	uint q = uint(clamp(depth_t * 2.0, 0.0, 65535.0));
+	a = depth_t < 0.0 ? vec4(0.0) : vec4(float(q >> 8) / 255.0, float(q & 255u) / 255.0, 1.0, 0.0);
+#elif defined(VIEW_FOOTPRINT)
+	float h = -2.0;
+	a = albedo_encode(footprint.x < -90.0 ? vec3(0.0) : vec3((floor(footprint.x) + 9.0) / 16.0, fract(footprint.x), footprint.y), 0.0);
+#else
+	float h = -2.0;
+#endif
+	if (h > -2.0) a = albedo_encode(h < 0.0 ? vec3(0.05) : clamp(vec3(h * 2.0 - 1.0, 1.0 - abs(h * 2.0 - 1.0), 1.0 - h * 2.0), 0.0, 1.0), 0.0);
+#endif
+	imageStore(albedo_out, px, a);
+}
+
+void main() {
+	ivec2 px = ivec2(gl_GlobalInvocationID.xy), size = imageSize(depth_out);
+	bool inside = all(lessThan(px, size));
+	ring_setup();
+	mark_vis = uint((px.x & 3) | (px.y & 3) << 2) == (cam.frame.x & 15u); // a 16th of the pixels per frame (World.ApplyVisible)
+	vec3 ro = cam.frac.xyz, rd = safe_dir(pixel_dir(px, size));
+	float lod = log2(cam.lens.z * float(TEX_SIZE)), t;
+	int axis;
+	uint w;
+#ifdef SEE_THROUGH
+	see_reset();
+#endif
+#ifdef WATER
+	ivec3 clo, chi;
+	uint cw = lookup(ivec3(floor(ro)), clo, chi);
+	water_in = cw != 0u && cw != MISSING && cw < F_MODEL << PAL_FLAG_SHIFT && (pal_flags(cw) & (F_FLUID | F_TRANSLUCENT)) == (F_FLUID | F_TRANSLUCENT) && fract(ro.y) < types[cw & PAL_ID_MASK].tint.w;
+#endif
+#ifdef LIQUID
+	ivec3 clo, chi;
+	uint cw = lookup(ivec3(floor(ro)), clo, chi);
+	liq_in = cw != 0u && cw != MISSING && cw < F_MODEL << PAL_FLAG_SHIFT && (pal_flags(cw) & (F_FLUID | F_TRANSLUCENT)) == (F_FLUID | F_TRANSLUCENT) && fract(ro.y) < types[cw & PAL_ID_MASK].tint.w;
+	if (liq_in) liq_id = cw & PAL_ID_MASK;
+#endif
+	bool fluid, hit = inside && trace(ro, rd, imageLoad(start_in, px).r, cam.lens.y, MAX_STEPS, lod, t, axis, w, fluid);
+#ifdef WATER
+	float path = 0.0, surface = 0.0;
+	for (int k = 0; k < 2 && hit && fluid && (pal_flags(w) & F_TRANSLUCENT) != 0u; k++) {
+		vec3 sp = ro + rd * t, n = water_normal(sp) * (water_in ? -1.0 : 1.0), r = refract(rd, n, water_in ? cam.water.z : 1.0 / cam.water.z);
+		if (surface == 0.0) surface = water_in ? -(path + t) : path + t;
+		if (dot(r, r) < 0.5) r = reflect(rd, n);
+		else water_in = !water_in;
+		path += t;
+		rd = safe_dir(r);
+		ro = sp + rd * 1e-3;
+		origin_t = path;
+		hit = trace(ro, rd, 0.0, cam.lens.y, MAX_STEPS, lod, t, axis, w, fluid);
+	}
+	float tm = path + t;
+#else
+	float tm = t;
+#endif
+#if LOD_ON
+	if (gl_LocalInvocationIndex < 4u) s_lod[gl_LocalInvocationIndex] = 0u;
+	barrier();
+	if (hit && hit_fallback) { atomicAdd(s_lod[0], 1u); if (t < W.near.w * float(CHUNK)) atomicAdd(s_lod[1], 1u); }
+	if (hit && hit_level > 0) atomicAdd(s_lod[2], 1u);
+	if (inside && !hit && hit_hole) atomicAdd(s_lod[3], 1u);
+	barrier();
+	if (gl_LocalInvocationIndex < 4u && s_lod[gl_LocalInvocationIndex] != 0u) atomicAdd(lod_stats[gl_LocalInvocationIndex], s_lod[gl_LocalInvocationIndex]);
+#endif
+#ifdef DEBUG_VIEW
+	if (gl_LocalInvocationIndex < 10u) s_stats[gl_LocalInvocationIndex] = 0u;
+	barrier();
+	if (inside) {
+		uvec3 c = uvec3(trace_cost), k = uvec3(step_kind);
+		atomicAdd(s_stats[0], 1u); atomicAdd(s_stats[1], c.x); atomicAdd(s_stats[2], c.y); atomicAdd(s_stats[3], c.z);
+		atomicAdd(s_stats[4], k.x); atomicAdd(s_stats[5], k.y); atomicAdd(s_stats[6], k.z);
+		atomicMax(s_stats[8u + gl_LocalInvocationIndex / 32u], c.x);
+	}
+	barrier();
+	if (gl_LocalInvocationIndex == 0u) s_stats[7] = 32u * (s_stats[8] + s_stats[9]);
+	barrier();
+	if (gl_LocalInvocationIndex < 8u) atomicAdd(stats[gl_LocalInvocationIndex], s_stats[gl_LocalInvocationIndex]);
+	uint all_steps = uint(trace_cost.x + trace_cost.y);
+	if (inside) {
+		atomicMax(stats[8], min(all_steps, 16383u) << 18 | uint(px.x / 8) << 9 | uint(px.y / 8));
+		if (all_steps > 256u) atomicAdd(stats[9], 1u);
+		if (all_steps > 1024u) atomicAdd(stats[10], 1u);
+		if (dda_stall.x > 0) atomicAdd(stats[11], uint(dda_stall.x));
+		if (dda_stall.y > 0) atomicAdd(stats[12], 1u);
+	}
+#endif
+	if (!inside) return;
+#ifdef SEE_THROUGH
+	vec3 scatter = see_acc + see_sun;
+	imageStore(trans_out, px, vec4(see_trans, see_fog_w > 0.0 ? see_fog_t / see_fog_w : 0.0));
+	imageStore(inscatter_out, px, vec4(scatter, dot(see_sun, vec3(1.0)) / max(dot(scatter, vec3(1.0)), 1e-6)));
+	bool seen = see_span.y > 0.0;
+#else
+	bool seen = false;
+#endif
+#ifdef WATER
+	imageStore(water_out, px, vec4(water_len > 0.0 ? fluid_trans(types[water_id].tint.rgb, water_len) : vec3(1.0), surface));
+	if (water_len > 0.0 || path > 0.0) imageStore(hitpos_out, px, vec4(ro + rd * t, float(water_id)));
+	bool bent = path > 0.0;
+#elif defined(LIQUID)
+	imageStore(liquid_out, px, vec4(liq_len > 0.0 ? liq_trans : vec3(1.0), liq_surface));
+	imageStore(liquid_id_out, px, uvec4(liq_id));
+	bool bent = false;
+#else
+	bool bent = false;
+#endif
+	if (!hit) {
+		imageStore(depth_out, px, vec4(0.0));
+		imageStore(hit_out, px, uvec4(HIT_SKY));
+		store_albedo(px, vec4(0.0), false);
+		return;
+	}
+	bool model = hit_level == 0 && w >= F_MODEL << PAL_FLAG_SHIFT, colour = hit_level > 0 && w >= LOD_COLOR;
+	float tl = t / lv_scale; // level cells: textures span the coarse cell
+	vec3 n = model ? hit_n : vec3(0.0), p = level_pos(ro) + rd * tl, world_p = vec3(cam.anchor.xyz * CHUNK) + ro + rd * t;
+	if (!model) n[axis] = -sign(rd[axis]);
+	uint id = w >= PART ? B_OBJECT : w & PAL_ID_MASK;
+	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : colour ? lod_color(w) : albedo_at(id, p, world_p, axis, n, clamp(lod + log2(max(tm / lv_scale, 1e-6)) - 0.5, 0.0, float(TEX_MIPS - 1)));
+	if (hit_level > 0 && !colour && w < F_MODEL << PAL_FLAG_SHIFT && (pal_flags(w) & F_CUTOUT) != 0u) albedo *= LOD_CUTOUT_SHADE[hit_level];
+	vec3 me = model ? material_emission(hit_mat) / max(material_albedo(hit_mat), vec3(1e-3)) : vec3(0.0);
+	float emission = model ? min(max(me.r, max(me.g, me.b)), 1.0) : colour ? 0.0 : face_emission(face_word(id, axis, n));
+	imageStore(depth_out, px, vec4(tm));
+	footprint = vec2(lod + log2(max(tl, 1e-6)), abs(dot(n, rd)));
+	depth_t = t;
+	imageStore(hit_out, px, uvec4(uint(face_code(axis, n[axis] > 0.0)) | id << HIT_VARIANT_SHIFT | uint(hit_level) << HIT_LOD_SHIFT | (model ? HIT_MODEL : 0u) | (fluid ? HIT_FLUID : 0u) | (hit_fallback ? HIT_FALLBACK : 0u) | (seen ? HIT_TRANSPARENT : 0u) | (bent ? HIT_BENT : 0u)));
+	store_albedo(px, albedo_encode(albedo, emission), model);
+}

@@ -1,0 +1,290 @@
+{
+  "category": "saplings",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:acacia_sapling",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/acacia_sapling", "particle": "block/acacia_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation", "wood:acacia"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "acacia_sapling" },
+            { "model": "acacia_sapling", "y": 90 },
+            { "model": "acacia_sapling", "y": 180 },
+            { "model": "acacia_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:bamboo_sapling",
+      "kind": "cross",
+      "template": "tinted_cross",
+      "textures": { "cross": "block/bamboo_stage0", "particle": "block/bamboo_stage0" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "tags": ["tint_guessed", "wood:bamboo"],
+      "variants": [{ "looks": [{ "model": "bamboo_sapling" }] }]
+    },
+    {
+      "id": "base:birch_sapling",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/birch_sapling", "particle": "block/birch_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation", "wood:birch"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "birch_sapling" },
+            { "model": "birch_sapling", "y": 90 },
+            { "model": "birch_sapling", "y": 180 },
+            { "model": "birch_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:cherry_sapling",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/cherry_sapling", "particle": "block/cherry_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation", "wood:cherry"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "cherry_sapling" },
+            { "model": "cherry_sapling", "y": 90 },
+            { "model": "cherry_sapling", "y": 180 },
+            { "model": "cherry_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dark_oak_sapling",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/dark_oak_sapling", "particle": "block/dark_oak_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation", "wood:dark_oak"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "dark_oak_sapling" },
+            { "model": "dark_oak_sapling", "y": 90 },
+            { "model": "dark_oak_sapling", "y": 180 },
+            { "model": "dark_oak_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:jungle_sapling",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/jungle_sapling", "particle": "block/jungle_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation", "wood:jungle"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "jungle_sapling" },
+            { "model": "jungle_sapling", "y": 90 },
+            { "model": "jungle_sapling", "y": 180 },
+            { "model": "jungle_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:mangrove_propagule",
+      "kind": "custom",
+      "textures": { "cross": "block/mangrove_propagule", "particle": "block/mangrove_propagule" },
+      "surface": "cutout",
+      "states": { "age": ["0", "1", "2", "3", "4"], "hanging": ["false", "true"] },
+      "tags": ["random_rotation", "wood:mangrove"],
+      "variants": [
+        {
+          "when": { "age": "0", "hanging": "false" },
+          "looks": [
+            { "model": "mangrove_propagule" },
+            { "model": "mangrove_propagule", "y": 90 },
+            { "model": "mangrove_propagule", "y": 180 },
+            { "model": "mangrove_propagule", "y": 270 }
+          ]
+        },
+        {
+          "when": { "age": "0", "hanging": "true" },
+          "looks": [
+            { "model": "mangrove_propagule_hanging_0" },
+            { "model": "mangrove_propagule_hanging_0", "y": 90 },
+            { "model": "mangrove_propagule_hanging_0", "y": 180 },
+            { "model": "mangrove_propagule_hanging_0", "y": 270 }
+          ]
+        },
+        {
+          "when": { "age": "1", "hanging": "false" },
+          "looks": [
+            { "model": "mangrove_propagule" },
+            { "model": "mangrove_propagule", "y": 90 },
+            { "model": "mangrove_propagule", "y": 180 },
+            { "model": "mangrove_propagule", "y": 270 }
+          ]
+        },
+        {
+          "when": { "age": "1", "hanging": "true" },
+          "looks": [
+            { "model": "mangrove_propagule_hanging_1" },
+            { "model": "mangrove_propagule_hanging_1", "y": 90 },
+            { "model": "mangrove_propagule_hanging_1", "y": 180 },
+            { "model": "mangrove_propagule_hanging_1", "y": 270 }
+          ]
+        },
+        {
+          "when": { "age": "2", "hanging": "false" },
+          "looks": [
+            { "model": "mangrove_propagule" },
+            { "model": "mangrove_propagule", "y": 90 },
+            { "model": "mangrove_propagule", "y": 180 },
+            { "model": "mangrove_propagule", "y": 270 }
+          ]
+        },
+        {
+          "when": { "age": "2", "hanging": "true" },
+          "looks": [
+            { "model": "mangrove_propagule_hanging_2" },
+            { "model": "mangrove_propagule_hanging_2", "y": 90 },
+            { "model": "mangrove_propagule_hanging_2", "y": 180 },
+            { "model": "mangrove_propagule_hanging_2", "y": 270 }
+          ]
+        },
+        {
+          "when": { "age": "3", "hanging": "false" },
+          "looks": [
+            { "model": "mangrove_propagule" },
+            { "model": "mangrove_propagule", "y": 90 },
+            { "model": "mangrove_propagule", "y": 180 },
+            { "model": "mangrove_propagule", "y": 270 }
+          ]
+        },
+        {
+          "when": { "age": "3", "hanging": "true" },
+          "looks": [
+            { "model": "mangrove_propagule_hanging_3" },
+            { "model": "mangrove_propagule_hanging_3", "y": 90 },
+            { "model": "mangrove_propagule_hanging_3", "y": 180 },
+            { "model": "mangrove_propagule_hanging_3", "y": 270 }
+          ]
+        },
+        {
+          "when": { "age": "4", "hanging": "false" },
+          "looks": [
+            { "model": "mangrove_propagule" },
+            { "model": "mangrove_propagule", "y": 90 },
+            { "model": "mangrove_propagule", "y": 180 },
+            { "model": "mangrove_propagule", "y": 270 }
+          ]
+        },
+        {
+          "when": { "age": "4", "hanging": "true" },
+          "looks": [
+            { "model": "mangrove_propagule_hanging_4" },
+            { "model": "mangrove_propagule_hanging_4", "y": 90 },
+            { "model": "mangrove_propagule_hanging_4", "y": 180 },
+            { "model": "mangrove_propagule_hanging_4", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:oak_sapling",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/oak_sapling", "particle": "block/oak_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation", "wood:oak"],
+      "variants": [
+        {
+          "looks": [{ "model": "oak_sapling" }, { "model": "oak_sapling", "y": 90 }, { "model": "oak_sapling", "y": 180 }, { "model": "oak_sapling", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:pale_oak_sapling",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/pale_oak_sapling", "particle": "block/pale_oak_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation", "wood:pale_oak"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "pale_oak_sapling" },
+            { "model": "pale_oak_sapling", "y": 90 },
+            { "model": "pale_oak_sapling", "y": 180 },
+            { "model": "pale_oak_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:poplar_sapling",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/poplar_sapling", "particle": "block/poplar_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation", "wood:poplar"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "poplar_sapling" },
+            { "model": "poplar_sapling", "y": 90 },
+            { "model": "poplar_sapling", "y": 180 },
+            { "model": "poplar_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_mangrove_propagule",
+      "kind": "custom",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/mangrove_propagule" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_mangrove_propagule" },
+            { "model": "potted_mangrove_propagule", "y": 90 },
+            { "model": "potted_mangrove_propagule", "y": 180 },
+            { "model": "potted_mangrove_propagule", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:spruce_sapling",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/spruce_sapling", "particle": "block/spruce_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation", "wood:spruce"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "spruce_sapling" },
+            { "model": "spruce_sapling", "y": 90 },
+            { "model": "spruce_sapling", "y": 180 },
+            { "model": "spruce_sapling", "y": 270 }
+          ]
+        }
+      ]
+    }
+  ]
+}

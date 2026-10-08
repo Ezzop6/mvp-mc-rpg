@@ -1,0 +1,23 @@
+// Transparency/segment (docs/v2.md §5.23): Color = in-scatter + transmittance × Color, after the sky passes (stars and clouds through fog and glass too); the sun's share of fog in-scatter by its SunVis.a.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+layout(set = 0, binding = 2, rgba16f) restrict uniform image2D color;
+layout(set = 0, binding = 3, rgba16f) restrict readonly uniform image2D trans_in;
+layout(set = 0, binding = 4, rgba16f) restrict readonly uniform image2D inscatter_in;
+#ifdef SUN_VIS
+layout(set = 0, binding = 5, rgba8) restrict readonly uniform image2D sunvis_in;
+#endif
+
+void main() {
+	ivec2 px = ivec2(gl_GlobalInvocationID.xy);
+	if (any(greaterThanEqual(px, imageSize(color)))) return;
+#ifndef DEBUG_VIEW
+	vec3 tr = imageLoad(trans_in, px).rgb;
+	vec4 sc = imageLoad(inscatter_in, px);
+	if (tr == vec3(1.0) && sc.rgb == vec3(0.0)) return;
+	float sun = 1.0;
+#ifdef SUN_VIS
+	sun = imageLoad(sunvis_in, px).a;
+#endif
+	imageStore(color, px, vec4(sc.rgb * (1.0 - sc.a * (1.0 - sun)) + tr * imageLoad(color, px).rgb, 1.0));
+#endif
+}

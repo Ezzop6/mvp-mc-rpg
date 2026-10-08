@@ -1,0 +1,107 @@
+// Shadows/dda-quad (docs/v2.md §5.21): sun visibility of each hit by trace() towards the sun; a thread per 2x2 quad, one ray when the quad is flat (as v1), else one per pixel. SHADOW_PER_PIXEL (Shadows/dda): a thread and a ray per pixel.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "world.glsli"
+#include "camera.glsli"
+#include "blocks.glsli"
+#include "models.glsli"
+#include "gbuffer.glsli"
+#include "rays.glsli"
+layout(set = 0, binding = 0, std430) restrict readonly buffer ParamBuf { PARAMS } P;
+layout(set = 0, binding = 2, r32f) restrict readonly uniform image2D depth_in;
+layout(set = 0, binding = 3, r32ui) restrict readonly uniform uimage2D hit_in;
+layout(set = 0, binding = 4, rgba8) restrict writeonly uniform image2D sunvis_out;
+#ifdef BENT
+layout(set = 0, binding = 7, rgba32f) restrict readonly uniform image2D hitpos_in; // Water: the hit of a bent ray
+#endif
+#ifdef SEE_THROUGH
+layout(set = 0, binding = 6, rgba16f) restrict readonly uniform image2D trans_in; // Transparency: a = distance of the fog's in-scatter
+#endif
+#ifdef DEBUG_VIEW
+layout(set = 0, binding = 5, std430) restrict buffer Stats { uint stats[]; }; // DdaQuad.DebugStats: pixels, rays, DDA steps, model march steps, DDA steps at chunk / group / cell level, rays out of steps
+#endif
+
+#ifdef SHADOW_PER_PIXEL
+const int Q = 1;
+#else
+const int Q = 2;
+#endif
+const float LEVEL_HOLD = 4.0; // two cells of the next coarser level
+const int MAX_STEPS = 256;
+
+// Lit share of a hit at t (blocks) along the ray: the fade band before the shadow distance.
+float fade(float t) { return P.shadow_fade > 0.0 ? smoothstep(P.shadow_distance - P.shadow_fade, P.shadow_distance, t * BS) : 0.0; }
+
+// Level of detail by distance from the camera (origin_t), the bias in cells of the hit's level; a hit trace() returns blocks the sun, SEE_THROUGH: glass, water and fog tint it, SEE_WATER (Water): water.
+vec3 sun_ray(vec3 o, float from_t) {
+	origin_t = from_t;
+	level_hold = LEVEL_HOLD;
+	cutout_pass = 2;
+	float t;
+	int axis;
+	uint w;
+	bool fluid;
+#ifdef SEE_ANY
+	see_reset();
+	return trace(o, safe_dir(cam.sun_dir.xyz), 0.0, P.shadow_distance / BS, MAX_STEPS, log2(cam.lens.z * float(TEX_SIZE)), t, axis, w, fluid) ? see_trans * fade(t) : see_trans;
+#else
+	return vec3(trace(o, safe_dir(cam.sun_dir.xyz), 0.0, P.shadow_distance / BS, MAX_STEPS, log2(cam.lens.z * float(TEX_SIZE)), t, axis, w, fluid) ? fade(t) : 1.0);
+#endif
+}
+
+vec3 sun_vis(vec4 p, uint hit) { return sun_ray(p.xyz + hit_normal(hit_face(hit)) * (P.shadow_bias * float(1u << ((hit >> HIT_LOD_SHIFT) & HIT_LOD_MASK))), p.w); }
+
+void main() {
+	ivec2 base = ivec2(gl_GlobalInvocationID.xy) * Q, size = imageSize(sunvis_out);
+	if (any(greaterThanEqual(base, size))) return;
+	ring_setup();
+	vec4 p[Q * Q];
+	uint h[Q * Q];
+	bool need[Q * Q], flat_quad = true;
+	int rep = -1;
+	for (int k = 0; k < Q * Q; k++) {
+		ivec2 px = min(base + ivec2(k & 1, k >> 1), size - 1);
+		h[k] = imageLoad(hit_in, px).r;
+		float tp = imageLoad(depth_in, px).r;
+		p[k] = vec4(cam.frac.xyz + safe_dir(pixel_dir(px, size)) * tp, tp);
+#ifdef BENT
+		if ((h[k] & HIT_BENT) != 0u) p[k].xyz = imageLoad(hitpos_in, px).xyz;
+#endif
+		uint face = hit_face(h[k]);
+		need[k] = face != HIT_SKY && dot(hit_normal(face), cam.sun_dir.xyz) > 0.0;
+		if (!need[k]) continue;
+		if (rep < 0) rep = k;
+		else flat_quad = flat_quad && face == hit_face(h[rep]) && abs(dot(p[k].xyz - p[rep].xyz, hit_normal(face))) < 1e-2;
+	}
+	vec3 vis[Q * Q];
+#ifdef DEBUG_VIEW
+	uint rays = 0u, cost = 0u, march = 0u, stalls = 0u;
+	uvec3 kinds = uvec3(0u);
+#endif
+	[[dont_unroll]] for (int k = 0; k < Q * Q; k++) {
+		bool go = flat_quad ? k == 0 && rep >= 0 : need[k];
+		int j = flat_quad ? max(rep, 0) : k;
+		vis[k] = go ? sun_vis(p[j], h[j]) : flat_quad && k > 0 ? vis[0] : vec3(1.0);
+		if (go) vis[k] += (1.0 - vis[k]) * (1.0 - P.shadow_strength) * vec3(P.shadow_tint_r, P.shadow_tint_g, P.shadow_tint_b); // strength and tint: the sun left in shadow
+#ifdef DEBUG_VIEW
+		if (go) { rays++; cost += uint(trace_cost.x); march += uint(trace_cost.y); kinds += uvec3(step_kind); stalls += uint(dda_stall.y); }
+#endif
+	}
+#ifdef DEBUG_VIEW
+	atomicAdd(stats[0], uint(Q * Q)); atomicAdd(stats[1], rays); atomicAdd(stats[2], cost); atomicAdd(stats[3], march);
+	atomicAdd(stats[4], kinds.x); atomicAdd(stats[5], kinds.y); atomicAdd(stats[6], kinds.z); atomicAdd(stats[7], stalls);
+#endif
+	float fog = 1.0; // the quad's fog in front: one ray from its first in-scatter point
+#ifdef SEE_THROUGH
+	for (int k = 0; k < Q * Q; k++) {
+		ivec2 px = min(base + ivec2(k & 1, k >> 1), size - 1);
+		float tf = imageLoad(trans_in, px).a;
+		if (tf <= 0.0) continue;
+		fog = dot(sun_ray(cam.frac.xyz + safe_dir(pixel_dir(px, size)) * tf, tf), vec3(0.3, 0.6, 0.1));
+		break;
+	}
+#endif
+	for (int k = 0; k < Q * Q; k++) {
+		ivec2 px = base + ivec2(k & 1, k >> 1);
+		if (all(lessThan(px, size))) imageStore(sunvis_out, px, vec4(hit_face(h[k]) == HIT_SKY ? vec3(1.0) : need[k] ? vis[k] : vec3(0.0), fog));
+	}
+}

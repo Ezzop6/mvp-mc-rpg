@@ -1,0 +1,279 @@
+{
+  "category": "tall_plants",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:azalea",
+      "kind": "custom",
+      "textures": { "particle": "block/azalea_plant", "plant": "block/azalea_plant", "side": "block/azalea_side", "top": "block/azalea_top" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [{ "looks": [{ "model": "azalea" }, { "model": "azalea", "y": 90 }, { "model": "azalea", "y": 180 }, { "model": "azalea", "y": 270 }] }]
+    },
+    {
+      "id": "base:bamboo",
+      "kind": "custom",
+      "textures": { "all": "block/bamboo_stalk", "particle": "block/bamboo_stalk" },
+      "states": { "age": ["0", "1"], "leaves": ["none", "large", "small"] },
+      "tags": ["random_rotation"],
+      "multipart": [
+        {
+          "when": [{ "age": "0", "leaves": "none" }],
+          "looks": [{ "model": "bamboo_age1" }, { "model": "bamboo_age1", "y": 90 }, { "model": "bamboo_age1", "y": 180 }, { "model": "bamboo_age1", "y": 270 }]
+        },
+        {
+          "when": [{ "age": "0", "leaves": "small" }],
+          "looks": [{ "model": "bamboo_age0" }, { "model": "bamboo_age0", "y": 90 }, { "model": "bamboo_age0", "y": 180 }, { "model": "bamboo_age0", "y": 270 }]
+        },
+        {
+          "when": [{ "age": "0", "leaves": "large" }],
+          "looks": [{ "model": "bamboo_age0" }, { "model": "bamboo_age0", "y": 90 }, { "model": "bamboo_age0", "y": 180 }, { "model": "bamboo_age0", "y": 270 }]
+        },
+        {
+          "when": [{ "age": "1", "leaves": "none" }],
+          "looks": [{ "model": "bamboo_age2" }, { "model": "bamboo_age2", "y": 90 }, { "model": "bamboo_age2", "y": 180 }, { "model": "bamboo_age2", "y": 270 }]
+        },
+        {
+          "when": [{ "age": "1", "leaves": "small" }],
+          "looks": [{ "model": "bamboo_age1" }, { "model": "bamboo_age1", "y": 90 }, { "model": "bamboo_age1", "y": 180 }, { "model": "bamboo_age1", "y": 270 }]
+        },
+        {
+          "when": [{ "age": "1", "leaves": "large" }],
+          "looks": [{ "model": "bamboo_age0" }, { "model": "bamboo_age0", "y": 90 }, { "model": "bamboo_age0", "y": 180 }, { "model": "bamboo_age0", "y": 270 }]
+        },
+        { "when": [{ "leaves": "small" }], "looks": [{ "model": "bamboo_small_leaves" }] },
+        { "when": [{ "leaves": "large" }], "looks": [{ "model": "bamboo_large_leaves" }] },
+        {
+          "when": [{ "leaves": "none" }],
+          "looks": [
+            { "model": "bamboo_extra_leaves" },
+            { "model": "bamboo_extra_leaves", "y": 90 },
+            { "model": "bamboo_extra_leaves", "y": 180 },
+            { "model": "bamboo_extra_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:big_dripleaf",
+      "kind": "custom",
+      "textures": {
+        "particle": "block/big_dripleaf_top",
+        "stem": "block/big_dripleaf_stem",
+        "tip": "block/big_dripleaf_tip",
+        "tip_extra": "block/extra/big_dripleaf_tip_extra",
+        "top": "block/big_dripleaf_top",
+        "top_extra": "block/extra/big_dripleaf_top_extra"
+      },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "tilt": ["none", "full", "partial", "unstable"] },
+      "variants": [
+        { "when": { "facing": "east", "tilt": "full" }, "looks": [{ "model": "big_dripleaf_full_tilt", "y": 90 }] },
+        { "when": { "facing": "east", "tilt": "none" }, "looks": [{ "model": "big_dripleaf", "y": 90 }] },
+        { "when": { "facing": "east", "tilt": "partial" }, "looks": [{ "model": "big_dripleaf_partial_tilt", "y": 90 }] },
+        { "when": { "facing": "east", "tilt": "unstable" }, "looks": [{ "model": "big_dripleaf", "y": 90 }] },
+        { "when": { "facing": "north", "tilt": "full" }, "looks": [{ "model": "big_dripleaf_full_tilt" }] },
+        { "when": { "facing": "north", "tilt": "none" }, "looks": [{ "model": "big_dripleaf" }] },
+        { "when": { "facing": "north", "tilt": "partial" }, "looks": [{ "model": "big_dripleaf_partial_tilt" }] },
+        { "when": { "facing": "north", "tilt": "unstable" }, "looks": [{ "model": "big_dripleaf" }] },
+        { "when": { "facing": "south", "tilt": "full" }, "looks": [{ "model": "big_dripleaf_full_tilt", "y": 180 }] },
+        { "when": { "facing": "south", "tilt": "none" }, "looks": [{ "model": "big_dripleaf", "y": 180 }] },
+        { "when": { "facing": "south", "tilt": "partial" }, "looks": [{ "model": "big_dripleaf_partial_tilt", "y": 180 }] },
+        { "when": { "facing": "south", "tilt": "unstable" }, "looks": [{ "model": "big_dripleaf", "y": 180 }] },
+        { "when": { "facing": "west", "tilt": "full" }, "looks": [{ "model": "big_dripleaf_full_tilt", "y": 270 }] },
+        { "when": { "facing": "west", "tilt": "none" }, "looks": [{ "model": "big_dripleaf", "y": 270 }] },
+        { "when": { "facing": "west", "tilt": "partial" }, "looks": [{ "model": "big_dripleaf_partial_tilt", "y": 270 }] },
+        { "when": { "facing": "west", "tilt": "unstable" }, "looks": [{ "model": "big_dripleaf", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:big_dripleaf_stem",
+      "kind": "custom",
+      "textures": { "particle": "block/big_dripleaf_stem", "stem": "block/big_dripleaf_stem" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "model": "big_dripleaf_stem", "y": 90 }] },
+        { "when": { "facing": "north" }, "looks": [{ "model": "big_dripleaf_stem" }] },
+        { "when": { "facing": "south" }, "looks": [{ "model": "big_dripleaf_stem", "y": 180 }] },
+        { "when": { "facing": "west" }, "looks": [{ "model": "big_dripleaf_stem", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:cactus",
+      "kind": "custom",
+      "textures": { "bottom": "block/cactus_bottom", "particle": "block/cactus_side", "side": "block/cactus_side", "top": "block/cactus_top" },
+      "surface": "cutout",
+      "tags": ["animated"],
+      "multipart": [
+        { "looks": [{ "model": "cactus" }] },
+        {
+          "looks": [
+            { "model": "cactus2" },
+            { "model": "cactus2", "y": 90 },
+            { "model": "cactus2", "y": 180 },
+            { "model": "cactus2", "y": 270 },
+            { "model": "cactus3" },
+            { "model": "cactus3", "y": 90 },
+            { "model": "cactus3", "y": 180 },
+            { "model": "cactus3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:chorus_flower",
+      "kind": "custom",
+      "textures": { "bottom": "block/chorus_plant", "particle": "block/chorus_flower", "texture": "block/chorus_flower" },
+      "emission": 0.005,
+      "states": { "age": ["0", "1", "2", "3", "4", "5"] },
+      "variants": [
+        { "when": { "age": "0" }, "looks": [{ "model": "chorus_flower" }] },
+        { "when": { "age": "1" }, "looks": [{ "model": "chorus_flower" }] },
+        { "when": { "age": "2" }, "looks": [{ "model": "chorus_flower" }] },
+        { "when": { "age": "3" }, "looks": [{ "model": "chorus_flower" }] },
+        { "when": { "age": "4" }, "looks": [{ "model": "chorus_flower" }] },
+        { "when": { "age": "5" }, "looks": [{ "model": "chorus_flower_dead" }] }
+      ]
+    },
+    {
+      "id": "base:chorus_plant",
+      "kind": "custom",
+      "textures": { "inside": "block/chorus_plant", "particle": "block/chorus_plant", "texture": "block/chorus_plant" },
+      "states": {
+        "down": ["false", "true"],
+        "east": ["false", "true"],
+        "north": ["false", "true"],
+        "south": ["false", "true"],
+        "up": ["false", "true"],
+        "west": ["false", "true"]
+      },
+      "tags": ["random_variants"],
+      "multipart": [
+        { "when": [{ "north": "true" }], "looks": [{ "model": "chorus_plant_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "chorus_plant_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "chorus_plant_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "chorus_plant_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "up": "true" }], "looks": [{ "model": "chorus_plant_side", "x": 270, "uvlock": true }] },
+        { "when": [{ "down": "true" }], "looks": [{ "model": "chorus_plant_side", "x": 90, "uvlock": true }] },
+        {
+          "when": [{ "north": "false" }],
+          "looks": [
+            { "model": "chorus_plant_noside", "weight": 2 },
+            { "model": "chorus_plant_noside1" },
+            { "model": "chorus_plant_noside2" },
+            { "model": "chorus_plant_noside3" }
+          ]
+        },
+        {
+          "when": [{ "east": "false" }],
+          "looks": [
+            { "model": "chorus_plant_noside1", "y": 90, "uvlock": true },
+            { "model": "chorus_plant_noside2", "y": 90, "uvlock": true },
+            { "model": "chorus_plant_noside3", "y": 90, "uvlock": true },
+            { "model": "chorus_plant_noside", "y": 90, "uvlock": true, "weight": 2 }
+          ]
+        },
+        {
+          "when": [{ "south": "false" }],
+          "looks": [
+            { "model": "chorus_plant_noside2", "y": 180, "uvlock": true },
+            { "model": "chorus_plant_noside3", "y": 180, "uvlock": true },
+            { "model": "chorus_plant_noside", "y": 180, "uvlock": true, "weight": 2 },
+            { "model": "chorus_plant_noside1", "y": 180, "uvlock": true }
+          ]
+        },
+        {
+          "when": [{ "west": "false" }],
+          "looks": [
+            { "model": "chorus_plant_noside3", "y": 270, "uvlock": true },
+            { "model": "chorus_plant_noside", "y": 270, "uvlock": true, "weight": 2 },
+            { "model": "chorus_plant_noside1", "y": 270, "uvlock": true },
+            { "model": "chorus_plant_noside2", "y": 270, "uvlock": true }
+          ]
+        },
+        {
+          "when": [{ "up": "false" }],
+          "looks": [
+            { "model": "chorus_plant_noside", "x": 270, "uvlock": true, "weight": 2 },
+            { "model": "chorus_plant_noside3", "x": 270, "uvlock": true },
+            { "model": "chorus_plant_noside1", "x": 270, "uvlock": true },
+            { "model": "chorus_plant_noside2", "x": 270, "uvlock": true }
+          ]
+        },
+        {
+          "when": [{ "down": "false" }],
+          "looks": [
+            { "model": "chorus_plant_noside3", "x": 90, "uvlock": true },
+            { "model": "chorus_plant_noside2", "x": 90, "uvlock": true },
+            { "model": "chorus_plant_noside1", "x": 90, "uvlock": true },
+            { "model": "chorus_plant_noside", "x": 90, "uvlock": true, "weight": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_bamboo",
+      "kind": "custom",
+      "textures": { "bamboo": "block/bamboo_stalk", "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot" },
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_bamboo" },
+            { "model": "potted_bamboo", "y": 90 },
+            { "model": "potted_bamboo", "y": 180 },
+            { "model": "potted_bamboo", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_cactus",
+      "kind": "custom",
+      "textures": { "cactus": "block/cactus_side", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_cactus" },
+            { "model": "potted_cactus", "y": 90 },
+            { "model": "potted_cactus", "y": 180 },
+            { "model": "potted_cactus", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:small_dripleaf",
+      "kind": "custom",
+      "textures": { "particle": "block/small_dripleaf_stem_bottom", "stem": "block/small_dripleaf_stem_bottom" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "half": ["lower", "upper"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "facing": "east", "half": "lower" }, "looks": [{ "model": "small_dripleaf_bottom", "y": 90 }] },
+        { "when": { "facing": "east", "half": "upper" }, "looks": [{ "model": "small_dripleaf_top", "y": 90 }, { "model": "small_dripleaf_top2", "y": 90 }] },
+        { "when": { "facing": "north", "half": "lower" }, "looks": [{ "model": "small_dripleaf_bottom" }] },
+        { "when": { "facing": "north", "half": "upper" }, "looks": [{ "model": "small_dripleaf_top" }, { "model": "small_dripleaf_top2" }] },
+        { "when": { "facing": "south", "half": "lower" }, "looks": [{ "model": "small_dripleaf_bottom", "y": 180 }] },
+        { "when": { "facing": "south", "half": "upper" }, "looks": [{ "model": "small_dripleaf_top", "y": 180 }, { "model": "small_dripleaf_top2", "y": 180 }] },
+        { "when": { "facing": "west", "half": "lower" }, "looks": [{ "model": "small_dripleaf_bottom", "y": 270 }] },
+        { "when": { "facing": "west", "half": "upper" }, "looks": [{ "model": "small_dripleaf_top", "y": 270 }, { "model": "small_dripleaf_top2", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:sugar_cane",
+      "kind": "cross",
+      "template": "tinted_cross",
+      "textures": { "cross": "block/sugar_cane", "extra": "block/extra/sugar_cane_extra", "particle": "block/sugar_cane" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "variants": [{ "looks": [{ "model": "sugar_cane" }] }]
+    }
+  ]
+}

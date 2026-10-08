@@ -1,0 +1,234 @@
+{
+  "category": "plates",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:acacia_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/acacia_planks", "texture": "block/acacia_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:acacia"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "acacia_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "acacia_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:bamboo_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/bamboo_planks", "texture": "block/bamboo_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:bamboo"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "bamboo_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "bamboo_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:birch_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/birch_planks", "texture": "block/birch_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:birch"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "birch_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "birch_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:cherry_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/cherry_planks", "texture": "block/cherry_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:cherry"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "cherry_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "cherry_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:crimson_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/crimson_planks", "texture": "block/crimson_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:crimson"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "crimson_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "crimson_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:dark_oak_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/dark_oak_planks", "texture": "block/dark_oak_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:dark_oak"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "dark_oak_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "dark_oak_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:heavy_weighted_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/iron_block", "texture": "block/iron_block" },
+      "states": { "power": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "variants": [
+        { "when": { "power": "0" }, "looks": [{ "model": "heavy_weighted_pressure_plate" }] },
+        { "when": { "power": "1" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "10" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "11" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "12" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "13" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "14" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "15" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "2" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "3" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "4" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "5" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "6" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "7" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "8" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] },
+        { "when": { "power": "9" }, "looks": [{ "model": "heavy_weighted_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:jungle_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/jungle_planks", "texture": "block/jungle_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:jungle"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "jungle_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "jungle_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:light_weighted_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/gold_block", "texture": "block/gold_block" },
+      "states": { "power": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
+      "variants": [
+        { "when": { "power": "0" }, "looks": [{ "model": "light_weighted_pressure_plate" }] },
+        { "when": { "power": "1" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "10" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "11" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "12" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "13" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "14" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "15" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "2" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "3" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "4" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "5" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "6" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "7" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "8" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] },
+        { "when": { "power": "9" }, "looks": [{ "model": "light_weighted_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:mangrove_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/mangrove_planks", "texture": "block/mangrove_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:mangrove"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "mangrove_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "mangrove_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:oak_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/oak_planks", "texture": "block/oak_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:oak"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "oak_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "oak_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:pale_oak_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/pale_oak_planks", "texture": "block/pale_oak_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:pale_oak"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "pale_oak_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "pale_oak_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:polished_blackstone_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/polished_blackstone", "texture": "block/polished_blackstone" },
+      "states": { "powered": ["false", "true"] },
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "polished_blackstone_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "polished_blackstone_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:poplar_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/poplar_planks", "texture": "block/poplar_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:poplar"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "poplar_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "poplar_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:spruce_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/spruce_planks", "texture": "block/spruce_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:spruce"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "spruce_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "spruce_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:stone_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/extra/stone_extra", "texture": "block/stone" },
+      "states": { "powered": ["false", "true"] },
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "stone_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "stone_pressure_plate_down" }] }
+      ]
+    },
+    {
+      "id": "base:warped_pressure_plate",
+      "kind": "pressurePlate",
+      "template": "pressure_plate_up",
+      "textures": { "particle": "block/warped_planks", "texture": "block/warped_planks" },
+      "states": { "powered": ["false", "true"] },
+      "tags": ["wood:warped"],
+      "variants": [
+        { "when": { "powered": "false" }, "looks": [{ "model": "warped_pressure_plate" }] },
+        { "when": { "powered": "true" }, "looks": [{ "model": "warped_pressure_plate_down" }] }
+      ]
+    }
+  ]
+}

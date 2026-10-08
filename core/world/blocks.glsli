@@ -1,0 +1,43 @@
+struct BlockType { // GpuBlockTable.Row, one per GPU block id (BlockVariants)
+	uint flags;        // F_*; from TINT_MAP_SHIFT: colormap + 1 of the tint (0 = the constant `tint`)
+	uint face[6];      // per face code (faces.glsli): layer, overlay, UV quarter turns, tint, emission (GpuBlockTable FACE_*); F_MODEL: looks (LOOK_*)
+	uint looks;
+	vec4 tint;         // linear rgb of the tinted faces and voxels; fluids: absorption, w = surface height; volumes: w = density (1/m)
+	vec4 light_color;  // rgb * intensity, w = range in blocks; lit variants only
+};
+layout(set = WORLD_SET, binding = WB_TYPES, std430) restrict readonly buffer Types { BlockType types[]; };
+layout(set = WORLD_SET, binding = WB_TEX, std430) restrict readonly buffer Tex { uint texels[]; }; // per layer: 32,16,8,4,2,1 mips
+layout(set = WORLD_SET, binding = WB_COLORMAPS, std430) restrict readonly buffer Colormaps { uint colormaps[]; };
+
+uint block_word(uint id) { return id | types[id].flags << PAL_FLAG_SHIFT; }
+
+vec4 texel4(int layer, int lvl, vec2 uv) { // rgb in sRGB
+	int s = TEX_SIZE >> lvl;
+	ivec2 p = clamp(ivec2(uv * float(s)), ivec2(0), ivec2(s - 1));
+	return unpackUnorm4x8(texels[layer * TEXELS_PER_LAYER + MIP_OFS[lvl] + p.x + p.y * s]);
+}
+vec3 to_linear(vec3 srgb) { return pow(srgb, vec3(2.2)); }
+
+vec3 colormap(uint m, vec2 climate) {
+	float t = clamp(climate.x, 0.0, 1.0);
+	ivec2 p = ivec2((1.0 - vec2(t, clamp(climate.y, 0.0, 1.0) * t)) * float(COLORMAP_SIZE - 1));
+	return to_linear(unpackUnorm4x8(colormaps[m * uint(COLORMAP_SIZE * COLORMAP_SIZE) + uint(p.x + p.y * COLORMAP_SIZE)]).rgb);
+}
+vec3 block_tint(uint id, vec3 p) {
+	uint m = types[id].flags >> TINT_MAP_SHIFT;
+	return m == 0u ? types[id].tint.rgb : colormap(m - 1u, gen_climate(ivec2(floor(p.xz))));
+}
+
+uint face_word(uint id, int axis, vec3 n) { return types[id].face[face_code(axis, n[axis] > 0.0)]; }
+int face_layer(uint w) { return int(w & FACE_LAYER_MASK); }
+int face_overlay(uint w) { return int((w >> FACE_OVERLAY_SHIFT) & FACE_LAYER_MASK) - 1; } // -1 = none
+float face_emission(uint w) { return float(w >> FACE_EMISSION_SHIFT) / float(FACE_EMISSION_MAX); } // 0..1, x EmissionScale x albedo
+vec3 face_tint(uint id, uint w, vec3 p) { return (w & FACE_TINT) != 0u ? block_tint(id, p) : vec3(1.0); }
+
+// Face UVs seen from outside, row 0 at the top (Minecraft's, BlockFacing.Frame), turned by the face's quarter turns.
+vec2 face_uv(vec3 p, int axis, vec3 n, uint w) {
+	bool pos = n[axis] > 0.0;
+	vec2 uv = fract(axis == 1 ? vec2(p.x, pos ? p.z : -p.z) : axis == 0 ? vec2(pos ? -p.z : p.z, -p.y) : vec2(pos ? p.x : -p.x, -p.y));
+	uint r = (w >> FACE_ROT_SHIFT) & 3u;
+	return r == 0u ? uv : r == 1u ? vec2(uv.y, 1.0 - uv.x) : r == 2u ? 1.0 - uv : vec2(1.0 - uv.y, uv.x);
+}

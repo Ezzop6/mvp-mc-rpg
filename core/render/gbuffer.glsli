@@ -1,0 +1,6 @@
+// Albedo rgb is sRGB with v1's gamma (to_linear), so texels can be stored as they are.
+vec4 albedo_encode(vec3 linear_rgb, float emission) { return vec4(pow(linear_rgb, vec3(1.0 / 2.2)), emission); }
+vec3 albedo_decode(vec4 a) { return pow(a.rgb, vec3(2.2)); }
+
+uint hit_face(uint hit) { return hit & HIT_FACE_MASK; }
+vec3 hit_normal(uint face) { vec3 n = vec3(0.0); n[face >> 1] = (face & 1u) != 0u ? 1.0 : -1.0; return n; }

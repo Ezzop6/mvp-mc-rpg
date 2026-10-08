@@ -1,0 +1,103 @@
+// v1 resolve.compute on Color, upscaling: each output pixel accumulates the jittered render samples near it, reprojected Catmull-Rom history clipped to their variance box in tonemapped YCoCg.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "camera.glsli"
+layout(set = 0, binding = 0, std430) restrict readonly buffer ParamsBuf { PARAMS } P;
+layout(set = 0, binding = 2, rgba16f) restrict readonly uniform image2D color_in;
+layout(set = 0, binding = 3, r32f) restrict readonly uniform image2D depth_in;
+layout(set = 0, binding = 4, rgba16f) restrict readonly uniform image2D hist_in;    // output size, rgb tonemapped YCoCg, a = view depth m (0 sky, < 0 none)
+layout(set = 0, binding = 5, rgba16f) restrict writeonly uniform image2D hist_out;
+layout(set = 0, binding = 6, rgba16f) restrict writeonly uniform image2D out_color; // a = weight of the current frame
+
+const int TAPS = 9;
+
+// Reversible c / (1 + max): bright samples don't dominate the box and the blend (less flicker), the clip works on what is seen.
+vec3 to_ycocg(vec3 c) { c /= 1.0 + max(c.r, max(c.g, c.b)); return vec3(0.25 * c.r + 0.5 * c.g + 0.25 * c.b, 0.5 * c.r - 0.5 * c.b, -0.25 * c.r + 0.5 * c.g - 0.25 * c.b); }
+vec3 from_ycocg(vec3 y) { vec3 c = max(vec3(y.x + y.y - y.z, y.x + y.z, y.x - y.y - y.z), vec3(0.0)); return c / max(1.0 - max(c.r, max(c.g, c.b)), 1e-3); }
+vec4 catmull_rom_weights(float f) { return vec4(f * (-0.5 + f * (1.0 - 0.5 * f)), 1.0 + f * f * (-2.5 + 1.5 * f), f * (0.5 + f * (2.0 - 1.5 * f)), f * f * (-0.5 + 0.5 * f)); }
+
+// Catmull-Rom over the 4x4 history texels around p; returns the bilinear share of the inner 2x2 whose depth fits zr (v1 bilinear_light).
+float history(vec2 p, ivec2 size, vec2 zr, bool sky, out vec3 c) {
+	ivec2 i = ivec2(floor(p));
+	vec2 f = p - vec2(i);
+	vec4 wx = catmull_rom_weights(f.x), wy = catmull_rom_weights(f.y);
+	float kept = 0.0;
+	c = vec3(0.0);
+	for (int y = 0; y < 4; y++)
+		for (int x = 0; x < 4; x++) {
+			vec4 h = imageLoad(hist_in, clamp(i + ivec2(x - 1, y - 1), ivec2(0), size - 1));
+			c += h.rgb * (wx[x] * wy[y]);
+			if (x == 0 || x == 3 || y == 0 || y == 3) continue;
+			bool ok = h.a >= 0.0 && (h.a == 0.0 ? sky : h.a >= zr.x * 0.97 - 0.05 && h.a <= zr.y * 1.03 + 0.05);
+			kept += ok ? (x == 2 ? f.x : 1.0 - f.x) * (y == 2 ? f.y : 1.0 - f.y) : 0.0;
+		}
+	return kept;
+}
+
+// Towards the box centre along the line to h (keeps the hue, no per-channel clamp).
+vec3 clip_box(vec3 h, vec3 lo, vec3 hi) {
+	vec3 c = 0.5 * (lo + hi), e = 0.5 * (hi - lo) + 1e-4, v = h - c, a = abs(v / e);
+	float m = max(a.x, max(a.y, a.z));
+	return m > 1.0 ? c + v / m : h;
+}
+
+void main() {
+	ivec2 o = ivec2(gl_GlobalInvocationID.xy), osize = imageSize(out_color), isize = imageSize(color_in);
+	if (any(greaterThanEqual(o, osize))) return;
+	vec2 uv = (vec2(o) + 0.5) / vec2(osize), up = vec2(osize) / vec2(isize);
+	vec2 ip = uv * vec2(isize) - 0.5 - cam.jitter.xy;
+	ivec2 base = ivec2(floor(ip + 0.5));
+
+	vec3 wide = vec3(0.0), fine = vec3(0.0), mn = vec3(1e9), mx = vec3(-1e9), m1 = vec3(0.0), m2 = vec3(0.0);
+	float wsum = 0.0, nsum = 0.0, nearest = 1e9, depth = 0.0, front = 1e9, back = 0.0;
+	bool any_sky = false;
+	for (int k = 0; k < TAPS; k++) {
+		ivec2 j = clamp(base + ivec2(k % 3 - 1, k / 3 - 1), ivec2(0), isize - 1);
+		vec3 c = to_ycocg(imageLoad(color_in, j).rgb);
+		float z = imageLoad(depth_in, j).r * dot(pixel_dir(j, isize), cam.fwd.xyz) * BS;
+		vec2 d = ip - vec2(j), dn = d * up;
+		float d2 = dot(d, d), w = exp(-2.29 * d2), wn = exp(-2.29 * dot(dn, dn));
+		wide += c * w; wsum += w;
+		fine += c * wn; nsum += wn;
+		mn = min(mn, c); mx = max(mx, c);
+		m1 += c; m2 += c * c;
+		if (d2 < nearest) { nearest = d2; depth = z; }
+		if (z > 0.0) { front = min(front, z); back = max(back, z); } else any_sky = true;
+	}
+	vec3 cur = wide / wsum;
+	float seen = min(nsum, 1.0);
+
+	vec3 dir = view_dir(uv * 2.0 - 1.0), moved = cam.frac.xyz - cam.prev_frac.xyz;
+	vec3 rel = depth > 0.0 ? dir * (depth / BS / dot(dir, cam.fwd.xyz)) + moved : dir;
+	float z = dot(rel, cam.prev_fwd.xyz);
+	vec2 puv = vec2(dot(rel, cam.prev_right.xyz) / (z * cam.fwd.w * cam.right.w), -dot(rel, cam.prev_up.xyz) / (z * cam.fwd.w)) * 0.5 + 0.5;
+	bool valid = z > 0.0 && all(greaterThanEqual(puv, vec2(0.0))) && all(lessThanEqual(puv, vec2(1.0)));
+
+	vec3 res = cur, clipped = vec3(0.0);
+	float weight = 1.0;
+	bool used = false;
+	if (valid) {
+		float prev_scale = dot(dir, cam.prev_fwd.xyz) / dot(dir, cam.fwd.xyz), prev_ofs = dot(moved, cam.prev_fwd.xyz) * BS;
+		vec2 zr = front < 1e9 ? vec2(front, back) * prev_scale + prev_ofs : vec2(-1.0);
+		vec3 h;
+		if (history(puv * vec2(osize) - 0.5, osize, zr, any_sky, h) > 0.3) {
+			vec3 mean = m1 / float(TAPS), sigma = sqrt(max(m2 / float(TAPS) - mean * mean, vec3(0.0)));
+			float px_per_block = depth > 0.0 ? BS / max(depth * cam.lens.x, 1e-6) : 100.0;
+			float far = clamp((2.0 - px_per_block) / 1.5, 0.0, 1.0);
+			float px_moved = length((puv - uv) * vec2(osize));
+			float motion = clamp(px_moved * 0.5, 0.0, 1.0), moving = clamp(px_moved * 2.0, 0.0, 1.0);
+			float k = mix(2.5, 1.0, motion);
+			vec3 hc = clip_box(h, max(mn, mean - k * sigma), min(mx, mean + k * sigma));
+			clipped = abs(hc - h);
+			weight = max(mix(0.07, 0.04, far), P.motion_blend * moving) * seen;
+			res = mix(hc, fine / max(nsum, 1e-6), weight);
+			used = true;
+		}
+	}
+
+	vec3 col = from_ycocg(res);
+#ifdef VIEW_TEMPORAL
+	col = !used ? vec3(1.0, 0.0, 0.0) : vec3(0.0, weight * 4.0, clipped.x / max(res.x, 0.05)); // red = no history, green = current weight x4, blue = clip
+#endif
+	imageStore(hist_out, o, vec4(res, depth));
+	imageStore(out_color, o, vec4(col, weight));
+}

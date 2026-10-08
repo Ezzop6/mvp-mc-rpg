@@ -1,0 +1,344 @@
+{
+  "category": "nether_end",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:basalt",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/basalt_top" }, "bottom": { "texture": "block/basalt_top" }, "side": { "texture": "block/basalt_side" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "cubes": {
+        "basalt": { "top": { "texture": "block/basalt_top" }, "bottom": { "texture": "block/basalt_top" }, "side": { "texture": "block/basalt_side" } }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "basalt", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "basalt" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "basalt", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:blackstone",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/blackstone_top" }, "bottom": { "texture": "block/blackstone_top" }, "side": { "texture": "block/blackstone" } },
+      "cubes": {
+        "blackstone": {
+          "top": { "texture": "block/blackstone_top" },
+          "bottom": { "texture": "block/blackstone_top" },
+          "side": { "texture": "block/blackstone" }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "blackstone" }] }]
+    },
+    {
+      "id": "base:chiseled_nether_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/chiseled_nether_bricks" } },
+      "cubes": { "chiseled_nether_bricks": { "all": { "texture": "block/chiseled_nether_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "chiseled_nether_bricks" }] }]
+    },
+    {
+      "id": "base:chiseled_polished_blackstone",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/chiseled_polished_blackstone" } },
+      "cubes": { "chiseled_polished_blackstone": { "all": { "texture": "block/chiseled_polished_blackstone" } } },
+      "variants": [{ "looks": [{ "cube": "chiseled_polished_blackstone" }] }]
+    },
+    {
+      "id": "base:cracked_nether_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cracked_nether_bricks" } },
+      "cubes": { "cracked_nether_bricks": { "all": { "texture": "block/cracked_nether_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "cracked_nether_bricks" }] }]
+    },
+    {
+      "id": "base:cracked_polished_blackstone_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cracked_polished_blackstone_bricks" } },
+      "cubes": { "cracked_polished_blackstone_bricks": { "all": { "texture": "block/cracked_polished_blackstone_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "cracked_polished_blackstone_bricks" }] }]
+    },
+    {
+      "id": "base:crimson_nylium",
+      "kind": "cube",
+      "template": "cube_bottom_top",
+      "faces": {
+        "top": { "texture": "block/crimson_nylium", "emission": 0.015 },
+        "bottom": { "texture": "block/netherrack" },
+        "side": { "texture": "block/crimson_nylium_side", "emission": 0.001 }
+      },
+      "tags": ["wood:crimson"],
+      "cubes": {
+        "crimson_nylium": {
+          "top": { "texture": "block/crimson_nylium", "emission": 0.015 },
+          "bottom": { "texture": "block/netherrack" },
+          "side": { "texture": "block/crimson_nylium_side", "emission": 0.001 }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "crimson_nylium" }] }]
+    },
+    {
+      "id": "base:crying_obsidian",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/crying_obsidian", "emission": 0.021 } },
+      "light": { "level": 10, "color": "#8c21ff" },
+      "cubes": { "crying_obsidian": { "all": { "texture": "block/crying_obsidian", "emission": 0.021 } } },
+      "variants": [{ "looks": [{ "cube": "crying_obsidian" }] }]
+    },
+    {
+      "id": "base:end_gateway",
+      "kind": "entity",
+      "textures": { "particle": "block/obsidian" },
+      "light": { "level": 15, "color": "#b3b0ff" },
+      "tags": ["placeholder"],
+      "cubes": { "end_gateway": { "all": { "texture": "block/obsidian" } } },
+      "variants": [{ "looks": [{ "cube": "end_gateway" }] }]
+    },
+    {
+      "id": "base:end_portal",
+      "kind": "entity",
+      "textures": { "particle": "block/obsidian" },
+      "light": { "level": 15, "color": "#b3b0ff" },
+      "tags": ["placeholder"],
+      "cubes": { "end_portal": { "all": { "texture": "block/obsidian" } } },
+      "variants": [{ "looks": [{ "cube": "end_portal" }] }]
+    },
+    {
+      "id": "base:end_stone",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/end_stone" } },
+      "cubes": { "end_stone": { "all": { "texture": "block/end_stone" } } },
+      "variants": [{ "looks": [{ "cube": "end_stone" }] }]
+    },
+    {
+      "id": "base:end_stone_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/end_stone_bricks" } },
+      "cubes": { "end_stone_bricks": { "all": { "texture": "block/end_stone_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "end_stone_bricks" }] }]
+    },
+    {
+      "id": "base:gilded_blackstone",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/gilded_blackstone" } },
+      "cubes": { "gilded_blackstone": { "all": { "texture": "block/gilded_blackstone" } } },
+      "variants": [{ "looks": [{ "cube": "gilded_blackstone" }] }]
+    },
+    {
+      "id": "base:magma_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/magma", "emission": 0.398 } },
+      "light": { "level": 3, "color": "#ff4a05" },
+      "tags": ["animated"],
+      "cubes": { "magma_block": { "all": { "texture": "block/magma", "emission": 0.398 } } },
+      "variants": [{ "looks": [{ "cube": "magma_block" }] }]
+    },
+    {
+      "id": "base:nether_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/nether_bricks" } },
+      "cubes": { "nether_bricks": { "all": { "texture": "block/nether_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "nether_bricks" }] }]
+    },
+    {
+      "id": "base:nether_portal",
+      "kind": "custom",
+      "textures": { "particle": "block/nether_portal", "portal": "block/nether_portal" },
+      "surface": "translucent",
+      "emission": 0.008,
+      "light": { "level": 11, "color": "#8009ff" },
+      "states": { "axis": ["x", "z"] },
+      "tags": ["animated"],
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "model": "nether_portal_ns" }] },
+        { "when": { "axis": "z" }, "looks": [{ "model": "nether_portal_ew" }] }
+      ]
+    },
+    {
+      "id": "base:nether_wart_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/nether_wart_block" } },
+      "cubes": { "nether_wart_block": { "all": { "texture": "block/nether_wart_block" } } },
+      "variants": [{ "looks": [{ "cube": "nether_wart_block" }] }]
+    },
+    {
+      "id": "base:netherrack",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/netherrack" } },
+      "cubes": { "netherrack": { "all": { "texture": "block/netherrack" } } },
+      "variants": [{ "looks": [{ "cube": "netherrack" }] }]
+    },
+    {
+      "id": "base:obsidian",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/obsidian" } },
+      "cubes": { "obsidian": { "all": { "texture": "block/obsidian" } } },
+      "variants": [{ "looks": [{ "cube": "obsidian" }] }]
+    },
+    {
+      "id": "base:polished_basalt",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/polished_basalt_top" },
+        "bottom": { "texture": "block/polished_basalt_top" },
+        "side": { "texture": "block/polished_basalt_side" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "cubes": {
+        "polished_basalt": {
+          "top": { "texture": "block/polished_basalt_top" },
+          "bottom": { "texture": "block/polished_basalt_top" },
+          "side": { "texture": "block/polished_basalt_side" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "polished_basalt", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "polished_basalt" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "polished_basalt", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:polished_blackstone",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/polished_blackstone" } },
+      "tags": ["random_rotation"],
+      "cubes": { "polished_blackstone": { "all": { "texture": "block/polished_blackstone" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "polished_blackstone" },
+            { "cube": "polished_blackstone", "y": 90 },
+            { "cube": "polished_blackstone", "y": 180 },
+            { "cube": "polished_blackstone", "y": 270 },
+            { "cube": "polished_blackstone", "x": 90 },
+            { "cube": "polished_blackstone", "x": 90, "y": 90 },
+            { "cube": "polished_blackstone", "x": 90, "y": 180 },
+            { "cube": "polished_blackstone", "x": 90, "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:polished_blackstone_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/polished_blackstone_bricks" } },
+      "cubes": { "polished_blackstone_bricks": { "all": { "texture": "block/polished_blackstone_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "polished_blackstone_bricks" }] }]
+    },
+    {
+      "id": "base:purpur_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/purpur_block" } },
+      "tags": ["random_rotation"],
+      "cubes": { "purpur_block": { "all": { "texture": "block/purpur_block" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "purpur_block" },
+            { "cube": "purpur_block", "y": 90 },
+            { "cube": "purpur_block", "y": 180 },
+            { "cube": "purpur_block", "y": 270 },
+            { "cube": "purpur_block", "x": 90 },
+            { "cube": "purpur_block", "x": 90, "y": 90 },
+            { "cube": "purpur_block", "x": 90, "y": 180 },
+            { "cube": "purpur_block", "x": 90, "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:purpur_pillar",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/purpur_pillar_top" },
+        "bottom": { "texture": "block/purpur_pillar_top" },
+        "side": { "texture": "block/purpur_pillar_side" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "cubes": {
+        "purpur_pillar": {
+          "top": { "texture": "block/purpur_pillar_top" },
+          "bottom": { "texture": "block/purpur_pillar_top" },
+          "side": { "texture": "block/purpur_pillar_side" }
+        },
+        "purpur_pillar_horizontal": {
+          "top": { "texture": "block/purpur_pillar_top", "rotation": 180 },
+          "bottom": { "texture": "block/purpur_pillar_top" },
+          "side": { "texture": "block/purpur_pillar_side" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "purpur_pillar_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "purpur_pillar" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "purpur_pillar_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:red_nether_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/red_nether_bricks" } },
+      "tags": ["color:red"],
+      "cubes": { "red_nether_bricks": { "all": { "texture": "block/red_nether_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "red_nether_bricks" }] }]
+    },
+    {
+      "id": "base:smooth_basalt",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/smooth_basalt" } },
+      "cubes": { "smooth_basalt": { "all": { "texture": "block/smooth_basalt" } } },
+      "variants": [{ "looks": [{ "cube": "smooth_basalt" }] }]
+    },
+    {
+      "id": "base:warped_nylium",
+      "kind": "cube",
+      "template": "cube_bottom_top",
+      "faces": {
+        "top": { "texture": "block/warped_nylium", "emission": 0.012 },
+        "bottom": { "texture": "block/netherrack" },
+        "side": { "texture": "block/warped_nylium_side", "emission": 0.001 }
+      },
+      "tags": ["wood:warped"],
+      "cubes": {
+        "warped_nylium": {
+          "top": { "texture": "block/warped_nylium", "emission": 0.012 },
+          "bottom": { "texture": "block/netherrack" },
+          "side": { "texture": "block/warped_nylium_side", "emission": 0.001 }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "warped_nylium" }] }]
+    },
+    {
+      "id": "base:warped_wart_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/warped_wart_block", "emission": 0.005 } },
+      "tags": ["wood:warped"],
+      "cubes": { "warped_wart_block": { "all": { "texture": "block/warped_wart_block", "emission": 0.005 } } },
+      "variants": [{ "looks": [{ "cube": "warped_wart_block" }] }]
+    }
+  ]
+}

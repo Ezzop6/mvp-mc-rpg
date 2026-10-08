@@ -1,0 +1,37 @@
+{
+  "Name": "gi-glass",
+  "Format": 1,
+  "Dimensions": {
+    "overworld": {
+      "Generator": "flat",
+      "GeneratorVersion": 1,
+      "Params": null
+    }
+  },
+  "Blocks": {
+    "base:air": 0,
+    "base:glowstone": 440,
+    "base:lava": 542,
+    "base:lime_concrete": 594,
+    "base:red_concrete": 940,
+    "base:red_stained_glass": 959,
+    "base:sea_lantern": 996,
+    "base:stone": 1055,
+    "base:torch": 1135,
+    "base:white_concrete": 1267
+  },
+  "Models": {},
+  "Player": {
+    "Dimension": "overworld",
+    "Position": {
+      "X": 60.8,
+      "Y": 1.7,
+      "Z": 0.8
+    },
+    "Yaw": -135,
+    "Pitch": -15.000001
+  },
+  "TimeOfDay": 13,
+  "Day": 0,
+  "Bookmarks": []
+}

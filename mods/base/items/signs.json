@@ -1,0 +1,32 @@
+{
+  "category": "signs",
+  "source": "import",
+  "entries": [
+    { "id": "base:acacia_hanging_sign", "block": "base:acacia_hanging_sign" },
+    { "id": "base:acacia_sign", "block": "base:acacia_sign" },
+    { "id": "base:bamboo_hanging_sign", "block": "base:bamboo_hanging_sign" },
+    { "id": "base:bamboo_sign", "block": "base:bamboo_sign" },
+    { "id": "base:birch_hanging_sign", "block": "base:birch_hanging_sign" },
+    { "id": "base:birch_sign", "block": "base:birch_sign" },
+    { "id": "base:cherry_hanging_sign", "block": "base:cherry_hanging_sign" },
+    { "id": "base:cherry_sign", "block": "base:cherry_sign" },
+    { "id": "base:crimson_hanging_sign", "block": "base:crimson_hanging_sign" },
+    { "id": "base:crimson_sign", "block": "base:crimson_sign" },
+    { "id": "base:dark_oak_hanging_sign", "block": "base:dark_oak_hanging_sign" },
+    { "id": "base:dark_oak_sign", "block": "base:dark_oak_sign" },
+    { "id": "base:jungle_hanging_sign", "block": "base:jungle_hanging_sign" },
+    { "id": "base:jungle_sign", "block": "base:jungle_sign" },
+    { "id": "base:mangrove_hanging_sign", "block": "base:mangrove_hanging_sign" },
+    { "id": "base:mangrove_sign", "block": "base:mangrove_sign" },
+    { "id": "base:oak_hanging_sign", "block": "base:oak_hanging_sign" },
+    { "id": "base:oak_sign", "block": "base:oak_sign" },
+    { "id": "base:pale_oak_hanging_sign", "block": "base:pale_oak_hanging_sign" },
+    { "id": "base:pale_oak_sign", "block": "base:pale_oak_sign" },
+    { "id": "base:poplar_hanging_sign", "block": "base:poplar_hanging_sign" },
+    { "id": "base:poplar_sign", "block": "base:poplar_sign" },
+    { "id": "base:spruce_hanging_sign", "block": "base:spruce_hanging_sign" },
+    { "id": "base:spruce_sign", "block": "base:spruce_sign" },
+    { "id": "base:warped_hanging_sign", "block": "base:warped_hanging_sign" },
+    { "id": "base:warped_sign", "block": "base:warped_sign" }
+  ]
+}

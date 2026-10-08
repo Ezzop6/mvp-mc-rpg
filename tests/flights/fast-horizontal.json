@@ -1,0 +1,62 @@
+{
+  "Note": "6 km at 300 m/s, then 2 s at 1000 m/s: near stays complete, far detail drops and comes back",
+  "Scene": "random-default",
+  "TimeOfDay": 12,
+  "DriftWindow": 2,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": 0,
+        "Y": 80,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -10
+    },
+    {
+      "T": 10,
+      "Pos": {
+        "X": 3000,
+        "Y": 80,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -10
+    },
+    {
+      "T": 20,
+      "Pos": {
+        "X": 6000,
+        "Y": 80,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -10
+    },
+    {
+      "T": 21,
+      "Pos": {
+        "X": 7000,
+        "Y": 80,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -10
+    },
+    {
+      "T": 22,
+      "Pos": {
+        "X": 8000,
+        "Y": 80,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -10
+    }
+  ],
+  "Shots": [
+    5,
+    21.5
+  ]
+}

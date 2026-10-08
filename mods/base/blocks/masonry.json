@@ -1,0 +1,656 @@
+{
+  "category": "masonry",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/bricks" } },
+      "cubes": { "bricks": { "all": { "texture": "block/bricks" } } },
+      "variants": [{ "looks": [{ "cube": "bricks" }] }]
+    },
+    {
+      "id": "base:chiseled_cinnabar",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/chiseled_cinnabar" } },
+      "cubes": { "chiseled_cinnabar": { "all": { "texture": "block/chiseled_cinnabar" } } },
+      "variants": [{ "looks": [{ "cube": "chiseled_cinnabar" }] }]
+    },
+    {
+      "id": "base:chiseled_deepslate",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/chiseled_deepslate" } },
+      "cubes": { "chiseled_deepslate": { "all": { "texture": "block/chiseled_deepslate" } } },
+      "variants": [{ "looks": [{ "cube": "chiseled_deepslate" }] }]
+    },
+    {
+      "id": "base:chiseled_quartz_block",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/chiseled_quartz_block_top" },
+        "bottom": { "texture": "block/chiseled_quartz_block_top" },
+        "side": { "texture": "block/chiseled_quartz_block" }
+      },
+      "cubes": {
+        "chiseled_quartz_block": {
+          "top": { "texture": "block/chiseled_quartz_block_top" },
+          "bottom": { "texture": "block/chiseled_quartz_block_top" },
+          "side": { "texture": "block/chiseled_quartz_block" }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "chiseled_quartz_block" }] }]
+    },
+    {
+      "id": "base:chiseled_red_sandstone",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/red_sandstone_top" },
+        "bottom": { "texture": "block/red_sandstone_top" },
+        "side": { "texture": "block/chiseled_red_sandstone" }
+      },
+      "tags": ["color:red"],
+      "cubes": {
+        "chiseled_red_sandstone": {
+          "top": { "texture": "block/red_sandstone_top" },
+          "bottom": { "texture": "block/red_sandstone_top" },
+          "side": { "texture": "block/chiseled_red_sandstone" }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "chiseled_red_sandstone" }] }]
+    },
+    {
+      "id": "base:chiseled_resin_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/chiseled_resin_bricks" } },
+      "cubes": { "chiseled_resin_bricks": { "all": { "texture": "block/chiseled_resin_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "chiseled_resin_bricks" }] }]
+    },
+    {
+      "id": "base:chiseled_sandstone",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/sandstone_top" },
+        "bottom": { "texture": "block/sandstone_top" },
+        "side": { "texture": "block/chiseled_sandstone" }
+      },
+      "cubes": {
+        "chiseled_sandstone": {
+          "top": { "texture": "block/sandstone_top" },
+          "bottom": { "texture": "block/sandstone_top" },
+          "side": { "texture": "block/chiseled_sandstone" }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "chiseled_sandstone" }] }]
+    },
+    {
+      "id": "base:chiseled_stone_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/chiseled_stone_bricks" } },
+      "cubes": { "chiseled_stone_bricks": { "all": { "texture": "block/chiseled_stone_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "chiseled_stone_bricks" }] }]
+    },
+    {
+      "id": "base:chiseled_sulfur",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/chiseled_sulfur" } },
+      "cubes": { "chiseled_sulfur": { "all": { "texture": "block/chiseled_sulfur" } } },
+      "variants": [{ "looks": [{ "cube": "chiseled_sulfur" }] }]
+    },
+    {
+      "id": "base:chiseled_tuff",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/chiseled_tuff_top" },
+        "bottom": { "texture": "block/chiseled_tuff_top" },
+        "side": { "texture": "block/chiseled_tuff" }
+      },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "chiseled_tuff": {
+          "top": { "texture": "block/chiseled_tuff_top" },
+          "bottom": { "texture": "block/chiseled_tuff_top" },
+          "side": { "texture": "block/chiseled_tuff" }
+        }
+      },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "chiseled_tuff" },
+            { "cube": "chiseled_tuff", "y": 90 },
+            { "cube": "chiseled_tuff", "y": 180 },
+            { "cube": "chiseled_tuff", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:chiseled_tuff_bricks",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/chiseled_tuff_bricks_top" },
+        "bottom": { "texture": "block/chiseled_tuff_bricks_top" },
+        "side": { "texture": "block/chiseled_tuff_bricks" }
+      },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "chiseled_tuff_bricks": {
+          "top": { "texture": "block/chiseled_tuff_bricks_top" },
+          "bottom": { "texture": "block/chiseled_tuff_bricks_top" },
+          "side": { "texture": "block/chiseled_tuff_bricks" }
+        }
+      },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "chiseled_tuff_bricks" },
+            { "cube": "chiseled_tuff_bricks", "y": 90 },
+            { "cube": "chiseled_tuff_bricks", "y": 180 },
+            { "cube": "chiseled_tuff_bricks", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:cinnabar_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cinnabar_bricks" } },
+      "cubes": { "cinnabar_bricks": { "all": { "texture": "block/cinnabar_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "cinnabar_bricks" }] }]
+    },
+    {
+      "id": "base:cobblestone",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cobblestone" } },
+      "cubes": { "cobblestone": { "all": { "texture": "block/cobblestone" } } },
+      "variants": [{ "looks": [{ "cube": "cobblestone" }] }]
+    },
+    {
+      "id": "base:cracked_deepslate_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cracked_deepslate_bricks" } },
+      "cubes": { "cracked_deepslate_bricks": { "all": { "texture": "block/cracked_deepslate_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "cracked_deepslate_bricks" }] }]
+    },
+    {
+      "id": "base:cracked_deepslate_tiles",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cracked_deepslate_tiles" } },
+      "cubes": { "cracked_deepslate_tiles": { "all": { "texture": "block/cracked_deepslate_tiles" } } },
+      "variants": [{ "looks": [{ "cube": "cracked_deepslate_tiles" }] }]
+    },
+    {
+      "id": "base:cracked_stone_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cracked_stone_bricks" } },
+      "cubes": { "cracked_stone_bricks": { "all": { "texture": "block/cracked_stone_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "cracked_stone_bricks" }] }]
+    },
+    {
+      "id": "base:cut_red_sandstone",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/red_sandstone_top" },
+        "bottom": { "texture": "block/red_sandstone_top" },
+        "side": { "texture": "block/cut_red_sandstone" }
+      },
+      "tags": ["color:red"],
+      "cubes": {
+        "cut_red_sandstone": {
+          "top": { "texture": "block/red_sandstone_top" },
+          "bottom": { "texture": "block/red_sandstone_top" },
+          "side": { "texture": "block/cut_red_sandstone" }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "cut_red_sandstone" }] }]
+    },
+    {
+      "id": "base:cut_sandstone",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/sandstone_top" }, "bottom": { "texture": "block/sandstone_top" }, "side": { "texture": "block/cut_sandstone" } },
+      "cubes": {
+        "cut_sandstone": {
+          "top": { "texture": "block/sandstone_top" },
+          "bottom": { "texture": "block/sandstone_top" },
+          "side": { "texture": "block/cut_sandstone" }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "cut_sandstone" }] }]
+    },
+    {
+      "id": "base:dark_prismarine",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/dark_prismarine" } },
+      "cubes": { "dark_prismarine": { "all": { "texture": "block/dark_prismarine" } } },
+      "variants": [{ "looks": [{ "cube": "dark_prismarine" }] }]
+    },
+    {
+      "id": "base:deepslate_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/deepslate_bricks" } },
+      "cubes": { "deepslate_bricks": { "all": { "texture": "block/deepslate_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "deepslate_bricks" }] }]
+    },
+    {
+      "id": "base:deepslate_tiles",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/deepslate_tiles" } },
+      "cubes": { "deepslate_tiles": { "all": { "texture": "block/deepslate_tiles" } } },
+      "variants": [{ "looks": [{ "cube": "deepslate_tiles" }] }]
+    },
+    {
+      "id": "base:infested_chiseled_stone_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/chiseled_stone_bricks" } },
+      "cubes": { "chiseled_stone_bricks": { "all": { "texture": "block/chiseled_stone_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "chiseled_stone_bricks" }] }]
+    },
+    {
+      "id": "base:infested_cobblestone",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cobblestone" } },
+      "cubes": { "cobblestone": { "all": { "texture": "block/cobblestone" } } },
+      "variants": [{ "looks": [{ "cube": "cobblestone" }] }]
+    },
+    {
+      "id": "base:infested_cracked_stone_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cracked_stone_bricks" } },
+      "cubes": { "cracked_stone_bricks": { "all": { "texture": "block/cracked_stone_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "cracked_stone_bricks" }] }]
+    },
+    {
+      "id": "base:infested_mossy_stone_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/mossy_stone_bricks" } },
+      "cubes": { "mossy_stone_bricks": { "all": { "texture": "block/mossy_stone_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "mossy_stone_bricks" }] }]
+    },
+    {
+      "id": "base:infested_stone_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/stone_bricks" } },
+      "cubes": { "stone_bricks": { "all": { "texture": "block/stone_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "stone_bricks" }] }]
+    },
+    {
+      "id": "base:mossy_cobblestone",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/mossy_cobblestone" } },
+      "cubes": { "mossy_cobblestone": { "all": { "texture": "block/mossy_cobblestone" } } },
+      "variants": [{ "looks": [{ "cube": "mossy_cobblestone" }] }]
+    },
+    {
+      "id": "base:mossy_stone_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/mossy_stone_bricks" } },
+      "cubes": { "mossy_stone_bricks": { "all": { "texture": "block/mossy_stone_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "mossy_stone_bricks" }] }]
+    },
+    {
+      "id": "base:mud_bricks",
+      "kind": "cube",
+      "template": "cube_north_west_mirrored_all",
+      "faces": { "all": { "texture": "block/mud_bricks" } },
+      "cubes": { "mud_bricks_north_west_mirrored": { "all": { "texture": "block/mud_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "mud_bricks_north_west_mirrored" }] }]
+    },
+    {
+      "id": "base:polished_andesite",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/polished_andesite" } },
+      "tags": ["random_rotation"],
+      "cubes": { "polished_andesite": { "all": { "texture": "block/polished_andesite" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "polished_andesite" },
+            { "cube": "polished_andesite", "y": 180 },
+            { "cube": "polished_andesite", "x": 180 },
+            { "cube": "polished_andesite", "x": 180, "y": 180 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:polished_cinnabar",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/polished_cinnabar" } },
+      "tags": ["random_rotation"],
+      "cubes": { "polished_cinnabar": { "all": { "texture": "block/polished_cinnabar" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "polished_cinnabar" },
+            { "cube": "polished_cinnabar", "y": 90 },
+            { "cube": "polished_cinnabar", "y": 180 },
+            { "cube": "polished_cinnabar", "y": 270 },
+            { "cube": "polished_cinnabar", "x": 90 },
+            { "cube": "polished_cinnabar", "x": 90, "y": 90 },
+            { "cube": "polished_cinnabar", "x": 90, "y": 180 },
+            { "cube": "polished_cinnabar", "x": 90, "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:polished_deepslate",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/polished_deepslate" } },
+      "tags": ["random_rotation"],
+      "cubes": { "polished_deepslate": { "all": { "texture": "block/polished_deepslate" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "polished_deepslate" },
+            { "cube": "polished_deepslate", "y": 180 },
+            { "cube": "polished_deepslate", "x": 180 },
+            { "cube": "polished_deepslate", "x": 180, "y": 180 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:polished_diorite",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/polished_diorite" } },
+      "tags": ["random_rotation"],
+      "cubes": { "polished_diorite": { "all": { "texture": "block/polished_diorite" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "polished_diorite" },
+            { "cube": "polished_diorite", "y": 90 },
+            { "cube": "polished_diorite", "y": 180 },
+            { "cube": "polished_diorite", "y": 270 },
+            { "cube": "polished_diorite", "x": 90 },
+            { "cube": "polished_diorite", "x": 90, "y": 90 },
+            { "cube": "polished_diorite", "x": 90, "y": 180 },
+            { "cube": "polished_diorite", "x": 90, "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:polished_granite",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/polished_granite" } },
+      "tags": ["random_rotation"],
+      "cubes": { "polished_granite": { "all": { "texture": "block/polished_granite" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "polished_granite" },
+            { "cube": "polished_granite", "y": 90 },
+            { "cube": "polished_granite", "y": 180 },
+            { "cube": "polished_granite", "y": 270 },
+            { "cube": "polished_granite", "x": 90 },
+            { "cube": "polished_granite", "x": 90, "y": 90 },
+            { "cube": "polished_granite", "x": 90, "y": 180 },
+            { "cube": "polished_granite", "x": 90, "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:polished_sulfur",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/polished_sulfur" } },
+      "tags": ["random_rotation"],
+      "cubes": { "polished_sulfur": { "all": { "texture": "block/polished_sulfur" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "polished_sulfur" },
+            { "cube": "polished_sulfur", "y": 90 },
+            { "cube": "polished_sulfur", "y": 180 },
+            { "cube": "polished_sulfur", "y": 270 },
+            { "cube": "polished_sulfur", "x": 90 },
+            { "cube": "polished_sulfur", "x": 90, "y": 90 },
+            { "cube": "polished_sulfur", "x": 90, "y": 180 },
+            { "cube": "polished_sulfur", "x": 90, "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:polished_tuff",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/polished_tuff" } },
+      "tags": ["random_rotation"],
+      "cubes": { "polished_tuff": { "all": { "texture": "block/polished_tuff" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "polished_tuff" },
+            { "cube": "polished_tuff", "y": 90 },
+            { "cube": "polished_tuff", "y": 180 },
+            { "cube": "polished_tuff", "y": 270 },
+            { "cube": "polished_tuff", "x": 90 },
+            { "cube": "polished_tuff", "x": 90, "y": 90 },
+            { "cube": "polished_tuff", "x": 90, "y": 180 },
+            { "cube": "polished_tuff", "x": 90, "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:prismarine",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/prismarine" } },
+      "tags": ["animated"],
+      "cubes": { "prismarine": { "all": { "texture": "block/prismarine" } } },
+      "variants": [{ "looks": [{ "cube": "prismarine" }] }]
+    },
+    {
+      "id": "base:prismarine_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/prismarine_bricks" } },
+      "cubes": { "prismarine_bricks": { "all": { "texture": "block/prismarine_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "prismarine_bricks" }] }]
+    },
+    {
+      "id": "base:quartz_block",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/quartz_block_top" },
+        "bottom": { "texture": "block/quartz_block_top" },
+        "side": { "texture": "block/quartz_block_side" }
+      },
+      "cubes": {
+        "quartz_block": {
+          "top": { "texture": "block/quartz_block_top" },
+          "bottom": { "texture": "block/quartz_block_top" },
+          "side": { "texture": "block/quartz_block_side" }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "quartz_block" }] }]
+    },
+    {
+      "id": "base:quartz_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/quartz_bricks" } },
+      "cubes": { "quartz_bricks": { "all": { "texture": "block/quartz_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "quartz_bricks" }] }]
+    },
+    {
+      "id": "base:quartz_pillar",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/quartz_pillar_top" },
+        "bottom": { "texture": "block/quartz_pillar_top" },
+        "side": { "texture": "block/quartz_pillar_side" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "cubes": {
+        "quartz_pillar": {
+          "top": { "texture": "block/quartz_pillar_top" },
+          "bottom": { "texture": "block/quartz_pillar_top" },
+          "side": { "texture": "block/quartz_pillar_side" }
+        },
+        "quartz_pillar_horizontal": {
+          "top": { "texture": "block/quartz_pillar_top", "rotation": 180 },
+          "bottom": { "texture": "block/quartz_pillar_top" },
+          "side": { "texture": "block/quartz_pillar_side" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "quartz_pillar_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "quartz_pillar" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "quartz_pillar_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:red_sandstone",
+      "kind": "cube",
+      "template": "cube_bottom_top",
+      "faces": {
+        "top": { "texture": "block/red_sandstone_top" },
+        "bottom": { "texture": "block/red_sandstone_bottom" },
+        "side": { "texture": "block/red_sandstone" }
+      },
+      "tags": ["color:red"],
+      "cubes": {
+        "red_sandstone": {
+          "top": { "texture": "block/red_sandstone_top" },
+          "bottom": { "texture": "block/red_sandstone_bottom" },
+          "side": { "texture": "block/red_sandstone" }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "red_sandstone" }] }]
+    },
+    {
+      "id": "base:resin_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/resin_bricks" } },
+      "cubes": { "resin_bricks": { "all": { "texture": "block/resin_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "resin_bricks" }] }]
+    },
+    {
+      "id": "base:sandstone",
+      "kind": "cube",
+      "template": "cube_bottom_top",
+      "faces": { "top": { "texture": "block/sandstone_top" }, "bottom": { "texture": "block/sandstone_bottom" }, "side": { "texture": "block/sandstone" } },
+      "cubes": {
+        "sandstone": {
+          "top": { "texture": "block/sandstone_top" },
+          "bottom": { "texture": "block/sandstone_bottom" },
+          "side": { "texture": "block/sandstone" }
+        }
+      },
+      "variants": [{ "looks": [{ "cube": "sandstone" }] }]
+    },
+    {
+      "id": "base:smooth_quartz",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/quartz_block_bottom" } },
+      "cubes": { "smooth_quartz": { "all": { "texture": "block/quartz_block_bottom" } } },
+      "variants": [{ "looks": [{ "cube": "smooth_quartz" }] }]
+    },
+    {
+      "id": "base:smooth_red_sandstone",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/red_sandstone_top" } },
+      "tags": ["color:red"],
+      "cubes": { "smooth_red_sandstone": { "all": { "texture": "block/red_sandstone_top" } } },
+      "variants": [{ "looks": [{ "cube": "smooth_red_sandstone" }] }]
+    },
+    {
+      "id": "base:smooth_sandstone",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/sandstone_top" } },
+      "cubes": { "smooth_sandstone": { "all": { "texture": "block/sandstone_top" } } },
+      "variants": [{ "looks": [{ "cube": "smooth_sandstone" }] }]
+    },
+    {
+      "id": "base:smooth_stone",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/smooth_stone" } },
+      "tags": ["random_rotation"],
+      "cubes": { "smooth_stone": { "all": { "texture": "block/smooth_stone" } } },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "smooth_stone" },
+            { "cube": "smooth_stone", "y": 90 },
+            { "cube": "smooth_stone", "y": 180 },
+            { "cube": "smooth_stone", "y": 270 },
+            { "cube": "smooth_stone", "x": 90 },
+            { "cube": "smooth_stone", "x": 90, "y": 90 },
+            { "cube": "smooth_stone", "x": 90, "y": 180 },
+            { "cube": "smooth_stone", "x": 90, "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:stone_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/stone_bricks" } },
+      "cubes": { "stone_bricks": { "all": { "texture": "block/stone_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "stone_bricks" }] }]
+    },
+    {
+      "id": "base:sulfur_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/sulfur_bricks" } },
+      "cubes": { "sulfur_bricks": { "all": { "texture": "block/sulfur_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "sulfur_bricks" }] }]
+    },
+    {
+      "id": "base:tuff_bricks",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/tuff_bricks" } },
+      "cubes": { "tuff_bricks": { "all": { "texture": "block/tuff_bricks" } } },
+      "variants": [{ "looks": [{ "cube": "tuff_bricks" }] }]
+    }
+  ]
+}

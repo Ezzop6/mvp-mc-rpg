@@ -1,0 +1,13 @@
+{
+  "category": "heads",
+  "source": "import",
+  "entries": [
+    { "id": "base:creeper_head", "block": "base:creeper_head" },
+    { "id": "base:dragon_head", "block": "base:dragon_head" },
+    { "id": "base:piglin_head", "block": "base:piglin_head" },
+    { "id": "base:player_head", "block": "base:player_head" },
+    { "id": "base:skeleton_skull", "block": "base:skeleton_skull" },
+    { "id": "base:wither_skeleton_skull", "block": "base:wither_skeleton_skull" },
+    { "id": "base:zombie_head", "block": "base:zombie_head" }
+  ]
+}

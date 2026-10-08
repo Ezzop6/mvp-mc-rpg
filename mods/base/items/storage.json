@@ -1,0 +1,27 @@
+{
+  "category": "storage",
+  "source": "import",
+  "entries": [
+    { "id": "base:barrel", "block": "base:barrel" },
+    { "id": "base:black_shulker_box", "block": "base:black_shulker_box" },
+    { "id": "base:blue_shulker_box", "block": "base:blue_shulker_box" },
+    { "id": "base:brown_shulker_box", "block": "base:brown_shulker_box" },
+    { "id": "base:chest", "block": "base:chest" },
+    { "id": "base:cyan_shulker_box", "block": "base:cyan_shulker_box" },
+    { "id": "base:ender_chest", "block": "base:ender_chest" },
+    { "id": "base:gray_shulker_box", "block": "base:gray_shulker_box" },
+    { "id": "base:green_shulker_box", "block": "base:green_shulker_box" },
+    { "id": "base:light_blue_shulker_box", "block": "base:light_blue_shulker_box" },
+    { "id": "base:light_gray_shulker_box", "block": "base:light_gray_shulker_box" },
+    { "id": "base:lime_shulker_box", "block": "base:lime_shulker_box" },
+    { "id": "base:magenta_shulker_box", "block": "base:magenta_shulker_box" },
+    { "id": "base:orange_shulker_box", "block": "base:orange_shulker_box" },
+    { "id": "base:pink_shulker_box", "block": "base:pink_shulker_box" },
+    { "id": "base:purple_shulker_box", "block": "base:purple_shulker_box" },
+    { "id": "base:red_shulker_box", "block": "base:red_shulker_box" },
+    { "id": "base:shulker_box", "block": "base:shulker_box" },
+    { "id": "base:trapped_chest", "block": "base:trapped_chest" },
+    { "id": "base:white_shulker_box", "block": "base:white_shulker_box" },
+    { "id": "base:yellow_shulker_box", "block": "base:yellow_shulker_box" }
+  ]
+}

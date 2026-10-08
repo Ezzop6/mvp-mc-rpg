@@ -1,0 +1,24 @@
+{
+  "category": "panes",
+  "source": "import",
+  "entries": [
+    { "id": "base:black_stained_glass_pane", "block": "base:black_stained_glass_pane" },
+    { "id": "base:blue_stained_glass_pane", "block": "base:blue_stained_glass_pane" },
+    { "id": "base:brown_stained_glass_pane", "block": "base:brown_stained_glass_pane" },
+    { "id": "base:cyan_stained_glass_pane", "block": "base:cyan_stained_glass_pane" },
+    { "id": "base:glass_pane", "block": "base:glass_pane" },
+    { "id": "base:gray_stained_glass_pane", "block": "base:gray_stained_glass_pane" },
+    { "id": "base:green_stained_glass_pane", "block": "base:green_stained_glass_pane" },
+    { "id": "base:iron_bars", "block": "base:iron_bars" },
+    { "id": "base:light_blue_stained_glass_pane", "block": "base:light_blue_stained_glass_pane" },
+    { "id": "base:light_gray_stained_glass_pane", "block": "base:light_gray_stained_glass_pane" },
+    { "id": "base:lime_stained_glass_pane", "block": "base:lime_stained_glass_pane" },
+    { "id": "base:magenta_stained_glass_pane", "block": "base:magenta_stained_glass_pane" },
+    { "id": "base:orange_stained_glass_pane", "block": "base:orange_stained_glass_pane" },
+    { "id": "base:pink_stained_glass_pane", "block": "base:pink_stained_glass_pane" },
+    { "id": "base:purple_stained_glass_pane", "block": "base:purple_stained_glass_pane" },
+    { "id": "base:red_stained_glass_pane", "block": "base:red_stained_glass_pane" },
+    { "id": "base:white_stained_glass_pane", "block": "base:white_stained_glass_pane" },
+    { "id": "base:yellow_stained_glass_pane", "block": "base:yellow_stained_glass_pane" }
+  ]
+}

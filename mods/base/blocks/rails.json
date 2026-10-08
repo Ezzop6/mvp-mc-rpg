@@ -1,0 +1,117 @@
+{
+  "category": "rails",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:activator_rail",
+      "kind": "rail",
+      "template": "template_rail_raised_ne",
+      "textures": { "extra": "block/extra/rail_extra", "particle": "block/activator_rail", "rail": "block/activator_rail", "rail2": "block/rail" },
+      "surface": "cutout",
+      "states": {
+        "powered": ["false", "true"],
+        "shape": ["ascending_east", "ascending_north", "ascending_south", "ascending_west", "east_west", "north_south"]
+      },
+      "tags": ["missing_texture"],
+      "variants": [
+        { "when": { "powered": "false", "shape": "ascending_east" }, "looks": [{ "model": "activator_rail_raised_ne", "y": 90 }] },
+        { "when": { "powered": "false", "shape": "ascending_north" }, "looks": [{ "model": "activator_rail_raised_ne" }] },
+        { "when": { "powered": "false", "shape": "ascending_south" }, "looks": [{ "model": "activator_rail_raised_sw" }] },
+        { "when": { "powered": "false", "shape": "ascending_west" }, "looks": [{ "model": "activator_rail_raised_sw", "y": 90 }] },
+        { "when": { "powered": "false", "shape": "east_west" }, "looks": [{ "model": "activator_rail", "y": 90 }] },
+        { "when": { "powered": "false", "shape": "north_south" }, "looks": [{ "model": "activator_rail" }] },
+        { "when": { "powered": "true", "shape": "ascending_east" }, "looks": [{ "model": "activator_rail_on_raised_ne", "y": 90 }] },
+        { "when": { "powered": "true", "shape": "ascending_north" }, "looks": [{ "model": "activator_rail_on_raised_ne" }] },
+        { "when": { "powered": "true", "shape": "ascending_south" }, "looks": [{ "model": "activator_rail_on_raised_sw" }] },
+        { "when": { "powered": "true", "shape": "ascending_west" }, "looks": [{ "model": "activator_rail_on_raised_sw", "y": 90 }] },
+        { "when": { "powered": "true", "shape": "east_west" }, "looks": [{ "model": "activator_rail_on", "y": 90 }] },
+        { "when": { "powered": "true", "shape": "north_south" }, "looks": [{ "model": "activator_rail_on" }] }
+      ]
+    },
+    {
+      "id": "base:detector_rail",
+      "kind": "rail",
+      "template": "template_rail_raised_ne",
+      "textures": { "extra": "block/extra/rail_extra", "particle": "block/detector_rail", "rail": "block/detector_rail", "rail2": "block/rail" },
+      "surface": "cutout",
+      "states": {
+        "powered": ["false", "true"],
+        "shape": ["ascending_east", "ascending_north", "ascending_south", "ascending_west", "east_west", "north_south"]
+      },
+      "tags": ["missing_texture"],
+      "variants": [
+        { "when": { "powered": "false", "shape": "ascending_east" }, "looks": [{ "model": "detector_rail_raised_ne", "y": 90 }] },
+        { "when": { "powered": "false", "shape": "ascending_north" }, "looks": [{ "model": "detector_rail_raised_ne" }] },
+        { "when": { "powered": "false", "shape": "ascending_south" }, "looks": [{ "model": "detector_rail_raised_sw" }] },
+        { "when": { "powered": "false", "shape": "ascending_west" }, "looks": [{ "model": "detector_rail_raised_sw", "y": 90 }] },
+        { "when": { "powered": "false", "shape": "east_west" }, "looks": [{ "model": "detector_rail", "y": 90 }] },
+        { "when": { "powered": "false", "shape": "north_south" }, "looks": [{ "model": "detector_rail" }] },
+        { "when": { "powered": "true", "shape": "ascending_east" }, "looks": [{ "model": "detector_rail_on_raised_ne", "y": 90 }] },
+        { "when": { "powered": "true", "shape": "ascending_north" }, "looks": [{ "model": "detector_rail_on_raised_ne" }] },
+        { "when": { "powered": "true", "shape": "ascending_south" }, "looks": [{ "model": "detector_rail_on_raised_sw" }] },
+        { "when": { "powered": "true", "shape": "ascending_west" }, "looks": [{ "model": "detector_rail_on_raised_sw", "y": 90 }] },
+        { "when": { "powered": "true", "shape": "east_west" }, "looks": [{ "model": "detector_rail_on", "y": 90 }] },
+        { "when": { "powered": "true", "shape": "north_south" }, "looks": [{ "model": "detector_rail_on" }] }
+      ]
+    },
+    {
+      "id": "base:powered_rail",
+      "kind": "rail",
+      "template": "template_rail_raised_ne",
+      "textures": { "extra": "block/extra/powered_rail_extra", "particle": "block/powered_rail", "rail": "block/powered_rail", "rail2": "block/rail" },
+      "surface": "cutout",
+      "states": {
+        "powered": ["false", "true"],
+        "shape": ["ascending_east", "ascending_north", "ascending_south", "ascending_west", "east_west", "north_south"]
+      },
+      "variants": [
+        { "when": { "powered": "false", "shape": "ascending_east" }, "looks": [{ "model": "powered_rail_raised_ne", "y": 90 }] },
+        { "when": { "powered": "false", "shape": "ascending_north" }, "looks": [{ "model": "powered_rail_raised_ne" }] },
+        { "when": { "powered": "false", "shape": "ascending_south" }, "looks": [{ "model": "powered_rail_raised_sw" }] },
+        { "when": { "powered": "false", "shape": "ascending_west" }, "looks": [{ "model": "powered_rail_raised_sw", "y": 90 }] },
+        { "when": { "powered": "false", "shape": "east_west" }, "looks": [{ "model": "powered_rail", "y": 90 }] },
+        { "when": { "powered": "false", "shape": "north_south" }, "looks": [{ "model": "powered_rail" }] },
+        { "when": { "powered": "true", "shape": "ascending_east" }, "looks": [{ "model": "powered_rail_on_raised_ne", "y": 90 }] },
+        { "when": { "powered": "true", "shape": "ascending_north" }, "looks": [{ "model": "powered_rail_on_raised_ne" }] },
+        { "when": { "powered": "true", "shape": "ascending_south" }, "looks": [{ "model": "powered_rail_on_raised_sw" }] },
+        { "when": { "powered": "true", "shape": "ascending_west" }, "looks": [{ "model": "powered_rail_on_raised_sw", "y": 90 }] },
+        { "when": { "powered": "true", "shape": "east_west" }, "looks": [{ "model": "powered_rail_on", "y": 90 }] },
+        { "when": { "powered": "true", "shape": "north_south" }, "looks": [{ "model": "powered_rail_on" }] }
+      ]
+    },
+    {
+      "id": "base:rail",
+      "kind": "rail",
+      "template": "template_rail_raised_ne",
+      "textures": { "extra": "block/extra/rail_extra", "particle": "block/rail", "rail": "block/rail" },
+      "surface": "cutout",
+      "states": {
+        "shape": [
+          "ascending_east",
+          "ascending_north",
+          "ascending_south",
+          "ascending_west",
+          "east_west",
+          "north_east",
+          "north_south",
+          "north_west",
+          "south_east",
+          "south_west"
+        ]
+      },
+      "tags": ["missing_texture"],
+      "variants": [
+        { "when": { "shape": "ascending_east" }, "looks": [{ "model": "rail_raised_ne", "y": 90 }] },
+        { "when": { "shape": "ascending_north" }, "looks": [{ "model": "rail_raised_ne" }] },
+        { "when": { "shape": "ascending_south" }, "looks": [{ "model": "rail_raised_sw" }] },
+        { "when": { "shape": "ascending_west" }, "looks": [{ "model": "rail_raised_sw", "y": 90 }] },
+        { "when": { "shape": "east_west" }, "looks": [{ "model": "rail", "y": 90 }] },
+        { "when": { "shape": "north_east" }, "looks": [{ "model": "rail_corner", "y": 270 }] },
+        { "when": { "shape": "north_south" }, "looks": [{ "model": "rail" }] },
+        { "when": { "shape": "north_west" }, "looks": [{ "model": "rail_corner", "y": 180 }] },
+        { "when": { "shape": "south_east" }, "looks": [{ "model": "rail_corner" }] },
+        { "when": { "shape": "south_west" }, "looks": [{ "model": "rail_corner", "y": 90 }] }
+      ]
+    }
+  ]
+}

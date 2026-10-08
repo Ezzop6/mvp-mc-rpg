@@ -1,0 +1,6 @@
+// v1 moon disc opposite the sun, its phase a cell of the moon_phases texture, added on sky pixels.
+#include "res://core/render/passes/sun/disc.glsli"
+
+vec3 moon_disc(vec3 c, vec3 d, bool sky, sampler2D tex) {
+	return sky ? c + sky_disc(tex, P.moon_rect, d, -P.sky_sun.xyz, P.moon_size) * P.moon_disc_intensity * above_horizon(d) : c;
+}

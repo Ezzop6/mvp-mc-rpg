@@ -1,0 +1,24 @@
+{
+  "category": "carpets",
+  "source": "import",
+  "entries": [
+    { "id": "base:black_carpet", "block": "base:black_carpet" },
+    { "id": "base:blue_carpet", "block": "base:blue_carpet" },
+    { "id": "base:brown_carpet", "block": "base:brown_carpet" },
+    { "id": "base:cyan_carpet", "block": "base:cyan_carpet" },
+    { "id": "base:gray_carpet", "block": "base:gray_carpet" },
+    { "id": "base:green_carpet", "block": "base:green_carpet" },
+    { "id": "base:light_blue_carpet", "block": "base:light_blue_carpet" },
+    { "id": "base:light_gray_carpet", "block": "base:light_gray_carpet" },
+    { "id": "base:lime_carpet", "block": "base:lime_carpet" },
+    { "id": "base:magenta_carpet", "block": "base:magenta_carpet" },
+    { "id": "base:moss_carpet", "block": "base:moss_carpet" },
+    { "id": "base:orange_carpet", "block": "base:orange_carpet" },
+    { "id": "base:pale_moss_carpet", "block": "base:pale_moss_carpet" },
+    { "id": "base:pink_carpet", "block": "base:pink_carpet" },
+    { "id": "base:purple_carpet", "block": "base:purple_carpet" },
+    { "id": "base:red_carpet", "block": "base:red_carpet" },
+    { "id": "base:white_carpet", "block": "base:white_carpet" },
+    { "id": "base:yellow_carpet", "block": "base:yellow_carpet" }
+  ]
+}

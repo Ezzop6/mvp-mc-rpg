@@ -1,0 +1,29 @@
+{
+  "Note": "180 degree turn in 0.25 s: the sphere is resident, no streaming and no hitch",
+  "Scene": "random-leaves",
+  "TimeOfDay": 10,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": 0,
+        "Y": 45,
+        "Z": 0
+      },
+      "Yaw": -135,
+      "Pitch": -15
+    }
+  ],
+  "Actions": [
+    {
+      "T": 2,
+      "Kind": "Turn",
+      "Yaw": 180,
+      "Seconds": 0.25
+    }
+  ],
+  "Shots": [
+    1.5,
+    3.5
+  ]
+}

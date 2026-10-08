@@ -1,0 +1,11 @@
+{
+  "category": "crops",
+  "source": "import",
+  "entries": [
+    { "id": "base:carved_pumpkin", "block": "base:carved_pumpkin" },
+    { "id": "base:hay_block", "block": "base:hay_block" },
+    { "id": "base:melon", "block": "base:melon" },
+    { "id": "base:nether_wart", "block": "base:nether_wart" },
+    { "id": "base:pumpkin", "block": "base:pumpkin" }
+  ]
+}

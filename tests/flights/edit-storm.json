@@ -1,0 +1,38 @@
+{
+  "Note": "a 64^3 box of edits (blocks) in front of the flying camera: edit budget, no hitch",
+  "Generator": "flat",
+  "TimeOfDay": 12,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": 0,
+        "Y": 10,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -15
+    },
+    {
+      "T": 6,
+      "Pos": {
+        "X": 60,
+        "Y": 10,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -15
+    }
+  ],
+  "Actions": [
+    {
+      "T": 1,
+      "Kind": "Edit",
+      "Edits": "160,1,-32..223,64,31=base:stone"
+    }
+  ],
+  "Shots": [
+    0.5,
+    5
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "category": "mushrooms",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:brown_mushroom",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/brown_mushroom", "particle": "block/brown_mushroom" },
+      "surface": "cutout",
+      "light": { "level": 1, "color": "#ffd3b0" },
+      "tags": ["animated", "color:brown", "random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "brown_mushroom" },
+            { "model": "brown_mushroom", "y": 90 },
+            { "model": "brown_mushroom", "y": 180 },
+            { "model": "brown_mushroom", "y": 270 },
+            { "model": "brown_mushroom2" },
+            { "model": "brown_mushroom2", "y": 90 },
+            { "model": "brown_mushroom2", "y": 180 },
+            { "model": "brown_mushroom2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:brown_mushroom_block",
+      "kind": "singleFace",
+      "template": "template_single_face",
+      "textures": { "particle": "block/mushroom_block_inside", "texture": "block/mushroom_block_inside" },
+      "states": {
+        "down": ["false", "true"],
+        "east": ["false", "true"],
+        "north": ["false", "true"],
+        "south": ["false", "true"],
+        "up": ["false", "true"],
+        "west": ["false", "true"]
+      },
+      "tags": ["color:brown"],
+      "multipart": [
+        { "when": [{ "north": "true" }], "looks": [{ "model": "brown_mushroom_block" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "brown_mushroom_block", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "brown_mushroom_block", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "brown_mushroom_block", "y": 270, "uvlock": true }] },
+        { "when": [{ "up": "true" }], "looks": [{ "model": "brown_mushroom_block", "x": 270, "uvlock": true }] },
+        { "when": [{ "down": "true" }], "looks": [{ "model": "brown_mushroom_block", "x": 90, "uvlock": true }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "mushroom_block_inside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "mushroom_block_inside", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "mushroom_block_inside", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "mushroom_block_inside", "y": 270, "uvlock": true }] },
+        { "when": [{ "up": "false" }], "looks": [{ "model": "mushroom_block_inside", "x": 270, "uvlock": true }] },
+        { "when": [{ "down": "false" }], "looks": [{ "model": "mushroom_block_inside", "x": 90, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:crimson_fungus",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/crimson_fungus", "particle": "block/crimson_fungus" },
+      "surface": "cutout",
+      "emission": 0.043,
+      "tags": ["animated", "random_variants", "wood:crimson"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "crimson_fungus" },
+            { "model": "crimson_fungus", "y": 90 },
+            { "model": "crimson_fungus", "y": 180 },
+            { "model": "crimson_fungus", "y": 270 },
+            { "model": "crimson_fungus2" },
+            { "model": "crimson_fungus2", "y": 90 },
+            { "model": "crimson_fungus2", "y": 180 },
+            { "model": "crimson_fungus2", "y": 270 },
+            { "model": "crimson_fungus3" },
+            { "model": "crimson_fungus3", "y": 90 },
+            { "model": "crimson_fungus3", "y": 180 },
+            { "model": "crimson_fungus3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:crimson_roots",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/crimson_roots", "particle": "block/crimson_roots" },
+      "surface": "cutout",
+      "emission": 0.085,
+      "tags": ["random_rotation", "wood:crimson"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "crimson_roots" },
+            { "model": "crimson_roots", "y": 90 },
+            { "model": "crimson_roots", "y": 180 },
+            { "model": "crimson_roots", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:mushroom_stem",
+      "kind": "singleFace",
+      "template": "template_single_face",
+      "textures": { "particle": "block/mushroom_block_inside", "texture": "block/mushroom_block_inside" },
+      "states": {
+        "down": ["false", "true"],
+        "east": ["false", "true"],
+        "north": ["false", "true"],
+        "south": ["false", "true"],
+        "up": ["false", "true"],
+        "west": ["false", "true"]
+      },
+      "multipart": [
+        { "when": [{ "north": "true" }], "looks": [{ "model": "mushroom_stem" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "mushroom_stem", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "mushroom_stem", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "mushroom_stem", "y": 270, "uvlock": true }] },
+        { "when": [{ "up": "true" }], "looks": [{ "model": "mushroom_stem", "x": 270, "uvlock": true }] },
+        { "when": [{ "down": "true" }], "looks": [{ "model": "mushroom_stem", "x": 90, "uvlock": true }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "mushroom_block_inside", "uvlock": true }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "mushroom_block_inside", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "mushroom_block_inside", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "mushroom_block_inside", "y": 270, "uvlock": true }] },
+        { "when": [{ "up": "false" }], "looks": [{ "model": "mushroom_block_inside", "x": 270, "uvlock": true }] },
+        { "when": [{ "down": "false" }], "looks": [{ "model": "mushroom_block_inside", "x": 90, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:nether_sprouts",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/nether_sprouts", "particle": "block/nether_sprouts" },
+      "surface": "cutout",
+      "emission": 0.05,
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "nether_sprouts" },
+            { "model": "nether_sprouts", "y": 90 },
+            { "model": "nether_sprouts", "y": 180 },
+            { "model": "nether_sprouts", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:red_mushroom",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/red_mushroom", "particle": "block/red_mushroom" },
+      "surface": "cutout",
+      "tags": ["animated", "color:red", "random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "red_mushroom" },
+            { "model": "red_mushroom", "y": 90 },
+            { "model": "red_mushroom", "y": 180 },
+            { "model": "red_mushroom", "y": 270 },
+            { "model": "red_mushroom2" },
+            { "model": "red_mushroom2", "y": 90 },
+            { "model": "red_mushroom2", "y": 180 },
+            { "model": "red_mushroom2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:red_mushroom_block",
+      "kind": "singleFace",
+      "template": "template_single_face",
+      "textures": { "particle": "block/mushroom_block_inside", "texture": "block/mushroom_block_inside" },
+      "states": {
+        "down": ["false", "true"],
+        "east": ["false", "true"],
+        "north": ["false", "true"],
+        "south": ["false", "true"],
+        "up": ["false", "true"],
+        "west": ["false", "true"]
+      },
+      "tags": ["color:red"],
+      "multipart": [
+        { "when": [{ "north": "true" }], "looks": [{ "model": "red_mushroom_block" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "red_mushroom_block", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "red_mushroom_block", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "red_mushroom_block", "y": 270, "uvlock": true }] },
+        { "when": [{ "up": "true" }], "looks": [{ "model": "red_mushroom_block", "x": 270, "uvlock": true }] },
+        { "when": [{ "down": "true" }], "looks": [{ "model": "red_mushroom_block", "x": 90, "uvlock": true }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "mushroom_block_inside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "mushroom_block_inside", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "mushroom_block_inside", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "mushroom_block_inside", "y": 270, "uvlock": true }] },
+        { "when": [{ "up": "false" }], "looks": [{ "model": "mushroom_block_inside", "x": 270, "uvlock": true }] },
+        { "when": [{ "down": "false" }], "looks": [{ "model": "mushroom_block_inside", "x": 90, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:shelf_mushroom",
+      "kind": "custom",
+      "textures": { "particle": "block/shelf_mushroom_particle", "small": "block/shelf_mushroom_stage0" },
+      "orientation": "horizontal",
+      "states": { "age": ["0", "1"], "facing": ["east", "north", "south", "west"] },
+      "tags": ["base_texture"],
+      "variants": [
+        { "when": { "age": "0", "facing": "east" }, "looks": [{ "model": "shelf_mushroom_stage0", "y": 90 }] },
+        { "when": { "age": "0", "facing": "north" }, "looks": [{ "model": "shelf_mushroom_stage0" }] },
+        { "when": { "age": "0", "facing": "south" }, "looks": [{ "model": "shelf_mushroom_stage0", "y": 180 }] },
+        { "when": { "age": "0", "facing": "west" }, "looks": [{ "model": "shelf_mushroom_stage0", "y": 270 }] },
+        { "when": { "age": "1", "facing": "east" }, "looks": [{ "model": "shelf_mushroom_stage1", "y": 90 }] },
+        { "when": { "age": "1", "facing": "north" }, "looks": [{ "model": "shelf_mushroom_stage1" }] },
+        { "when": { "age": "1", "facing": "south" }, "looks": [{ "model": "shelf_mushroom_stage1", "y": 180 }] },
+        { "when": { "age": "1", "facing": "west" }, "looks": [{ "model": "shelf_mushroom_stage1", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:warped_fungus",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/warped_fungus", "particle": "block/warped_fungus" },
+      "surface": "cutout",
+      "emission": 0.031,
+      "tags": ["animated", "random_variants", "wood:warped"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "warped_fungus" },
+            { "model": "warped_fungus", "y": 90 },
+            { "model": "warped_fungus", "y": 180 },
+            { "model": "warped_fungus", "y": 270 },
+            { "model": "warped_fungus2" },
+            { "model": "warped_fungus2", "y": 90 },
+            { "model": "warped_fungus2", "y": 180 },
+            { "model": "warped_fungus2", "y": 270 },
+            { "model": "warped_fungus3" },
+            { "model": "warped_fungus3", "y": 90 },
+            { "model": "warped_fungus3", "y": 180 },
+            { "model": "warped_fungus3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:warped_roots",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/warped_roots", "particle": "block/warped_roots" },
+      "surface": "cutout",
+      "emission": 0.142,
+      "tags": ["random_rotation", "wood:warped"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "warped_roots" },
+            { "model": "warped_roots", "y": 90 },
+            { "model": "warped_roots", "y": 180 },
+            { "model": "warped_roots", "y": 270 }
+          ]
+        }
+      ]
+    }
+  ]
+}

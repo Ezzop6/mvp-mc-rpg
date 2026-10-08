@@ -1,0 +1,38 @@
+{
+  "Name": "lights-room",
+  "Format": 1,
+  "Dimensions": {
+    "overworld": {
+      "Generator": "flat",
+      "GeneratorVersion": 1,
+      "Params": null
+    }
+  },
+  "Blocks": {
+    "base:air": 0,
+    "base:enchanting_table": 394,
+    "base:magma_block": 627,
+    "base:soul_torch": 1031,
+    "base:stone_bricks": 1059,
+    "base:test_torch_blue": 1118,
+    "base:test_torch_lime": 1125,
+    "base:test_torch_red": 1130,
+    "base:test_torch_white": 1131,
+    "base:test_torch_yellow": 1132,
+    "base:torch": 1135
+  },
+  "Models": {},
+  "Player": {
+    "Dimension": "overworld",
+    "Position": {
+      "X": 3.25,
+      "Y": 1,
+      "Z": 2
+    },
+    "Yaw": -150.64224,
+    "Pitch": -6.217677
+  },
+  "TimeOfDay": 23,
+  "Day": 0,
+  "Bookmarks": []
+}

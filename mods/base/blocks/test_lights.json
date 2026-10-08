@@ -1,0 +1,155 @@
+{
+  "category": "test",
+  "entries": [
+    {
+      "id": "base:test_torch_white",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#f9fffe" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_orange",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#f9801d" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_magenta",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#c74ebd" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_light_blue",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#3ab3da" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_yellow",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#fed83d" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_lime",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#80c71f" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_pink",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#f38baa" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_gray",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#474f52" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_light_gray",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#9d9d97" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_cyan",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#169c9c" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_purple",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#8932b8" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_blue",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#3c44aa" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_brown",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#835432" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_green",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#5e7c16" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_red",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#b02e26" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_torch_black",
+      "kind": "torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#1d1d21" },
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:test_fog_colored_light",
+      "kind": "volume",
+      "matter": "gas",
+      "density": 0.4,
+      "light": { "level": 4, "color": "#b02e26" },
+      "tint": { "source": "constant", "color": "#b02e26" }
+    },
+    {
+      "id": "base:test_fog_dense",
+      "kind": "volume",
+      "matter": "gas",
+      "density": 3,
+      "tint": { "source": "constant", "color": "#8c8c8c" }
+    },
+    {
+      "id": "base:test_fog_colored",
+      "kind": "volume",
+      "matter": "gas",
+      "density": 1,
+      "tint": { "source": "constant", "color": "#7fd36a" }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "Note": "Primary/dda-seen measurement (docs/v2-mereni.md, Viditelnost chunk\u016f): random-crazy peak, 1 s still, then a 360 degree pan; a seen report at each shot",
+  "Scene": "random-crazy",
+  "TimeOfDay": 14,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": -500,
+        "Y": 230,
+        "Z": 900
+      },
+      "Yaw": 20,
+      "Pitch": -10
+    }
+  ],
+  "Actions": [
+    {
+      "T": 1.2,
+      "Kind": "Turn",
+      "Yaw": 360,
+      "Seconds": 6
+    }
+  ],
+  "Shots": [
+    1,
+    8
+  ]
+}

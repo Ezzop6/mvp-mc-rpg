@@ -1,0 +1,365 @@
+{
+  "category": "panes",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:black_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/black_stained_glass_pane_top", "pane": "block/black_stained_glass", "particle": "block/black_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:black"],
+      "multipart": [
+        { "looks": [{ "model": "black_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "black_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "black_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "black_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "black_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "black_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "black_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "black_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "black_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:blue_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/blue_stained_glass_pane_top", "pane": "block/blue_stained_glass", "particle": "block/blue_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:blue"],
+      "multipart": [
+        { "looks": [{ "model": "blue_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "blue_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "blue_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "blue_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "blue_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "blue_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "blue_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "blue_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "blue_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:brown_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/brown_stained_glass_pane_top", "pane": "block/brown_stained_glass", "particle": "block/brown_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:brown"],
+      "multipart": [
+        { "looks": [{ "model": "brown_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "brown_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "brown_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "brown_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "brown_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "brown_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "brown_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "brown_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "brown_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:cyan_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/cyan_stained_glass_pane_top", "pane": "block/cyan_stained_glass", "particle": "block/cyan_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:cyan"],
+      "multipart": [
+        { "looks": [{ "model": "cyan_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "cyan_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "cyan_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "cyan_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "cyan_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "cyan_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "cyan_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "cyan_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "cyan_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/glass_pane_top", "pane": "block/glass", "particle": "block/glass" },
+      "surface": "cutout",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["animated"],
+      "multipart": [
+        { "looks": [{ "model": "glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:gray_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/gray_stained_glass_pane_top", "pane": "block/gray_stained_glass", "particle": "block/gray_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:gray"],
+      "multipart": [
+        { "looks": [{ "model": "gray_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "gray_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "gray_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "gray_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "gray_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "gray_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "gray_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "gray_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "gray_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:green_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/green_stained_glass_pane_top", "pane": "block/green_stained_glass", "particle": "block/green_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:green"],
+      "multipart": [
+        { "looks": [{ "model": "green_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "green_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "green_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "green_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "green_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "green_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "green_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "green_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "green_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:iron_bars",
+      "kind": "custom",
+      "textures": { "bars": "block/iron_bars", "edge": "block/iron_bars", "particle": "block/iron_bars" },
+      "surface": "cutout",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "multipart": [
+        { "looks": [{ "model": "iron_bars_post_ends" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "iron_bars_post" }] },
+        { "when": [{ "east": "false", "north": "true", "south": "false", "west": "false" }], "looks": [{ "model": "iron_bars_cap" }] },
+        { "when": [{ "east": "true", "north": "false", "south": "false", "west": "false" }], "looks": [{ "model": "iron_bars_cap", "y": 90 }] },
+        { "when": [{ "east": "false", "north": "false", "south": "true", "west": "false" }], "looks": [{ "model": "iron_bars_cap_alt" }] },
+        { "when": [{ "east": "false", "north": "false", "south": "false", "west": "true" }], "looks": [{ "model": "iron_bars_cap_alt", "y": 90 }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "iron_bars_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "iron_bars_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "iron_bars_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "iron_bars_side_alt", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:light_blue_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/light_blue_stained_glass_pane_top", "pane": "block/light_blue_stained_glass", "particle": "block/light_blue_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:light_blue"],
+      "multipart": [
+        { "looks": [{ "model": "light_blue_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "light_blue_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "light_blue_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "light_blue_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "light_blue_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "light_blue_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "light_blue_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "light_blue_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "light_blue_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:light_gray_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/light_gray_stained_glass_pane_top", "pane": "block/light_gray_stained_glass", "particle": "block/light_gray_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:light_gray"],
+      "multipart": [
+        { "looks": [{ "model": "light_gray_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "light_gray_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "light_gray_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "light_gray_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "light_gray_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "light_gray_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "light_gray_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "light_gray_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "light_gray_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:lime_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/lime_stained_glass_pane_top", "pane": "block/lime_stained_glass", "particle": "block/lime_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:lime"],
+      "multipart": [
+        { "looks": [{ "model": "lime_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "lime_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "lime_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "lime_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "lime_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "lime_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "lime_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "lime_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "lime_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:magenta_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/magenta_stained_glass_pane_top", "pane": "block/magenta_stained_glass", "particle": "block/magenta_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:magenta"],
+      "multipart": [
+        { "looks": [{ "model": "magenta_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "magenta_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "magenta_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "magenta_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "magenta_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "magenta_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "magenta_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "magenta_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "magenta_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:orange_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/orange_stained_glass_pane_top", "pane": "block/orange_stained_glass", "particle": "block/orange_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:orange"],
+      "multipart": [
+        { "looks": [{ "model": "orange_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "orange_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "orange_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "orange_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "orange_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "orange_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "orange_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "orange_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "orange_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:pink_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/pink_stained_glass_pane_top", "pane": "block/pink_stained_glass", "particle": "block/pink_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:pink"],
+      "multipart": [
+        { "looks": [{ "model": "pink_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "pink_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "pink_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "pink_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "pink_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "pink_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "pink_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "pink_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "pink_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:purple_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/purple_stained_glass_pane_top", "pane": "block/purple_stained_glass", "particle": "block/purple_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:purple"],
+      "multipart": [
+        { "looks": [{ "model": "purple_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "purple_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "purple_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "purple_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "purple_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "purple_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "purple_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "purple_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "purple_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:red_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/red_stained_glass_pane_top", "pane": "block/red_stained_glass", "particle": "block/red_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:red"],
+      "multipart": [
+        { "looks": [{ "model": "red_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "red_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "red_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "red_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "red_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "red_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "red_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "red_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "red_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:white_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/white_stained_glass_pane_top", "pane": "block/white_stained_glass", "particle": "block/white_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:white"],
+      "multipart": [
+        { "looks": [{ "model": "white_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "white_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "white_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "white_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "white_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "white_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "white_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "white_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "white_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:yellow_stained_glass_pane",
+      "kind": "pane",
+      "template": "template_glass_pane_post",
+      "textures": { "edge": "block/yellow_stained_glass_pane_top", "pane": "block/yellow_stained_glass", "particle": "block/yellow_stained_glass" },
+      "surface": "translucent",
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "west": ["false", "true"] },
+      "tags": ["color:yellow"],
+      "multipart": [
+        { "looks": [{ "model": "yellow_stained_glass_pane_post" }] },
+        { "when": [{ "north": "true" }], "looks": [{ "model": "yellow_stained_glass_pane_side" }] },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "yellow_stained_glass_pane_side", "y": 90 }] },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "yellow_stained_glass_pane_side_alt" }] },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "yellow_stained_glass_pane_side_alt", "y": 90 }] },
+        { "when": [{ "north": "false" }], "looks": [{ "model": "yellow_stained_glass_pane_noside" }] },
+        { "when": [{ "east": "false" }], "looks": [{ "model": "yellow_stained_glass_pane_noside_alt" }] },
+        { "when": [{ "south": "false" }], "looks": [{ "model": "yellow_stained_glass_pane_noside_alt", "y": 90 }] },
+        { "when": [{ "west": "false" }], "looks": [{ "model": "yellow_stained_glass_pane_noside", "y": 270 }] }
+      ]
+    }
+  ]
+}

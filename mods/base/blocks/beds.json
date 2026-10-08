@@ -1,0 +1,442 @@
+{
+  "category": "beds",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:black_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/black_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/black_bed_foot_south",
+        "up": "block/black_bed_foot_up",
+        "west": "block/black_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:black"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "black_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "black_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "black_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "black_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "black_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "black_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "black_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "black_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:blue_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/blue_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/blue_bed_foot_south",
+        "up": "block/blue_bed_foot_up",
+        "west": "block/blue_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:blue"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "blue_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "blue_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "blue_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "blue_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "blue_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "blue_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "blue_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "blue_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:brown_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/brown_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/brown_bed_foot_south",
+        "up": "block/brown_bed_foot_up",
+        "west": "block/brown_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:brown"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "brown_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "brown_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "brown_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "brown_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "brown_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "brown_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "brown_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "brown_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:cyan_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/cyan_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/cyan_bed_foot_south",
+        "up": "block/cyan_bed_foot_up",
+        "west": "block/cyan_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:cyan"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "cyan_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "cyan_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "cyan_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "cyan_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "cyan_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "cyan_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "cyan_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "cyan_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:gray_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/gray_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/gray_bed_foot_south",
+        "up": "block/gray_bed_foot_up",
+        "west": "block/gray_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:gray"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "gray_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "gray_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "gray_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "gray_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "gray_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "gray_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "gray_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "gray_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:green_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/green_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/green_bed_foot_south",
+        "up": "block/green_bed_foot_up",
+        "west": "block/green_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:green"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "green_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "green_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "green_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "green_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "green_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "green_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "green_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "green_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:light_blue_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/light_blue_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/light_blue_bed_foot_south",
+        "up": "block/light_blue_bed_foot_up",
+        "west": "block/light_blue_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:light_blue"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "light_blue_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "light_blue_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "light_blue_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "light_blue_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "light_blue_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "light_blue_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "light_blue_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "light_blue_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:light_gray_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/light_gray_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/light_gray_bed_foot_south",
+        "up": "block/light_gray_bed_foot_up",
+        "west": "block/light_gray_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:light_gray"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "light_gray_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "light_gray_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "light_gray_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "light_gray_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "light_gray_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "light_gray_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "light_gray_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "light_gray_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:lime_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/lime_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/lime_bed_foot_south",
+        "up": "block/lime_bed_foot_up",
+        "west": "block/lime_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:lime"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "lime_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "lime_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "lime_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "lime_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "lime_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "lime_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "lime_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "lime_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:magenta_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/magenta_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/magenta_bed_foot_south",
+        "up": "block/magenta_bed_foot_up",
+        "west": "block/magenta_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:magenta"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "magenta_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "magenta_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "magenta_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "magenta_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "magenta_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "magenta_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "magenta_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "magenta_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:orange_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/orange_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/orange_bed_foot_south",
+        "up": "block/orange_bed_foot_up",
+        "west": "block/orange_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:orange"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "orange_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "orange_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "orange_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "orange_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "orange_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "orange_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "orange_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "orange_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:pink_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/pink_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/pink_bed_foot_south",
+        "up": "block/pink_bed_foot_up",
+        "west": "block/pink_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:pink"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "pink_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "pink_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "pink_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "pink_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "pink_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "pink_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "pink_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "pink_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:purple_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/purple_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/purple_bed_foot_south",
+        "up": "block/purple_bed_foot_up",
+        "west": "block/purple_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:purple"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "purple_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "purple_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "purple_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "purple_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "purple_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "purple_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "purple_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "purple_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:red_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/red_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/red_bed_foot_south",
+        "up": "block/red_bed_foot_up",
+        "west": "block/red_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:red"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "red_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "red_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "red_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "red_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "red_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "red_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "red_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "red_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:straw_bed",
+      "kind": "custom",
+      "textures": { "all": "block/straw_bed", "particle": "block/straw_bed_particle" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["base_texture"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "straw_bed_foot", "y": 270 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "straw_bed_head", "y": 270 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "straw_bed_foot", "y": 180 }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "straw_bed_head", "y": 180 }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "straw_bed_foot" }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "straw_bed_head" }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "straw_bed_foot", "y": 90 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "straw_bed_head", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:white_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/white_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/white_bed_foot_south",
+        "up": "block/white_bed_foot_up",
+        "west": "block/white_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:white"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "white_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "white_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "white_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "white_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "white_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "white_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "white_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "white_bed_head", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:yellow_bed",
+      "kind": "custom",
+      "textures": {
+        "down": "block/bed_down",
+        "east": "block/yellow_bed_foot_east",
+        "particle": "block/oak_planks",
+        "south": "block/yellow_bed_foot_south",
+        "up": "block/yellow_bed_foot_up",
+        "west": "block/yellow_bed_foot_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "part": ["foot", "head"] },
+      "multiblock": "part",
+      "tags": ["color:yellow"],
+      "variants": [
+        { "when": { "facing": "east", "part": "foot" }, "looks": [{ "model": "yellow_bed_foot", "y": 90 }] },
+        { "when": { "facing": "east", "part": "head" }, "looks": [{ "model": "yellow_bed_head", "y": 90 }] },
+        { "when": { "facing": "north", "part": "foot" }, "looks": [{ "model": "yellow_bed_foot" }] },
+        { "when": { "facing": "north", "part": "head" }, "looks": [{ "model": "yellow_bed_head" }] },
+        { "when": { "facing": "south", "part": "foot" }, "looks": [{ "model": "yellow_bed_foot", "y": 180 }] },
+        { "when": { "facing": "south", "part": "head" }, "looks": [{ "model": "yellow_bed_head", "y": 180 }] },
+        { "when": { "facing": "west", "part": "foot" }, "looks": [{ "model": "yellow_bed_foot", "y": 270 }] },
+        { "when": { "facing": "west", "part": "head" }, "looks": [{ "model": "yellow_bed_head", "y": 270 }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "Name": "random-default",
+  "Format": 1,
+  "Dimensions": {
+    "overworld": {
+      "Generator": "random",
+      "GeneratorVersion": 1,
+      "Params": null
+    }
+  },
+  "Blocks": {},
+  "Models": {},
+  "Player": {
+    "Dimension": "overworld",
+    "Position": {
+      "X": 0,
+      "Y": 60,
+      "Z": 0
+    },
+    "Yaw": -30,
+    "Pitch": -35
+  },
+  "TimeOfDay": 23,
+  "Day": 0,
+  "Bookmarks": []
+}

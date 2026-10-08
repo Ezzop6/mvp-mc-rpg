@@ -1,0 +1,43 @@
+{
+  "Note": "50 km jump; shots after GraceFrames: near sphere loaded, reproducible frames",
+  "Scene": "random-default",
+  "TimeOfDay": 12,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": 0,
+        "Y": 80,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -15
+    },
+    {
+      "T": 6,
+      "Pos": {
+        "X": 300,
+        "Y": 80,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -15
+    }
+  ],
+  "Actions": [
+    {
+      "T": 2,
+      "Kind": "Teleport",
+      "By": {
+        "X": 50000,
+        "Y": 0,
+        "Z": 0
+      }
+    }
+  ],
+  "Shots": [
+    1.5,
+    3.5,
+    5.5
+  ]
+}

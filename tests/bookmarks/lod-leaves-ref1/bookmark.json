@@ -1,0 +1,28 @@
+{
+  "Note": "lod-leaves with level 1 drawn one level finer (lod-vs-finer reference)",
+  "Created": "2026-10-07T00:00:00",
+  "Commit": "LOD phase 5",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 0,
+      "Y": 3,
+      "Z": 0
+    },
+    "Local": {
+      "X": 0.0,
+      "Y": 7.5,
+      "Z": 0.0
+    },
+    "Yaw": -2.356194490192345,
+    "Pitch": -0.13962634015954636
+  },
+  "TimeOfDay": 12,
+  "Width": 3840,
+  "Height": 2160,
+  "Render": {
+    "Lod": true,
+    "LodRef": 1
+  }
+}

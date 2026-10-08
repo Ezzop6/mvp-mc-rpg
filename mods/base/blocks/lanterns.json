@@ -1,0 +1,156 @@
+{
+  "category": "lanterns",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:copper_lantern",
+      "kind": "lantern",
+      "template": "template_lantern",
+      "textures": { "lantern": "block/copper_lantern", "particle": "block/copper_lantern" },
+      "surface": "cutout",
+      "emission": 0.006,
+      "light": { "level": 15, "color": "#98ff87" },
+      "states": { "hanging": ["false", "true"] },
+      "tags": ["animated"],
+      "variants": [
+        { "when": { "hanging": "false" }, "looks": [{ "model": "copper_lantern" }] },
+        { "when": { "hanging": "true" }, "looks": [{ "model": "copper_lantern_hanging" }] }
+      ]
+    },
+    {
+      "id": "base:exposed_copper_lantern",
+      "kind": "lantern",
+      "template": "template_lantern",
+      "textures": { "lantern": "block/exposed_copper_lantern", "particle": "block/exposed_copper_lantern" },
+      "surface": "cutout",
+      "emission": 0.006,
+      "light": { "level": 15, "color": "#98ff87" },
+      "states": { "hanging": ["false", "true"] },
+      "tags": ["animated"],
+      "variants": [
+        { "when": { "hanging": "false" }, "looks": [{ "model": "exposed_copper_lantern" }] },
+        { "when": { "hanging": "true" }, "looks": [{ "model": "exposed_copper_lantern_hanging" }] }
+      ]
+    },
+    {
+      "id": "base:lantern",
+      "kind": "lantern",
+      "template": "template_lantern",
+      "textures": { "lantern": "block/lantern", "particle": "block/lantern" },
+      "surface": "cutout",
+      "emission": 0.007,
+      "light": { "level": 15, "color": "#ffd779" },
+      "states": { "hanging": ["false", "true"] },
+      "tags": ["animated"],
+      "variants": [
+        { "when": { "hanging": "false" }, "looks": [{ "model": "lantern" }] },
+        { "when": { "hanging": "true" }, "looks": [{ "model": "lantern_hanging" }] }
+      ]
+    },
+    {
+      "id": "base:oxidized_copper_lantern",
+      "kind": "lantern",
+      "template": "template_lantern",
+      "textures": { "lantern": "block/oxidized_copper_lantern", "particle": "block/oxidized_copper_lantern" },
+      "surface": "cutout",
+      "emission": 0.006,
+      "light": { "level": 15, "color": "#98ff87" },
+      "states": { "hanging": ["false", "true"] },
+      "tags": ["animated"],
+      "variants": [
+        { "when": { "hanging": "false" }, "looks": [{ "model": "oxidized_copper_lantern" }] },
+        { "when": { "hanging": "true" }, "looks": [{ "model": "oxidized_copper_lantern_hanging" }] }
+      ]
+    },
+    {
+      "id": "base:soul_lantern",
+      "kind": "lantern",
+      "template": "template_lantern",
+      "textures": { "lantern": "block/soul_lantern", "particle": "block/soul_lantern" },
+      "surface": "cutout",
+      "emission": 0.007,
+      "light": { "level": 10, "color": "#54ffe1" },
+      "states": { "hanging": ["false", "true"] },
+      "tags": ["animated"],
+      "variants": [
+        { "when": { "hanging": "false" }, "looks": [{ "model": "soul_lantern" }] },
+        { "when": { "hanging": "true" }, "looks": [{ "model": "soul_lantern_hanging" }] }
+      ]
+    },
+    {
+      "id": "base:waxed_copper_lantern",
+      "kind": "lantern",
+      "template": "template_lantern",
+      "textures": { "lantern": "block/copper_lantern", "particle": "block/copper_lantern" },
+      "surface": "cutout",
+      "emission": 0.006,
+      "light": { "level": 15, "color": "#98ff87" },
+      "states": { "hanging": ["false", "true"] },
+      "tags": ["animated"],
+      "variants": [
+        { "when": { "hanging": "false" }, "looks": [{ "model": "copper_lantern" }] },
+        { "when": { "hanging": "true" }, "looks": [{ "model": "copper_lantern_hanging" }] }
+      ]
+    },
+    {
+      "id": "base:waxed_exposed_copper_lantern",
+      "kind": "lantern",
+      "template": "template_lantern",
+      "textures": { "lantern": "block/exposed_copper_lantern", "particle": "block/exposed_copper_lantern" },
+      "surface": "cutout",
+      "emission": 0.006,
+      "light": { "level": 15, "color": "#98ff87" },
+      "states": { "hanging": ["false", "true"] },
+      "tags": ["animated"],
+      "variants": [
+        { "when": { "hanging": "false" }, "looks": [{ "model": "exposed_copper_lantern" }] },
+        { "when": { "hanging": "true" }, "looks": [{ "model": "exposed_copper_lantern_hanging" }] }
+      ]
+    },
+    {
+      "id": "base:waxed_oxidized_copper_lantern",
+      "kind": "lantern",
+      "template": "template_lantern",
+      "textures": { "lantern": "block/oxidized_copper_lantern", "particle": "block/oxidized_copper_lantern" },
+      "surface": "cutout",
+      "emission": 0.006,
+      "light": { "level": 15, "color": "#98ff87" },
+      "states": { "hanging": ["false", "true"] },
+      "tags": ["animated"],
+      "variants": [
+        { "when": { "hanging": "false" }, "looks": [{ "model": "oxidized_copper_lantern" }] },
+        { "when": { "hanging": "true" }, "looks": [{ "model": "oxidized_copper_lantern_hanging" }] }
+      ]
+    },
+    {
+      "id": "base:waxed_weathered_copper_lantern",
+      "kind": "lantern",
+      "template": "template_lantern",
+      "textures": { "lantern": "block/weathered_copper_lantern", "particle": "block/weathered_copper_lantern" },
+      "surface": "cutout",
+      "emission": 0.006,
+      "light": { "level": 15, "color": "#98ff87" },
+      "states": { "hanging": ["false", "true"] },
+      "tags": ["animated"],
+      "variants": [
+        { "when": { "hanging": "false" }, "looks": [{ "model": "weathered_copper_lantern" }] },
+        { "when": { "hanging": "true" }, "looks": [{ "model": "weathered_copper_lantern_hanging" }] }
+      ]
+    },
+    {
+      "id": "base:weathered_copper_lantern",
+      "kind": "lantern",
+      "template": "template_lantern",
+      "textures": { "lantern": "block/weathered_copper_lantern", "particle": "block/weathered_copper_lantern" },
+      "surface": "cutout",
+      "emission": 0.006,
+      "light": { "level": 15, "color": "#98ff87" },
+      "states": { "hanging": ["false", "true"] },
+      "tags": ["animated"],
+      "variants": [
+        { "when": { "hanging": "false" }, "looks": [{ "model": "weathered_copper_lantern" }] },
+        { "when": { "hanging": "true" }, "looks": [{ "model": "weathered_copper_lantern_hanging" }] }
+      ]
+    }
+  ]
+}

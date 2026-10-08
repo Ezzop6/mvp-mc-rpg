@@ -1,0 +1,13 @@
+{
+  "category": "vines",
+  "source": "import",
+  "entries": [
+    { "id": "base:glow_lichen", "block": "base:glow_lichen" },
+    { "id": "base:hanging_roots", "block": "base:hanging_roots" },
+    { "id": "base:pale_hanging_moss", "block": "base:pale_hanging_moss" },
+    { "id": "base:sculk_vein", "block": "base:sculk_vein" },
+    { "id": "base:twisting_vines", "block": "base:twisting_vines" },
+    { "id": "base:vine", "block": "base:vine" },
+    { "id": "base:weeping_vines", "block": "base:weeping_vines" }
+  ]
+}

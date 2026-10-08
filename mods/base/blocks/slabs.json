@@ -1,0 +1,1552 @@
+{
+  "category": "slabs",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:acacia_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/acacia_planks", "particle": "block/acacia_planks", "side": "block/acacia_planks", "top": "block/acacia_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:acacia"],
+      "cubes": { "acacia_planks": { "all": { "texture": "block/acacia_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "acacia_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "acacia_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "acacia_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:andesite_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/andesite", "particle": "block/andesite", "side": "block/andesite", "top": "block/andesite" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "andesite": { "all": { "texture": "block/andesite" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "andesite_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "andesite" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "andesite_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:bamboo_mosaic_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/bamboo_mosaic", "particle": "block/bamboo_mosaic", "side": "block/bamboo_mosaic", "top": "block/bamboo_mosaic" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:bamboo"],
+      "cubes": { "bamboo_mosaic": { "all": { "texture": "block/bamboo_mosaic" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "bamboo_mosaic_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "bamboo_mosaic" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "bamboo_mosaic_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:bamboo_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/bamboo_planks", "particle": "block/bamboo_planks", "side": "block/bamboo_planks", "top": "block/bamboo_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:bamboo"],
+      "cubes": { "bamboo_planks": { "all": { "texture": "block/bamboo_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "bamboo_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "bamboo_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "bamboo_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:birch_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/birch_planks", "particle": "block/birch_planks", "side": "block/birch_planks", "top": "block/birch_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:birch"],
+      "cubes": { "birch_planks": { "all": { "texture": "block/birch_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "birch_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "birch_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "birch_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:black_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/black_concrete", "particle": "block/black_concrete", "side": "block/black_concrete", "top": "block/black_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:black"],
+      "cubes": { "black_concrete": { "all": { "texture": "block/black_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "black_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "black_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "black_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:black_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/black_wool", "particle": "block/black_wool", "side": "block/black_wool", "top": "block/black_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:black"],
+      "cubes": { "black_wool": { "all": { "texture": "block/black_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "black_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "black_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "black_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:blackstone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/blackstone_top", "particle": "block/blackstone", "side": "block/blackstone", "top": "block/blackstone_top" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": {
+        "blackstone": {
+          "top": { "texture": "block/blackstone_top" },
+          "bottom": { "texture": "block/blackstone_top" },
+          "side": { "texture": "block/blackstone" }
+        }
+      },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "blackstone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "blackstone" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "blackstone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:blue_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/blue_concrete", "particle": "block/blue_concrete", "side": "block/blue_concrete", "top": "block/blue_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:blue"],
+      "cubes": { "blue_concrete": { "all": { "texture": "block/blue_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "blue_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "blue_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "blue_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:blue_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/blue_wool", "particle": "block/blue_wool", "side": "block/blue_wool", "top": "block/blue_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:blue"],
+      "cubes": { "blue_wool": { "all": { "texture": "block/blue_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "blue_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "blue_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "blue_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/bricks", "particle": "block/bricks", "side": "block/bricks", "top": "block/bricks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "bricks": { "all": { "texture": "block/bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:brown_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/brown_concrete", "particle": "block/brown_concrete", "side": "block/brown_concrete", "top": "block/brown_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:brown"],
+      "cubes": { "brown_concrete": { "all": { "texture": "block/brown_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "brown_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "brown_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "brown_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:brown_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/brown_wool", "particle": "block/brown_wool", "side": "block/brown_wool", "top": "block/brown_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:brown"],
+      "cubes": { "brown_wool": { "all": { "texture": "block/brown_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "brown_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "brown_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "brown_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:cherry_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/cherry_planks", "particle": "block/cherry_planks", "side": "block/cherry_planks", "top": "block/cherry_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:cherry"],
+      "cubes": { "cherry_planks": { "all": { "texture": "block/cherry_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "cherry_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "cherry_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "cherry_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:cinnabar_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/cinnabar_bricks", "particle": "block/cinnabar_bricks", "side": "block/cinnabar_bricks", "top": "block/cinnabar_bricks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "cinnabar_bricks": { "all": { "texture": "block/cinnabar_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "cinnabar_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "cinnabar_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "cinnabar_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:cinnabar_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/cinnabar", "particle": "block/cinnabar", "side": "block/cinnabar", "top": "block/cinnabar" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "cinnabar": { "all": { "texture": "block/cinnabar" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "cinnabar_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "cinnabar" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "cinnabar_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:cobbled_deepslate_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/cobbled_deepslate",
+        "particle": "block/cobbled_deepslate",
+        "side": "block/cobbled_deepslate",
+        "top": "block/cobbled_deepslate"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "cobbled_deepslate": { "all": { "texture": "block/cobbled_deepslate" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "cobbled_deepslate_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "cobbled_deepslate" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "cobbled_deepslate_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:cobblestone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/cobblestone", "particle": "block/cobblestone", "side": "block/cobblestone", "top": "block/cobblestone" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "cobblestone": { "all": { "texture": "block/cobblestone" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "cobblestone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "cobblestone" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "cobblestone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:crimson_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/crimson_planks", "particle": "block/crimson_planks", "side": "block/crimson_planks", "top": "block/crimson_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:crimson"],
+      "cubes": { "crimson_planks": { "all": { "texture": "block/crimson_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "crimson_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "crimson_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "crimson_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:cut_copper_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/cut_copper", "particle": "block/cut_copper", "side": "block/cut_copper", "top": "block/cut_copper" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "cut_copper": { "all": { "texture": "block/cut_copper" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "cut_copper_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "cut_copper" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "cut_copper_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:cut_red_sandstone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/red_sandstone_top",
+        "particle": "block/cut_red_sandstone",
+        "side": "block/cut_red_sandstone",
+        "top": "block/red_sandstone_top"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:red"],
+      "cubes": {
+        "cut_red_sandstone": {
+          "top": { "texture": "block/red_sandstone_top" },
+          "bottom": { "texture": "block/red_sandstone_top" },
+          "side": { "texture": "block/cut_red_sandstone" }
+        }
+      },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "cut_red_sandstone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "cut_red_sandstone" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "cut_red_sandstone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:cut_sandstone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/sandstone_top", "particle": "block/cut_sandstone", "side": "block/cut_sandstone", "top": "block/sandstone_top" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": {
+        "cut_sandstone": {
+          "top": { "texture": "block/sandstone_top" },
+          "bottom": { "texture": "block/sandstone_top" },
+          "side": { "texture": "block/cut_sandstone" }
+        }
+      },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "cut_sandstone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "cut_sandstone" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "cut_sandstone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:cyan_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/cyan_concrete", "particle": "block/cyan_concrete", "side": "block/cyan_concrete", "top": "block/cyan_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:cyan"],
+      "cubes": { "cyan_concrete": { "all": { "texture": "block/cyan_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "cyan_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "cyan_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "cyan_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:cyan_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/cyan_wool", "particle": "block/cyan_wool", "side": "block/cyan_wool", "top": "block/cyan_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:cyan"],
+      "cubes": { "cyan_wool": { "all": { "texture": "block/cyan_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "cyan_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "cyan_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "cyan_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:dark_oak_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/dark_oak_planks", "particle": "block/dark_oak_planks", "side": "block/dark_oak_planks", "top": "block/dark_oak_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:dark_oak"],
+      "cubes": { "dark_oak_planks": { "all": { "texture": "block/dark_oak_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "dark_oak_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "dark_oak_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "dark_oak_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:dark_prismarine_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/dark_prismarine", "particle": "block/dark_prismarine", "side": "block/dark_prismarine", "top": "block/dark_prismarine" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "dark_prismarine": { "all": { "texture": "block/dark_prismarine" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "dark_prismarine_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "dark_prismarine" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "dark_prismarine_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:deepslate_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/deepslate_bricks",
+        "particle": "block/deepslate_bricks",
+        "side": "block/deepslate_bricks",
+        "top": "block/deepslate_bricks"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "deepslate_bricks": { "all": { "texture": "block/deepslate_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "deepslate_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "deepslate_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "deepslate_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:deepslate_tile_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/deepslate_tiles", "particle": "block/deepslate_tiles", "side": "block/deepslate_tiles", "top": "block/deepslate_tiles" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "deepslate_tiles": { "all": { "texture": "block/deepslate_tiles" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "deepslate_tile_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "deepslate_tiles" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "deepslate_tile_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:diorite_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/diorite", "particle": "block/diorite", "side": "block/diorite", "top": "block/diorite" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "diorite": { "all": { "texture": "block/diorite" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "diorite_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "diorite" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "diorite_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:end_stone_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/end_stone_bricks",
+        "particle": "block/end_stone_bricks",
+        "side": "block/end_stone_bricks",
+        "top": "block/end_stone_bricks"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "end_stone_bricks": { "all": { "texture": "block/end_stone_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "end_stone_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "end_stone_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "end_stone_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:exposed_cut_copper_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/exposed_cut_copper",
+        "particle": "block/exposed_cut_copper",
+        "side": "block/exposed_cut_copper",
+        "top": "block/exposed_cut_copper"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "exposed_cut_copper": { "all": { "texture": "block/exposed_cut_copper" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "exposed_cut_copper_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "exposed_cut_copper" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "exposed_cut_copper_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:granite_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/granite", "particle": "block/granite", "side": "block/granite", "top": "block/granite" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "granite": { "all": { "texture": "block/granite" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "granite_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "granite" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "granite_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:gray_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/gray_concrete", "particle": "block/gray_concrete", "side": "block/gray_concrete", "top": "block/gray_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:gray"],
+      "cubes": { "gray_concrete": { "all": { "texture": "block/gray_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "gray_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "gray_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "gray_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:gray_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/gray_wool", "particle": "block/gray_wool", "side": "block/gray_wool", "top": "block/gray_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:gray"],
+      "cubes": { "gray_wool": { "all": { "texture": "block/gray_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "gray_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "gray_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "gray_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:green_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/green_concrete", "particle": "block/green_concrete", "side": "block/green_concrete", "top": "block/green_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:green"],
+      "cubes": { "green_concrete": { "all": { "texture": "block/green_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "green_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "green_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "green_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:green_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/green_wool", "particle": "block/green_wool", "side": "block/green_wool", "top": "block/green_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:green"],
+      "cubes": { "green_wool": { "all": { "texture": "block/green_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "green_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "green_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "green_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:jungle_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/jungle_planks", "particle": "block/jungle_planks", "side": "block/jungle_planks", "top": "block/jungle_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:jungle"],
+      "cubes": { "jungle_planks": { "all": { "texture": "block/jungle_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "jungle_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "jungle_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "jungle_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:light_blue_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/light_blue_concrete",
+        "particle": "block/light_blue_concrete",
+        "side": "block/light_blue_concrete",
+        "top": "block/light_blue_concrete"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:light_blue"],
+      "cubes": { "light_blue_concrete": { "all": { "texture": "block/light_blue_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "light_blue_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "light_blue_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "light_blue_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:light_blue_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/light_blue_wool", "particle": "block/light_blue_wool", "side": "block/light_blue_wool", "top": "block/light_blue_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:light_blue"],
+      "cubes": { "light_blue_wool": { "all": { "texture": "block/light_blue_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "light_blue_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "light_blue_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "light_blue_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:light_gray_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/light_gray_concrete",
+        "particle": "block/light_gray_concrete",
+        "side": "block/light_gray_concrete",
+        "top": "block/light_gray_concrete"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:light_gray"],
+      "cubes": { "light_gray_concrete": { "all": { "texture": "block/light_gray_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "light_gray_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "light_gray_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "light_gray_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:light_gray_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/light_gray_wool", "particle": "block/light_gray_wool", "side": "block/light_gray_wool", "top": "block/light_gray_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:light_gray"],
+      "cubes": { "light_gray_wool": { "all": { "texture": "block/light_gray_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "light_gray_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "light_gray_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "light_gray_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:lime_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/lime_concrete", "particle": "block/lime_concrete", "side": "block/lime_concrete", "top": "block/lime_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:lime"],
+      "cubes": { "lime_concrete": { "all": { "texture": "block/lime_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "lime_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "lime_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "lime_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:lime_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/lime_wool", "particle": "block/lime_wool", "side": "block/lime_wool", "top": "block/lime_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:lime"],
+      "cubes": { "lime_wool": { "all": { "texture": "block/lime_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "lime_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "lime_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "lime_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:magenta_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/magenta_concrete",
+        "particle": "block/magenta_concrete",
+        "side": "block/magenta_concrete",
+        "top": "block/magenta_concrete"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:magenta"],
+      "cubes": { "magenta_concrete": { "all": { "texture": "block/magenta_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "magenta_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "magenta_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "magenta_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:magenta_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/magenta_wool", "particle": "block/magenta_wool", "side": "block/magenta_wool", "top": "block/magenta_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:magenta"],
+      "cubes": { "magenta_wool": { "all": { "texture": "block/magenta_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "magenta_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "magenta_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "magenta_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:mangrove_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/mangrove_planks", "particle": "block/mangrove_planks", "side": "block/mangrove_planks", "top": "block/mangrove_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:mangrove"],
+      "cubes": { "mangrove_planks": { "all": { "texture": "block/mangrove_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "mangrove_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "mangrove_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "mangrove_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:mossy_cobblestone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/mossy_cobblestone",
+        "particle": "block/mossy_cobblestone",
+        "side": "block/mossy_cobblestone",
+        "top": "block/mossy_cobblestone"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "mossy_cobblestone": { "all": { "texture": "block/mossy_cobblestone" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "mossy_cobblestone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "mossy_cobblestone" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "mossy_cobblestone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:mossy_stone_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/mossy_stone_bricks",
+        "particle": "block/mossy_stone_bricks",
+        "side": "block/mossy_stone_bricks",
+        "top": "block/mossy_stone_bricks"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "mossy_stone_bricks": { "all": { "texture": "block/mossy_stone_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "mossy_stone_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "mossy_stone_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "mossy_stone_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:mud_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/mud_bricks", "particle": "block/mud_bricks", "side": "block/mud_bricks", "top": "block/mud_bricks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "mud_bricks": { "all": { "texture": "block/mud_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "mud_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "mud_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "mud_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:nether_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/nether_bricks", "particle": "block/nether_bricks", "side": "block/nether_bricks", "top": "block/nether_bricks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "nether_bricks": { "all": { "texture": "block/nether_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "nether_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "nether_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "nether_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:oak_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/oak_planks", "particle": "block/oak_planks", "side": "block/oak_planks", "top": "block/oak_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:oak"],
+      "cubes": { "oak_planks": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "oak_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "oak_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "oak_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:orange_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/orange_concrete", "particle": "block/orange_concrete", "side": "block/orange_concrete", "top": "block/orange_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:orange"],
+      "cubes": { "orange_concrete": { "all": { "texture": "block/orange_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "orange_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "orange_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "orange_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:orange_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/orange_wool", "particle": "block/orange_wool", "side": "block/orange_wool", "top": "block/orange_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:orange"],
+      "cubes": { "orange_wool": { "all": { "texture": "block/orange_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "orange_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "orange_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "orange_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:oxidized_cut_copper_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/oxidized_cut_copper",
+        "particle": "block/oxidized_cut_copper",
+        "side": "block/oxidized_cut_copper",
+        "top": "block/oxidized_cut_copper"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "oxidized_cut_copper": { "all": { "texture": "block/oxidized_cut_copper" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "oxidized_cut_copper_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "oxidized_cut_copper" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "oxidized_cut_copper_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:pale_oak_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/pale_oak_planks", "particle": "block/pale_oak_planks", "side": "block/pale_oak_planks", "top": "block/pale_oak_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:pale_oak"],
+      "cubes": { "pale_oak_planks": { "all": { "texture": "block/pale_oak_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "pale_oak_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "pale_oak_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "pale_oak_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:petrified_oak_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/oak_planks", "particle": "block/oak_planks", "side": "block/oak_planks", "top": "block/oak_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "oak_planks": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "petrified_oak_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "oak_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "petrified_oak_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:pink_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/pink_concrete", "particle": "block/pink_concrete", "side": "block/pink_concrete", "top": "block/pink_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:pink"],
+      "cubes": { "pink_concrete": { "all": { "texture": "block/pink_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "pink_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "pink_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "pink_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:pink_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/pink_wool", "particle": "block/pink_wool", "side": "block/pink_wool", "top": "block/pink_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:pink"],
+      "cubes": { "pink_wool": { "all": { "texture": "block/pink_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "pink_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "pink_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "pink_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:polished_andesite_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/polished_andesite",
+        "particle": "block/polished_andesite",
+        "side": "block/polished_andesite",
+        "top": "block/polished_andesite"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "polished_andesite": { "all": { "texture": "block/polished_andesite" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "polished_andesite_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "polished_andesite" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "polished_andesite_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:polished_blackstone_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/polished_blackstone_bricks",
+        "particle": "block/polished_blackstone_bricks",
+        "side": "block/polished_blackstone_bricks",
+        "top": "block/polished_blackstone_bricks"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "polished_blackstone_bricks": { "all": { "texture": "block/polished_blackstone_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "polished_blackstone_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "polished_blackstone_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "polished_blackstone_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:polished_blackstone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/polished_blackstone",
+        "particle": "block/polished_blackstone",
+        "side": "block/polished_blackstone",
+        "top": "block/polished_blackstone"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "polished_blackstone": { "all": { "texture": "block/polished_blackstone" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "polished_blackstone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "polished_blackstone" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "polished_blackstone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:polished_cinnabar_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/polished_cinnabar",
+        "particle": "block/polished_cinnabar",
+        "side": "block/polished_cinnabar",
+        "top": "block/polished_cinnabar"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "polished_cinnabar": { "all": { "texture": "block/polished_cinnabar" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "polished_cinnabar_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "polished_cinnabar" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "polished_cinnabar_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:polished_deepslate_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/polished_deepslate",
+        "particle": "block/polished_deepslate",
+        "side": "block/polished_deepslate",
+        "top": "block/polished_deepslate"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "polished_deepslate": { "all": { "texture": "block/polished_deepslate" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "polished_deepslate_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "polished_deepslate" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "polished_deepslate_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:polished_diorite_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/polished_diorite",
+        "particle": "block/polished_diorite",
+        "side": "block/polished_diorite",
+        "top": "block/polished_diorite"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "polished_diorite": { "all": { "texture": "block/polished_diorite" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "polished_diorite_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "polished_diorite" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "polished_diorite_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:polished_granite_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/polished_granite",
+        "particle": "block/polished_granite",
+        "side": "block/polished_granite",
+        "top": "block/polished_granite"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "polished_granite": { "all": { "texture": "block/polished_granite" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "polished_granite_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "polished_granite" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "polished_granite_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:polished_sulfur_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/polished_sulfur", "particle": "block/polished_sulfur", "side": "block/polished_sulfur", "top": "block/polished_sulfur" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "polished_sulfur": { "all": { "texture": "block/polished_sulfur" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "polished_sulfur_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "polished_sulfur" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "polished_sulfur_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:polished_tuff_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/polished_tuff", "particle": "block/polished_tuff", "side": "block/polished_tuff", "top": "block/polished_tuff" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "polished_tuff": { "all": { "texture": "block/polished_tuff" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "polished_tuff_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "polished_tuff" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "polished_tuff_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:poplar_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/poplar_planks", "particle": "block/poplar_planks", "side": "block/poplar_planks", "top": "block/poplar_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:poplar"],
+      "cubes": { "poplar_planks": { "all": { "texture": "block/poplar_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "poplar_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "poplar_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "poplar_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:prismarine_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/prismarine_bricks",
+        "particle": "block/prismarine_bricks",
+        "side": "block/prismarine_bricks",
+        "top": "block/prismarine_bricks"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "prismarine_bricks": { "all": { "texture": "block/prismarine_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "prismarine_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "prismarine_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "prismarine_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:prismarine_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/prismarine", "particle": "block/prismarine", "side": "block/prismarine", "top": "block/prismarine" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["animated"],
+      "cubes": { "prismarine": { "all": { "texture": "block/prismarine" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "prismarine_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "prismarine" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "prismarine_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:purple_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/purple_concrete", "particle": "block/purple_concrete", "side": "block/purple_concrete", "top": "block/purple_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:purple"],
+      "cubes": { "purple_concrete": { "all": { "texture": "block/purple_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "purple_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "purple_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "purple_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:purple_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/purple_wool", "particle": "block/purple_wool", "side": "block/purple_wool", "top": "block/purple_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:purple"],
+      "cubes": { "purple_wool": { "all": { "texture": "block/purple_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "purple_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "purple_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "purple_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:purpur_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/purpur_block", "particle": "block/purpur_block", "side": "block/purpur_block", "top": "block/purpur_block" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "purpur_block": { "all": { "texture": "block/purpur_block" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "purpur_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "purpur_block" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "purpur_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:quartz_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/quartz_block_top",
+        "particle": "block/quartz_block_side",
+        "side": "block/quartz_block_side",
+        "top": "block/quartz_block_top"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": {
+        "quartz_block": {
+          "top": { "texture": "block/quartz_block_top" },
+          "bottom": { "texture": "block/quartz_block_top" },
+          "side": { "texture": "block/quartz_block_side" }
+        }
+      },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "quartz_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "quartz_block" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "quartz_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:red_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/red_concrete", "particle": "block/red_concrete", "side": "block/red_concrete", "top": "block/red_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:red"],
+      "cubes": { "red_concrete": { "all": { "texture": "block/red_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "red_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "red_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "red_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:red_nether_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/red_nether_bricks",
+        "particle": "block/red_nether_bricks",
+        "side": "block/red_nether_bricks",
+        "top": "block/red_nether_bricks"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:red"],
+      "cubes": { "red_nether_bricks": { "all": { "texture": "block/red_nether_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "red_nether_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "red_nether_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "red_nether_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:red_sandstone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/red_sandstone_bottom", "particle": "block/red_sandstone", "side": "block/red_sandstone", "top": "block/red_sandstone_top" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:red"],
+      "cubes": {
+        "red_sandstone": {
+          "top": { "texture": "block/red_sandstone_top" },
+          "bottom": { "texture": "block/red_sandstone_bottom" },
+          "side": { "texture": "block/red_sandstone" }
+        }
+      },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "red_sandstone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "red_sandstone" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "red_sandstone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:red_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/red_wool", "particle": "block/red_wool", "side": "block/red_wool", "top": "block/red_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:red"],
+      "cubes": { "red_wool": { "all": { "texture": "block/red_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "red_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "red_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "red_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:resin_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/resin_bricks", "particle": "block/resin_bricks", "side": "block/resin_bricks", "top": "block/resin_bricks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "resin_bricks": { "all": { "texture": "block/resin_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "resin_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "resin_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "resin_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:sandstone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/sandstone_bottom", "particle": "block/sandstone", "side": "block/sandstone", "top": "block/sandstone_top" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": {
+        "sandstone": {
+          "top": { "texture": "block/sandstone_top" },
+          "bottom": { "texture": "block/sandstone_bottom" },
+          "side": { "texture": "block/sandstone" }
+        }
+      },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "sandstone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "sandstone" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "sandstone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:smooth_quartz_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/quartz_block_bottom",
+        "particle": "block/quartz_block_bottom",
+        "side": "block/quartz_block_bottom",
+        "top": "block/quartz_block_bottom"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "smooth_quartz": { "all": { "texture": "block/quartz_block_bottom" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "smooth_quartz_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "smooth_quartz" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "smooth_quartz_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:smooth_red_sandstone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/red_sandstone_top",
+        "particle": "block/red_sandstone_top",
+        "side": "block/red_sandstone_top",
+        "top": "block/red_sandstone_top"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:red"],
+      "cubes": { "smooth_red_sandstone": { "all": { "texture": "block/red_sandstone_top" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "smooth_red_sandstone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "smooth_red_sandstone" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "smooth_red_sandstone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:smooth_sandstone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/sandstone_top", "particle": "block/sandstone_top", "side": "block/sandstone_top", "top": "block/sandstone_top" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "smooth_sandstone": { "all": { "texture": "block/sandstone_top" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "smooth_sandstone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "smooth_sandstone" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "smooth_sandstone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:smooth_stone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/smooth_stone",
+        "particle": "block/smooth_stone_slab_side",
+        "side": "block/smooth_stone_slab_side",
+        "top": "block/smooth_stone"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": {
+        "smooth_stone_slab_double": {
+          "top": { "texture": "block/smooth_stone" },
+          "bottom": { "texture": "block/smooth_stone" },
+          "side": { "texture": "block/smooth_stone_slab_side" }
+        }
+      },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "smooth_stone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "smooth_stone_slab_double" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "smooth_stone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:spruce_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/spruce_planks", "particle": "block/spruce_planks", "side": "block/spruce_planks", "top": "block/spruce_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:spruce"],
+      "cubes": { "spruce_planks": { "all": { "texture": "block/spruce_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "spruce_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "spruce_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "spruce_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:stone_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/stone_bricks", "particle": "block/stone_bricks", "side": "block/stone_bricks", "top": "block/stone_bricks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "stone_bricks": { "all": { "texture": "block/stone_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "stone_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "stone_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "stone_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:stone_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/stone", "particle": "block/extra/stone_extra", "side": "block/stone", "top": "block/stone" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "stone": { "all": { "texture": "block/stone" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "stone_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "stone" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "stone_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:sulfur_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/sulfur_bricks", "particle": "block/sulfur_bricks", "side": "block/sulfur_bricks", "top": "block/sulfur_bricks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "sulfur_bricks": { "all": { "texture": "block/sulfur_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "sulfur_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "sulfur_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "sulfur_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:sulfur_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/sulfur", "particle": "block/sulfur", "side": "block/sulfur", "top": "block/sulfur" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "sulfur": { "all": { "texture": "block/sulfur" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "sulfur_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "sulfur" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "sulfur_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:tuff_brick_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/tuff_bricks", "particle": "block/tuff_bricks", "side": "block/tuff_bricks", "top": "block/tuff_bricks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "tuff_bricks": { "all": { "texture": "block/tuff_bricks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "tuff_brick_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "tuff_bricks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "tuff_brick_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:tuff_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/tuff", "particle": "block/tuff", "side": "block/tuff", "top": "block/tuff" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "tuff": { "all": { "texture": "block/tuff" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "tuff_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "tuff" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "tuff_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:warped_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/warped_planks", "particle": "block/warped_planks", "side": "block/warped_planks", "top": "block/warped_planks" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["wood:warped"],
+      "cubes": { "warped_planks": { "all": { "texture": "block/warped_planks" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "warped_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "warped_planks" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "warped_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:waxed_cut_copper_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/cut_copper", "particle": "block/cut_copper", "side": "block/cut_copper", "top": "block/cut_copper" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "cut_copper": { "all": { "texture": "block/cut_copper" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "cut_copper_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "cut_copper" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "cut_copper_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:waxed_exposed_cut_copper_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/exposed_cut_copper",
+        "particle": "block/exposed_cut_copper",
+        "side": "block/exposed_cut_copper",
+        "top": "block/exposed_cut_copper"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "exposed_cut_copper": { "all": { "texture": "block/exposed_cut_copper" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "exposed_cut_copper_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "exposed_cut_copper" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "exposed_cut_copper_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:waxed_oxidized_cut_copper_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/oxidized_cut_copper",
+        "particle": "block/oxidized_cut_copper",
+        "side": "block/oxidized_cut_copper",
+        "top": "block/oxidized_cut_copper"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "oxidized_cut_copper": { "all": { "texture": "block/oxidized_cut_copper" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "oxidized_cut_copper_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "oxidized_cut_copper" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "oxidized_cut_copper_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:waxed_weathered_cut_copper_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/weathered_cut_copper",
+        "particle": "block/weathered_cut_copper",
+        "side": "block/weathered_cut_copper",
+        "top": "block/weathered_cut_copper"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "weathered_cut_copper": { "all": { "texture": "block/weathered_cut_copper" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "weathered_cut_copper_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "weathered_cut_copper" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "weathered_cut_copper_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:weathered_cut_copper_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": {
+        "bottom": "block/weathered_cut_copper",
+        "particle": "block/weathered_cut_copper",
+        "side": "block/weathered_cut_copper",
+        "top": "block/weathered_cut_copper"
+      },
+      "states": { "type": ["bottom", "double", "top"] },
+      "cubes": { "weathered_cut_copper": { "all": { "texture": "block/weathered_cut_copper" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "weathered_cut_copper_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "weathered_cut_copper" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "weathered_cut_copper_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:white_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/white_concrete", "particle": "block/white_concrete", "side": "block/white_concrete", "top": "block/white_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:white"],
+      "cubes": { "white_concrete": { "all": { "texture": "block/white_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "white_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "white_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "white_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:white_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/white_wool", "particle": "block/white_wool", "side": "block/white_wool", "top": "block/white_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:white"],
+      "cubes": { "white_wool": { "all": { "texture": "block/white_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "white_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "white_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "white_wool_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:yellow_concrete_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/yellow_concrete", "particle": "block/yellow_concrete", "side": "block/yellow_concrete", "top": "block/yellow_concrete" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:yellow"],
+      "cubes": { "yellow_concrete": { "all": { "texture": "block/yellow_concrete" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "yellow_concrete_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "yellow_concrete" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "yellow_concrete_slab_top" }] }
+      ]
+    },
+    {
+      "id": "base:yellow_wool_slab",
+      "kind": "slab",
+      "template": "slab",
+      "textures": { "bottom": "block/yellow_wool", "particle": "block/yellow_wool", "side": "block/yellow_wool", "top": "block/yellow_wool" },
+      "states": { "type": ["bottom", "double", "top"] },
+      "tags": ["color:yellow"],
+      "cubes": { "yellow_wool": { "all": { "texture": "block/yellow_wool" } } },
+      "variants": [
+        { "when": { "type": "bottom" }, "looks": [{ "model": "yellow_wool_slab" }] },
+        { "when": { "type": "double" }, "looks": [{ "cube": "yellow_wool" }] },
+        { "when": { "type": "top" }, "looks": [{ "model": "yellow_wool_slab_top" }] }
+      ]
+    }
+  ]
+}

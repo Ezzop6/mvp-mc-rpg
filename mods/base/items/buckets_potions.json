@@ -1,0 +1,25 @@
+{
+  "category": "buckets_potions",
+  "source": "import",
+  "entries": [
+    { "id": "base:axolotl_bucket", "model": "item/axolotl_bucket", "layers": ["item/axolotl_bucket"] },
+    { "id": "base:bucket", "model": "item/bucket", "layers": ["item/bucket"] },
+    { "id": "base:cod_bucket", "model": "item/cod_bucket", "layers": ["item/cod_bucket"] },
+    { "id": "base:dragon_breath", "model": "item/dragon_breath", "layers": ["item/dragon_breath"] },
+    { "id": "base:experience_bottle", "model": "item/experience_bottle", "layers": ["item/experience_bottle"] },
+    { "id": "base:glass_bottle", "model": "item/glass_bottle", "layers": ["item/glass_bottle"] },
+    { "id": "base:lava_bucket", "model": "item/lava_bucket", "layers": ["item/lava_bucket"] },
+    { "id": "base:lingering_potion", "model": "item/lingering_potion", "layers": ["item/potion_overlay", "item/lingering_potion"] },
+    { "id": "base:milk_bucket", "model": "item/milk_bucket", "layers": ["item/milk_bucket"] },
+    { "id": "base:ominous_bottle", "model": "item/ominous_bottle", "layers": ["item/ominous_bottle"] },
+    { "id": "base:potion", "model": "item/potion", "layers": ["item/potion_overlay", "item/potion"] },
+    { "id": "base:powder_snow_bucket", "model": "item/powder_snow_bucket", "layers": ["item/powder_snow_bucket"] },
+    { "id": "base:pufferfish_bucket", "model": "item/pufferfish_bucket", "layers": ["item/pufferfish_bucket"] },
+    { "id": "base:salmon_bucket", "model": "item/salmon_bucket", "layers": ["item/salmon_bucket"] },
+    { "id": "base:splash_potion", "model": "item/splash_potion", "layers": ["item/splash_potion_overlay", "item/splash_potion"] },
+    { "id": "base:sulfur_cube_bucket", "model": "item/sulfur_cube_bucket", "layers": ["item/sulfur_cube_bucket"] },
+    { "id": "base:tadpole_bucket", "model": "item/tadpole_bucket", "layers": ["item/tadpole_bucket"] },
+    { "id": "base:tropical_fish_bucket", "model": "item/tropical_fish_bucket", "layers": ["item/tropical_fish_bucket"] },
+    { "id": "base:water_bucket", "model": "item/water_bucket", "layers": ["item/water_bucket"] }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "category": "candles",
+  "source": "import",
+  "entries": [
+    { "id": "base:black_candle", "block": "base:black_candle" },
+    { "id": "base:blue_candle", "block": "base:blue_candle" },
+    { "id": "base:brown_candle", "block": "base:brown_candle" },
+    { "id": "base:candle", "block": "base:candle" },
+    { "id": "base:cyan_candle", "block": "base:cyan_candle" },
+    { "id": "base:gray_candle", "block": "base:gray_candle" },
+    { "id": "base:green_candle", "block": "base:green_candle" },
+    { "id": "base:light_blue_candle", "block": "base:light_blue_candle" },
+    { "id": "base:light_gray_candle", "block": "base:light_gray_candle" },
+    { "id": "base:lime_candle", "block": "base:lime_candle" },
+    { "id": "base:magenta_candle", "block": "base:magenta_candle" },
+    { "id": "base:orange_candle", "block": "base:orange_candle" },
+    { "id": "base:pink_candle", "block": "base:pink_candle" },
+    { "id": "base:purple_candle", "block": "base:purple_candle" },
+    { "id": "base:red_candle", "block": "base:red_candle" },
+    { "id": "base:white_candle", "block": "base:white_candle" },
+    { "id": "base:yellow_candle", "block": "base:yellow_candle" }
+  ]
+}

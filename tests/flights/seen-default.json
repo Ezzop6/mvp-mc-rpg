@@ -1,0 +1,29 @@
+{
+  "Note": "Primary/dda-seen measurement: the random-default bookmark view, still then a 360 degree pan",
+  "Scene": "random-default",
+  "TimeOfDay": 14,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": 0,
+        "Y": 60,
+        "Z": 0
+      },
+      "Yaw": -30,
+      "Pitch": -35
+    }
+  ],
+  "Actions": [
+    {
+      "T": 1.2,
+      "Kind": "Turn",
+      "Yaw": 360,
+      "Seconds": 6
+    }
+  ],
+  "Shots": [
+    1,
+    8
+  ]
+}

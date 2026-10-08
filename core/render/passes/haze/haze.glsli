@@ -1,0 +1,2 @@
+// v1 haze colour of Haze and HeightFog: the horizon blended towards the sun's colour around the sun (Renderer.SkyHorizon, HazeSun, HazeSunFocus).
+vec3 haze_color(vec3 d) { return mix(cam.sky_horizon.rgb, cam.sun_col.rgb * cam.sky_top.w, pow(max(dot(d, cam.sun_dir.xyz), 0.0), cam.sky_horizon.w)); }

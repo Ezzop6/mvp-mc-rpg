@@ -1,0 +1,15 @@
+// Color (or Temporal's Output) as it is, depth from t along the ray (blocks) to view depth (m) for present.gdshader.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "camera.glsli"
+layout(set = 0, binding = 2, rgba16f) restrict readonly uniform image2D color_in;
+layout(set = 0, binding = 3, r32f) restrict readonly uniform image2D depth_in;
+layout(set = 0, binding = 4, rgba16f) restrict writeonly uniform image2D color_out;
+layout(set = 0, binding = 5, r32f) restrict writeonly uniform image2D depth_out;
+
+void main() {
+	ivec2 px = ivec2(gl_GlobalInvocationID.xy), size = imageSize(color_out), dsize = imageSize(depth_in), dp = px * dsize / size;
+	if (any(greaterThanEqual(px, size))) return;
+	float t = imageLoad(depth_in, dp).r;
+	imageStore(color_out, px, imageLoad(color_in, px));
+	imageStore(depth_out, px, vec4(t * dot(pixel_dir(dp, dsize), cam.fwd.xyz) * BS));
+}

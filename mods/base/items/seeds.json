@@ -1,0 +1,13 @@
+{
+  "category": "seeds",
+  "source": "import",
+  "entries": [
+    { "id": "base:beetroot_seeds", "model": "item/beetroot_seeds", "layers": ["item/beetroot_seeds"] },
+    { "id": "base:cocoa_beans", "model": "item/cocoa_beans", "layers": ["item/cocoa_beans"] },
+    { "id": "base:melon_seeds", "model": "item/melon_seeds", "layers": ["item/melon_seeds"] },
+    { "id": "base:pitcher_pod", "model": "item/pitcher_pod", "layers": ["item/pitcher_pod"] },
+    { "id": "base:pumpkin_seeds", "model": "item/pumpkin_seeds", "layers": ["item/pumpkin_seeds"] },
+    { "id": "base:torchflower_seeds", "model": "item/torchflower_seeds", "layers": ["item/torchflower_seeds"] },
+    { "id": "base:wheat_seeds", "model": "item/wheat_seeds", "layers": ["item/wheat_seeds"] }
+  ]
+}

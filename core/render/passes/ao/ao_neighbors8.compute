@@ -1,0 +1,72 @@
+// AO/neighbors8: Minecraft-style smooth AO (v1 ao_bits, ao_from) from the 8 cells around the cell in front of the hit face, at the hit's level of detail.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "world.glsli"
+#include "camera.glsli"
+#include "blocks.glsli"
+#include "models.glsli"
+#include "gbuffer.glsli"
+#include "rays.glsli"
+layout(set = 0, binding = 0, std430) restrict readonly buffer ParamsBuf { PARAMS } P;
+layout(set = 0, binding = 2, r32f) restrict readonly uniform image2D depth_in;
+layout(set = 0, binding = 3, r32ui) restrict readonly uniform uimage2D hit_in;
+#ifdef BENT
+layout(set = 0, binding = 5, rgba32f) restrict readonly uniform image2D hitpos_in; // Water: the hit of a bent ray
+#endif
+layout(set = 0, binding = 4, r8) restrict writeonly uniform image2D ao_out;
+
+// Opaque and cutout cells occlude (v1); models, colour words, fluids and chunks not in memory do not. 0 none, 1 opaque, 2 cutout only.
+uint occluder(ivec3 c) {
+	if (any(lessThan(c, r_lo)) || any(greaterThanEqual(c, r_hi))) return 0u;
+	ivec3 lo, hi;
+	uint w = lookup(c, lo, hi);
+	if (w >= PART) return 0u;
+	uint f = pal_flags(w);
+	return (f & F_OPAQUE) != 0u ? 1u : (f & F_CUTOUT) != 0u ? 2u : 0u;
+}
+
+// Bit k = occluding cell k around front: 0-1 -+u, 2-3 -+v, 4-7 corners; x opaque, y cutout.
+uvec2 ao_bits(ivec3 front, int axis) {
+	ivec2 uv = face_axes(axis);
+	ivec3 u = ivec3(0), v = ivec3(0);
+	u[uv.x] = 1; v[uv.y] = 1;
+	uvec2 bits = uvec2(0u);
+	for (int k = 0; k < 8; k++) {
+		ivec3 c = front + (k < 4 ? (k < 2 ? u : v) * ((k & 1) * 2 - 1) : u * ((k & 1) * 2 - 1) + v * (((k >> 1) & 1) * 2 - 1));
+		uint o = occluder(c);
+		if (o == 1u) bits.x |= 1u << k;
+		else if (o == 2u) bits.y |= 1u << k;
+	}
+	return bits;
+}
+
+float occl(uvec2 bits, uint k) { return float(bits.x >> k & 1u) + float(bits.y >> k & 1u) * P.ao_cutout; }
+
+float ao_from(uvec2 bits, vec2 f) { // f = position on the face, 0..1
+	float ao[4];
+	for (int k = 0; k < 4; k++) {
+		float a = occl(bits, uint(k & 1)), b = occl(bits, uint(2 + (k >> 1))), c = occl(bits, uint(4 + k));
+		ao[k] = a + b > 1.5 ? 0.0 : 3.0 - (a + b + c);
+	}
+	float v = mix(mix(ao[0], ao[1], f.x), mix(ao[2], ao[3], f.x), f.y) / 3.0;
+	if (P.ao_curve != 1.0) v = pow(v, P.ao_curve);
+	return mix(1.0 - P.ao_strength, 1.0, v);
+}
+
+void main() {
+	ivec2 px = ivec2(gl_GlobalInvocationID.xy), size = imageSize(ao_out);
+	if (any(greaterThanEqual(px, size))) return;
+	uint hit = imageLoad(hit_in, px).r, face = hit_face(hit);
+	float ao = 1.0;
+	if (face != HIT_SKY && (hit & HIT_FLUID) == 0u && (hit >> HIT_VARIANT_SHIFT & HIT_VARIANT_MASK) != B_OBJECT) {
+		level_setup(int(hit >> HIT_LOD_SHIFT & HIT_LOD_MASK));
+		vec3 q = cam.frac.xyz + pixel_dir(px, size) * imageLoad(depth_in, px).r;
+#ifdef BENT
+		if ((hit & HIT_BENT) != 0u) q = imageLoad(hitpos_in, px).xyz;
+#endif
+		vec3 p = level_pos(q);
+		int axis = int(face >> 1u);
+		ivec2 uv = face_axes(axis);
+		ao = ao_from(ao_bits(ivec3(floor(p + hit_normal(face) * 0.5)), axis), vec2(fract(p[uv.x]), fract(p[uv.y])));
+	}
+	imageStore(ao_out, px, vec4(ao));
+}

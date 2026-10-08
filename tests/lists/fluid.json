@@ -1,0 +1,20 @@
+{
+  "Note": "fluid (docs/v2.md \u00a75.24): the fluid variant over water, lava and seven liquids, deep tanks with objects on the bottom (see-through), camera under a liquid sideways and up, glowstone under liquid, a pool by glass/fog, and a row of pools across FluidFadeStart..FluidFadeEnd; day and night (Emission, lava glow); 1152x648, Shadows and Lights on",
+  "Bookmarks": [
+    "fluid-liquids",
+    "fluid-liquids-night",
+    "fluid-deep",
+    "fluid-under-side",
+    "fluid-under-up",
+    "fluid-glow",
+    "fluid-glass",
+    "fluid-fade"
+  ],
+  "Capture": [
+    "Shot",
+    "PassMs"
+  ],
+  "Views": [
+    "Sun"
+  ]
+}

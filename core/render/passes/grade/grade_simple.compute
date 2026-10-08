@@ -1,0 +1,21 @@
+// Grade/simple: white balance, brightness, contrast, gamma, saturation, vibrance and split toning of the linear image, in place.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+layout(set = 0, binding = 0, std430) restrict readonly buffer ParamsBuf { PARAMS } P;
+layout(set = 0, binding = 2, rgba16f) restrict uniform image2D color;
+
+const vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
+const float GREY = 0.18;
+
+void main() {
+	ivec2 px = ivec2(gl_GlobalInvocationID.xy);
+	if (any(greaterThanEqual(px, imageSize(color)))) return;
+	vec4 e = imageLoad(color, px);
+	vec3 wb = vec3(1.0 + 0.3 * P.temperature, 1.0 - 0.3 * P.tint, 1.0 - 0.3 * P.temperature);
+	vec3 c = max(e.rgb, 0.0) * (wb / dot(wb, LUMA)) * P.brightness;
+	c = GREY * pow(c / GREY, vec3(P.contrast));
+	c = pow(c, vec3(1.0 / P.gamma));
+	float l = dot(c, LUMA), hi = max(c.r, max(c.g, c.b)), sat = hi > 0.0 ? (hi - min(c.r, min(c.g, c.b))) / hi : 0.0;
+	c = max(mix(vec3(l), c, P.saturation * (1.0 + P.vibrance * (1.0 - sat))), 0.0);
+	c *= mix(vec3(P.shadows_tint_r, P.shadows_tint_g, P.shadows_tint_b), vec3(P.highlights_tint_r, P.highlights_tint_g, P.highlights_tint_b), l / (l + GREY));
+	imageStore(color, px, vec4(c, e.a));
+}

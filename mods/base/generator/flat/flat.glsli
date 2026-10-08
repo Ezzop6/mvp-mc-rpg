@@ -1,0 +1,41 @@
+const int MAX_FEATURE_LIGHTS = 1;
+
+uint flat_layer(int y) {
+	uint i = 0u;
+	while (i < uint(FLAT_LAYERS + 1) && y >= FLAT_TOP[i]) i++;
+	return i;
+}
+
+uint flat_range(int y0, int y1) {
+	uint i = flat_layer(y0);
+	return i == flat_layer(y1) ? UNI | FLAT_BLOCK[i] : 0u;
+}
+
+float gen_column(ivec2 b) { return 0.0; }
+
+bool gen_feature(ivec2 col, uint k, out ivec4 f) { f = ivec4(0); return false; }
+
+void gen_feature_box(ivec4 f, out ivec3 lo, out ivec3 hi) { lo = ivec3(0); hi = ivec3(0); }
+
+int gen_feature_lights(ivec4 f, out vec3 pos[MAX_FEATURE_LIGHTS], out uint type[MAX_FEATURE_LIGHTS]) { return 0; }
+
+uint gen_classify_chunk(ivec3 lo, vec2 mm, uint li) { return flat_range(lo.y, lo.y + CHUNK - 1); }
+
+uint gen_classify_group(ivec3 gb) { return flat_range(gb.y, gb.y + GROUP - 1); }
+
+void gen_group_begin(ivec3 gb, uint slot, uint v) { barrier(); }
+
+uint gen_block(ivec3 b, ivec3 l) { return FLAT_BLOCK[flat_layer(b.y)]; }
+
+// L >= 1 (docs/v2.md §5.17): block box [lo, hi) with its column min / max, the coarse group, a sample block b of coarse cell cl.
+uint gen_classify_lod(ivec3 lo, ivec3 hi, vec2 mm) { return flat_range(lo.y, hi.y - 1); }
+
+void gen_group_begin_lod(ivec3 gb, uint slot, int level, uint v) { barrier(); }
+
+uint gen_block_lod(ivec3 b, ivec2 sc, int level) { return FLAT_BLOCK[flat_layer(b.y)]; }
+
+ivec4 gen_part_lod(uint j) { return ivec4(0); }
+
+bool gen_cell_lod(ivec3 lo, ivec3 hi) { return false; }
+
+uint gen_feature_lod(ivec3 b) { return 0u; }

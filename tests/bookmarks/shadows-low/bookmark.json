@@ -1,0 +1,127 @@
+{
+  "Note": "flat world with edits: stone pavilion (roof), tree with leaves, poles (fence, wall, iron bars), overhang with a lantern, poppies and fences (models casting and receiving), slabs, glass, gold towers at 100, 250 and 800 m; low afternoon sun (26 deg), long shadows (Shadows, docs/v2.md \u00a75.20)",
+  "Created": "2026-10-07T19:47:32",
+  "Commit": "Shadows pass",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 1,
+      "Y": 0,
+      "Z": 2
+    },
+    "Local": {
+      "X": 6.5,
+      "Y": 12,
+      "Z": 1
+    },
+    "Yaw": 0,
+    "Pitch": -0.34906584
+  },
+  "TimeOfDay": 16.5,
+  "Width": 3840,
+  "Height": 2160,
+  "Render": {
+    "Passes": {
+      "Raster": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "meshes"
+      },
+      "Primary": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "dda"
+      },
+      "AO": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "neighbors8"
+      },
+      "Shadows": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "dda-quad"
+      },
+      "Shade": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "lambert"
+      },
+      "Sky": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "gradient"
+      },
+      "Stars": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "cells"
+      },
+      "Moon": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "disc"
+      },
+      "Sun": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "disc"
+      },
+      "Clouds": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "layer"
+      },
+      "Haze": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "analytic"
+      },
+      "HeightFog": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "analytic"
+      },
+      "Shafts": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "quarter-res"
+      },
+      "Temporal": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "catmull-variance"
+      },
+      "Sharpen": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "clamp4"
+      },
+      "Present": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "godot-quad"
+      }
+    },
+    "EffectsOff": false,
+    "DebugView": "None",
+    "RenderScale": 1,
+    "EffectiveScale": 1,
+    "View": "Ultra",
+    "Lod": false,
+    "HorizonM": 0,
+    "LodPixels": 0,
+    "LodLevels": 4,
+    "LodRef": 0,
+    "FixedBudget": false,
+    "GenTargetMs": 2,
+    "StreamCpuMs": 3,
+    "EditChunksPerFrame": 64,
+    "Preset": null,
+    "Tune": {
+      "Values": {},
+      "Variants": {}
+    }
+  }
+}

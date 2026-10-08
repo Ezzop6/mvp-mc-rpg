@@ -1,0 +1,61 @@
+{
+  "Note": "horizon haze and height fog at noon away from the sun: sky, haze and fog share the air colour",
+  "Created": "2026-10-08T09:00:00",
+  "Commit": "copy of basics-clouds-a (flat + 35 edits) with another camera, time and tuning",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0
+    },
+    "Local": {
+      "X": 5.5,
+      "Y": 1.0,
+      "Z": 6.5
+    },
+    "Yaw": 0.9,
+    "Pitch": 0.02
+  },
+  "TimeOfDay": 12,
+  "Day": 0,
+  "TimePaused": true,
+  "Clock": 0.0,
+  "Width": 1920,
+  "Height": 1080,
+  "Render": {
+    "Passes": {
+      "Sky": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "gradient"
+      },
+      "Sun": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "disc"
+      },
+      "Clouds": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "layer"
+      },
+      "Haze": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "analytic"
+      },
+      "HeightFog": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "analytic"
+      },
+      "Shafts": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "quarter-res"
+      }
+    }
+  }
+}

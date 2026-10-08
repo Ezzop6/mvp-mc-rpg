@@ -1,0 +1,4 @@
+#include "res://core/render/passes/sky/atmosphere.glsli"
+#include "sky_gradient.glsli"
+
+vec3 atmosphere(vec3 c, vec3 d, bool sky, float t, vec2 uv) { return sky_gradient(c, d, sky); }

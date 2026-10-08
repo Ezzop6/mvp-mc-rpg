@@ -1,0 +1,5 @@
+// Adds the quarter-size shafts of shafts_march.compute, bilinear, to every pixel.
+#include "res://core/render/passes/sky/atmosphere.glsli"
+layout(set = 0, binding = 5) uniform sampler2D shafts_tex;
+
+vec3 atmosphere(vec3 c, vec3 d, bool sky, float t, vec2 uv) { return c + textureLod(shafts_tex, uv, 0.0).rgb; }

@@ -1,0 +1,25 @@
+{
+  "Note": "random world with defaults, leaves at 50-400 m (world of turn-180)",
+  "Created": "2026-10-06T00:00:00",
+  "Commit": "converted from tests/scenes",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 0,
+      "Y": 3,
+      "Z": 0
+    },
+    "Local": {
+      "X": 0.0,
+      "Y": 7.5,
+      "Z": 0.0
+    },
+    "Yaw": -2.356194490192345,
+    "Pitch": -0.2617993877991494
+  },
+  "TimeOfDay": 10,
+  "Width": 1920,
+  "Height": 1080,
+  "Render": null
+}

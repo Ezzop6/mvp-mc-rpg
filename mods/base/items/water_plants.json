@@ -1,0 +1,12 @@
+{
+  "category": "water_plants",
+  "source": "import",
+  "entries": [
+    { "id": "base:dried_kelp_block", "block": "base:dried_kelp_block" },
+    { "id": "base:frogspawn", "block": "base:frogspawn" },
+    { "id": "base:kelp", "block": "base:kelp" },
+    { "id": "base:lily_pad", "block": "base:lily_pad" },
+    { "id": "base:sea_pickle", "block": "base:sea_pickle" },
+    { "id": "base:seagrass", "block": "base:seagrass" }
+  ]
+}

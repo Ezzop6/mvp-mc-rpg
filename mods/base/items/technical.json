@@ -1,0 +1,20 @@
+{
+  "category": "technical",
+  "source": "import",
+  "entries": [
+    { "id": "base:air", "block": "base:air" },
+    { "id": "base:barrier", "block": "base:barrier" },
+    { "id": "base:chain_command_block", "block": "base:chain_command_block" },
+    { "id": "base:command_block", "block": "base:command_block" },
+    { "id": "base:jigsaw", "block": "base:jigsaw" },
+    { "id": "base:light", "block": "base:light" },
+    { "id": "base:repeating_command_block", "block": "base:repeating_command_block" },
+    { "id": "base:spawner", "block": "base:spawner" },
+    { "id": "base:structure_block", "block": "base:structure_block" },
+    { "id": "base:structure_void", "block": "base:structure_void" },
+    { "id": "base:test_block", "block": "base:test_block" },
+    { "id": "base:test_instance_block", "block": "base:test_instance_block" },
+    { "id": "base:trial_spawner", "block": "base:trial_spawner" },
+    { "id": "base:vault", "block": "base:vault" }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "category": "nether_end",
+  "source": "import",
+  "entries": [
+    { "id": "base:basalt", "block": "base:basalt" },
+    { "id": "base:blackstone", "block": "base:blackstone" },
+    { "id": "base:chiseled_nether_bricks", "block": "base:chiseled_nether_bricks" },
+    { "id": "base:chiseled_polished_blackstone", "block": "base:chiseled_polished_blackstone" },
+    { "id": "base:cracked_nether_bricks", "block": "base:cracked_nether_bricks" },
+    { "id": "base:cracked_polished_blackstone_bricks", "block": "base:cracked_polished_blackstone_bricks" },
+    { "id": "base:crimson_nylium", "block": "base:crimson_nylium" },
+    { "id": "base:crying_obsidian", "block": "base:crying_obsidian" },
+    { "id": "base:end_stone", "block": "base:end_stone" },
+    { "id": "base:end_stone_bricks", "block": "base:end_stone_bricks" },
+    { "id": "base:gilded_blackstone", "block": "base:gilded_blackstone" },
+    { "id": "base:magma_block", "block": "base:magma_block" },
+    { "id": "base:nether_bricks", "block": "base:nether_bricks" },
+    { "id": "base:nether_wart_block", "block": "base:nether_wart_block" },
+    { "id": "base:netherrack", "block": "base:netherrack" },
+    { "id": "base:obsidian", "block": "base:obsidian" },
+    { "id": "base:polished_basalt", "block": "base:polished_basalt" },
+    { "id": "base:polished_blackstone", "block": "base:polished_blackstone" },
+    { "id": "base:polished_blackstone_bricks", "block": "base:polished_blackstone_bricks" },
+    { "id": "base:purpur_block", "block": "base:purpur_block" },
+    { "id": "base:purpur_pillar", "block": "base:purpur_pillar" },
+    { "id": "base:red_nether_bricks", "block": "base:red_nether_bricks" },
+    { "id": "base:smooth_basalt", "block": "base:smooth_basalt" },
+    { "id": "base:warped_nylium", "block": "base:warped_nylium" },
+    { "id": "base:warped_wart_block", "block": "base:warped_wart_block" }
+  ]
+}

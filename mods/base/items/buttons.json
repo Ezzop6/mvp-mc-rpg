@@ -1,0 +1,21 @@
+{
+  "category": "buttons",
+  "source": "import",
+  "entries": [
+    { "id": "base:acacia_button", "block": "base:acacia_button" },
+    { "id": "base:bamboo_button", "block": "base:bamboo_button" },
+    { "id": "base:birch_button", "block": "base:birch_button" },
+    { "id": "base:cherry_button", "block": "base:cherry_button" },
+    { "id": "base:crimson_button", "block": "base:crimson_button" },
+    { "id": "base:dark_oak_button", "block": "base:dark_oak_button" },
+    { "id": "base:jungle_button", "block": "base:jungle_button" },
+    { "id": "base:mangrove_button", "block": "base:mangrove_button" },
+    { "id": "base:oak_button", "block": "base:oak_button" },
+    { "id": "base:pale_oak_button", "block": "base:pale_oak_button" },
+    { "id": "base:polished_blackstone_button", "block": "base:polished_blackstone_button" },
+    { "id": "base:poplar_button", "block": "base:poplar_button" },
+    { "id": "base:spruce_button", "block": "base:spruce_button" },
+    { "id": "base:stone_button", "block": "base:stone_button" },
+    { "id": "base:warped_button", "block": "base:warped_button" }
+  ]
+}

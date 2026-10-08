@@ -1,0 +1,31 @@
+{
+  "category": "workstations",
+  "source": "import",
+  "entries": [
+    { "id": "base:anvil", "block": "base:anvil" },
+    { "id": "base:bee_nest", "block": "base:bee_nest" },
+    { "id": "base:beehive", "block": "base:beehive" },
+    { "id": "base:bell", "block": "base:bell" },
+    { "id": "base:blast_furnace", "block": "base:blast_furnace" },
+    { "id": "base:bookshelf", "block": "base:bookshelf" },
+    { "id": "base:brewing_stand", "block": "base:brewing_stand" },
+    { "id": "base:cartography_table", "block": "base:cartography_table" },
+    { "id": "base:cauldron", "block": "base:cauldron" },
+    { "id": "base:chipped_anvil", "block": "base:chipped_anvil" },
+    { "id": "base:chiseled_bookshelf", "block": "base:chiseled_bookshelf" },
+    { "id": "base:composter", "block": "base:composter" },
+    { "id": "base:crafting_table", "block": "base:crafting_table" },
+    { "id": "base:damaged_anvil", "block": "base:damaged_anvil" },
+    { "id": "base:enchanting_table", "block": "base:enchanting_table" },
+    { "id": "base:fletching_table", "block": "base:fletching_table" },
+    { "id": "base:furnace", "block": "base:furnace" },
+    { "id": "base:grindstone", "block": "base:grindstone" },
+    { "id": "base:jukebox", "block": "base:jukebox" },
+    { "id": "base:lectern", "block": "base:lectern" },
+    { "id": "base:lodestone", "block": "base:lodestone" },
+    { "id": "base:loom", "block": "base:loom" },
+    { "id": "base:smithing_table", "block": "base:smithing_table" },
+    { "id": "base:smoker", "block": "base:smoker" },
+    { "id": "base:stonecutter", "block": "base:stonecutter" }
+  ]
+}

@@ -1,0 +1,838 @@
+{
+  "category": "coral",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:brain_coral",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/brain_coral", "fan": "block/brain_coral_fan", "particle": "block/brain_coral" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "brain_coral" },
+            { "model": "brain_coral", "y": 90 },
+            { "model": "brain_coral", "y": 180 },
+            { "model": "brain_coral", "y": 270 },
+            { "model": "brain_coral2" },
+            { "model": "brain_coral2", "y": 90 },
+            { "model": "brain_coral2", "y": 180 },
+            { "model": "brain_coral2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:brain_coral_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/brain_coral_block" } },
+      "cubes": { "brain_coral_block": { "all": { "texture": "block/brain_coral_block" } } },
+      "variants": [{ "looks": [{ "cube": "brain_coral_block" }] }]
+    },
+    {
+      "id": "base:brain_coral_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/brain_coral", "fan": "block/brain_coral_fan", "particle": "block/brain_coral_fan" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "brain_coral_fan" },
+            { "model": "brain_coral_fan", "y": 90 },
+            { "model": "brain_coral_fan", "y": 180 },
+            { "model": "brain_coral_fan", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:brain_coral_wall_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/brain_coral", "fan": "block/brain_coral_fan", "particle": "block/brain_coral_fan" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [{ "model": "brain_coral_wall_fan" }, { "model": "brain_coral_wall_fan2" }, { "model": "brain_coral_wall_fan3" }]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [{ "model": "brain_coral_wall_fan", "y": 90 }, { "model": "brain_coral_wall_fan2", "y": 90 }, { "model": "brain_coral_wall_fan3", "y": 90 }]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [
+            { "model": "brain_coral_wall_fan", "y": 180 },
+            { "model": "brain_coral_wall_fan2", "y": 180 },
+            { "model": "brain_coral_wall_fan3", "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [
+            { "model": "brain_coral_wall_fan", "y": 270 },
+            { "model": "brain_coral_wall_fan2", "y": 270 },
+            { "model": "brain_coral_wall_fan3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:bubble_coral",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/bubble_coral", "fan": "block/bubble_coral_fan", "particle": "block/bubble_coral" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "bubble_coral" },
+            { "model": "bubble_coral", "y": 90 },
+            { "model": "bubble_coral", "y": 180 },
+            { "model": "bubble_coral", "y": 270 },
+            { "model": "bubble_coral2" },
+            { "model": "bubble_coral2", "y": 90 },
+            { "model": "bubble_coral2", "y": 180 },
+            { "model": "bubble_coral2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:bubble_coral_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/bubble_coral_block" } },
+      "cubes": { "bubble_coral_block": { "all": { "texture": "block/bubble_coral_block" } } },
+      "variants": [{ "looks": [{ "cube": "bubble_coral_block" }] }]
+    },
+    {
+      "id": "base:bubble_coral_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/bubble_coral", "fan": "block/bubble_coral_fan", "particle": "block/bubble_coral_fan" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "bubble_coral_fan" },
+            { "model": "bubble_coral_fan", "y": 90 },
+            { "model": "bubble_coral_fan", "y": 180 },
+            { "model": "bubble_coral_fan", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:bubble_coral_wall_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/bubble_coral", "fan": "block/bubble_coral_fan", "particle": "block/bubble_coral_fan" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [{ "model": "bubble_coral_wall_fan" }, { "model": "bubble_coral_wall_fan2" }, { "model": "bubble_coral_wall_fan3" }]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [
+            { "model": "bubble_coral_wall_fan", "y": 90 },
+            { "model": "bubble_coral_wall_fan2", "y": 90 },
+            { "model": "bubble_coral_wall_fan3", "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [
+            { "model": "bubble_coral_wall_fan", "y": 180 },
+            { "model": "bubble_coral_wall_fan2", "y": 180 },
+            { "model": "bubble_coral_wall_fan3", "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [
+            { "model": "bubble_coral_wall_fan", "y": 270 },
+            { "model": "bubble_coral_wall_fan2", "y": 270 },
+            { "model": "bubble_coral_wall_fan3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_brain_coral",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/dead_brain_coral", "fan": "block/dead_brain_coral_fan", "particle": "block/dead_brain_coral" },
+      "surface": "cutout",
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "dead_brain_coral" },
+            { "model": "dead_brain_coral", "y": 90 },
+            { "model": "dead_brain_coral", "y": 180 },
+            { "model": "dead_brain_coral", "y": 270 },
+            { "model": "dead_brain_coral2" },
+            { "model": "dead_brain_coral2", "y": 90 },
+            { "model": "dead_brain_coral2", "y": 180 },
+            { "model": "dead_brain_coral2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_brain_coral_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/dead_brain_coral_block" } },
+      "cubes": { "dead_brain_coral_block": { "all": { "texture": "block/dead_brain_coral_block" } } },
+      "variants": [{ "looks": [{ "cube": "dead_brain_coral_block" }] }]
+    },
+    {
+      "id": "base:dead_brain_coral_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/dead_brain_coral", "fan": "block/dead_brain_coral_fan", "particle": "block/dead_brain_coral_fan" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "dead_brain_coral_fan" },
+            { "model": "dead_brain_coral_fan", "y": 90 },
+            { "model": "dead_brain_coral_fan", "y": 180 },
+            { "model": "dead_brain_coral_fan", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_brain_coral_wall_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/dead_brain_coral", "fan": "block/dead_brain_coral_fan", "particle": "block/dead_brain_coral_fan" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [{ "model": "dead_brain_coral_wall_fan" }, { "model": "dead_brain_coral_wall_fan2" }, { "model": "dead_brain_coral_wall_fan3" }]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [
+            { "model": "dead_brain_coral_wall_fan", "y": 90 },
+            { "model": "dead_brain_coral_wall_fan2", "y": 90 },
+            { "model": "dead_brain_coral_wall_fan3", "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [
+            { "model": "dead_brain_coral_wall_fan", "y": 180 },
+            { "model": "dead_brain_coral_wall_fan2", "y": 180 },
+            { "model": "dead_brain_coral_wall_fan3", "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [
+            { "model": "dead_brain_coral_wall_fan", "y": 270 },
+            { "model": "dead_brain_coral_wall_fan2", "y": 270 },
+            { "model": "dead_brain_coral_wall_fan3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_bubble_coral",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/dead_bubble_coral", "fan": "block/dead_bubble_coral_fan", "particle": "block/dead_bubble_coral" },
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "dead_bubble_coral" },
+            { "model": "dead_bubble_coral", "y": 90 },
+            { "model": "dead_bubble_coral", "y": 180 },
+            { "model": "dead_bubble_coral", "y": 270 },
+            { "model": "dead_bubble_coral2" },
+            { "model": "dead_bubble_coral2", "y": 90 },
+            { "model": "dead_bubble_coral2", "y": 180 },
+            { "model": "dead_bubble_coral2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_bubble_coral_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/dead_bubble_coral_block" } },
+      "cubes": { "dead_bubble_coral_block": { "all": { "texture": "block/dead_bubble_coral_block" } } },
+      "variants": [{ "looks": [{ "cube": "dead_bubble_coral_block" }] }]
+    },
+    {
+      "id": "base:dead_bubble_coral_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/dead_bubble_coral", "fan": "block/dead_bubble_coral_fan", "particle": "block/dead_bubble_coral_fan" },
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "dead_bubble_coral_fan" },
+            { "model": "dead_bubble_coral_fan", "y": 90 },
+            { "model": "dead_bubble_coral_fan", "y": 180 },
+            { "model": "dead_bubble_coral_fan", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_bubble_coral_wall_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/dead_bubble_coral", "fan": "block/dead_bubble_coral_fan", "particle": "block/dead_bubble_coral_fan" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [{ "model": "dead_bubble_coral_wall_fan" }, { "model": "dead_bubble_coral_wall_fan2" }, { "model": "dead_bubble_coral_wall_fan3" }]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [
+            { "model": "dead_bubble_coral_wall_fan", "y": 90 },
+            { "model": "dead_bubble_coral_wall_fan2", "y": 90 },
+            { "model": "dead_bubble_coral_wall_fan3", "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [
+            { "model": "dead_bubble_coral_wall_fan", "y": 180 },
+            { "model": "dead_bubble_coral_wall_fan2", "y": 180 },
+            { "model": "dead_bubble_coral_wall_fan3", "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [
+            { "model": "dead_bubble_coral_wall_fan", "y": 270 },
+            { "model": "dead_bubble_coral_wall_fan2", "y": 270 },
+            { "model": "dead_bubble_coral_wall_fan3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_fire_coral",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/dead_fire_coral", "fan": "block/dead_fire_coral_fan", "particle": "block/dead_fire_coral" },
+      "surface": "cutout",
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "dead_fire_coral" },
+            { "model": "dead_fire_coral", "y": 90 },
+            { "model": "dead_fire_coral", "y": 180 },
+            { "model": "dead_fire_coral", "y": 270 },
+            { "model": "dead_fire_coral2" },
+            { "model": "dead_fire_coral2", "y": 90 },
+            { "model": "dead_fire_coral2", "y": 180 },
+            { "model": "dead_fire_coral2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_fire_coral_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/dead_fire_coral_block" } },
+      "cubes": { "dead_fire_coral_block": { "all": { "texture": "block/dead_fire_coral_block" } } },
+      "variants": [{ "looks": [{ "cube": "dead_fire_coral_block" }] }]
+    },
+    {
+      "id": "base:dead_fire_coral_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/dead_fire_coral", "fan": "block/dead_fire_coral_fan", "particle": "block/dead_fire_coral_fan" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "dead_fire_coral_fan" },
+            { "model": "dead_fire_coral_fan", "y": 90 },
+            { "model": "dead_fire_coral_fan", "y": 180 },
+            { "model": "dead_fire_coral_fan", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_fire_coral_wall_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/dead_fire_coral", "fan": "block/dead_fire_coral_fan", "particle": "block/dead_fire_coral_fan" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [{ "model": "dead_fire_coral_wall_fan" }, { "model": "dead_fire_coral_wall_fan2" }, { "model": "dead_fire_coral_wall_fan3" }]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [
+            { "model": "dead_fire_coral_wall_fan", "y": 90 },
+            { "model": "dead_fire_coral_wall_fan2", "y": 90 },
+            { "model": "dead_fire_coral_wall_fan3", "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [
+            { "model": "dead_fire_coral_wall_fan", "y": 180 },
+            { "model": "dead_fire_coral_wall_fan2", "y": 180 },
+            { "model": "dead_fire_coral_wall_fan3", "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [
+            { "model": "dead_fire_coral_wall_fan", "y": 270 },
+            { "model": "dead_fire_coral_wall_fan2", "y": 270 },
+            { "model": "dead_fire_coral_wall_fan3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_horn_coral",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/dead_horn_coral", "fan": "block/dead_horn_coral_fan", "particle": "block/dead_horn_coral" },
+      "surface": "cutout",
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "dead_horn_coral" },
+            { "model": "dead_horn_coral", "y": 90 },
+            { "model": "dead_horn_coral", "y": 180 },
+            { "model": "dead_horn_coral", "y": 270 },
+            { "model": "dead_horn_coral2" },
+            { "model": "dead_horn_coral2", "y": 90 },
+            { "model": "dead_horn_coral2", "y": 180 },
+            { "model": "dead_horn_coral2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_horn_coral_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/dead_horn_coral_block" } },
+      "cubes": { "dead_horn_coral_block": { "all": { "texture": "block/dead_horn_coral_block" } } },
+      "variants": [{ "looks": [{ "cube": "dead_horn_coral_block" }] }]
+    },
+    {
+      "id": "base:dead_horn_coral_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/dead_horn_coral", "fan": "block/dead_horn_coral_fan", "particle": "block/dead_horn_coral_fan" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "dead_horn_coral_fan" },
+            { "model": "dead_horn_coral_fan", "y": 90 },
+            { "model": "dead_horn_coral_fan", "y": 180 },
+            { "model": "dead_horn_coral_fan", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_horn_coral_wall_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/dead_horn_coral", "fan": "block/dead_horn_coral_fan", "particle": "block/dead_horn_coral_fan" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [{ "model": "dead_horn_coral_wall_fan" }, { "model": "dead_horn_coral_wall_fan2" }, { "model": "dead_horn_coral_wall_fan3" }]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [
+            { "model": "dead_horn_coral_wall_fan", "y": 90 },
+            { "model": "dead_horn_coral_wall_fan2", "y": 90 },
+            { "model": "dead_horn_coral_wall_fan3", "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [
+            { "model": "dead_horn_coral_wall_fan", "y": 180 },
+            { "model": "dead_horn_coral_wall_fan2", "y": 180 },
+            { "model": "dead_horn_coral_wall_fan3", "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [
+            { "model": "dead_horn_coral_wall_fan", "y": 270 },
+            { "model": "dead_horn_coral_wall_fan2", "y": 270 },
+            { "model": "dead_horn_coral_wall_fan3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_tube_coral",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/dead_tube_coral", "fan": "block/dead_tube_coral_fan", "particle": "block/dead_tube_coral" },
+      "surface": "cutout",
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "dead_tube_coral" },
+            { "model": "dead_tube_coral", "y": 90 },
+            { "model": "dead_tube_coral", "y": 180 },
+            { "model": "dead_tube_coral", "y": 270 },
+            { "model": "dead_tube_coral2" },
+            { "model": "dead_tube_coral2", "y": 90 },
+            { "model": "dead_tube_coral2", "y": 180 },
+            { "model": "dead_tube_coral2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_tube_coral_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/dead_tube_coral_block" } },
+      "cubes": { "dead_tube_coral_block": { "all": { "texture": "block/dead_tube_coral_block" } } },
+      "variants": [{ "looks": [{ "cube": "dead_tube_coral_block" }] }]
+    },
+    {
+      "id": "base:dead_tube_coral_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/dead_tube_coral", "fan": "block/dead_tube_coral_fan", "particle": "block/dead_tube_coral_fan" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "dead_tube_coral_fan" },
+            { "model": "dead_tube_coral_fan", "y": 90 },
+            { "model": "dead_tube_coral_fan", "y": 180 },
+            { "model": "dead_tube_coral_fan", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_tube_coral_wall_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/dead_tube_coral", "fan": "block/dead_tube_coral_fan", "particle": "block/dead_tube_coral_fan" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [{ "model": "dead_tube_coral_wall_fan" }, { "model": "dead_tube_coral_wall_fan2" }, { "model": "dead_tube_coral_wall_fan3" }]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [
+            { "model": "dead_tube_coral_wall_fan", "y": 90 },
+            { "model": "dead_tube_coral_wall_fan2", "y": 90 },
+            { "model": "dead_tube_coral_wall_fan3", "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [
+            { "model": "dead_tube_coral_wall_fan", "y": 180 },
+            { "model": "dead_tube_coral_wall_fan2", "y": 180 },
+            { "model": "dead_tube_coral_wall_fan3", "y": 180 }
+          ]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [
+            { "model": "dead_tube_coral_wall_fan", "y": 270 },
+            { "model": "dead_tube_coral_wall_fan2", "y": 270 },
+            { "model": "dead_tube_coral_wall_fan3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:fire_coral",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/fire_coral", "fan": "block/fire_coral_fan", "particle": "block/fire_coral" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "fire_coral" },
+            { "model": "fire_coral", "y": 90 },
+            { "model": "fire_coral", "y": 180 },
+            { "model": "fire_coral", "y": 270 },
+            { "model": "fire_coral2" },
+            { "model": "fire_coral2", "y": 90 },
+            { "model": "fire_coral2", "y": 180 },
+            { "model": "fire_coral2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:fire_coral_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/fire_coral_block" } },
+      "cubes": { "fire_coral_block": { "all": { "texture": "block/fire_coral_block" } } },
+      "variants": [{ "looks": [{ "cube": "fire_coral_block" }] }]
+    },
+    {
+      "id": "base:fire_coral_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/fire_coral", "fan": "block/fire_coral_fan", "particle": "block/fire_coral_fan" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "fire_coral_fan" },
+            { "model": "fire_coral_fan", "y": 90 },
+            { "model": "fire_coral_fan", "y": 180 },
+            { "model": "fire_coral_fan", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:fire_coral_wall_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/fire_coral", "fan": "block/fire_coral_fan", "particle": "block/fire_coral_fan" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [{ "model": "fire_coral_wall_fan" }, { "model": "fire_coral_wall_fan2" }, { "model": "fire_coral_wall_fan3" }]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [{ "model": "fire_coral_wall_fan", "y": 90 }, { "model": "fire_coral_wall_fan2", "y": 90 }, { "model": "fire_coral_wall_fan3", "y": 90 }]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [{ "model": "fire_coral_wall_fan", "y": 180 }, { "model": "fire_coral_wall_fan2", "y": 180 }, { "model": "fire_coral_wall_fan3", "y": 180 }]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [{ "model": "fire_coral_wall_fan", "y": 270 }, { "model": "fire_coral_wall_fan2", "y": 270 }, { "model": "fire_coral_wall_fan3", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:horn_coral",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/horn_coral", "fan": "block/horn_coral_fan", "particle": "block/horn_coral" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "horn_coral" },
+            { "model": "horn_coral", "y": 90 },
+            { "model": "horn_coral", "y": 180 },
+            { "model": "horn_coral", "y": 270 },
+            { "model": "horn_coral2" },
+            { "model": "horn_coral2", "y": 90 },
+            { "model": "horn_coral2", "y": 180 },
+            { "model": "horn_coral2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:horn_coral_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/horn_coral_block" } },
+      "cubes": { "horn_coral_block": { "all": { "texture": "block/horn_coral_block" } } },
+      "variants": [{ "looks": [{ "cube": "horn_coral_block" }] }]
+    },
+    {
+      "id": "base:horn_coral_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/horn_coral", "fan": "block/horn_coral_fan", "particle": "block/horn_coral_fan" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "horn_coral_fan" },
+            { "model": "horn_coral_fan", "y": 90 },
+            { "model": "horn_coral_fan", "y": 180 },
+            { "model": "horn_coral_fan", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:horn_coral_wall_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/horn_coral", "fan": "block/horn_coral_fan", "particle": "block/horn_coral_fan" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [{ "model": "horn_coral_wall_fan" }, { "model": "horn_coral_wall_fan2" }, { "model": "horn_coral_wall_fan3" }]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [{ "model": "horn_coral_wall_fan", "y": 90 }, { "model": "horn_coral_wall_fan2", "y": 90 }, { "model": "horn_coral_wall_fan3", "y": 90 }]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [{ "model": "horn_coral_wall_fan", "y": 180 }, { "model": "horn_coral_wall_fan2", "y": 180 }, { "model": "horn_coral_wall_fan3", "y": 180 }]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [{ "model": "horn_coral_wall_fan", "y": 270 }, { "model": "horn_coral_wall_fan2", "y": 270 }, { "model": "horn_coral_wall_fan3", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:tube_coral",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/tube_coral", "fan": "block/tube_coral_fan", "particle": "block/tube_coral" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "tube_coral" },
+            { "model": "tube_coral", "y": 90 },
+            { "model": "tube_coral", "y": 180 },
+            { "model": "tube_coral", "y": 270 },
+            { "model": "tube_coral2" },
+            { "model": "tube_coral2", "y": 90 },
+            { "model": "tube_coral2", "y": 180 },
+            { "model": "tube_coral2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:tube_coral_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/tube_coral_block" } },
+      "cubes": { "tube_coral_block": { "all": { "texture": "block/tube_coral_block" } } },
+      "variants": [{ "looks": [{ "cube": "tube_coral_block" }] }]
+    },
+    {
+      "id": "base:tube_coral_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/tube_coral", "fan": "block/tube_coral_fan", "particle": "block/tube_coral_fan" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "tube_coral_fan" },
+            { "model": "tube_coral_fan", "y": 90 },
+            { "model": "tube_coral_fan", "y": 180 },
+            { "model": "tube_coral_fan", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:tube_coral_wall_fan",
+      "kind": "custom",
+      "textures": { "cross": "block/tube_coral", "fan": "block/tube_coral_fan", "particle": "block/tube_coral_fan" },
+      "surface": "cutout",
+      "emission": 0.032,
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "multipart": [
+        {
+          "when": [{ "facing": "north" }],
+          "looks": [{ "model": "tube_coral_wall_fan" }, { "model": "tube_coral_wall_fan2" }, { "model": "tube_coral_wall_fan3" }]
+        },
+        {
+          "when": [{ "facing": "east" }],
+          "looks": [{ "model": "tube_coral_wall_fan", "y": 90 }, { "model": "tube_coral_wall_fan2", "y": 90 }, { "model": "tube_coral_wall_fan3", "y": 90 }]
+        },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [{ "model": "tube_coral_wall_fan", "y": 180 }, { "model": "tube_coral_wall_fan2", "y": 180 }, { "model": "tube_coral_wall_fan3", "y": 180 }]
+        },
+        {
+          "when": [{ "facing": "west" }],
+          "looks": [{ "model": "tube_coral_wall_fan", "y": 270 }, { "model": "tube_coral_wall_fan2", "y": 270 }, { "model": "tube_coral_wall_fan3", "y": 270 }]
+        }
+      ]
+    }
+  ]
+}

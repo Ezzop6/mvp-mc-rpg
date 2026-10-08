@@ -1,0 +1,16 @@
+{
+  "Note": "AO/neighbors8 at 4K: random-default, -crazy, -leaves (L0 to 1.2 km) and random-default with LOD (coarse cells); run with --on=AO --compare-variant=AO:off,neighbors8",
+  "Bookmarks": [
+    "lod-default-l0",
+    "lod-crazy-l0",
+    "lod-leaves-l0",
+    "lod-default"
+  ],
+  "Capture": [
+    "Shot",
+    "PassMs"
+  ],
+  "Views": [
+    "AO"
+  ]
+}

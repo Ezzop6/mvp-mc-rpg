@@ -1,0 +1,68 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://core/scenes/main/Main.cs" id="1_main"]
+[ext_resource type="Script" path="res://core/render/Renderer.cs" id="2_renderer"]
+[ext_resource type="Script" path="res://core/entity/player/Player.cs" id="3_player"]
+[ext_resource type="Shader" uid="uid://dhukfdjd64m2b" path="res://core/render/passes/present/present.gdshader" id="4_present"]
+[ext_resource type="Script" path="res://core/world/World.cs" id="5_world"]
+[ext_resource type="PackedScene" uid="uid://ca7vn4vi8bemo" path="res://core/scenes/editor/editor.tscn" id="6_editor"]
+[ext_resource type="Script" path="res://core/scenes/editor/EditorWorld.cs" id="7_editor_world"]
+[ext_resource type="Script" path="res://core/render/tools/GhostBlocks.cs" id="8_ghost"]
+
+[sub_resource type="Environment" id="env"]
+background_mode = 1
+ambient_light_source = 1
+tonemap_mode = 4
+tonemap_exposure = 0.8
+
+[sub_resource type="ShaderMaterial" id="present_mat"]
+render_priority = 0
+shader = ExtResource("4_present")
+
+[sub_resource type="QuadMesh" id="quad"]
+
+[node name="Main" type="Node3D" node_paths=PackedStringArray("World", "Renderer", "Player", "Env")]
+script = ExtResource("1_main")
+World = NodePath("World")
+Renderer = NodePath("Renderer")
+Player = NodePath("Player")
+Env = NodePath("Env")
+
+[node name="Env" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="World" type="Node3D" parent="." node_paths=PackedStringArray("Camera")]
+script = ExtResource("5_world")
+Camera = NodePath("../Player")
+
+[node name="Ghost" type="MeshInstance3D" parent="World"]
+script = ExtResource("8_ghost")
+
+[node name="Renderer" type="Node" parent="." node_paths=PackedStringArray("World", "Camera", "Screen")]
+script = ExtResource("2_renderer")
+World = NodePath("../World")
+Camera = NodePath("../Player")
+Screen = NodePath("../Player/Screen")
+
+[node name="Player" type="Camera3D" parent="." node_paths=PackedStringArray("World")]
+current = true
+fov = 80.0
+script = ExtResource("3_player")
+World = NodePath("../World")
+
+[node name="Screen" type="MeshInstance3D" parent="Player"]
+material_override = SubResource("present_mat")
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("quad")
+
+[node name="EditorWorld" type="Node" parent="." node_paths=PackedStringArray("World", "Renderer", "Player", "Main", "Ghost")]
+script = ExtResource("7_editor_world")
+World = NodePath("../World")
+Renderer = NodePath("../Renderer")
+Player = NodePath("../Player")
+Main = NodePath("..")
+Ghost = NodePath("../World/Ghost")
+
+[node name="Editor" parent="." instance=ExtResource("6_editor")]
+WorldPath = NodePath("../EditorWorld")

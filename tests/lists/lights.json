@@ -1,0 +1,23 @@
+{
+  "Note": "block lights (docs/v2.md \u00a75.20) on prepared scenes of one flat world with edits, at night; run with --on=Lights (--compare-variant=Lights:cubemaps,off for on/off); also the lights worlds of smoke",
+  "Bookmarks": [
+    "lights-room",
+    "lights-wall",
+    "lights-colors",
+    "lights-levels",
+    "lights-corridor",
+    "lights-chunk",
+    "lights-inside",
+    "lights-outside"
+  ],
+  "Capture": [
+    "Shot",
+    "PassMs",
+    "GenMs",
+    "Pools"
+  ],
+  "Views": [
+    "Lamp",
+    "LightCount"
+  ]
+}

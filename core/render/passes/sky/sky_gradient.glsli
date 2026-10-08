@@ -1,0 +1,8 @@
+// v1 sky_view: Godot ProceduralSkyMaterial curve from horizon to top, plus the sun halo; replaces the colour on sky pixels.
+vec3 sky_gradient(vec3 c, vec3 d, bool sky) {
+	if (!sky) return c;
+	float e = clamp(1.0 - acos(clamp(d.y, -1.0, 1.0)) / 1.5707964, 0.0, 1.0);
+	vec3 s = mix(cam.sky_horizon.rgb, cam.sky_top.rgb, clamp(1.0 - pow(1.0 - e, 1.0 / P.sky_curve), 0.0, 1.0));
+	float h = clamp(acos(clamp(dot(d, cam.sun_dir.xyz), -1.0, 1.0)) / radians(P.sun_halo_angle), 0.0, 1.0);
+	return mix(cam.sun_col.rgb, s, clamp(1.0 - pow(1.0 - h, 1.0 / P.sun_halo_curve), 0.0, 1.0));
+}

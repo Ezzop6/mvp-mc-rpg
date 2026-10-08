@@ -1,0 +1,1168 @@
+{
+  "category": "decor",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:acacia_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/acacia_shelf", "particle": "block/stripped_acacia_log" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:acacia"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "acacia_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "acacia_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "acacia_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "acacia_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "acacia_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "acacia_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "acacia_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "acacia_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "acacia_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "acacia_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "acacia_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "acacia_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "acacia_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "acacia_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "acacia_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "acacia_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "acacia_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "acacia_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "acacia_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "acacia_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "acacia_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "acacia_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "acacia_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "acacia_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:bamboo_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/bamboo_shelf", "particle": "block/stripped_bamboo_block" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:bamboo"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "bamboo_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "bamboo_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "bamboo_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "bamboo_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "bamboo_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "bamboo_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "bamboo_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "bamboo_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "bamboo_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "bamboo_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "bamboo_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "bamboo_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "bamboo_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "bamboo_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "bamboo_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "bamboo_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "bamboo_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "bamboo_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "bamboo_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "bamboo_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "bamboo_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "bamboo_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "bamboo_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "bamboo_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:birch_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/birch_shelf", "particle": "block/stripped_birch_log" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:birch"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "birch_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "birch_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "birch_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "birch_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "birch_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "birch_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "birch_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "birch_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "birch_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "birch_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "birch_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "birch_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "birch_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "birch_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "birch_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "birch_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "birch_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "birch_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "birch_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "birch_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "birch_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "birch_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "birch_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "birch_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:black_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/black_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffcebc" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:black"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "black_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "black_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:blue_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/blue_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffdcf1" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:blue"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "blue_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "blue_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:brown_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/brown_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffc096" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:brown"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "brown_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "brown_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:cake",
+      "kind": "custom",
+      "textures": { "bottom": "block/cake_bottom", "particle": "block/cake_side", "side": "block/cake_side", "top": "block/cake_top" },
+      "surface": "cutout",
+      "states": { "bites": ["0", "1", "2", "3", "4", "5", "6"] },
+      "variants": [
+        { "when": { "bites": "0" }, "looks": [{ "model": "cake" }] },
+        { "when": { "bites": "1" }, "looks": [{ "model": "cake_slice1" }] },
+        { "when": { "bites": "2" }, "looks": [{ "model": "cake_slice2" }] },
+        { "when": { "bites": "3" }, "looks": [{ "model": "cake_slice3" }] },
+        { "when": { "bites": "4" }, "looks": [{ "model": "cake_slice4" }] },
+        { "when": { "bites": "5" }, "looks": [{ "model": "cake_slice5" }] },
+        { "when": { "bites": "6" }, "looks": [{ "model": "cake_slice6" }] }
+      ]
+    },
+    {
+      "id": "base:candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffd4af" },
+      "states": { "lit": ["false", "true"] },
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:cherry_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/cherry_shelf", "particle": "block/stripped_cherry_log" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:cherry"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "cherry_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "cherry_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "cherry_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "cherry_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "cherry_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "cherry_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "cherry_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "cherry_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "cherry_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "cherry_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "cherry_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "cherry_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "cherry_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "cherry_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "cherry_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "cherry_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "cherry_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "cherry_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "cherry_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "cherry_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "cherry_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "cherry_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "cherry_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "cherry_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:cobweb",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/cobweb", "particle": "block/cobweb" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [{ "looks": [{ "model": "cobweb" }, { "model": "cobweb", "y": 180 }] }]
+    },
+    {
+      "id": "base:creaking_heart",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/creaking_heart_top_awake", "emission": 0.009 },
+        "bottom": { "texture": "block/creaking_heart_top_awake", "emission": 0.009 },
+        "side": { "texture": "block/creaking_heart_awake" }
+      },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"], "creaking_heart_state": ["awake", "dormant", "uprooted"] },
+      "tags": ["base_texture"],
+      "cubes": {
+        "creaking_heart": {
+          "top": { "texture": "block/creaking_heart_top" },
+          "bottom": { "texture": "block/creaking_heart_top" },
+          "side": { "texture": "block/creaking_heart" }
+        },
+        "creaking_heart_awake": {
+          "top": { "texture": "block/creaking_heart_top_awake", "emission": 0.009 },
+          "bottom": { "texture": "block/creaking_heart_top_awake", "emission": 0.009 },
+          "side": { "texture": "block/creaking_heart_awake" }
+        },
+        "creaking_heart_awake_horizontal": {
+          "top": { "texture": "block/creaking_heart_top_awake", "rotation": 180, "emission": 0.009 },
+          "bottom": { "texture": "block/creaking_heart_top_awake", "emission": 0.009 },
+          "side": { "texture": "block/creaking_heart_awake" }
+        },
+        "creaking_heart_dormant": {
+          "top": { "texture": "block/creaking_heart_top_dormant", "emission": 0.009 },
+          "bottom": { "texture": "block/creaking_heart_top_dormant", "emission": 0.009 },
+          "side": { "texture": "block/creaking_heart_dormant" }
+        },
+        "creaking_heart_dormant_horizontal": {
+          "top": { "texture": "block/creaking_heart_top_dormant", "rotation": 180, "emission": 0.009 },
+          "bottom": { "texture": "block/creaking_heart_top_dormant", "emission": 0.009 },
+          "side": { "texture": "block/creaking_heart_dormant" }
+        },
+        "creaking_heart_horizontal": {
+          "top": { "texture": "block/creaking_heart_top", "rotation": 180 },
+          "bottom": { "texture": "block/creaking_heart_top" },
+          "side": { "texture": "block/creaking_heart" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x", "creaking_heart_state": "awake" }, "looks": [{ "cube": "creaking_heart_awake_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "x", "creaking_heart_state": "dormant" }, "looks": [{ "cube": "creaking_heart_dormant_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "x", "creaking_heart_state": "uprooted" }, "looks": [{ "cube": "creaking_heart_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y", "creaking_heart_state": "awake" }, "looks": [{ "cube": "creaking_heart_awake" }] },
+        { "when": { "axis": "y", "creaking_heart_state": "dormant" }, "looks": [{ "cube": "creaking_heart_dormant" }] },
+        { "when": { "axis": "y", "creaking_heart_state": "uprooted" }, "looks": [{ "cube": "creaking_heart" }] },
+        { "when": { "axis": "z", "creaking_heart_state": "awake" }, "looks": [{ "cube": "creaking_heart_awake_horizontal", "x": 90 }] },
+        { "when": { "axis": "z", "creaking_heart_state": "dormant" }, "looks": [{ "cube": "creaking_heart_dormant_horizontal", "x": 90 }] },
+        { "when": { "axis": "z", "creaking_heart_state": "uprooted" }, "looks": [{ "cube": "creaking_heart_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:crimson_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/crimson_shelf", "particle": "block/stripped_crimson_stem" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:crimson"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "crimson_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "crimson_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "crimson_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "crimson_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "crimson_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "crimson_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "crimson_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "crimson_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "crimson_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "crimson_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "crimson_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "crimson_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "crimson_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "crimson_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "crimson_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "crimson_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "crimson_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "crimson_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "crimson_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "crimson_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "crimson_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "crimson_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "crimson_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "crimson_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:cyan_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/cyan_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#efffe1" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:cyan"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "cyan_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "cyan_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:dark_oak_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/dark_oak_shelf", "particle": "block/stripped_dark_oak_log" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:dark_oak"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "dark_oak_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "dark_oak_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "dark_oak_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "dark_oak_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "dark_oak_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "dark_oak_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "dark_oak_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "dark_oak_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "dark_oak_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "dark_oak_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "dark_oak_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "dark_oak_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "dark_oak_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "dark_oak_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "dark_oak_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "dark_oak_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "dark_oak_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "dark_oak_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "dark_oak_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "dark_oak_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "dark_oak_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "dark_oak_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "dark_oak_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "dark_oak_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:decorated_pot",
+      "kind": "entity",
+      "textures": { "particle": "block/terracotta" },
+      "tags": ["placeholder"],
+      "cubes": { "decorated_pot": { "all": { "texture": "block/terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "decorated_pot" }] }]
+    },
+    {
+      "id": "base:dragon_egg",
+      "kind": "custom",
+      "textures": { "all": "block/dragon_egg", "particle": "block/dragon_egg" },
+      "light": { "level": 1, "color": "#c073ff" },
+      "variants": [{ "looks": [{ "model": "dragon_egg" }] }]
+    },
+    {
+      "id": "base:dried_ghast",
+      "kind": "custom",
+      "textures": {
+        "bottom": "block/dried_ghast_hydration_0_bottom",
+        "east": "block/dried_ghast_hydration_0_east",
+        "north": "block/dried_ghast_hydration_0_north",
+        "particle": "block/dried_ghast_hydration_0_north",
+        "south": "block/dried_ghast_hydration_0_south",
+        "tentacles": "block/dried_ghast_hydration_0_tentacles",
+        "top": "block/dried_ghast_hydration_0_top",
+        "west": "block/dried_ghast_hydration_0_west"
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "hydration": ["0", "1", "2", "3"] },
+      "variants": [
+        { "when": { "facing": "east", "hydration": "0" }, "looks": [{ "model": "dried_ghast_hydration_0", "y": 90 }] },
+        { "when": { "facing": "east", "hydration": "1" }, "looks": [{ "model": "dried_ghast_hydration_1", "y": 90 }] },
+        { "when": { "facing": "east", "hydration": "2" }, "looks": [{ "model": "dried_ghast_hydration_2", "y": 90 }] },
+        { "when": { "facing": "east", "hydration": "3" }, "looks": [{ "model": "dried_ghast_hydration_3", "y": 90 }] },
+        { "when": { "facing": "north", "hydration": "0" }, "looks": [{ "model": "dried_ghast_hydration_0" }] },
+        { "when": { "facing": "north", "hydration": "1" }, "looks": [{ "model": "dried_ghast_hydration_1" }] },
+        { "when": { "facing": "north", "hydration": "2" }, "looks": [{ "model": "dried_ghast_hydration_2" }] },
+        { "when": { "facing": "north", "hydration": "3" }, "looks": [{ "model": "dried_ghast_hydration_3" }] },
+        { "when": { "facing": "south", "hydration": "0" }, "looks": [{ "model": "dried_ghast_hydration_0", "y": 180 }] },
+        { "when": { "facing": "south", "hydration": "1" }, "looks": [{ "model": "dried_ghast_hydration_1", "y": 180 }] },
+        { "when": { "facing": "south", "hydration": "2" }, "looks": [{ "model": "dried_ghast_hydration_2", "y": 180 }] },
+        { "when": { "facing": "south", "hydration": "3" }, "looks": [{ "model": "dried_ghast_hydration_3", "y": 180 }] },
+        { "when": { "facing": "west", "hydration": "0" }, "looks": [{ "model": "dried_ghast_hydration_0", "y": 270 }] },
+        { "when": { "facing": "west", "hydration": "1" }, "looks": [{ "model": "dried_ghast_hydration_1", "y": 270 }] },
+        { "when": { "facing": "west", "hydration": "2" }, "looks": [{ "model": "dried_ghast_hydration_2", "y": 270 }] },
+        { "when": { "facing": "west", "hydration": "3" }, "looks": [{ "model": "dried_ghast_hydration_3", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:end_portal_frame",
+      "kind": "custom",
+      "textures": {
+        "bottom": "block/end_stone",
+        "particle": "block/end_portal_frame_side",
+        "side": "block/end_portal_frame_side",
+        "top": "block/end_portal_frame_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 1, "color": "#ecffc0" },
+      "orientation": "horizontal",
+      "states": { "eye": ["false", "true"], "facing": ["east", "north", "south", "west"] },
+      "variants": [
+        { "when": { "eye": "false", "facing": "east" }, "looks": [{ "model": "end_portal_frame", "y": 270 }] },
+        { "when": { "eye": "false", "facing": "north" }, "looks": [{ "model": "end_portal_frame", "y": 180 }] },
+        { "when": { "eye": "false", "facing": "south" }, "looks": [{ "model": "end_portal_frame" }] },
+        { "when": { "eye": "false", "facing": "west" }, "looks": [{ "model": "end_portal_frame", "y": 90 }] },
+        { "when": { "eye": "true", "facing": "east" }, "looks": [{ "model": "end_portal_frame_filled", "y": 270 }] },
+        { "when": { "eye": "true", "facing": "north" }, "looks": [{ "model": "end_portal_frame_filled", "y": 180 }] },
+        { "when": { "eye": "true", "facing": "south" }, "looks": [{ "model": "end_portal_frame_filled" }] },
+        { "when": { "eye": "true", "facing": "west" }, "looks": [{ "model": "end_portal_frame_filled", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:flower_pot",
+      "kind": "custom",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot" },
+      "tags": ["random_rotation"],
+      "variants": [
+        { "looks": [{ "model": "flower_pot" }, { "model": "flower_pot", "y": 90 }, { "model": "flower_pot", "y": 180 }, { "model": "flower_pot", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:glow_item_frame",
+      "kind": "custom",
+      "textures": { "back": "block/glow_item_frame", "particle": "block/extra/item_frame_frame", "wood": "block/extra/item_frame_frame" },
+      "emission": 0.012,
+      "states": { "map": ["false", "true"] },
+      "variants": [
+        { "when": { "map": "false" }, "looks": [{ "model": "glow_item_frame" }] },
+        { "when": { "map": "true" }, "looks": [{ "model": "glow_item_frame_map" }] }
+      ]
+    },
+    {
+      "id": "base:gray_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/gray_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffdbc0" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:gray"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "gray_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "gray_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:green_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/green_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffe097" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:green"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "green_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "green_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:heavy_core",
+      "kind": "custom",
+      "textures": { "all": "block/heavy_core", "particle": "block/heavy_core" },
+      "tags": ["random_rotation"],
+      "variants": [
+        { "looks": [{ "model": "heavy_core" }, { "model": "heavy_core", "y": 90 }, { "model": "heavy_core", "y": 180 }, { "model": "heavy_core", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:iron_chain",
+      "kind": "custom",
+      "textures": { "all": "block/iron_chain", "particle": "block/iron_chain", "texture": "block/iron_chain" },
+      "surface": "cutout",
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "model": "iron_chain", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "model": "iron_chain" }] },
+        { "when": { "axis": "z" }, "looks": [{ "model": "iron_chain", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:item_frame",
+      "kind": "custom",
+      "textures": { "back": "block/item_frame", "particle": "block/extra/item_frame_frame", "wood": "block/extra/item_frame_frame" },
+      "states": { "map": ["false", "true"] },
+      "variants": [
+        { "when": { "map": "false" }, "looks": [{ "model": "item_frame" }] },
+        { "when": { "map": "true" }, "looks": [{ "model": "item_frame_map" }] }
+      ]
+    },
+    {
+      "id": "base:jungle_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/jungle_shelf", "particle": "block/stripped_jungle_log" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:jungle"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "jungle_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "jungle_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "jungle_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "jungle_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "jungle_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "jungle_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "jungle_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "jungle_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "jungle_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "jungle_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "jungle_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "jungle_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "jungle_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "jungle_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "jungle_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "jungle_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "jungle_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "jungle_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "jungle_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "jungle_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "jungle_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "jungle_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "jungle_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "jungle_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:ladder",
+      "kind": "custom",
+      "textures": { "particle": "block/ladder", "texture": "block/ladder" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "model": "ladder", "y": 90 }] },
+        { "when": { "facing": "north" }, "looks": [{ "model": "ladder" }] },
+        { "when": { "facing": "south" }, "looks": [{ "model": "ladder", "y": 180 }] },
+        { "when": { "facing": "west" }, "looks": [{ "model": "ladder", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:light_blue_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/light_blue_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#eefaff" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:light_blue"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "light_blue_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "light_blue_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:light_gray_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/light_gray_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffd6ba" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:light_gray"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "light_gray_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "light_gray_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:lime_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/lime_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#fffc90" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:lime"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "lime_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "lime_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:magenta_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/magenta_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffa4bf" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:magenta"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "magenta_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "magenta_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:mangrove_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/mangrove_shelf", "particle": "block/stripped_mangrove_log" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:mangrove"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "mangrove_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "mangrove_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "mangrove_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "mangrove_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "mangrove_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "mangrove_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "mangrove_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "mangrove_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "mangrove_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "mangrove_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "mangrove_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "mangrove_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "mangrove_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "mangrove_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "mangrove_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "mangrove_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "mangrove_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "mangrove_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "mangrove_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "mangrove_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "mangrove_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "mangrove_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "mangrove_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "mangrove_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:oak_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/oak_shelf", "particle": "block/stripped_oak_log" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:oak"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "oak_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "oak_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "oak_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "oak_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "oak_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "oak_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "oak_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "oak_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "oak_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "oak_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "oak_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "oak_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "oak_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "oak_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "oak_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "oak_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "oak_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "oak_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "oak_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "oak_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "oak_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "oak_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "oak_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "oak_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:orange_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/orange_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffab6d" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:orange"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "orange_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "orange_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:pale_oak_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/pale_oak_shelf", "particle": "block/stripped_pale_oak_log" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:pale_oak"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "pale_oak_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "pale_oak_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "pale_oak_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "pale_oak_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "pale_oak_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "pale_oak_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "pale_oak_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "pale_oak_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "pale_oak_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "pale_oak_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "pale_oak_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "pale_oak_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "pale_oak_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "pale_oak_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "pale_oak_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "pale_oak_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "pale_oak_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "pale_oak_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "pale_oak_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "pale_oak_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "pale_oak_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "pale_oak_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "pale_oak_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "pale_oak_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:pink_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/pink_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffafab" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:pink"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "pink_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "pink_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:poplar_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/poplar_shelf", "particle": "block/stripped_poplar_log" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:poplar"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "poplar_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "poplar_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "poplar_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "poplar_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "poplar_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "poplar_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "poplar_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "poplar_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "poplar_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "poplar_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "poplar_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "poplar_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "poplar_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "poplar_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "poplar_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "poplar_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "poplar_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "poplar_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "poplar_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "poplar_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "poplar_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "poplar_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "poplar_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "poplar_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:purple_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/purple_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffb0d9" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:purple"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "purple_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "purple_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:red_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/red_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffa388" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:red"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "red_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "red_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:scaffolding",
+      "kind": "custom",
+      "textures": { "particle": "block/scaffolding_top", "side": "block/scaffolding_side", "top": "block/scaffolding_top" },
+      "surface": "cutout",
+      "states": { "bottom": ["false", "true"] },
+      "variants": [
+        { "when": { "bottom": "false" }, "looks": [{ "model": "scaffolding_stable" }] },
+        { "when": { "bottom": "true" }, "looks": [{ "model": "scaffolding_unstable" }] }
+      ]
+    },
+    {
+      "id": "base:sniffer_egg",
+      "kind": "custom",
+      "textures": {
+        "bottom": "block/sniffer_egg_not_cracked_bottom",
+        "east": "block/sniffer_egg_not_cracked_east",
+        "north": "block/sniffer_egg_not_cracked_north",
+        "particle": "block/sniffer_egg_not_cracked_north",
+        "south": "block/sniffer_egg_not_cracked_south",
+        "top": "block/sniffer_egg_not_cracked_top",
+        "west": "block/sniffer_egg_not_cracked_west"
+      },
+      "states": { "hatch": ["0", "1", "2"] },
+      "tags": ["random_rotation"],
+      "variants": [
+        { "when": { "hatch": "0" }, "looks": [{ "model": "sniffer_egg_not_cracked" }, { "model": "sniffer_egg_not_cracked", "y": 180 }] },
+        { "when": { "hatch": "1" }, "looks": [{ "model": "sniffer_egg_slightly_cracked" }, { "model": "sniffer_egg_slightly_cracked", "y": 180 }] },
+        { "when": { "hatch": "2" }, "looks": [{ "model": "sniffer_egg_very_cracked" }, { "model": "sniffer_egg_very_cracked", "y": 180 }] }
+      ]
+    },
+    {
+      "id": "base:spruce_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/spruce_shelf", "particle": "block/stripped_spruce_log" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:spruce"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "spruce_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "spruce_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "spruce_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "spruce_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "spruce_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "spruce_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "spruce_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "spruce_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "spruce_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "spruce_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "spruce_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "spruce_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "spruce_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "spruce_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "spruce_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "spruce_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "spruce_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "spruce_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "spruce_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "spruce_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "spruce_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "spruce_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "spruce_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "spruce_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:turtle_egg",
+      "kind": "custom",
+      "textures": { "all": "block/turtle_egg", "particle": "block/turtle_egg" },
+      "surface": "cutout",
+      "states": { "eggs": ["1", "2", "3", "4"], "hatch": ["0", "1", "2"] },
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "when": { "eggs": "1", "hatch": "0" },
+          "looks": [{ "model": "turtle_egg" }, { "model": "turtle_egg", "y": 90 }, { "model": "turtle_egg", "y": 180 }, { "model": "turtle_egg", "y": 270 }]
+        },
+        {
+          "when": { "eggs": "1", "hatch": "1" },
+          "looks": [
+            { "model": "slightly_cracked_turtle_egg" },
+            { "model": "slightly_cracked_turtle_egg", "y": 90 },
+            { "model": "slightly_cracked_turtle_egg", "y": 180 },
+            { "model": "slightly_cracked_turtle_egg", "y": 270 }
+          ]
+        },
+        {
+          "when": { "eggs": "1", "hatch": "2" },
+          "looks": [
+            { "model": "very_cracked_turtle_egg" },
+            { "model": "very_cracked_turtle_egg", "y": 90 },
+            { "model": "very_cracked_turtle_egg", "y": 180 },
+            { "model": "very_cracked_turtle_egg", "y": 270 }
+          ]
+        },
+        {
+          "when": { "eggs": "2", "hatch": "0" },
+          "looks": [
+            { "model": "two_turtle_eggs" },
+            { "model": "two_turtle_eggs", "y": 90 },
+            { "model": "two_turtle_eggs", "y": 180 },
+            { "model": "two_turtle_eggs", "y": 270 }
+          ]
+        },
+        {
+          "when": { "eggs": "2", "hatch": "1" },
+          "looks": [
+            { "model": "two_slightly_cracked_turtle_eggs" },
+            { "model": "two_slightly_cracked_turtle_eggs", "y": 90 },
+            { "model": "two_slightly_cracked_turtle_eggs", "y": 180 },
+            { "model": "two_slightly_cracked_turtle_eggs", "y": 270 }
+          ]
+        },
+        {
+          "when": { "eggs": "2", "hatch": "2" },
+          "looks": [
+            { "model": "two_very_cracked_turtle_eggs" },
+            { "model": "two_very_cracked_turtle_eggs", "y": 90 },
+            { "model": "two_very_cracked_turtle_eggs", "y": 180 },
+            { "model": "two_very_cracked_turtle_eggs", "y": 270 }
+          ]
+        },
+        {
+          "when": { "eggs": "3", "hatch": "0" },
+          "looks": [
+            { "model": "three_turtle_eggs" },
+            { "model": "three_turtle_eggs", "y": 90 },
+            { "model": "three_turtle_eggs", "y": 180 },
+            { "model": "three_turtle_eggs", "y": 270 }
+          ]
+        },
+        {
+          "when": { "eggs": "3", "hatch": "1" },
+          "looks": [
+            { "model": "three_slightly_cracked_turtle_eggs" },
+            { "model": "three_slightly_cracked_turtle_eggs", "y": 90 },
+            { "model": "three_slightly_cracked_turtle_eggs", "y": 180 },
+            { "model": "three_slightly_cracked_turtle_eggs", "y": 270 }
+          ]
+        },
+        {
+          "when": { "eggs": "3", "hatch": "2" },
+          "looks": [
+            { "model": "three_very_cracked_turtle_eggs" },
+            { "model": "three_very_cracked_turtle_eggs", "y": 90 },
+            { "model": "three_very_cracked_turtle_eggs", "y": 180 },
+            { "model": "three_very_cracked_turtle_eggs", "y": 270 }
+          ]
+        },
+        {
+          "when": { "eggs": "4", "hatch": "0" },
+          "looks": [
+            { "model": "four_turtle_eggs" },
+            { "model": "four_turtle_eggs", "y": 90 },
+            { "model": "four_turtle_eggs", "y": 180 },
+            { "model": "four_turtle_eggs", "y": 270 }
+          ]
+        },
+        {
+          "when": { "eggs": "4", "hatch": "1" },
+          "looks": [
+            { "model": "four_slightly_cracked_turtle_eggs" },
+            { "model": "four_slightly_cracked_turtle_eggs", "y": 90 },
+            { "model": "four_slightly_cracked_turtle_eggs", "y": 180 },
+            { "model": "four_slightly_cracked_turtle_eggs", "y": 270 }
+          ]
+        },
+        {
+          "when": { "eggs": "4", "hatch": "2" },
+          "looks": [
+            { "model": "four_very_cracked_turtle_eggs" },
+            { "model": "four_very_cracked_turtle_eggs", "y": 90 },
+            { "model": "four_very_cracked_turtle_eggs", "y": 180 },
+            { "model": "four_very_cracked_turtle_eggs", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:warped_shelf",
+      "kind": "custom",
+      "textures": { "all": "block/warped_shelf", "particle": "block/stripped_warped_stem" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "powered": ["false", "true"], "side_chain": ["center", "left", "right", "unconnected"] },
+      "tags": ["wood:warped"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "warped_shelf" }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "warped_shelf", "y": 90 }] },
+        { "when": [{ "facing": "south" }], "looks": [{ "model": "warped_shelf", "y": 180 }] },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "warped_shelf", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "false" }], "looks": [{ "model": "warped_shelf_unpowered" }] },
+        { "when": [{ "facing": "east", "powered": "false" }], "looks": [{ "model": "warped_shelf_unpowered", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "false" }], "looks": [{ "model": "warped_shelf_unpowered", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "false" }], "looks": [{ "model": "warped_shelf_unpowered", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "warped_shelf_unconnected" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "warped_shelf_unconnected", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "warped_shelf_unconnected", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "unconnected" }], "looks": [{ "model": "warped_shelf_unconnected", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "warped_shelf_left" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "warped_shelf_left", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "warped_shelf_left", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "left" }], "looks": [{ "model": "warped_shelf_left", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "warped_shelf_center" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "warped_shelf_center", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "warped_shelf_center", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "center" }], "looks": [{ "model": "warped_shelf_center", "y": 270 }] },
+        { "when": [{ "facing": "north", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "warped_shelf_right" }] },
+        { "when": [{ "facing": "east", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "warped_shelf_right", "y": 90 }] },
+        { "when": [{ "facing": "south", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "warped_shelf_right", "y": 180 }] },
+        { "when": [{ "facing": "west", "powered": "true", "side_chain": "right" }], "looks": [{ "model": "warped_shelf_right", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:white_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/white_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffe0cd" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:white"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "white_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "white_candle_cake_lit" }] }
+      ]
+    },
+    {
+      "id": "base:yellow_candle_cake",
+      "kind": "custom",
+      "template": "template_cake_with_candle",
+      "textures": {
+        "bottom": "block/cake_bottom",
+        "candle": "block/yellow_candle",
+        "flame": "block/extra/candle_wick",
+        "particle": "block/cake_side",
+        "side": "block/cake_side",
+        "top": "block/cake_top"
+      },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffca81" },
+      "states": { "lit": ["false", "true"] },
+      "tags": ["color:yellow"],
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "yellow_candle_cake" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "yellow_candle_cake_lit" }] }
+      ]
+    }
+  ]
+}

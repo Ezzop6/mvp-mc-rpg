@@ -1,0 +1,361 @@
+// GI/cache: v1 one-bounce diffuse GI cached in world space per (cell, level, face direction); cells of level L are 2^L blocks, about GiCellPx on screen. LAMP: bounce hits get block light from the Lights pass's maps; SEE_THROUGH (Transparency): rays pass glass, water and fog tinted.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "world.glsli"
+#include "camera.glsli"
+#include "blocks.glsli"
+#include "models.glsli"
+#include "gbuffer.glsli"
+#include "rays.glsli"
+layout(set = 0, binding = 0, std430) restrict readonly buffer ParamsBuf { PARAMS } P;
+layout(set = 0, binding = 2, r32f) restrict readonly uniform image2D depth_in;
+layout(set = 0, binding = 3, r32ui) restrict readonly uniform uimage2D hit_in;
+layout(set = 0, binding = 4, rgba16f) restrict writeonly uniform image2D gi_out;
+layout(set = 0, binding = 10, std430) restrict buffer Keys { uvec4 buckets[]; }; // checksums of (cell, level, face) in buckets of 4, 0 = free; a key lives in its hash's bucket or the next one
+struct Cell {
+	uvec4 acc;   // this frame's samples: radiance x GI_FIXED (rgb), count | GI_RESTART
+	uvec2 irr;   // halves: mean incoming radiance over the face's hemisphere (rgb), samples it stands for
+	uint last;   // frame of the last sample
+	uint stamp;  // content key of the cell's L0 chunk when it was sampled
+};
+layout(set = 0, binding = 11, std430) restrict buffer Cells { Cell cells[]; };
+layout(set = 0, binding = 12, std430) restrict buffer Touched { uint touched_count; uint pad0, pad1, pad2; uint touched[]; };
+#ifdef BENT
+layout(set = 0, binding = 8, rgba32f) restrict readonly uniform image2D hitpos_in; // Water: the hit of a bent ray
+#endif
+#ifdef LAMP
+layout(set = 0, binding = 9, std430) restrict readonly buffer LightParamsBuf { LIGHT_PARAMS } LP;
+#define P LP
+#include "res://core/render/passes/lights/light_maps.glsli"
+layout(set = 0, binding = 6, std430) restrict readonly buffer LightMaps { uint lm_map[]; };
+#include "lights.glsli"
+#define LM_FRAME cam.frame.x
+#define LM_TAPS 1.0
+#include "res://core/render/passes/lights/light_shade.glsli"
+
+// Block light at an L0 hit p (anchor-relative) of normal n from the lists of its chunk and the 26 around it, as Lights shades a pixel (clamp, saturation, tint) but with ready maps only (never asks: no builds for lights only bounces see) and one PCF tap.
+vec3 lamp_at(vec3 p, vec3 n) {
+	ivec3 a = cam.anchor.xyz * CHUNK, cell = ivec3(floor(p)), wc0 = cam.anchor.xyz + ivec3(fdiv(cell.x, CHUNK), fdiv(cell.y, CHUNK), fdiv(cell.z, CHUNK));
+	vec3 sum = vec3(0.0);
+	uint count = 0u;
+	for (int k = 0; k < 27; k++) {
+		ivec3 wc = wc0 + ivec3(k % 3, k / 3 % 3, k / 9) - 1;
+		if (chunk_distance(p + vec3(a), wc) >= LIGHT_REACH) continue;
+		uvec2 e = in_ring0(wc) ? dir[slot0(wc)] : uvec2(NONE, 0u);
+		if (has_lights(e))
+			for (uint i = 0u; i < light_count(e.y); i++) {
+				uvec2 L = light_at(e.y, i);
+				ivec3 b = wc * CHUNK + light_block(L.x) - a;
+				add_light(b, L.y, lm_ready(b + a), smoothstep(0.75, 1.0, distance(vec3(b) + 0.5, cam.frac.xyz) * BS / P.light_shadow_distance), p, n, sum, count);
+			}
+	}
+	sum = min(sum, vec3(P.light_clamp));
+	if (P.light_saturation != 1.0) sum = max(mix(vec3(dot(sum, vec3(0.2126, 0.7152, 0.0722))), sum, P.light_saturation), 0.0);
+	return sum * vec3(P.light_tint_r, P.light_tint_g, P.light_tint_b);
+}
+#undef P
+#endif
+
+layout(push_constant, std430) uniform PC { uint step; uint count; uint row; uint first; } pc;
+
+const float GI_FIXED = 1024.0;
+const float GI_MAX_SAMPLES = 4096.0;
+const float GI_CONFIDENT = 4.0;  // samples at which a cell counts half
+const uint GI_EVICT_FRAMES = 240u;
+const uint GI_RESTART = 0x80000000u;
+const float LEVEL_HOLD = 4.0;
+const int MAX_STEPS = 128;
+
+uint hash1(uint h, uint v) { h = (h ^ v) * 0x9E3779B1u; return h ^ (h >> 16); }
+
+// Bucket hash and nonzero checksum of a world cell of a level and face.
+uvec2 cell_hash(ivec3 c, uint level, uint face) {
+	uint h = hash1(hash1(hash1(hash1(0x68E31DA4u, uint(c.x)), uint(c.y)), uint(c.z)), level * 6u + face);
+	return uvec2(h, hash1(h, 0x2545F491u) | 1u);
+}
+uint bucket_of(uvec2 h, uint i) { return (h.x + i) & (GI_CELLS / 4u - 1u); }
+uint gi_first(bvec4 m) { return m.x ? 0u : m.y ? 1u : m.z ? 2u : 3u; }
+int slot_in(uvec4 k, uint b, uint key) { bvec4 m = equal(k, uvec4(key)); return any(m) ? int(b * 4u + gi_first(m)) : -1; }
+
+// Slot of a key among its two buckets, home bucket keys k already read; -1 = not cached.
+int find_cell(uvec2 h, uvec4 k) {
+	int s = slot_in(k, bucket_of(h, 0u), h.y);
+	if (s >= 0 || any(equal(k, uvec4(0u)))) return s;
+	uint b = bucket_of(h, 1u);
+	return slot_in(buckets[b], b, h.y);
+}
+
+int insert_cell(uvec2 h) {
+	for (uint i = 0u; i < 2u; i++) {
+		uint b = bucket_of(h, i);
+		uvec4 k = buckets[b];
+		int s = slot_in(k, b, h.y);
+		if (s >= 0) return s;
+		for (uint j = 0u; j < 4u; j++) {
+			if (k[j] != 0u) continue;
+			uint prev = atomicCompSwap(buckets[b][j], 0u, h.y);
+			if (prev == 0u || prev == h.y) return int(b * 4u + j);
+		}
+	}
+	return -1;
+}
+
+vec4 unpack_irr(uvec2 v) { return vec4(unpackHalf2x16(v.x), unpackHalf2x16(v.y)); }
+uvec2 pack_irr(vec4 v) { return uvec2(packHalf2x16(v.rg), packHalf2x16(v.ba)); }
+
+ivec3 anchor_block() { return cam.anchor.xyz * CHUNK; }
+
+// Continuous cell level of a hit at camera distance t (blocks): integer part = level, fraction = blend towards the next one; never finer than the hit's level of detail.
+float level_of(float t, uint hit) { return max(log2(max(t * cam.lens.x * P.gi_cell_px, 1e-6)), float(hit >> HIT_LOD_SHIFT & HIT_LOD_MASK)); }
+
+// World cell of level L holding the face at anchor-relative p: the one with the block in front of it.
+ivec3 cell_of(vec3 p, vec3 n, int L) {
+	ivec3 a = anchor_block();
+	return (a >> L) + ivec3(floor((p + n * 0.5 + vec3(a & ((1 << L) - 1))) / float(1 << L)));
+}
+
+// What the L0 chunk of world block b holds (Raster's content key): its directory entry and record stamp, 1 = not in memory or outside the ring.
+uint content_key(ivec3 b) {
+	ivec3 wc = ivec3(fdiv(b.x, CHUNK), fdiv(b.y, CHUNK), fdiv(b.z, CHUNK)), r = wc - W.lv[0].min.xyz, d = W.lv[0].size.xyz;
+	if (any(lessThan(r, ivec3(0))) || any(greaterThanEqual(r, d))) return 1u;
+	uvec2 e = dir[W.lv[0].base.x + uint(pmod(wc.x, d.x) + d.x * (pmod(wc.y, d.y) + d.y * pmod(wc.z, d.z)))];
+	if (e.x == NONE) return 1u;
+	uint stamp = (e.x & UNI) == 0u ? records[e.x * CHUNK_REC_WORDS + CHUNK_STAMP_WORD] : 0u;
+	return max(hash1(hash1(hash1(0x68E31DA4u, e.x), e.y), stamp), 2u);
+}
+
+void add_sample(ivec3 c, int L, uint face, uvec3 q) {
+	int s = insert_cell(cell_hash(c, uint(L), face));
+	if (s < 0) return;
+	uint key = content_key(c << L);
+	if (cells[s].stamp != key && atomicExchange(cells[s].stamp, key) != key) atomicOr(cells[s].acc.a, GI_RESTART);
+	atomicAdd(cells[s].acc.r, q.r);
+	atomicAdd(cells[s].acc.g, q.g);
+	atomicAdd(cells[s].acc.b, q.b);
+	if ((atomicAdd(cells[s].acc.a, 1u) & ~GI_RESTART) == 0u) {
+		uint t = atomicAdd(touched_count, 1u);
+		if (t < uint(touched.length())) touched[t] = uint(s);
+	}
+	cells[s].last = cam.frame.x;
+}
+
+// The sky the flat ambient stands for: its colour by height, scaled so that an open face turned up gets the flat ambient (cosine-weighted mean of sqrt(d.y) is 0.8).
+vec3 sky(vec3 d) {
+	vec3 up = mix(cam.sky_horizon.rgb, cam.sky_top.rgb, 0.8);
+	return mix(cam.sky_horizon.rgb, cam.sky_top.rgb, sqrt(clamp(d.y, 0.0, 1.0))) * cam.amb_col.rgb / max(up, vec3(1e-4));
+}
+
+// SEE_THROUGH: see_trans = what glass, fog and liquid left of it.
+bool ray(vec3 o, vec3 d, float from_t, float tmax, out float t, out int axis, out uint w) {
+	origin_t = from_t;
+	level_hold = LEVEL_HOLD;
+	cutout_pass = 2;
+	bool fluid;
+#if defined(SEE_THROUGH) || defined(SEE_WATER)
+	see_reset();
+#endif
+	return trace(o, d, 0.0, tmax, MAX_STEPS, log2(cam.lens.z * float(TEX_SIZE)), t, axis, w, fluid);
+}
+
+vec3 passed() {
+#if defined(SEE_THROUGH) || defined(SEE_WATER)
+	return see_trans;
+#else
+	return vec3(1.0);
+#endif
+}
+
+// A cosine-weighted bounce from p (camera distance t0), else the sky: its hit lit by the sun (shadowed within GiShadowDistance), LAMP block light, the ambient (further bounces) and its emission, x GiBounce; clamped (fireflies).
+// With Lights a light block's emission is left to Lights (its point light and that light's bounce), so an emitter counts once.
+vec3 bounce(vec3 p, vec3 n, float bias, float t0, vec2 u) {
+	float phi = 6.2831853 * u.x, sr = sqrt(u.y);
+	vec3 tng = normalize(abs(n.y) > 0.9 ? cross(n, vec3(1, 0, 0)) : cross(n, vec3(0, 1, 0)));
+	vec3 d = safe_dir(normalize(tng * (cos(phi) * sr) + cross(n, tng) * (sin(phi) * sr) + n * sqrt(1.0 - u.y)));
+	vec3 o = p + n * bias;
+	float t;
+	int axis;
+	uint w;
+	if (!ray(o, d, t0, P.gi_range / BS, t, axis, w)) return sky(d) * passed();
+	vec3 through = passed();
+	bool model = hit_level == 0 && w >= F_MODEL << PAL_FLAG_SHIFT, colour = hit_level > 0 && w >= LOD_COLOR;
+	vec3 hn = model ? hit_n : vec3(0.0);
+	if (!model) hn[axis] = -sign(d[axis]);
+	uint id = w >= PART ? B_OBJECT : w & PAL_ID_MASK;
+	int hl = hit_level;
+	vec3 hp = o + d * t;
+	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : colour ? lod_color(w) : albedo_at(id, level_pos(o) + d * (t / lv_scale), vec3(anchor_block()) + hp, axis, hn, float(TEX_MIPS - 1));
+	vec3 me = model ? material_emission(hit_mat) : vec3(0.0);
+	float emit = model ? min(max(me.r, max(me.g, me.b)), 1.0) : colour ? 0.0 : face_emission(face_word(id, axis, hn));
+	vec3 lamp = vec3(0.0);
+#ifdef LAMP
+	if (w < PART && types[id].light_color.w > 0.0) emit = 0.0;
+	if (hl == 0) lamp = lamp_at(hp, hn);
+#endif
+	float ndl = dot(hn, cam.sun_dir.xyz), hb = 0.01 * float(1 << hl);
+	vec3 sun = vec3(0.0);
+	if (ndl > 0.0 && max(cam.sun_col.r, max(cam.sun_col.g, cam.sun_col.b)) > 0.0) {
+		float ts;
+		int ax2;
+		uint ws;
+		bool lit = P.gi_shadow_distance <= 0.0 || !ray(hp + hn * hb, safe_dir(cam.sun_dir.xyz), t0 + t, P.gi_shadow_distance / BS, ts, ax2, ws);
+		sun = lit ? cam.sun_col.rgb * ndl * (P.gi_shadow_distance <= 0.0 ? vec3(1.0) : passed()) : vec3(0.0);
+	}
+	return min(albedo * (sun + lamp + cam.amb_col.rgb * P.gi_bounce_ambient + emit * P.gi_emission) * P.gi_bounce * through, vec3(P.gi_clamp));
+}
+
+// Position of p in the face plane in cells of level L, cell centres at integers, relative to the anchor's cell.
+vec2 plane_pos(vec3 p, ivec2 uv, int L) {
+	ivec3 a = anchor_block();
+	int m = (1 << L) - 1;
+	return vec2(p[uv.x] + float(a[uv.x] & m), p[uv.y] + float(a[uv.y] & m)) / float(1 << L) - 0.5;
+}
+
+// The 2x2 cells of the face plane from plane cell i0 on level L: radiance and confidence (0 = not cached).
+void fetch(vec3 p, vec3 n, uint face, int L, ivec2 i0, out vec4 irr[4]) {
+	ivec3 a = anchor_block(), c0 = cell_of(p, n, L);
+	ivec2 uv = face_axes(int(face >> 1));
+	uvec2 h[4];
+	uvec4 k[4];
+	for (int j = 0; j < 4; j++) {
+		ivec3 c = c0;
+		c[uv.x] = (a[uv.x] >> L) + i0.x + (j & 1); c[uv.y] = (a[uv.y] >> L) + i0.y + (j >> 1);
+		h[j] = cell_hash(c, uint(L), face);
+		k[j] = buckets[bucket_of(h[j], 0u)];
+	}
+	for (int j = 0; j < 4; j++) {
+		int s = find_cell(h[j], k[j]);
+		irr[j] = s < 0 ? vec4(0.0) : unpack_irr(cells[s].irr);
+		irr[j].a /= irr[j].a + GI_CONFIDENT;
+	}
+}
+
+// Bilinear at f within the fetched cells (clamped to them: a quad reads its first pixel's cells); conf = their confidence there.
+vec3 blend(vec4 irr[4], vec2 f, out float conf) {
+	f = clamp(f, 0.0, 1.0);
+	vec3 sum = vec3(0.0);
+	conf = 0.0;
+	for (int j = 0; j < 4; j++) {
+		float w = ((j & 1) != 0 ? f.x : 1.0 - f.x) * ((j >> 1) != 0 ? f.y : 1.0 - f.y) * irr[j].a;
+		sum += irr[j].rgb * w; conf += w;
+	}
+	return conf > 0.0 ? sum / conf : vec3(0.0);
+}
+
+// The pixels `use` of a quad on one plane at level x (the first one's): level L and, in the last quarter of its range, L + 1; where the fine level has nothing the coarse one stands in. Saturation, tint and strength on top, plus the ambient floor; a = the weight over the flat ambient.
+void light(vec3 p[4], bool use[4], uint face, float x, inout vec4 res[4]) {
+	int r = use[0] ? 0 : use[1] ? 1 : use[2] ? 2 : 3, L = int(x);
+	vec3 n = hit_normal(face);
+	ivec2 uv = face_axes(int(face >> 1));
+	ivec2 i0 = ivec2(floor(plane_pos(p[r], uv, L))), i1 = ivec2(floor(plane_pos(p[r], uv, L + 1)));
+	vec4 c0[4], c1[4];
+	fetch(p[r], n, face, L, i0, c0);
+	vec3 g0[4];
+	float conf0[4], kb = min(4.0 - 4.0 * fract(x), 1.0);
+	bool coarse = false;
+	for (int k = 0; k < 4; k++) {
+		if (!use[k]) continue;
+		g0[k] = blend(c0, plane_pos(p[k], uv, L) - vec2(i0), conf0[k]);
+		coarse = coarse || kb * conf0[k] < 0.98;
+	}
+	if (coarse) fetch(p[r], n, face, L + 1, i1, c1);
+	for (int k = 0; k < 4; k++) {
+		if (!use[k]) continue;
+		float conf1 = 0.0, k0 = kb * conf0[k];
+		vec3 g1 = coarse ? blend(c1, plane_pos(p[k], uv, L + 1) - vec2(i1), conf1) : vec3(0.0);
+		if (conf1 == 0.0) k0 = 1.0;
+		vec3 g = mix(g1, g0[k], k0);
+		float l = dot(g, vec3(0.2126, 0.7152, 0.0722));
+		g = max(mix(vec3(l), g, P.gi_saturation), 0.0) * vec3(P.gi_tint_r, P.gi_tint_g, P.gi_tint_b) * P.gi_strength + cam.amb_col.rgb * P.gi_ambient;
+		res[k] = vec4(g, min(2.0 * mix(conf1, conf0[k], k0), 1.0));
+	}
+}
+
+// Pixel px's surface (anchor-relative blocks) and camera distance.
+vec3 surface(ivec2 px, ivec2 size, uint hit, float t) {
+	vec3 p = cam.frac.xyz + safe_dir(pixel_dir(px, size)) * t;
+#ifdef BENT
+	if ((hit & HIT_BENT) != 0u) p = imageLoad(hitpos_in, px).xyz;
+#endif
+	return p;
+}
+
+void sample_block(uint i) {
+	ivec2 size = imageSize(depth_in), b = ivec2(i % pc.first, i / pc.first);
+	int sp = clamp(int(P.gi_sample_px + 0.5), 2, 16), lg = findMSB(sp);
+	sp = 1 << lg;
+	uint k = bitfieldReverse(cam.frame.x + uint(b.x * 7 + b.y * 3)) >> (32 - 2 * lg);
+	ivec2 px = b * sp + ivec2(k % uint(sp), k / uint(sp));
+	if (any(greaterThanEqual(px, size))) return;
+	uint hit = imageLoad(hit_in, px).r, face = hit_face(hit);
+	if (face == HIT_SKY) return;
+	float t = imageLoad(depth_in, px).r;
+	vec3 p = surface(px, size, hit, t), n = hit_normal(face);
+	uint s = pcg(uint(px.x) * 9781u + uint(px.y) * 6271u + cam.frame.x * 26699u), s2 = pcg(s);
+	vec3 rad = bounce(p, n, 0.02 * float(1u << (hit >> HIT_LOD_SHIFT & HIT_LOD_MASK)), t, vec2(float(s >> 8), float(s2 >> 8)) / 16777216.0);
+	uvec3 q = uvec3(clamp(rad, 0.0, P.gi_clamp) * GI_FIXED + 0.5);
+	int L = int(level_of(t, hit));
+	add_sample(cell_of(p, n, L), L, face, q);
+	add_sample(cell_of(p, n, L + 1), L + 1, face, q);
+}
+
+// Restarted cells drop their history (their chunk changed); the rest mix this frame's mean in, at least 1 / GiHistory.
+void resolve(uint i) {
+	if (i >= min(touched_count, uint(touched.length()))) return;
+	uint s = touched[i];
+	uvec4 acc = cells[s].acc;
+	vec4 irr = (acc.a & GI_RESTART) != 0u ? vec4(0.0) : unpack_irr(cells[s].irr);
+	float n = float(acc.a & ~GI_RESTART);
+	vec3 avg = vec3(acc.rgb) / (n * GI_FIXED);
+	float a = max(n / (irr.a + n), 1.0 / max(P.gi_history, 1.0));
+	cells[s].irr = pack_irr(vec4(mix(irr.rgb, avg, a), min(irr.a + n, GI_MAX_SAMPLES)));
+	cells[s].acc = uvec4(0u);
+}
+
+void evict(uint i) {
+	uint s = i + (cam.frame.x % GI_EVICT_SLICES) * (GI_CELLS / GI_EVICT_SLICES);
+	if (buckets[s >> 2][s & 3u] != 0u && cam.frame.x - cells[s].last > GI_EVICT_FRAMES) { buckets[s >> 2][s & 3u] = 0u; cells[s].irr = uvec2(0u); cells[s].stamp = 0u; }
+}
+
+// A thread per 2x2 quad: one fetch when its pixels lie on one plane at one level, else one per pixel.
+void gather(ivec2 qid) {
+	ivec2 size = imageSize(gi_out), base = qid * 2;
+	if (any(greaterThanEqual(base, size))) return;
+	vec3 p[4];
+	uint face[4];
+	float x[4];
+	bool on[4], flat_quad = true;
+	int rep = -1;
+	for (int k = 0; k < 4; k++) {
+		ivec2 px = min(base + ivec2(k & 1, k >> 1), size - 1);
+		uint hit = imageLoad(hit_in, px).r;
+		face[k] = hit_face(hit);
+		on[k] = face[k] != HIT_SKY;
+		if (!on[k]) continue;
+		float t = imageLoad(depth_in, px).r;
+		p[k] = surface(px, size, hit, t);
+		x[k] = level_of(t, hit);
+		if (rep < 0) rep = k;
+		else flat_quad = flat_quad && face[k] == face[rep] && int(x[k]) == int(x[rep]) && abs(dot(p[k] - p[rep], hit_normal(face[rep]))) < 1e-2;
+	}
+	vec4 res[4] = vec4[4](vec4(0.0), vec4(0.0), vec4(0.0), vec4(0.0));
+	if (rep >= 0 && flat_quad) light(p, on, face[rep], x[rep], res);
+	else if (rep >= 0) {
+		[[dont_unroll]] for (int k = 0; k < 4; k++) {
+			bool one[4] = bool[4](k == 0, k == 1, k == 2, k == 3);
+			if (on[k]) light(p, one, face[k], x[k], res);
+		}
+	}
+	for (int k = 0; k < 4; k++) {
+		ivec2 px = base + ivec2(k & 1, k >> 1);
+		if (all(lessThan(px, size))) imageStore(gi_out, px, res[k]);
+	}
+}
+
+void main() {
+	if (pc.step == GI_STEP_GATHER) { gather(ivec2(gl_GlobalInvocationID.xy)); return; }
+	uint i = gl_LocalInvocationIndex + GROUP_X * GROUP_Y * gl_WorkGroupID.x + gl_WorkGroupID.y * pc.row;
+	if (i >= pc.count) return;
+	if (pc.step == GI_STEP_RESET) touched_count = 0u;
+	else if (pc.step == GI_STEP_SAMPLE) { ring_setup(); sample_block(i); }
+	else if (pc.step == GI_STEP_RESOLVE) resolve(i);
+	else if (pc.step == GI_STEP_EVICT) evict(i);
+}

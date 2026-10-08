@@ -1,0 +1,24 @@
+// Frame of an atmosphere pass (AtmosphereVariant.cs): the includer defines atmosphere(), main applies it to Color in place.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "camera.glsli"
+#include "gbuffer.glsli"
+#include "res://core/render/passes/sky/sky_hash.glsli"
+layout(set = 0, binding = 0, std430) restrict readonly buffer ParamBuf { PARAMS } P;
+layout(set = 0, binding = 2, rgba16f) restrict uniform image2D color;
+layout(set = 0, binding = 3, r32ui) restrict readonly uniform uimage2D hit_in;
+layout(set = 0, binding = 4, r32f) restrict readonly uniform image2D depth_in;
+
+// c = Color so far, d = view ray, t = Depth (blocks along the ray, 0 = sky), uv = screen position 0..1.
+vec3 atmosphere(vec3 c, vec3 d, bool sky, float t, vec2 uv);
+
+float above_horizon(vec3 d) { return clamp(d.y / cam.lens.x + 0.5, 0.0, 1.0); } // v1: discs and stars fade in over one pixel
+
+void main() {
+#ifndef DEBUG_VIEW
+	ivec2 px = ivec2(gl_GlobalInvocationID.xy), size = imageSize(color);
+	if (any(greaterThanEqual(px, size))) return;
+	bool sky = hit_face(imageLoad(hit_in, px).r) == HIT_SKY;
+	vec3 c = atmosphere(imageLoad(color, px).rgb, pixel_dir(px, size), sky, imageLoad(depth_in, px).r, (vec2(px) + 0.5) / vec2(size));
+	imageStore(color, px, vec4(c, 1.0));
+#endif
+}

@@ -1,0 +1,20 @@
+{
+  "Note": "transparency (docs/v2.md \u00a75.23): glass, panes, glass roof shadow, torch behind glass, ice, fog room inside and outside, model emission at night, water pool by day and night; 4K",
+  "Bookmarks": [
+    "transparency-overview",
+    "transparency-glass",
+    "transparency-roof",
+    "transparency-torch-glass",
+    "transparency-ice",
+    "transparency-fog-outside",
+    "transparency-fog-inside",
+    "transparency-night-models",
+    "transparency-water",
+    "transparency-water-night"
+  ],
+  "Capture": [
+    "Shot",
+    "PassMs"
+  ],
+  "Views": []
+}

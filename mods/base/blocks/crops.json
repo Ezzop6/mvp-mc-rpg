@@ -1,0 +1,692 @@
+{
+  "category": "crops",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:attached_melon_stem",
+      "kind": "stem",
+      "template": "stem_fruit",
+      "textures": { "extra": "block/extra/stem_extra", "particle": "block/melon_stem", "stem": "block/melon_stem", "upperstem": "block/attached_melon_stem" },
+      "surface": "cutout",
+      "tint": { "source": "stem", "color": "#e0c71c" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["base_texture"],
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "model": "attached_melon_stem", "y": 180 }] },
+        { "when": { "facing": "north" }, "looks": [{ "model": "attached_melon_stem", "y": 90 }] },
+        { "when": { "facing": "south" }, "looks": [{ "model": "attached_melon_stem", "y": 270 }] },
+        { "when": { "facing": "west" }, "looks": [{ "model": "attached_melon_stem" }] }
+      ]
+    },
+    {
+      "id": "base:attached_pumpkin_stem",
+      "kind": "stem",
+      "template": "stem_fruit",
+      "textures": {
+        "extra": "block/extra/stem_extra",
+        "particle": "block/pumpkin_stem",
+        "stem": "block/pumpkin_stem",
+        "upperstem": "block/attached_pumpkin_stem"
+      },
+      "surface": "cutout",
+      "tint": { "source": "stem", "color": "#e0c71c" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["base_texture"],
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "model": "attached_pumpkin_stem", "y": 180 }] },
+        { "when": { "facing": "north" }, "looks": [{ "model": "attached_pumpkin_stem", "y": 90 }] },
+        { "when": { "facing": "south" }, "looks": [{ "model": "attached_pumpkin_stem", "y": 270 }] },
+        { "when": { "facing": "west" }, "looks": [{ "model": "attached_pumpkin_stem" }] }
+      ]
+    },
+    {
+      "id": "base:beetroots",
+      "kind": "crop",
+      "template": "crop",
+      "textures": { "crop": "block/beetroots_stage0", "particle": "block/beetroots_stage0" },
+      "surface": "cutout",
+      "states": { "age": ["0", "1", "2", "3"] },
+      "tags": ["random_rotation"],
+      "multipart": [
+        {
+          "when": [{ "age": "0" }],
+          "looks": [
+            { "model": "beetroots_stage0" },
+            { "model": "beetroots_stage0", "y": 90 },
+            { "model": "beetroots_stage0", "y": 180 },
+            { "model": "beetroots_stage0", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "1" }],
+          "looks": [
+            { "model": "beetroots_stage1" },
+            { "model": "beetroots_stage1", "y": 90 },
+            { "model": "beetroots_stage1", "y": 180 },
+            { "model": "beetroots_stage1", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "2" }],
+          "looks": [
+            { "model": "beetroots_stage2" },
+            { "model": "beetroots_stage2", "y": 90 },
+            { "model": "beetroots_stage2", "y": 180 },
+            { "model": "beetroots_stage2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "3" }],
+          "looks": [
+            { "model": "beetroots_stage3" },
+            { "model": "beetroots_stage3", "y": 90 },
+            { "model": "beetroots_stage3", "y": 180 },
+            { "model": "beetroots_stage3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:carrots",
+      "kind": "crop",
+      "template": "crop",
+      "textures": { "crop": "block/carrots_stage0", "particle": "block/carrots_stage0" },
+      "surface": "cutout",
+      "states": { "age": ["0", "1", "2", "3", "4", "5", "6", "7"] },
+      "tags": ["random_rotation"],
+      "multipart": [
+        {
+          "when": [{ "age": "0|1" }],
+          "looks": [
+            { "model": "carrots_stage0" },
+            { "model": "carrots_stage0", "y": 90 },
+            { "model": "carrots_stage0", "y": 180 },
+            { "model": "carrots_stage0", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "2|3" }],
+          "looks": [
+            { "model": "carrots_stage1" },
+            { "model": "carrots_stage1", "y": 90 },
+            { "model": "carrots_stage1", "y": 180 },
+            { "model": "carrots_stage1", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "4|5|6" }],
+          "looks": [
+            { "model": "carrots_stage2" },
+            { "model": "carrots_stage2", "y": 90 },
+            { "model": "carrots_stage2", "y": 180 },
+            { "model": "carrots_stage2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "7" }],
+          "looks": [
+            { "model": "carrots_stage3" },
+            { "model": "carrots_stage3", "y": 90 },
+            { "model": "carrots_stage3", "y": 180 },
+            { "model": "carrots_stage3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:carved_pumpkin",
+      "kind": "cube",
+      "template": "orientable",
+      "faces": {
+        "top": { "texture": "block/pumpkin_top", "rotation": 180 },
+        "bottom": { "texture": "block/pumpkin_top" },
+        "front": { "texture": "block/carved_pumpkin" },
+        "back": { "texture": "block/pumpkin_side3" },
+        "left": { "texture": "block/pumpkin_side2" },
+        "right": { "texture": "block/pumpkin_side4" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "cubes": {
+        "carved_pumpkin": {
+          "top": { "texture": "block/pumpkin_top", "rotation": 180 },
+          "bottom": { "texture": "block/pumpkin_top" },
+          "front": { "texture": "block/carved_pumpkin" },
+          "back": { "texture": "block/pumpkin_side3" },
+          "left": { "texture": "block/pumpkin_side2" },
+          "right": { "texture": "block/pumpkin_side4" }
+        },
+        "carved_pumpkin2": {
+          "top": { "texture": "block/pumpkin_top", "rotation": 270 },
+          "bottom": { "texture": "block/pumpkin_top", "rotation": 90 },
+          "front": { "texture": "block/carved_pumpkin2" },
+          "back": { "texture": "block/pumpkin_side4" },
+          "left": { "texture": "block/pumpkin_side3" },
+          "right": { "texture": "block/pumpkin_side" }
+        },
+        "carved_pumpkin2_extra": {
+          "top": { "texture": "block/extra/pumpkin_top_extra", "rotation": 270 },
+          "bottom": { "texture": "block/extra/pumpkin_top_extra", "rotation": 90 },
+          "front": { "texture": "block/extra/carved_pumpkin2_extra" },
+          "back": { "texture": "block/extra/pumpkin_side4_extra" },
+          "left": { "texture": "block/extra/pumpkin_side3_extra" },
+          "right": { "texture": "block/extra/pumpkin_side_extra" }
+        },
+        "carved_pumpkin3": {
+          "top": { "texture": "block/pumpkin_top" },
+          "bottom": { "texture": "block/pumpkin_top", "rotation": 180 },
+          "front": { "texture": "block/carved_pumpkin3" },
+          "back": { "texture": "block/pumpkin_side" },
+          "left": { "texture": "block/pumpkin_side4" },
+          "right": { "texture": "block/pumpkin_side2" }
+        },
+        "carved_pumpkin3_extra": {
+          "top": { "texture": "block/extra/pumpkin_top_extra" },
+          "bottom": { "texture": "block/extra/pumpkin_top_extra", "rotation": 180 },
+          "front": { "texture": "block/extra/carved_pumpkin3_extra" },
+          "back": { "texture": "block/extra/pumpkin_side_extra" },
+          "left": { "texture": "block/extra/pumpkin_side4_extra" },
+          "right": { "texture": "block/extra/pumpkin_side2_extra" }
+        },
+        "carved_pumpkin4": {
+          "top": { "texture": "block/pumpkin_top", "rotation": 90 },
+          "bottom": { "texture": "block/pumpkin_top", "rotation": 270 },
+          "front": { "texture": "block/carved_pumpkin4" },
+          "back": { "texture": "block/pumpkin_side2" },
+          "left": { "texture": "block/pumpkin_side" },
+          "right": { "texture": "block/pumpkin_side3" }
+        },
+        "carved_pumpkin4_extra": {
+          "top": { "texture": "block/extra/pumpkin_top_extra", "rotation": 90 },
+          "bottom": { "texture": "block/extra/pumpkin_top_extra", "rotation": 270 },
+          "front": { "texture": "block/extra/carved_pumpkin4_extra" },
+          "back": { "texture": "block/extra/pumpkin_side2_extra" },
+          "left": { "texture": "block/extra/pumpkin_side_extra" },
+          "right": { "texture": "block/extra/pumpkin_side3_extra" }
+        },
+        "carved_pumpkin_extra": {
+          "top": { "texture": "block/extra/pumpkin_top_extra", "rotation": 180 },
+          "bottom": { "texture": "block/extra/pumpkin_top_extra" },
+          "front": { "texture": "block/extra/carved_pumpkin_extra" },
+          "back": { "texture": "block/extra/pumpkin_side3_extra" },
+          "left": { "texture": "block/extra/pumpkin_side2_extra" },
+          "right": { "texture": "block/extra/pumpkin_side4_extra" }
+        }
+      },
+      "variants": [
+        {
+          "when": { "facing": "north" },
+          "looks": [
+            { "cube": "carved_pumpkin" },
+            { "cube": "carved_pumpkin2" },
+            { "cube": "carved_pumpkin3" },
+            { "cube": "carved_pumpkin4" },
+            { "cube": "carved_pumpkin_extra" },
+            { "cube": "carved_pumpkin2_extra" },
+            { "cube": "carved_pumpkin3_extra" },
+            { "cube": "carved_pumpkin4_extra" }
+          ]
+        },
+        {
+          "when": { "facing": "east" },
+          "looks": [
+            { "cube": "carved_pumpkin", "y": 90 },
+            { "cube": "carved_pumpkin2", "y": 90 },
+            { "cube": "carved_pumpkin3", "y": 90 },
+            { "cube": "carved_pumpkin4", "y": 90 },
+            { "cube": "carved_pumpkin_extra", "y": 90 },
+            { "cube": "carved_pumpkin2_extra", "y": 90 },
+            { "cube": "carved_pumpkin3_extra", "y": 90 },
+            { "cube": "carved_pumpkin4_extra", "y": 90 }
+          ]
+        },
+        {
+          "when": { "facing": "south" },
+          "looks": [
+            { "cube": "carved_pumpkin", "y": 180 },
+            { "cube": "carved_pumpkin2", "y": 180 },
+            { "cube": "carved_pumpkin3", "y": 180 },
+            { "cube": "carved_pumpkin4", "y": 180 },
+            { "cube": "carved_pumpkin_extra", "y": 180 },
+            { "cube": "carved_pumpkin2_extra", "y": 180 },
+            { "cube": "carved_pumpkin3_extra", "y": 180 },
+            { "cube": "carved_pumpkin4_extra", "y": 180 }
+          ]
+        },
+        {
+          "when": { "facing": "west" },
+          "looks": [
+            { "cube": "carved_pumpkin", "y": 270 },
+            { "cube": "carved_pumpkin2", "y": 270 },
+            { "cube": "carved_pumpkin3", "y": 270 },
+            { "cube": "carved_pumpkin4", "y": 270 },
+            { "cube": "carved_pumpkin_extra", "y": 270 },
+            { "cube": "carved_pumpkin2_extra", "y": 270 },
+            { "cube": "carved_pumpkin3_extra", "y": 270 },
+            { "cube": "carved_pumpkin4_extra", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:cocoa",
+      "kind": "custom",
+      "textures": { "cocoa": "block/cocoa_stage0", "particle": "block/cocoa_stage0" },
+      "surface": "cutout",
+      "orientation": "horizontal",
+      "states": { "age": ["0", "1", "2"], "facing": ["east", "north", "south", "west"] },
+      "variants": [
+        { "when": { "age": "0", "facing": "east" }, "looks": [{ "model": "cocoa_stage0", "y": 270 }] },
+        { "when": { "age": "0", "facing": "north" }, "looks": [{ "model": "cocoa_stage0", "y": 180 }] },
+        { "when": { "age": "0", "facing": "south" }, "looks": [{ "model": "cocoa_stage0" }] },
+        { "when": { "age": "0", "facing": "west" }, "looks": [{ "model": "cocoa_stage0", "y": 90 }] },
+        { "when": { "age": "1", "facing": "east" }, "looks": [{ "model": "cocoa_stage1", "y": 270 }] },
+        { "when": { "age": "1", "facing": "north" }, "looks": [{ "model": "cocoa_stage1", "y": 180 }] },
+        { "when": { "age": "1", "facing": "south" }, "looks": [{ "model": "cocoa_stage1" }] },
+        { "when": { "age": "1", "facing": "west" }, "looks": [{ "model": "cocoa_stage1", "y": 90 }] },
+        { "when": { "age": "2", "facing": "east" }, "looks": [{ "model": "cocoa_stage2", "y": 270 }] },
+        { "when": { "age": "2", "facing": "north" }, "looks": [{ "model": "cocoa_stage2", "y": 180 }] },
+        { "when": { "age": "2", "facing": "south" }, "looks": [{ "model": "cocoa_stage2" }] },
+        { "when": { "age": "2", "facing": "west" }, "looks": [{ "model": "cocoa_stage2", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:hay_block",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/hay_block_top" }, "bottom": { "texture": "block/hay_block_top" }, "side": { "texture": "block/hay_block_side" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "cubes": {
+        "hay_block": {
+          "top": { "texture": "block/hay_block_top" },
+          "bottom": { "texture": "block/hay_block_top" },
+          "side": { "texture": "block/hay_block_side" }
+        },
+        "hay_block_horizontal": {
+          "top": { "texture": "block/hay_block_top", "rotation": 180 },
+          "bottom": { "texture": "block/hay_block_top" },
+          "side": { "texture": "block/hay_block_side" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "hay_block_horizontal", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "hay_block" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "hay_block_horizontal", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:melon",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/melon_top" }, "bottom": { "texture": "block/melon_top" }, "side": { "texture": "block/melon_side" } },
+      "tags": ["random_rotation"],
+      "cubes": { "melon": { "top": { "texture": "block/melon_top" }, "bottom": { "texture": "block/melon_top" }, "side": { "texture": "block/melon_side" } } },
+      "variants": [{ "looks": [{ "cube": "melon" }, { "cube": "melon", "y": 90 }, { "cube": "melon", "y": 180 }, { "cube": "melon", "y": 270 }] }]
+    },
+    {
+      "id": "base:melon_stem",
+      "kind": "stem",
+      "template": "stem_growth0",
+      "textures": { "particle": "block/melon_stem", "stem": "block/melon_stem" },
+      "tint": { "source": "stem", "color": "#e0c71c" },
+      "states": { "age": ["0", "1", "2", "3", "4", "5", "6", "7"] },
+      "tags": ["base_texture"],
+      "variants": [
+        { "when": { "age": "0" }, "looks": [{ "model": "melon_stem_stage0" }] },
+        { "when": { "age": "1" }, "looks": [{ "model": "melon_stem_stage1" }] },
+        { "when": { "age": "2" }, "looks": [{ "model": "melon_stem_stage2" }] },
+        { "when": { "age": "3" }, "looks": [{ "model": "melon_stem_stage3" }] },
+        { "when": { "age": "4" }, "looks": [{ "model": "melon_stem_stage4" }] },
+        { "when": { "age": "5" }, "looks": [{ "model": "melon_stem_stage5" }] },
+        { "when": { "age": "6" }, "looks": [{ "model": "melon_stem_stage6" }] },
+        { "when": { "age": "7" }, "looks": [{ "model": "melon_stem_stage7" }] }
+      ]
+    },
+    {
+      "id": "base:nether_wart",
+      "kind": "crop",
+      "template": "crop",
+      "textures": { "crop": "block/nether_wart_stage0", "particle": "block/nether_wart_stage0" },
+      "surface": "cutout",
+      "emission": 0.001,
+      "states": { "age": ["0", "1", "2", "3"] },
+      "tags": ["random_rotation"],
+      "multipart": [
+        {
+          "when": [{ "age": "0" }],
+          "looks": [
+            { "model": "nether_wart_stage0" },
+            { "model": "nether_wart_stage0", "y": 90 },
+            { "model": "nether_wart_stage0", "y": 180 },
+            { "model": "nether_wart_stage0", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "1|2" }],
+          "looks": [
+            { "model": "nether_wart_stage1" },
+            { "model": "nether_wart_stage1", "y": 90 },
+            { "model": "nether_wart_stage1", "y": 180 },
+            { "model": "nether_wart_stage1", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "3" }],
+          "looks": [
+            { "model": "nether_wart_stage2" },
+            { "model": "nether_wart_stage2", "y": 90 },
+            { "model": "nether_wart_stage2", "y": 180 },
+            { "model": "nether_wart_stage2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:pitcher_crop",
+      "kind": "custom",
+      "textures": {
+        "particle": "block/pitcher_crop_top",
+        "pitcher_bottom": "block/pitcher_crop_bottom",
+        "pitcher_side": "block/pitcher_crop_side",
+        "pitcher_top": "block/pitcher_crop_top"
+      },
+      "surface": "cutout",
+      "states": { "age": ["0", "1", "2", "3", "4"], "half": ["lower", "upper"] },
+      "multiblock": "half",
+      "tags": ["placeholder"],
+      "cubes": {
+        "pitcher_crop_top_stage_0": { "all": { "texture": "block/pitcher_crop_top" } },
+        "pitcher_crop_top_stage_1": { "all": { "texture": "block/pitcher_crop_top" } },
+        "pitcher_crop_top_stage_2": { "all": { "texture": "block/pitcher_crop_top" } }
+      },
+      "variants": [
+        { "when": { "age": "0", "half": "lower" }, "looks": [{ "model": "pitcher_crop_bottom_stage_0" }] },
+        { "when": { "age": "0", "half": "upper" }, "looks": [{ "cube": "pitcher_crop_top_stage_0" }] },
+        { "when": { "age": "1", "half": "lower" }, "looks": [{ "model": "pitcher_crop_bottom_stage_1a" }, { "model": "pitcher_crop_bottom_stage_1b" }] },
+        { "when": { "age": "1", "half": "upper" }, "looks": [{ "cube": "pitcher_crop_top_stage_1" }] },
+        { "when": { "age": "2", "half": "lower" }, "looks": [{ "model": "pitcher_crop_bottom_stage_2a" }, { "model": "pitcher_crop_bottom_stage_2b" }] },
+        { "when": { "age": "2", "half": "upper" }, "looks": [{ "cube": "pitcher_crop_top_stage_2" }] },
+        { "when": { "age": "3", "half": "lower" }, "looks": [{ "model": "pitcher_crop_bottom_stage_3" }] },
+        { "when": { "age": "3", "half": "upper" }, "looks": [{ "model": "pitcher_crop_top_stage_3a" }, { "model": "pitcher_crop_top_stage_3b" }] },
+        { "when": { "age": "4", "half": "lower" }, "looks": [{ "model": "pitcher_crop_bottom_stage_4" }] },
+        { "when": { "age": "4", "half": "upper" }, "looks": [{ "model": "pitcher_crop_top_stage_4a" }, { "model": "pitcher_crop_top_stage_4b" }] }
+      ]
+    },
+    {
+      "id": "base:potatoes",
+      "kind": "crop",
+      "template": "crop",
+      "textures": { "crop": "block/potatoes_stage0", "particle": "block/potatoes_stage0" },
+      "surface": "cutout",
+      "states": { "age": ["0", "1", "2", "3", "4", "5", "6", "7"] },
+      "tags": ["random_rotation"],
+      "multipart": [
+        {
+          "when": [{ "age": "0|1" }],
+          "looks": [
+            { "model": "potatoes_stage0" },
+            { "model": "potatoes_stage0", "y": 90 },
+            { "model": "potatoes_stage0", "y": 180 },
+            { "model": "potatoes_stage0", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "2|3" }],
+          "looks": [
+            { "model": "potatoes_stage1" },
+            { "model": "potatoes_stage1", "y": 90 },
+            { "model": "potatoes_stage1", "y": 180 },
+            { "model": "potatoes_stage1", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "4|5|6" }],
+          "looks": [
+            { "model": "potatoes_stage2" },
+            { "model": "potatoes_stage2", "y": 90 },
+            { "model": "potatoes_stage2", "y": 180 },
+            { "model": "potatoes_stage2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "7" }],
+          "looks": [
+            { "model": "potatoes_stage3" },
+            { "model": "potatoes_stage3", "y": 90 },
+            { "model": "potatoes_stage3", "y": 180 },
+            { "model": "potatoes_stage3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:pumpkin",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/pumpkin_top", "rotation": 180 },
+        "bottom": { "texture": "block/pumpkin_top" },
+        "front": { "texture": "block/pumpkin_side" },
+        "back": { "texture": "block/pumpkin_side3" },
+        "left": { "texture": "block/pumpkin_side2" },
+        "right": { "texture": "block/pumpkin_side4" }
+      },
+      "tags": ["random_variants"],
+      "cubes": {
+        "pumpkin": {
+          "top": { "texture": "block/pumpkin_top", "rotation": 180 },
+          "bottom": { "texture": "block/pumpkin_top" },
+          "front": { "texture": "block/pumpkin_side" },
+          "back": { "texture": "block/pumpkin_side3" },
+          "left": { "texture": "block/pumpkin_side2" },
+          "right": { "texture": "block/pumpkin_side4" }
+        },
+        "pumpkin_extra": {
+          "top": { "texture": "block/extra/pumpkin_top_extra", "rotation": 180 },
+          "bottom": { "texture": "block/extra/pumpkin_top_extra" },
+          "front": { "texture": "block/extra/pumpkin_side_extra" },
+          "back": { "texture": "block/extra/pumpkin_side3_extra" },
+          "left": { "texture": "block/extra/pumpkin_side2_extra" },
+          "right": { "texture": "block/extra/pumpkin_side4_extra" }
+        }
+      },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "pumpkin" },
+            { "cube": "pumpkin_extra" },
+            { "cube": "pumpkin", "y": 90 },
+            { "cube": "pumpkin_extra", "y": 90 },
+            { "cube": "pumpkin", "y": 180 },
+            { "cube": "pumpkin_extra", "y": 180 },
+            { "cube": "pumpkin", "y": 270 },
+            { "cube": "pumpkin_extra", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:pumpkin_stem",
+      "kind": "stem",
+      "template": "stem_growth0",
+      "textures": { "particle": "block/pumpkin_stem", "stem": "block/pumpkin_stem" },
+      "surface": "cutout",
+      "tint": { "source": "stem", "color": "#e0c71c" },
+      "states": { "age": ["0", "1", "2", "3", "4", "5", "6", "7"] },
+      "tags": ["base_texture"],
+      "variants": [
+        { "when": { "age": "0" }, "looks": [{ "model": "pumpkin_stem_stage0" }] },
+        { "when": { "age": "1" }, "looks": [{ "model": "pumpkin_stem_stage1" }] },
+        { "when": { "age": "2" }, "looks": [{ "model": "pumpkin_stem_stage2" }] },
+        { "when": { "age": "3" }, "looks": [{ "model": "pumpkin_stem_stage3" }] },
+        { "when": { "age": "4" }, "looks": [{ "model": "pumpkin_stem_stage4" }] },
+        { "when": { "age": "5" }, "looks": [{ "model": "pumpkin_stem_stage5" }] },
+        { "when": { "age": "6" }, "looks": [{ "model": "pumpkin_stem_stage6" }] },
+        { "when": { "age": "7" }, "looks": [{ "model": "pumpkin_stem_stage7" }] }
+      ]
+    },
+    {
+      "id": "base:sweet_berry_bush",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/sweet_berry_bush_stage0", "particle": "block/sweet_berry_bush_stage0" },
+      "surface": "cutout",
+      "states": { "age": ["0", "1", "2", "3"] },
+      "tags": ["animated", "random_rotation"],
+      "multipart": [
+        {
+          "when": [{ "age": "0" }],
+          "looks": [
+            { "model": "sweet_berry_bush_stage0" },
+            { "model": "sweet_berry_bush_stage0", "y": 90 },
+            { "model": "sweet_berry_bush_stage0", "y": 180 },
+            { "model": "sweet_berry_bush_stage0", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "1" }],
+          "looks": [
+            { "model": "sweet_berry_bush_stage1" },
+            { "model": "sweet_berry_bush_stage1", "y": 90 },
+            { "model": "sweet_berry_bush_stage1", "y": 180 },
+            { "model": "sweet_berry_bush_stage1", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "2" }],
+          "looks": [
+            { "model": "sweet_berry_bush_stage2" },
+            { "model": "sweet_berry_bush_stage2", "y": 90 },
+            { "model": "sweet_berry_bush_stage2", "y": 180 },
+            { "model": "sweet_berry_bush_stage2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "3" }],
+          "looks": [
+            { "model": "sweet_berry_bush_stage3" },
+            { "model": "sweet_berry_bush_stage3", "y": 90 },
+            { "model": "sweet_berry_bush_stage3", "y": 180 },
+            { "model": "sweet_berry_bush_stage3", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:torchflower_crop",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/torchflower_crop_stage0", "particle": "block/torchflower_crop_stage0" },
+      "surface": "cutout",
+      "states": { "age": ["0", "1"] },
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "when": { "age": "0" },
+          "looks": [
+            { "model": "torchflower_crop_stage0" },
+            { "model": "torchflower_crop_stage0", "y": 90 },
+            { "model": "torchflower_crop_stage0", "y": 180 },
+            { "model": "torchflower_crop_stage0", "y": 270 }
+          ]
+        },
+        {
+          "when": { "age": "1" },
+          "looks": [
+            { "model": "torchflower_crop_stage1" },
+            { "model": "torchflower_crop_stage1", "y": 90 },
+            { "model": "torchflower_crop_stage1", "y": 180 },
+            { "model": "torchflower_crop_stage1", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:wheat",
+      "kind": "crop",
+      "template": "crop",
+      "textures": { "crop": "block/wheat_stage0", "particle": "block/wheat_stage0" },
+      "surface": "cutout",
+      "states": { "age": ["0", "1", "2", "3", "4", "5", "6", "7"] },
+      "tags": ["base_texture", "random_rotation"],
+      "multipart": [
+        {
+          "when": [{ "age": "0" }],
+          "looks": [
+            { "model": "wheat_stage0" },
+            { "model": "wheat_stage0", "y": 90 },
+            { "model": "wheat_stage0", "y": 180 },
+            { "model": "wheat_stage0", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "1" }],
+          "looks": [
+            { "model": "wheat_stage1" },
+            { "model": "wheat_stage1", "y": 90 },
+            { "model": "wheat_stage1", "y": 180 },
+            { "model": "wheat_stage1", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "2" }],
+          "looks": [
+            { "model": "wheat_stage2" },
+            { "model": "wheat_stage2", "y": 90 },
+            { "model": "wheat_stage2", "y": 180 },
+            { "model": "wheat_stage2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "3" }],
+          "looks": [
+            { "model": "wheat_stage3" },
+            { "model": "wheat_stage3", "y": 90 },
+            { "model": "wheat_stage3", "y": 180 },
+            { "model": "wheat_stage3", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "4" }],
+          "looks": [
+            { "model": "wheat_stage4" },
+            { "model": "wheat_stage4", "y": 90 },
+            { "model": "wheat_stage4", "y": 180 },
+            { "model": "wheat_stage4", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "5" }],
+          "looks": [
+            { "model": "wheat_stage5" },
+            { "model": "wheat_stage5", "y": 90 },
+            { "model": "wheat_stage5", "y": 180 },
+            { "model": "wheat_stage5", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "6" }],
+          "looks": [
+            { "model": "wheat_stage6" },
+            { "model": "wheat_stage6", "y": 90 },
+            { "model": "wheat_stage6", "y": 180 },
+            { "model": "wheat_stage6", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "age": "7" }],
+          "looks": [
+            { "model": "wheat_stage7" },
+            { "model": "wheat_stage7", "y": 90 },
+            { "model": "wheat_stage7", "y": 180 },
+            { "model": "wheat_stage7", "y": 270 }
+          ]
+        }
+      ]
+    }
+  ]
+}

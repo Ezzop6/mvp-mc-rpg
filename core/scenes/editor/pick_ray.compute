@@ -1,0 +1,31 @@
+// Pick ray of the editor (EditorWorld.Pick): the first surface along the ray as Primary/dda finds it without Transparency and Water, but fog blocks stop it and fluids don't (v1 edit.compute pick).
+layout(local_size_x = 1) in;
+#define SEE_MASK (F_INVISIBLE | F_FLUID)
+#include "world.glsli"
+#include "camera.glsli"
+#include "blocks.glsli"
+#include "models.glsli"
+#include "gbuffer.glsli"
+#include "rays.glsli"
+layout(set = 0, binding = 2, std430) restrict buffer PickBuf {
+	ivec4 origin; // world block the ray's frac is relative to
+	vec4 frac;    // blocks
+	vec4 dir;     // w = reach (blocks)
+	vec4 t;       // out: distance (blocks)
+	uvec4 hit;    // out: HitId face and variant bits, HIT_SKY = nothing
+} B;
+
+void main() {
+	ring_setup();
+	vec3 ro = B.frac.xyz + vec3(B.origin.xyz - cam.anchor.xyz * CHUNK), rd = safe_dir(normalize(B.dir.xyz));
+	float t;
+	int axis;
+	uint w;
+	bool fluid;
+	bool hit = trace(ro, rd, 0.0, B.dir.w, 4096, log2(cam.lens.z * float(TEX_SIZE)), t, axis, w, fluid);
+	bool model = hit && hit_level == 0 && w >= F_MODEL << PAL_FLAG_SHIFT;
+	vec3 n = model ? hit_n : vec3(0.0);
+	if (!model) n[axis] = -sign(rd[axis]);
+	B.t = vec4(t);
+	B.hit = uvec4(hit ? uint(face_code(axis, n[axis] > 0.0)) | (w >= PART ? B_OBJECT : w & PAL_ID_MASK) << HIT_VARIANT_SHIFT : HIT_SKY);
+}

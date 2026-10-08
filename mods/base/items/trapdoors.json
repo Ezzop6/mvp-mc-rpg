@@ -1,0 +1,28 @@
+{
+  "category": "trapdoors",
+  "source": "import",
+  "entries": [
+    { "id": "base:acacia_trapdoor", "block": "base:acacia_trapdoor" },
+    { "id": "base:bamboo_trapdoor", "block": "base:bamboo_trapdoor" },
+    { "id": "base:birch_trapdoor", "block": "base:birch_trapdoor" },
+    { "id": "base:cherry_trapdoor", "block": "base:cherry_trapdoor" },
+    { "id": "base:copper_trapdoor", "block": "base:copper_trapdoor" },
+    { "id": "base:crimson_trapdoor", "block": "base:crimson_trapdoor" },
+    { "id": "base:dark_oak_trapdoor", "block": "base:dark_oak_trapdoor" },
+    { "id": "base:exposed_copper_trapdoor", "block": "base:exposed_copper_trapdoor" },
+    { "id": "base:iron_trapdoor", "block": "base:iron_trapdoor" },
+    { "id": "base:jungle_trapdoor", "block": "base:jungle_trapdoor" },
+    { "id": "base:mangrove_trapdoor", "block": "base:mangrove_trapdoor" },
+    { "id": "base:oak_trapdoor", "block": "base:oak_trapdoor" },
+    { "id": "base:oxidized_copper_trapdoor", "block": "base:oxidized_copper_trapdoor" },
+    { "id": "base:pale_oak_trapdoor", "block": "base:pale_oak_trapdoor" },
+    { "id": "base:poplar_trapdoor", "block": "base:poplar_trapdoor" },
+    { "id": "base:spruce_trapdoor", "block": "base:spruce_trapdoor" },
+    { "id": "base:warped_trapdoor", "block": "base:warped_trapdoor" },
+    { "id": "base:waxed_copper_trapdoor", "block": "base:waxed_copper_trapdoor" },
+    { "id": "base:waxed_exposed_copper_trapdoor", "block": "base:waxed_exposed_copper_trapdoor" },
+    { "id": "base:waxed_oxidized_copper_trapdoor", "block": "base:waxed_oxidized_copper_trapdoor" },
+    { "id": "base:waxed_weathered_copper_trapdoor", "block": "base:waxed_weathered_copper_trapdoor" },
+    { "id": "base:weathered_copper_trapdoor", "block": "base:weathered_copper_trapdoor" }
+  ]
+}

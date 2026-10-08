@@ -1,0 +1,43 @@
+{
+  "Name": "fluid-under-side",
+  "Format": 1,
+  "Dimensions": {
+    "overworld": {
+      "Generator": "flat",
+      "GeneratorVersion": 1,
+      "Params": null
+    }
+  },
+  "Blocks": {
+    "base:acid": 20,
+    "base:blood": 108,
+    "base:glowstone": 442,
+    "base:gold_block": 443,
+    "base:honey": 493,
+    "base:ink": 509,
+    "base:lava": 546,
+    "base:lime_stained_glass": 604,
+    "base:milk": 654,
+    "base:oil": 709,
+    "base:red_concrete": 946,
+    "base:slime": 1012,
+    "base:test_fog_dense": 1122,
+    "base:torch": 1142,
+    "base:water": 1188,
+    "base:white_concrete": 1274
+  },
+  "Models": {},
+  "Player": {
+    "Dimension": "overworld",
+    "Position": {
+      "X": 0,
+      "Y": -4,
+      "Z": 0
+    },
+    "Yaw": 90,
+    "Pitch": 0
+  },
+  "TimeOfDay": 13,
+  "Day": 0,
+  "Bookmarks": []
+}

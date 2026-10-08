@@ -1,0 +1,120 @@
+// Lights/cubemaps (docs/v2.md §5.22): chunks generated near lights make their maps dirty (CHANGES), up to LightMapsPerFrame asked or dirty maps get a slot (ASSIGN), then their depth (BUILD).
+layout(local_size_x = GROUP_X) in;
+#include "world.glsli"
+#include "camera.glsli"
+#include "blocks.glsli"
+#include "models.glsli"
+#include "lights.glsli"
+#include "rays.glsli"
+layout(set = 0, binding = 0, std430) restrict readonly buffer ParamsBuf { PARAMS } P;
+#include "light_maps.glsli"
+layout(set = 0, binding = 6, std430) restrict writeonly buffer LightMaps { uint lm_map[]; };
+layout(set = 0, binding = 7, std430) restrict writeonly buffer Args { uint args[3]; }; // BUILD dispatch, bound only for ASSIGN
+
+layout(push_constant, std430) uniform PC { uint step; uint count; uint row; uint frame; } pc;
+
+shared uint s_count, s_built, s_pick;
+shared uint s_want[LIGHT_MAP_BUILDS];          // entry | LM_READY when it has a slot already
+shared uint s_taken[LIGHT_MAP_SLOTS / 32u + 1u]; // slots handed out this frame
+
+// Thread per (changed chunk, chunk next to it): its lights that reach the changed chunk get rebuilt; past LIGHT_CHANGES every map does.
+void changes(uint i) {
+	uint n = LL.changes;
+	if (n > LIGHT_CHANGES) {
+		if (i < LIGHT_MAP_KEYS && lm_keys[i / 4u][i % 4u] != 0u) atomicOr(lm[i].state, LM_WANT);
+		return;
+	}
+	if (i / 27u >= n) return;
+	ivec3 wc = LL.change[i / 27u].xyz, nc = wc + ivec3(int(i % 3u), int(i / 3u % 3u), int(i / 9u % 3u)) - 1;
+	if (!in_ring0(nc)) return;
+	uvec2 e = dir[slot0(nc)];
+	if (!has_lights(e)) return;
+	for (uint k = 0u; k < light_count(e.y); k++) {
+		ivec3 b = nc * CHUNK + light_block(light_at(e.y, k).x);
+		if (chunk_distance(vec3(b) + 0.5, wc) >= LIGHT_REACH) continue;
+		int m = lm_find(lm_hash(b));
+		if (m >= 0) atomicOr(lm[m].state, LM_WANT);
+	}
+}
+
+// One workgroup: up to LightMapsPerFrame asked or dirty entries get a slot (free, else the least recently used) and a build; the changes are read.
+void assign() {
+	uint t = gl_LocalInvocationIndex, budget = min(uint(P.light_maps_per_frame + 0.5), LIGHT_MAP_BUILDS);
+	if (t == 0u) { s_count = 0u; s_built = 0u; LL.changes = 0u; }
+	for (uint w = t; w < LIGHT_MAP_SLOTS / 32u + 1u; w += GROUP_X) s_taken[w] = 0u;
+	barrier();
+	for (uint e = t; e < LIGHT_MAP_KEYS; e += GROUP_X) {
+		uint st = lm[e].state;
+		if (lm_keys[e / 4u][e % 4u] == 0u || (st & LM_WANT) == 0u) continue;
+		if ((st & LM_READY) == 0u && pc.frame - lm[e].last > LM_STALE_FRAMES) { lm_keys[e / 4u][e % 4u] = 0u; lm[e].state = 0u; continue; }
+		uint k = atomicAdd(s_count, 1u);
+		if (k < budget) s_want[k] = e | (st & LM_READY);
+	}
+	barrier();
+	uint n = min(s_count, budget);
+	for (uint k = 0u; k < n; k++) {
+		uint e = s_want[k] & ~LM_READY;
+		if ((s_want[k] & LM_READY) != 0u) {
+			if (t == 0u) { lm[e].state &= ~LM_WANT; lm_builds[s_built++] = uvec4(e, lm[e].state & LM_SLOT_MASK, 0u, 0u); }
+			continue;
+		}
+		if (t == 0u) s_pick = 0u;
+		barrier();
+		for (uint s = t; s < LIGHT_MAP_SLOTS; s += GROUP_X) {
+			uint o = lm_owner[s];
+			if ((s_taken[s / 32u] >> (s % 32u) & 1u) != 0u || (o != 0u && (lm[o - 1u].state & LM_WANT) != 0u)) continue;
+			uint age = o == 0u ? LM_AGE_MAX : min(pc.frame - lm[o - 1u].last, LM_AGE_MAX);
+			if (age > LM_EVICT_FRAMES) atomicMax(s_pick, age << 10 | s);
+		}
+		barrier();
+		if (t == 0u && s_pick != 0u) {
+			uint s = s_pick & 1023u, o = lm_owner[s];
+			if (o != 0u) { lm_keys[(o - 1u) / 4u][(o - 1u) % 4u] = 0u; lm[o - 1u].state = 0u; }
+			lm_owner[s] = e + 1u;
+			lm[e].state = s | LM_READY;
+			s_taken[s / 32u] |= 1u << (s % 32u);
+			lm_builds[s_built++] = uvec4(e, s, 0u, 0u);
+		}
+		barrier();
+	}
+	if (t == 0u) {
+		int size = lm_size();
+		lm_build_count = s_built;
+		args[0] = (s_built * uint(6 * size * size) + GROUP_X - 1u) / GROUP_X;
+		args[1] = 1u;
+		args[2] = 1u;
+	}
+}
+
+// One texel of a map: distance along its centre ray from the light's centre to the first thing outside the light's block; SEE_THROUGH: through glass, water and fog, their span and transmittance in the second plane.
+void build(uint i) {
+	int n = lm_size();
+	uint texels = uint(6 * n * n), k = i / texels, texel = i % texels;
+	if (k >= lm_build_count) return;
+	uvec4 b = lm_builds[k];
+	vec3 c = vec3(lm[b.x].light.xyz - cam.anchor.xyz * CHUNK) + 0.5;
+	int face = int(texel) / (n * n), xy = int(texel) % (n * n);
+	vec3 dir = safe_dir(normalize(lm_dir(face, vec2(xy % n, xy / n) + 0.5, n)));
+	float out_own = 0.5 / max(abs(dir.x), max(abs(dir.y), abs(dir.z))), t;
+	int axis;
+	uint w;
+	bool fluid;
+#ifdef LM_TINT_PLANE
+	see_reset();
+#endif
+	float d = trace(c, dir, out_own, LIGHT_REACH + 1.0, 128, log2(2.0 / float(n)), t, axis, w, fluid) ? t : LM_FAR;
+#ifdef LM_TINT_PLANE
+	uvec2 m = lm_pack(d, min(see_span, vec2(d)), see_trans);
+	lm_map[b.y * LIGHT_MAP_TEXELS + texel] = m.x;
+	lm_map[LM_TINT + b.y * LIGHT_MAP_TEXELS + texel] = m.y;
+#else
+	lm_map[b.y * LIGHT_MAP_TEXELS + texel] = lm_pack(d);
+#endif
+}
+
+void main() {
+	uint i = gl_GlobalInvocationID.x + gl_GlobalInvocationID.y * pc.row;
+	if (pc.step == LM_STEP_ASSIGN) assign();
+	else if (pc.step == LM_STEP_BUILD) build(gl_GlobalInvocationID.x);
+	else if (i < pc.count) changes(i);
+}

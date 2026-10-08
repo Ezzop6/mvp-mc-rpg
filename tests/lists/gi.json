@@ -1,0 +1,19 @@
+{
+  "Note": "GI/cache (one bounce, world-space cache) on the scenes of tests/tools/gi_scene.py (flat world with edits) at 4K with Shadows, Lights and AO: skylight room, colour bleeding box, cave mouth, night room with emitters and block light bounced, outside, red glass roof (Transparency), one torch in a closed room; run with --compare-variant=GI:off,cache",
+  "Bookmarks": [
+    "gi-room",
+    "gi-colors",
+    "gi-cave",
+    "gi-night",
+    "gi-outside",
+    "gi-glass",
+    "gi-torch"
+  ],
+  "Capture": [
+    "Shot",
+    "PassMs"
+  ],
+  "Views": [
+    "GI"
+  ]
+}

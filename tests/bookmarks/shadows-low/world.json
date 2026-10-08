@@ -1,0 +1,38 @@
+{
+  "Name": "shadows-low",
+  "Format": 1,
+  "Dimensions": {
+    "overworld": {
+      "Generator": "flat",
+      "GeneratorVersion": 1,
+      "Params": null
+    }
+  },
+  "Blocks": {
+    "base:cobblestone_wall": 236,
+    "base:glass": 436,
+    "base:gold_block": 441,
+    "base:iron_bars": 506,
+    "base:lantern": 537,
+    "base:oak_fence": 685,
+    "base:oak_leaves": 688,
+    "base:oak_log": 689,
+    "base:poppy": 850,
+    "base:stone": 1055,
+    "base:stone_slab": 1062
+  },
+  "Models": {},
+  "Player": {
+    "Dimension": "overworld",
+    "Position": {
+      "X": 19,
+      "Y": 12,
+      "Z": 26
+    },
+    "Yaw": 0,
+    "Pitch": -20
+  },
+  "TimeOfDay": 16.5,
+  "Day": 0,
+  "Bookmarks": []
+}

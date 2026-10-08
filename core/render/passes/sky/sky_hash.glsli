@@ -1,0 +1,8 @@
+// Hash of the sky passes (stars, clouds) and the camera position in metres.
+float sky_hash(vec2 p) {
+	vec3 q = fract(p.xyx * 0.1031);
+	q += dot(q, q.yzx + 33.33);
+	return fract((q.x + q.y) * q.z);
+}
+
+vec3 cam_pos_m() { return (vec3(cam.anchor.xyz) * float(CHUNK) + cam.frac.xyz) * BS; }

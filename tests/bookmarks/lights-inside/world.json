@@ -1,0 +1,54 @@
+{
+  "Name": "lights-inside",
+  "Format": 1,
+  "Dimensions": {
+    "overworld": {
+      "Generator": "flat",
+      "GeneratorVersion": 1,
+      "Params": null
+    }
+  },
+  "Blocks": {
+    "base:cobblestone_wall": 236,
+    "base:copper_lantern": 251,
+    "base:copper_torch": 253,
+    "base:lantern": 537,
+    "base:lava": 542,
+    "base:oak_fence": 685,
+    "base:soul_lantern": 1028,
+    "base:soul_torch": 1031,
+    "base:stone_bricks": 1059,
+    "base:stone_slab": 1062,
+    "base:test_torch_black": 1117,
+    "base:test_torch_blue": 1118,
+    "base:test_torch_brown": 1119,
+    "base:test_torch_cyan": 1120,
+    "base:test_torch_gray": 1121,
+    "base:test_torch_green": 1122,
+    "base:test_torch_light_blue": 1123,
+    "base:test_torch_light_gray": 1124,
+    "base:test_torch_lime": 1125,
+    "base:test_torch_magenta": 1126,
+    "base:test_torch_orange": 1127,
+    "base:test_torch_pink": 1128,
+    "base:test_torch_purple": 1129,
+    "base:test_torch_red": 1130,
+    "base:test_torch_white": 1131,
+    "base:test_torch_yellow": 1132,
+    "base:torch": 1135
+  },
+  "Models": {},
+  "Player": {
+    "Dimension": "overworld",
+    "Position": {
+      "X": 3.25,
+      "Y": 1,
+      "Z": 2
+    },
+    "Yaw": -150.64224,
+    "Pitch": -6.217677
+  },
+  "TimeOfDay": 23,
+  "Day": 0,
+  "Bookmarks": []
+}

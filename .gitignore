@@ -1,0 +1,17 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+testing/
+/assets
+
+# .NET build output of the standalone test/tool projects (the game builds into .godot/)
+bin/
+obj/
+
+# git worktrees of Claude Code subagents
+.claude/worktrees/
+
+# test runner: captured images, results, history and references (pack textures, never in git)
+tests/out/
+tests/bookmarks/*/ref/
+/addons/

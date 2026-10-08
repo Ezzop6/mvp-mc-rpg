@@ -1,0 +1,9 @@
+{
+  "category": "wiring",
+  "source": "import",
+  "entries": [
+    { "id": "base:comparator", "block": "base:comparator" },
+    { "id": "base:lever", "block": "base:lever" },
+    { "id": "base:repeater", "block": "base:repeater" }
+  ]
+}

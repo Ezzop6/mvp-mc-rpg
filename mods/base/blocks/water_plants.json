@@ -1,0 +1,201 @@
+{
+  "category": "water_plants",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:dried_kelp_block",
+      "kind": "cube",
+      "template": "elements",
+      "faces": { "top": { "texture": "block/dried_kelp_top" }, "bottom": { "texture": "block/dried_kelp_top" }, "side": { "texture": "block/dried_kelp_side" } },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "dried_kelp_block": {
+          "top": { "texture": "block/dried_kelp_top" },
+          "bottom": { "texture": "block/dried_kelp_top" },
+          "side": { "texture": "block/dried_kelp_side" }
+        }
+      },
+      "variants": [
+        {
+          "looks": [
+            { "cube": "dried_kelp_block" },
+            { "cube": "dried_kelp_block", "y": 90 },
+            { "cube": "dried_kelp_block", "y": 180 },
+            { "cube": "dried_kelp_block", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:frogspawn",
+      "kind": "custom",
+      "textures": { "particle": "block/frogspawn", "texture": "block/frogspawn" },
+      "surface": "translucent",
+      "tags": ["random_rotation"],
+      "variants": [
+        { "looks": [{ "model": "frogspawn" }, { "model": "frogspawn", "y": 90 }, { "model": "frogspawn", "y": 180 }, { "model": "frogspawn", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:kelp",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/kelp", "particle": "block/kelp" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "tags": ["animated", "tint_guessed"],
+      "multipart": [
+        { "looks": [{ "model": "kelp" }] },
+        { "looks": [{ "model": "kelp_extra" }, { "model": "kelp_extra", "y": 90 }, { "model": "kelp_extra", "y": 180 }, { "model": "kelp_extra", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:kelp_plant",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/kelp_plant", "particle": "block/kelp_plant" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "tags": ["animated", "tint_guessed"],
+      "multipart": [
+        { "looks": [{ "model": "kelp_plant" }] },
+        {
+          "looks": [
+            { "model": "kelp_plant_extra" },
+            { "model": "kelp_plant_extra", "y": 90 },
+            { "model": "kelp_plant_extra", "y": 180 },
+            { "model": "kelp_plant_extra", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:lily_pad",
+      "kind": "custom",
+      "textures": { "particle": "block/lily_pad", "texture": "block/lily_pad" },
+      "surface": "cutout",
+      "tint": { "source": "constant", "color": "#4d993d" },
+      "tags": ["random_rotation"],
+      "variants": [
+        { "looks": [{ "model": "lily_pad" }, { "model": "lily_pad", "y": 90 }, { "model": "lily_pad", "y": 180 }, { "model": "lily_pad", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:sea_pickle",
+      "kind": "custom",
+      "textures": { "all": "block/sea_pickle", "particle": "block/sea_pickle" },
+      "surface": "cutout",
+      "emission": 0.009,
+      "light": { "level": 15, "when": "pickles=4", "color": "#f4fff3" },
+      "states": { "pickles": ["1", "2", "3", "4"], "waterlogged": ["false", "true"] },
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "when": { "pickles": "1", "waterlogged": "false" },
+          "looks": [
+            { "model": "dead_sea_pickle" },
+            { "model": "dead_sea_pickle", "y": 90 },
+            { "model": "dead_sea_pickle", "y": 180 },
+            { "model": "dead_sea_pickle", "y": 270 }
+          ]
+        },
+        {
+          "when": { "pickles": "1", "waterlogged": "true" },
+          "looks": [{ "model": "sea_pickle" }, { "model": "sea_pickle", "y": 90 }, { "model": "sea_pickle", "y": 180 }, { "model": "sea_pickle", "y": 270 }]
+        },
+        {
+          "when": { "pickles": "2", "waterlogged": "false" },
+          "looks": [
+            { "model": "two_dead_sea_pickles" },
+            { "model": "two_dead_sea_pickles", "y": 90 },
+            { "model": "two_dead_sea_pickles", "y": 180 },
+            { "model": "two_dead_sea_pickles", "y": 270 }
+          ]
+        },
+        {
+          "when": { "pickles": "2", "waterlogged": "true" },
+          "looks": [
+            { "model": "two_sea_pickles" },
+            { "model": "two_sea_pickles", "y": 90 },
+            { "model": "two_sea_pickles", "y": 180 },
+            { "model": "two_sea_pickles", "y": 270 }
+          ]
+        },
+        {
+          "when": { "pickles": "3", "waterlogged": "false" },
+          "looks": [
+            { "model": "three_dead_sea_pickles" },
+            { "model": "three_dead_sea_pickles", "y": 90 },
+            { "model": "three_dead_sea_pickles", "y": 180 },
+            { "model": "three_dead_sea_pickles", "y": 270 }
+          ]
+        },
+        {
+          "when": { "pickles": "3", "waterlogged": "true" },
+          "looks": [
+            { "model": "three_sea_pickles" },
+            { "model": "three_sea_pickles", "y": 90 },
+            { "model": "three_sea_pickles", "y": 180 },
+            { "model": "three_sea_pickles", "y": 270 }
+          ]
+        },
+        {
+          "when": { "pickles": "4", "waterlogged": "false" },
+          "looks": [
+            { "model": "four_dead_sea_pickles" },
+            { "model": "four_dead_sea_pickles", "y": 90 },
+            { "model": "four_dead_sea_pickles", "y": 180 },
+            { "model": "four_dead_sea_pickles", "y": 270 }
+          ]
+        },
+        {
+          "when": { "pickles": "4", "waterlogged": "true" },
+          "looks": [
+            { "model": "four_sea_pickles" },
+            { "model": "four_sea_pickles", "y": 90 },
+            { "model": "four_sea_pickles", "y": 180 },
+            { "model": "four_sea_pickles", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:seagrass",
+      "kind": "cross",
+      "template": "template_seagrass",
+      "textures": { "cross": "block/seagrass", "particle": "block/seagrass" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "tags": ["animated", "random_variants", "tint_guessed"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "seagrass" },
+            { "model": "seagrass", "y": 90 },
+            { "model": "seagrass", "y": 180 },
+            { "model": "seagrass", "y": 270 },
+            { "model": "seagrass2" },
+            { "model": "seagrass2", "y": 90 },
+            { "model": "seagrass2", "y": 180 },
+            { "model": "seagrass2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:tall_seagrass",
+      "kind": "cross",
+      "template": "template_seagrass",
+      "textures": { "particle": "block/tall_seagrass_bottom", "seagrass": "block/tall_seagrass_bottom" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "states": { "half": ["lower", "upper"] },
+      "multiblock": "half",
+      "tags": ["animated", "tint_guessed"],
+      "variants": [
+        { "when": { "half": "lower" }, "looks": [{ "model": "tall_seagrass_bottom" }] },
+        { "when": { "half": "upper" }, "looks": [{ "model": "tall_seagrass_top" }] }
+      ]
+    }
+  ]
+}

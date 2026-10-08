@@ -1,0 +1,16 @@
+{
+  "category": "lanterns",
+  "source": "import",
+  "entries": [
+    { "id": "base:copper_lantern", "block": "base:copper_lantern" },
+    { "id": "base:exposed_copper_lantern", "block": "base:exposed_copper_lantern" },
+    { "id": "base:lantern", "block": "base:lantern" },
+    { "id": "base:oxidized_copper_lantern", "block": "base:oxidized_copper_lantern" },
+    { "id": "base:soul_lantern", "block": "base:soul_lantern" },
+    { "id": "base:waxed_copper_lantern", "block": "base:waxed_copper_lantern" },
+    { "id": "base:waxed_exposed_copper_lantern", "block": "base:waxed_exposed_copper_lantern" },
+    { "id": "base:waxed_oxidized_copper_lantern", "block": "base:waxed_oxidized_copper_lantern" },
+    { "id": "base:waxed_weathered_copper_lantern", "block": "base:waxed_weathered_copper_lantern" },
+    { "id": "base:weathered_copper_lantern", "block": "base:weathered_copper_lantern" }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "Note": "two worlds in one session, the flat one with edits first: lights-outside (resolved, redirected to lights-resaved), the random world at night, the flat world from inside",
+  "Bookmarks": [
+    "lights-outside",
+    "random-default",
+    "lights-inside"
+  ],
+  "Capture": [
+    "Shot",
+    "PassMs",
+    "GenMs",
+    "Pools"
+  ],
+  "Views": [
+    "Steps",
+    "Cost"
+  ]
+}

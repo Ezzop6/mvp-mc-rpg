@@ -1,0 +1,30 @@
+{
+  "Note": "edits seen through the coarse levels (docs/v2.md §5.17): gold towers 10 x 50 x 10 m placed at 1.4 km (L2 at 4K), 2.4 km (L2) and 3.4 km (L3) in front of a still camera; the shot at 3 s shows them, the one at 0.8 s does not",
+  "Lod": true,
+  "Scene": "random-default",
+  "TimeOfDay": 12,
+  "Fps": 60,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": 0.0,
+        "Y": 80.0,
+        "Z": 0.0
+      },
+      "Yaw": -90.0,
+      "Pitch": -2
+    }
+  ],
+  "Actions": [
+    {
+      "T": 1,
+      "Kind": "Edit",
+      "Edits": "2800,140,-10..2819,239,9=base:gold_block;4800,140,40..4819,239,59=base:gold_block;6800,140,-60..6819,239,-41=base:gold_block"
+    }
+  ],
+  "Shots": [
+    0.8,
+    3.0
+  ]
+}

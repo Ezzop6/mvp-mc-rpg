@@ -1,0 +1,46 @@
+{
+  "Note": "basics-clouds-a at clock 60 s: the wind moved the clouds",
+  "Created": "2026-10-07T20:00:00",
+  "Commit": "c17c990, written through WorldSave (flat + 35 edits)",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0
+    },
+    "Local": {
+      "X": 5.5,
+      "Y": 1.0,
+      "Z": 6.5
+    },
+    "Yaw": 0.0,
+    "Pitch": 0.45
+  },
+  "TimeOfDay": 10,
+  "Day": 0,
+  "TimePaused": true,
+  "Clock": 60.0,
+  "Width": 1920,
+  "Height": 1080,
+  "Render": {
+    "Passes": {
+      "Sky": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "gradient"
+      },
+      "Sun": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "disc"
+      },
+      "Clouds": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "layer"
+      }
+    }
+  }
+}

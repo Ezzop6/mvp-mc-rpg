@@ -1,0 +1,55 @@
+// Fluid/reflect-refract (docs/v2.md §5.24): what Primary saw through water, absorbed and mixed with the deep water colour; at a surface seen from above Schlick Fresnel with one reflection trace (sky, sun glint, the world lit without shadows), from below with the deep colour.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "world.glsli"
+#include "camera.glsli"
+#include "blocks.glsli"
+#include "models.glsli"
+#include "gbuffer.glsli"
+#include "rays.glsli"
+layout(set = 0, binding = 2, rgba16f) restrict uniform image2D color;
+layout(set = 0, binding = 3, rgba16f) restrict readonly uniform image2D water_in;
+layout(set = 0, binding = 4, rgba32f) restrict readonly uniform image2D hitpos_in;
+
+const float REFLECT_BLOCKS = 400.0;
+const int REFLECT_STEPS = 512;
+
+float fresnel(float cos_i) { return cam.water.w + (1.0 - cam.water.w) * pow(1.0 - clamp(cos_i, 0.0, 1.0), 5.0); }
+
+// The reflected ray from o: its hit lit by the sun (no shadow) and the ambient with the hit's emission, else the sky; plus the sun glint (v1 shade_simple, sky_view).
+vec3 reflection(vec3 o, vec3 d, float from_t) {
+	origin_t = from_t;
+	float t, lod = log2(cam.lens.z * float(TEX_SIZE));
+	int axis;
+	uint w;
+	bool fluid;
+	vec3 c = cam.sun_col.rgb * pow(max(dot(d, cam.sun_dir.xyz), 0.0), cam.water_deep.w) * cam.water_deep.z;
+	if (!trace(o, d, 0.0, REFLECT_BLOCKS, REFLECT_STEPS, lod, t, axis, w, fluid))
+		return c + mix(cam.sky_horizon.rgb, cam.sky_top.rgb, sqrt(clamp(d.y, 0.0, 1.0)));
+	bool model = hit_level == 0 && w >= F_MODEL << PAL_FLAG_SHIFT, colour = hit_level > 0 && w >= LOD_COLOR;
+	vec3 n = model ? hit_n : vec3(0.0);
+	if (!model) n[axis] = -sign(d[axis]);
+	uint id = w >= PART ? B_OBJECT : w & PAL_ID_MASK;
+	float tl = t / lv_scale;
+	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : colour ? lod_color(w) : albedo_at(id, level_pos(o) + d * tl, vec3(cam.anchor.xyz * CHUNK) + o + d * t, axis, n, 3.0);
+	vec3 emit = model ? material_emission(hit_mat) : colour ? vec3(0.0) : albedo * face_emission(face_word(id, axis, n));
+	return c + albedo * (cam.sun_col.rgb * max(dot(n, cam.sun_dir.xyz), 0.0) + cam.amb_col.rgb) + emit;
+}
+
+void main() {
+	ivec2 px = ivec2(gl_GlobalInvocationID.xy), size = imageSize(color);
+	if (any(greaterThanEqual(px, size))) return;
+#ifndef DEBUG_VIEW
+	vec4 wt = imageLoad(water_in, px);
+	if (wt == vec4(1.0, 1.0, 1.0, 0.0)) return;
+	ring_setup();
+	vec3 tint = types[uint(imageLoad(hitpos_in, px).w + 0.5)].tint.rgb;
+	vec3 deep = tint * cam.water_tint.rgb * (cam.amb_col.rgb + cam.sun_col.rgb * cam.water_deep.y) * cam.water_deep.x;
+	vec3 c = wt.rgb * imageLoad(color, px).rgb + deep * (1.0 - wt.rgb), d = safe_dir(pixel_dir(px, size));
+	if (wt.a > 0.0) {
+		vec3 sp = cam.frac.xyz + d * wt.a, n = water_normal(sp), r = safe_dir(reflect(d, n));
+		c = mix(c, reflection(sp + vec3(0.0, 0.01, 0.0), r, wt.a), fresnel(dot(-d, n)));
+	} else if (wt.a < 0.0)
+		c = mix(c, deep, fresnel(dot(d, water_normal(cam.frac.xyz - d * wt.a))));
+	imageStore(color, px, vec4(c, 1.0));
+#endif
+}

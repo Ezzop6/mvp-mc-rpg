@@ -1,0 +1,23 @@
+{
+  "category": "beds",
+  "source": "import",
+  "entries": [
+    { "id": "base:black_bed", "block": "base:black_bed" },
+    { "id": "base:blue_bed", "block": "base:blue_bed" },
+    { "id": "base:brown_bed", "block": "base:brown_bed" },
+    { "id": "base:cyan_bed", "block": "base:cyan_bed" },
+    { "id": "base:gray_bed", "block": "base:gray_bed" },
+    { "id": "base:green_bed", "block": "base:green_bed" },
+    { "id": "base:light_blue_bed", "block": "base:light_blue_bed" },
+    { "id": "base:light_gray_bed", "block": "base:light_gray_bed" },
+    { "id": "base:lime_bed", "block": "base:lime_bed" },
+    { "id": "base:magenta_bed", "block": "base:magenta_bed" },
+    { "id": "base:orange_bed", "block": "base:orange_bed" },
+    { "id": "base:pink_bed", "block": "base:pink_bed" },
+    { "id": "base:purple_bed", "block": "base:purple_bed" },
+    { "id": "base:red_bed", "block": "base:red_bed" },
+    { "id": "base:straw_bed", "block": "base:straw_bed" },
+    { "id": "base:white_bed", "block": "base:white_bed" },
+    { "id": "base:yellow_bed", "block": "base:yellow_bed" }
+  ]
+}

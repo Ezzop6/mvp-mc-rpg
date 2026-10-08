@@ -1,0 +1,16 @@
+{
+  "category": "grass",
+  "source": "import",
+  "entries": [
+    { "id": "base:bush", "block": "base:bush" },
+    { "id": "base:dead_bush", "block": "base:dead_bush" },
+    { "id": "base:fern", "block": "base:fern" },
+    { "id": "base:firefly_bush", "block": "base:firefly_bush" },
+    { "id": "base:large_fern", "block": "base:large_fern" },
+    { "id": "base:leaf_litter", "block": "base:leaf_litter" },
+    { "id": "base:short_dry_grass", "block": "base:short_dry_grass" },
+    { "id": "base:short_grass", "block": "base:short_grass" },
+    { "id": "base:tall_dry_grass", "block": "base:tall_dry_grass" },
+    { "id": "base:tall_grass", "block": "base:tall_grass" }
+  ]
+}

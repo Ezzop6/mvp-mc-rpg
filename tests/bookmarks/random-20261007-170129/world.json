@@ -1,0 +1,48 @@
+{
+  "Name": "random-20261007-170129",
+  "Format": 1,
+  "Dimensions": {
+    "overworld": {
+      "Generator": "random",
+      "GeneratorVersion": 1,
+      "Params": {
+        "Seed": 1337,
+        "Height": 30,
+        "Scale": 400,
+        "Roughness": 0.5,
+        "WaterLevel": -3,
+        "Ridged": false,
+        "Warp": 0,
+        "Terraces": 0,
+        "Overhang": 0,
+        "OverhangScale": 40,
+        "Caves": 0,
+        "CaveDepth": 60,
+        "Islands": 0,
+        "IslandAltitude": 120,
+        "IslandSize": 80,
+        "Trees": 0.12,
+        "Structures": 0.3,
+        "Models": 0.05,
+        "Items": 0.002,
+        "Blocks": 0.002,
+        "Categories": ""
+      }
+    }
+  },
+  "Blocks": {},
+  "Models": {},
+  "Player": {
+    "Dimension": "overworld",
+    "Position": {
+      "X": -0.26234722,
+      "Y": 869.467,
+      "Z": 70.769485
+    },
+    "Yaw": -181.6905,
+    "Pitch": -42.734913
+  },
+  "TimeOfDay": 11.25,
+  "Day": 0,
+  "Bookmarks": []
+}

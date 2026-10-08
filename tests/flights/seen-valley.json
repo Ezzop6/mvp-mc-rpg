@@ -1,0 +1,29 @@
+{
+  "Note": "Primary/dda-seen measurement: random-crazy valley floor (~1.4 m terrain, rim ~126 m within 300 m), still then a 360 degree pan",
+  "Scene": "random-crazy",
+  "TimeOfDay": 14,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": 1250,
+        "Y": 8,
+        "Z": 100
+      },
+      "Yaw": 0,
+      "Pitch": 0
+    }
+  ],
+  "Actions": [
+    {
+      "T": 1.2,
+      "Kind": "Turn",
+      "Yaw": 360,
+      "Seconds": 6
+    }
+  ],
+  "Shots": [
+    1,
+    8
+  ]
+}

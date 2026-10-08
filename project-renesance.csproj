@@ -1,0 +1,17 @@
+<Project Sdk="Godot.NET.Sdk/4.7.2">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>projectrenesance</RootNamespace>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Plain dotnet projects, no Godot. -->
+    <Compile Remove="tests/**" />
+    <Compile Remove="tools/**" />
+    <Compile Remove="core/data/**" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="core/data/Renesance.Data.csproj" />
+  </ItemGroup>
+</Project>

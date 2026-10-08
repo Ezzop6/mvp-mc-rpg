@@ -1,0 +1,105 @@
+// Lights/cubemaps (docs/v2.md §5.22): block light of each L0 hit from the light lists of the chunks within reach of its 8x8 tile (the 64 strongest; else its chunk and the 26 around it), shadowed by the lights' cube maps (asked for here, built next frame); a = lights in reach.
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "world.glsli"
+#include "camera.glsli"
+#include "blocks.glsli"
+#include "gbuffer.glsli"
+#include "lights.glsli"
+layout(set = 0, binding = 0, std430) restrict readonly buffer ParamsBuf { PARAMS } P;
+#include "light_maps.glsli"
+layout(set = 0, binding = 2, r32f) restrict readonly uniform image2D depth_in;
+layout(set = 0, binding = 3, r32ui) restrict readonly uniform uimage2D hit_in;
+layout(set = 0, binding = 4, rgba16f) restrict writeonly uniform image2D lamp_out;
+layout(set = 0, binding = 6, std430) restrict readonly buffer LightMaps { uint lm_map[]; };
+#ifdef BENT
+layout(set = 0, binding = 7, rgba32f) restrict readonly uniform image2D hitpos_in; // Water: the hit of a bent ray
+#endif
+
+layout(push_constant, std430) uniform PC { uint frame; uint pad0, pad1, pad2; } pc;
+
+#define LM_FRAME pc.frame
+#include "light_shade.glsli"
+
+// v1's strength of a list: brightness at the nearest point of the box, linear in distance.
+float light_strength(vec3 c, vec3 lo, vec3 hi, uint id) {
+	vec4 lc = types[id].light_color;
+	return dot(lc.rgb, vec3(0.3, 0.6, 0.1)) * max(1.0 - length(c - clamp(c, lo, hi)) / min(lc.w, LIGHT_REACH), 0.0);
+}
+
+const uint TILE_LIGHTS = 64u, TILE_CANDIDATES = 256u, TILE_CHUNKS = GROUP_X * GROUP_Y;
+shared ivec3 s_lo, s_hi;
+shared uint s_n, s_m;
+shared ivec4 s_cand[TILE_CANDIDATES]; // anchor-relative block, variant id
+shared float s_key[TILE_CANDIDATES];
+shared ivec4 s_light[TILE_LIGHTS];    // the kept ones
+shared int s_slot[TILE_LIGHTS];
+shared float s_open[TILE_LIGHTS];
+
+void main() {
+	ivec2 px = ivec2(gl_GlobalInvocationID.xy), size = imageSize(lamp_out);
+	uint li = gl_LocalInvocationIndex;
+	bool inside = all(lessThan(px, size));
+	uint hit = inside ? imageLoad(hit_in, px).r : HIT_SKY;
+	uint face = hit_face(hit);
+	bool lit = face != HIT_SKY && (hit >> HIT_LOD_SHIFT & HIT_LOD_MASK) == 0u;
+	vec3 p = lit ? cam.frac.xyz + pixel_dir(px, size) * imageLoad(depth_in, px).r : vec3(0.0), n = hit_normal(face);
+#ifdef BENT
+	if (lit && (hit & HIT_BENT) != 0u) p = imageLoad(hitpos_in, px).xyz;
+#endif
+	if (li == 0u) { s_lo = ivec3(0x7FFFFFFF); s_hi = ivec3(-0x7FFFFFFF); s_n = 0u; }
+	barrier();
+	ivec3 cell = ivec3(floor(p));
+	if (lit) { atomicMin(s_lo.x, cell.x); atomicMin(s_lo.y, cell.y); atomicMin(s_lo.z, cell.z); atomicMax(s_hi.x, cell.x); atomicMax(s_hi.y, cell.y); atomicMax(s_hi.z, cell.z); }
+	barrier();
+	// The tile's lights: lists of the chunks within reach of the tile's hits, culled to the hits' box, the TILE_LIGHTS strongest kept (v1 kept 64 per column by strength); a box over too many chunks goes per pixel.
+	ivec3 a = cam.anchor.xyz * CHUNK, r = ivec3(LIGHT_REACH), lo = s_lo - r, hi = s_hi + r;
+	ivec3 c0 = cam.anchor.xyz + ivec3(fdiv(lo.x, CHUNK), fdiv(lo.y, CHUNK), fdiv(lo.z, CHUNK)), cn = cam.anchor.xyz + ivec3(fdiv(hi.x, CHUNK), fdiv(hi.y, CHUNK), fdiv(hi.z, CHUNK)) - c0 + 1;
+	bool tiled = s_lo.x <= s_hi.x && cn.x * cn.y * cn.z <= int(TILE_CHUNKS);
+	vec3 blo = vec3(s_lo), bhi = vec3(s_hi + 1);
+	if (tiled && li < uint(cn.x * cn.y * cn.z)) {
+		ivec3 wc = c0 + ivec3(int(li) % cn.x, int(li) / cn.x % cn.y, int(li) / (cn.x * cn.y));
+		uvec2 e = in_ring0(wc) ? dir[slot0(wc)] : uvec2(NONE, 0u);
+		if (has_lights(e))
+			for (uint i = 0u; i < light_count(e.y); i++) {
+				uvec2 L = light_at(e.y, i);
+				ivec3 b = wc * CHUNK + light_block(L.x) - a;
+				float key = light_strength(vec3(b) + 0.5, blo, bhi, L.y);
+				if (key <= 0.0) continue;
+				uint k = atomicAdd(s_n, 1u);
+				if (k < TILE_CANDIDATES) { s_cand[k] = ivec4(b, int(L.y)); s_key[k] = key; } // ponytail: candidates past 256 drop unsorted
+			}
+	}
+	barrier();
+	uint nc = min(s_n, TILE_CANDIDATES), m = min(nc, TILE_LIGHTS);
+	for (uint i = li; tiled && i < nc; i += GROUP_X * GROUP_Y) {
+		uint rank = 0u;
+		if (nc > TILE_LIGHTS)
+			for (uint j = 0u; j < nc; j++) rank += s_key[j] > s_key[i] || s_key[j] == s_key[i] && j < i ? 1u : 0u;
+		else rank = i;
+		if (rank < TILE_LIGHTS) {
+			ivec4 L = s_cand[i];
+			float open;
+			s_slot[rank] = light_slot(L.xyz, vec3(L.xyz) + 0.5, open);
+			s_open[rank] = open;
+			s_light[rank] = L;
+		}
+	}
+	barrier();
+	if (!inside) return;
+	vec3 sum = vec3(0.0);
+	uint count = 0u;
+	if (lit && tiled)
+		for (uint i = 0u; i < m; i++) add_light(s_light[i].xyz, uint(s_light[i].w), s_slot[i], s_open[i], p, n, sum, count);
+	else if (lit) {
+		ivec3 wc0 = cam.anchor.xyz + ivec3(fdiv(cell.x, CHUNK), fdiv(cell.y, CHUNK), fdiv(cell.z, CHUNK));
+		for (int k = 0; k < 27; k++) {
+			ivec3 wc = wc0 + ivec3(k % 3, k / 3 % 3, k / 9) - 1;
+			uvec2 e = in_ring0(wc) ? dir[slot0(wc)] : uvec2(NONE, 0u);
+			if (has_lights(e))
+				for (uint i = 0u; i < light_count(e.y); i++) { uvec2 L = light_at(e.y, i); add_light(wc * CHUNK + light_block(L.x) - a, L.y, -2, 0.0, p, n, sum, count); }
+		}
+	}
+	sum = min(sum, vec3(P.light_clamp));
+	if (P.light_saturation != 1.0) sum = max(mix(vec3(dot(sum, vec3(0.2126, 0.7152, 0.0722))), sum, P.light_saturation), 0.0);
+	imageStore(lamp_out, px, vec4(sum * vec3(P.light_tint_r, P.light_tint_g, P.light_tint_b), float(count)));
+}

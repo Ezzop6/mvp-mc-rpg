@@ -1,0 +1,20 @@
+{
+  "category": "fences",
+  "source": "import",
+  "entries": [
+    { "id": "base:acacia_fence", "block": "base:acacia_fence" },
+    { "id": "base:bamboo_fence", "block": "base:bamboo_fence" },
+    { "id": "base:birch_fence", "block": "base:birch_fence" },
+    { "id": "base:cherry_fence", "block": "base:cherry_fence" },
+    { "id": "base:crimson_fence", "block": "base:crimson_fence" },
+    { "id": "base:dark_oak_fence", "block": "base:dark_oak_fence" },
+    { "id": "base:jungle_fence", "block": "base:jungle_fence" },
+    { "id": "base:mangrove_fence", "block": "base:mangrove_fence" },
+    { "id": "base:nether_brick_fence", "block": "base:nether_brick_fence" },
+    { "id": "base:oak_fence", "block": "base:oak_fence" },
+    { "id": "base:pale_oak_fence", "block": "base:pale_oak_fence" },
+    { "id": "base:poplar_fence", "block": "base:poplar_fence" },
+    { "id": "base:spruce_fence", "block": "base:spruce_fence" },
+    { "id": "base:warped_fence", "block": "base:warped_fence" }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "Note": "lights world: a torch at a corner of 8 chunks (x 24|25, z 124|125, y -1|0), a wall across the chunk boundary",
+  "Created": "2026-10-07T00:00:00",
+  "Commit": "Lights phase 11",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 0,
+      "Y": 0,
+      "Z": 5
+    },
+    "Local": {
+      "X": 9.0,
+      "Y": 4.0,
+      "Z": 4.5
+    },
+    "Yaw": -0.6108652381980153,
+    "Pitch": -0.5759586531581288
+  },
+  "TimeOfDay": 23,
+  "Width": 1920,
+  "Height": 1080,
+  "Render": null
+}

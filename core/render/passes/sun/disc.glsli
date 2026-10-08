@@ -1,0 +1,10 @@
+// v1 sky_disc: the rect of tex facing the viewer at direction c, size in degrees.
+vec3 sky_disc(sampler2D tex, vec4 rect, vec3 d, vec3 c, float size) {
+	float z = dot(d, c);
+	if (z <= 0.0) return vec3(0.0);
+	vec3 x = normalize(cross(vec3(0.0, 1.0, 0.0), c)), y = cross(c, x);
+	vec2 q = vec2(dot(d, x), dot(d, y)) / (z * tan(radians(size) * 0.5));
+	if (any(greaterThan(abs(q), vec2(1.0)))) return vec3(0.0);
+	vec4 t = textureLod(tex, rect.xy + vec2(q.x * 0.5 + 0.5, 0.5 - q.y * 0.5) * rect.zw, 0.0);
+	return t.rgb * t.a;
+}

@@ -1,0 +1,4 @@
+// v1 haze: uniform extinction HazeDensity along the ray towards the haze colour, surfaces only.
+#include "haze.glsli"
+
+vec3 haze_analytic(vec3 c, vec3 d, float t) { return t > 0.0 ? mix(haze_color(d), c, exp(-P.haze_density * t * BS)) : c; }

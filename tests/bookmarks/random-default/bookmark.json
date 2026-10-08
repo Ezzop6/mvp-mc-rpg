@@ -1,0 +1,25 @@
+{
+  "Note": "default random world at night from above (also the world of flights)",
+  "Created": "2026-10-06T00:00:00",
+  "Commit": "converted from tests/scenes",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 0,
+      "Y": 4,
+      "Z": 0
+    },
+    "Local": {
+      "X": 0.0,
+      "Y": 10.0,
+      "Z": 0.0
+    },
+    "Yaw": -0.5235987755982988,
+    "Pitch": -0.6108652381980153
+  },
+  "TimeOfDay": 23,
+  "Width": 1920,
+  "Height": 1080,
+  "Render": null
+}

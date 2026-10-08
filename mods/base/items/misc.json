@@ -1,0 +1,11 @@
+{
+  "category": "misc",
+  "source": "import",
+  "entries": [
+    { "id": "base:bone_block", "block": "base:bone_block" },
+    { "id": "base:honeycomb_block", "block": "base:honeycomb_block" },
+    { "id": "base:red_shrub", "block": "base:red_shrub" },
+    { "id": "base:sponge", "block": "base:sponge" },
+    { "id": "base:wet_sponge", "block": "base:wet_sponge" }
+  ]
+}

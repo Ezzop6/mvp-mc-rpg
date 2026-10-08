@@ -1,0 +1,72 @@
+{
+  "category": "misc",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:bone_block",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": { "top": { "texture": "block/bone_block_top" }, "bottom": { "texture": "block/bone_block_top" }, "side": { "texture": "block/bone_block_side" } },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "cubes": {
+        "bone_block": {
+          "top": { "texture": "block/bone_block_top" },
+          "bottom": { "texture": "block/bone_block_top" },
+          "side": { "texture": "block/bone_block_side" }
+        }
+      },
+      "variants": [
+        { "when": { "axis": "x" }, "looks": [{ "cube": "bone_block", "x": 90, "y": 90 }] },
+        { "when": { "axis": "y" }, "looks": [{ "cube": "bone_block" }] },
+        { "when": { "axis": "z" }, "looks": [{ "cube": "bone_block", "x": 90 }] }
+      ]
+    },
+    {
+      "id": "base:honeycomb_block",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/honeycomb_block" } },
+      "cubes": { "honeycomb_block": { "all": { "texture": "block/honeycomb_block" } } },
+      "variants": [{ "looks": [{ "cube": "honeycomb_block" }] }]
+    },
+    {
+      "id": "base:red_shrub",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/red_shrub", "particle": "block/red_shrub" },
+      "surface": "cutout",
+      "tags": ["color:red", "random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "red_shrub" },
+            { "model": "red_shrub", "y": 90 },
+            { "model": "red_shrub", "y": 180 },
+            { "model": "red_shrub", "y": 270 },
+            { "model": "red_shrub2" },
+            { "model": "red_shrub2", "y": 90 },
+            { "model": "red_shrub2", "y": 180 },
+            { "model": "red_shrub2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:sponge",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/sponge" } },
+      "cubes": { "sponge": { "all": { "texture": "block/sponge" } } },
+      "variants": [{ "looks": [{ "cube": "sponge" }] }]
+    },
+    {
+      "id": "base:wet_sponge",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/wet_sponge" } },
+      "cubes": { "wet_sponge": { "all": { "texture": "block/wet_sponge" } } },
+      "variants": [{ "looks": [{ "cube": "wet_sponge" }] }]
+    }
+  ]
+}

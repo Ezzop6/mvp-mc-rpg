@@ -1,0 +1,25 @@
+{
+  "Note": "250 m ridged mountains with warp, overhangs and caves (world of the pressure flight)",
+  "Created": "2026-10-06T00:00:00",
+  "Commit": "converted from tests/scenes",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 0,
+      "Y": 24,
+      "Z": 0
+    },
+    "Local": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Yaw": 0.3490658503988659,
+    "Pitch": -0.5235987755982988
+  },
+  "TimeOfDay": 14,
+  "Width": 1920,
+  "Height": 1080,
+  "Render": null
+}

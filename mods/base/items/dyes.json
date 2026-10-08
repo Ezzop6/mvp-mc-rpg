@@ -1,0 +1,25 @@
+{
+  "category": "dyes",
+  "source": "import",
+  "entries": [
+    { "id": "base:black_dye", "model": "item/black_dye", "layers": ["item/black_dye"] },
+    { "id": "base:blue_dye", "model": "item/blue_dye", "layers": ["item/blue_dye"] },
+    { "id": "base:bone_meal", "model": "item/bone_meal", "layers": ["item/bone_meal"] },
+    { "id": "base:brown_dye", "model": "item/brown_dye", "layers": ["item/brown_dye"] },
+    { "id": "base:cyan_dye", "model": "item/cyan_dye", "layers": ["item/cyan_dye"] },
+    { "id": "base:glow_ink_sac", "model": "item/glow_ink_sac", "layers": ["item/glow_ink_sac"] },
+    { "id": "base:gray_dye", "model": "item/gray_dye", "layers": ["item/gray_dye"] },
+    { "id": "base:green_dye", "model": "item/green_dye", "layers": ["item/green_dye"] },
+    { "id": "base:ink_sac", "model": "item/ink_sac", "layers": ["item/ink_sac"] },
+    { "id": "base:light_blue_dye", "model": "item/light_blue_dye", "layers": ["item/light_blue_dye"] },
+    { "id": "base:light_gray_dye", "model": "item/light_gray_dye", "layers": ["item/light_gray_dye"] },
+    { "id": "base:lime_dye", "model": "item/lime_dye", "layers": ["item/lime_dye"] },
+    { "id": "base:magenta_dye", "model": "item/magenta_dye", "layers": ["item/magenta_dye"] },
+    { "id": "base:orange_dye", "model": "item/orange_dye", "layers": ["item/orange_dye"] },
+    { "id": "base:pink_dye", "model": "item/pink_dye", "layers": ["item/pink_dye"] },
+    { "id": "base:purple_dye", "model": "item/purple_dye", "layers": ["item/purple_dye"] },
+    { "id": "base:red_dye", "model": "item/red_dye", "layers": ["item/red_dye"] },
+    { "id": "base:white_dye", "model": "item/white_dye", "layers": ["item/white_dye"] },
+    { "id": "base:yellow_dye", "model": "item/yellow_dye", "layers": ["item/yellow_dye"] }
+  ]
+}

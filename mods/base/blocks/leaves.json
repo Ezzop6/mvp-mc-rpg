@@ -1,0 +1,740 @@
+{
+  "category": "leaves",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:acacia_leaves",
+      "kind": "cube",
+      "template": "leaves",
+      "faces": { "all": { "texture": "block/acacia_leaves", "tint": true } },
+      "surface": "cutout",
+      "tint": { "source": "foliage", "color": "#659f37" },
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "extra_geometry", "random_variants", "wood:acacia"],
+      "cubes": { "acacia_leaves": { "all": { "texture": "block/acacia_leaves", "tint": true } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [
+            { "cube": "acacia_leaves" },
+            { "cube": "acacia_leaves", "y": 90 },
+            { "cube": "acacia_leaves", "y": 180 },
+            { "cube": "acacia_leaves", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "7|6|5", "persistent": "false" }],
+          "looks": [
+            { "cube": "acacia_leaves" },
+            { "cube": "acacia_leaves", "y": 90 },
+            { "cube": "acacia_leaves", "y": 180 },
+            { "cube": "acacia_leaves", "y": 270 },
+            { "model": "acacia_leaves2", "weight": 3 },
+            { "model": "acacia_leaves2", "y": 90, "weight": 3 },
+            { "model": "acacia_leaves2", "y": 180, "weight": 3 },
+            { "model": "acacia_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "4|3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "acacia_leaves", "weight": 2 },
+            { "cube": "acacia_leaves", "y": 90, "weight": 2 },
+            { "cube": "acacia_leaves", "y": 180, "weight": 2 },
+            { "cube": "acacia_leaves", "y": 270, "weight": 2 },
+            { "model": "acacia_leaves2" },
+            { "model": "acacia_leaves2", "y": 90 },
+            { "model": "acacia_leaves2", "y": 180 },
+            { "model": "acacia_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [
+            { "cube": "acacia_leaves" },
+            { "cube": "acacia_leaves", "y": 90 },
+            { "cube": "acacia_leaves", "y": 180 },
+            { "cube": "acacia_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:azalea_leaves",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/azalea_leaves" } },
+      "surface": "cutout",
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "extra_geometry", "random_variants"],
+      "cubes": { "azalea_leaves": { "all": { "texture": "block/azalea_leaves" } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [
+            { "cube": "azalea_leaves" },
+            { "cube": "azalea_leaves", "y": 90 },
+            { "cube": "azalea_leaves", "y": 180 },
+            { "cube": "azalea_leaves", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "7|6|5|4", "persistent": "false" }],
+          "looks": [
+            { "cube": "azalea_leaves" },
+            { "cube": "azalea_leaves", "y": 90 },
+            { "cube": "azalea_leaves", "y": 180 },
+            { "cube": "azalea_leaves", "y": 270 },
+            { "model": "azalea_leaves2", "weight": 3 },
+            { "model": "azalea_leaves2", "y": 90, "weight": 3 },
+            { "model": "azalea_leaves2", "y": 180, "weight": 3 },
+            { "model": "azalea_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "azalea_leaves", "weight": 2 },
+            { "cube": "azalea_leaves", "y": 90, "weight": 2 },
+            { "cube": "azalea_leaves", "y": 180, "weight": 2 },
+            { "cube": "azalea_leaves", "y": 270, "weight": 2 },
+            { "model": "azalea_leaves2" },
+            { "model": "azalea_leaves2", "y": 90 },
+            { "model": "azalea_leaves2", "y": 180 },
+            { "model": "azalea_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [
+            { "cube": "azalea_leaves" },
+            { "cube": "azalea_leaves", "y": 90 },
+            { "cube": "azalea_leaves", "y": 180 },
+            { "cube": "azalea_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:birch_leaves",
+      "kind": "cube",
+      "template": "leaves",
+      "faces": { "all": { "texture": "block/birch_leaves", "tint": true } },
+      "surface": "cutout",
+      "tint": { "source": "constant", "color": "#80a755" },
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "extra_geometry", "random_variants", "wood:birch"],
+      "cubes": { "birch_leaves": { "all": { "texture": "block/birch_leaves", "tint": true } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [{ "cube": "birch_leaves" }, { "cube": "birch_leaves", "y": 90 }, { "cube": "birch_leaves", "y": 180 }, { "cube": "birch_leaves", "y": 270 }]
+        },
+        {
+          "when": [{ "distance": "7|6|5|4", "persistent": "false" }],
+          "looks": [
+            { "cube": "birch_leaves" },
+            { "cube": "birch_leaves", "y": 90 },
+            { "cube": "birch_leaves", "y": 180 },
+            { "cube": "birch_leaves", "y": 270 },
+            { "model": "birch_leaves2", "weight": 3 },
+            { "model": "birch_leaves2", "y": 90, "weight": 3 },
+            { "model": "birch_leaves2", "y": 180, "weight": 3 },
+            { "model": "birch_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "birch_leaves", "weight": 2 },
+            { "cube": "birch_leaves", "y": 90, "weight": 2 },
+            { "cube": "birch_leaves", "y": 180, "weight": 2 },
+            { "cube": "birch_leaves", "y": 270, "weight": 2 },
+            { "model": "birch_leaves2" },
+            { "model": "birch_leaves2", "y": 90 },
+            { "model": "birch_leaves2", "y": 180 },
+            { "model": "birch_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [{ "cube": "birch_leaves" }, { "cube": "birch_leaves", "y": 90 }, { "cube": "birch_leaves", "y": 180 }, { "cube": "birch_leaves", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:cherry_leaves",
+      "kind": "cube",
+      "template": "leaves",
+      "faces": { "all": { "texture": "block/cherry_leaves" } },
+      "surface": "cutout",
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "extra_geometry", "random_variants", "wood:cherry"],
+      "cubes": { "cherry_leaves": { "all": { "texture": "block/cherry_leaves" } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [
+            { "cube": "cherry_leaves" },
+            { "cube": "cherry_leaves", "y": 90 },
+            { "cube": "cherry_leaves", "y": 180 },
+            { "cube": "cherry_leaves", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "7|6|5|4", "persistent": "false" }],
+          "looks": [
+            { "cube": "cherry_leaves" },
+            { "cube": "cherry_leaves", "y": 90 },
+            { "cube": "cherry_leaves", "y": 180 },
+            { "cube": "cherry_leaves", "y": 270 },
+            { "model": "cherry_leaves2", "weight": 3 },
+            { "model": "cherry_leaves2", "y": 90, "weight": 3 },
+            { "model": "cherry_leaves2", "y": 180, "weight": 3 },
+            { "model": "cherry_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "cherry_leaves", "weight": 2 },
+            { "cube": "cherry_leaves", "y": 90, "weight": 2 },
+            { "cube": "cherry_leaves", "y": 180, "weight": 2 },
+            { "cube": "cherry_leaves", "y": 270, "weight": 2 },
+            { "model": "cherry_leaves2" },
+            { "model": "cherry_leaves2", "y": 90 },
+            { "model": "cherry_leaves2", "y": 180 },
+            { "model": "cherry_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [
+            { "cube": "cherry_leaves" },
+            { "cube": "cherry_leaves", "y": 90 },
+            { "cube": "cherry_leaves", "y": 180 },
+            { "cube": "cherry_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dark_oak_leaves",
+      "kind": "cube",
+      "template": "leaves",
+      "faces": { "all": { "texture": "block/dark_oak_leaves", "tint": true } },
+      "surface": "cutout",
+      "tint": { "source": "foliage", "color": "#659f37" },
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "extra_geometry", "random_variants", "wood:dark_oak"],
+      "cubes": { "dark_oak_leaves": { "all": { "texture": "block/dark_oak_leaves", "tint": true } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [
+            { "cube": "dark_oak_leaves" },
+            { "cube": "dark_oak_leaves", "y": 90 },
+            { "cube": "dark_oak_leaves", "y": 180 },
+            { "cube": "dark_oak_leaves", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "7|6|5|4", "persistent": "false" }],
+          "looks": [
+            { "cube": "dark_oak_leaves" },
+            { "cube": "dark_oak_leaves", "y": 90 },
+            { "cube": "dark_oak_leaves", "y": 180 },
+            { "cube": "dark_oak_leaves", "y": 270 },
+            { "model": "dark_oak_leaves2", "weight": 3 },
+            { "model": "dark_oak_leaves2", "y": 90, "weight": 3 },
+            { "model": "dark_oak_leaves2", "y": 180, "weight": 3 },
+            { "model": "dark_oak_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "dark_oak_leaves", "weight": 2 },
+            { "cube": "dark_oak_leaves", "y": 90, "weight": 2 },
+            { "cube": "dark_oak_leaves", "y": 180, "weight": 2 },
+            { "cube": "dark_oak_leaves", "y": 270, "weight": 2 },
+            { "model": "dark_oak_leaves2" },
+            { "model": "dark_oak_leaves2", "y": 90 },
+            { "model": "dark_oak_leaves2", "y": 180 },
+            { "model": "dark_oak_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [
+            { "cube": "dark_oak_leaves" },
+            { "cube": "dark_oak_leaves", "y": 90 },
+            { "cube": "dark_oak_leaves", "y": 180 },
+            { "cube": "dark_oak_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:flowering_azalea_leaves",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/flowering_azalea_leaves" } },
+      "surface": "cutout",
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "extra_geometry", "random_variants"],
+      "cubes": { "flowering_azalea_leaves": { "all": { "texture": "block/flowering_azalea_leaves" } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [
+            { "cube": "flowering_azalea_leaves" },
+            { "cube": "flowering_azalea_leaves", "y": 90 },
+            { "cube": "flowering_azalea_leaves", "y": 180 },
+            { "cube": "flowering_azalea_leaves", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "7|6|5|4", "persistent": "false" }],
+          "looks": [
+            { "cube": "flowering_azalea_leaves" },
+            { "cube": "flowering_azalea_leaves", "y": 90 },
+            { "cube": "flowering_azalea_leaves", "y": 180 },
+            { "cube": "flowering_azalea_leaves", "y": 270 },
+            { "model": "flowering_azalea_leaves2", "weight": 3 },
+            { "model": "flowering_azalea_leaves2", "y": 90, "weight": 3 },
+            { "model": "flowering_azalea_leaves2", "y": 180, "weight": 3 },
+            { "model": "flowering_azalea_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "flowering_azalea_leaves", "weight": 2 },
+            { "cube": "flowering_azalea_leaves", "y": 90, "weight": 2 },
+            { "cube": "flowering_azalea_leaves", "y": 180, "weight": 2 },
+            { "cube": "flowering_azalea_leaves", "y": 270, "weight": 2 },
+            { "model": "flowering_azalea_leaves2" },
+            { "model": "flowering_azalea_leaves2", "y": 90 },
+            { "model": "flowering_azalea_leaves2", "y": 180 },
+            { "model": "flowering_azalea_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [
+            { "cube": "flowering_azalea_leaves" },
+            { "cube": "flowering_azalea_leaves", "y": 90 },
+            { "cube": "flowering_azalea_leaves", "y": 180 },
+            { "cube": "flowering_azalea_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:jungle_leaves",
+      "kind": "cube",
+      "template": "leaves",
+      "faces": { "all": { "texture": "block/jungle_leaves", "tint": true } },
+      "surface": "cutout",
+      "tint": { "source": "foliage", "color": "#659f37" },
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "extra_geometry", "random_variants", "wood:jungle"],
+      "cubes": { "jungle_leaves": { "all": { "texture": "block/jungle_leaves", "tint": true } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [
+            { "cube": "jungle_leaves" },
+            { "cube": "jungle_leaves", "y": 90 },
+            { "cube": "jungle_leaves", "y": 180 },
+            { "cube": "jungle_leaves", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "7|6|5", "persistent": "false" }],
+          "looks": [
+            { "cube": "jungle_leaves" },
+            { "cube": "jungle_leaves", "y": 90 },
+            { "cube": "jungle_leaves", "y": 180 },
+            { "cube": "jungle_leaves", "y": 270 },
+            { "model": "jungle_leaves2", "weight": 3 },
+            { "model": "jungle_leaves2", "y": 90, "weight": 3 },
+            { "model": "jungle_leaves2", "y": 180, "weight": 3 },
+            { "model": "jungle_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "4|3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "jungle_leaves", "weight": 2 },
+            { "cube": "jungle_leaves", "y": 90, "weight": 2 },
+            { "cube": "jungle_leaves", "y": 180, "weight": 2 },
+            { "cube": "jungle_leaves", "y": 270, "weight": 2 },
+            { "model": "jungle_leaves2" },
+            { "model": "jungle_leaves2", "y": 90 },
+            { "model": "jungle_leaves2", "y": 180 },
+            { "model": "jungle_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [
+            { "cube": "jungle_leaves" },
+            { "cube": "jungle_leaves", "y": 90 },
+            { "cube": "jungle_leaves", "y": 180 },
+            { "cube": "jungle_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:mangrove_leaves",
+      "kind": "cube",
+      "template": "leaves",
+      "faces": { "all": { "texture": "block/mangrove_leaves", "tint": true } },
+      "surface": "cutout",
+      "tint": { "source": "foliage", "color": "#659f37" },
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "extra_geometry", "random_variants", "wood:mangrove"],
+      "cubes": { "mangrove_leaves": { "all": { "texture": "block/mangrove_leaves", "tint": true } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [
+            { "cube": "mangrove_leaves" },
+            { "cube": "mangrove_leaves", "y": 90 },
+            { "cube": "mangrove_leaves", "y": 180 },
+            { "cube": "mangrove_leaves", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "7|6|5|4", "persistent": "false" }],
+          "looks": [
+            { "cube": "mangrove_leaves" },
+            { "cube": "mangrove_leaves", "y": 90 },
+            { "cube": "mangrove_leaves", "y": 180 },
+            { "cube": "mangrove_leaves", "y": 270 },
+            { "model": "mangrove_leaves2", "weight": 3 },
+            { "model": "mangrove_leaves2", "y": 90, "weight": 3 },
+            { "model": "mangrove_leaves2", "y": 180, "weight": 3 },
+            { "model": "mangrove_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "mangrove_leaves", "weight": 2 },
+            { "cube": "mangrove_leaves", "y": 90, "weight": 2 },
+            { "cube": "mangrove_leaves", "y": 180, "weight": 2 },
+            { "cube": "mangrove_leaves", "y": 270, "weight": 2 },
+            { "model": "mangrove_leaves2" },
+            { "model": "mangrove_leaves2", "y": 90 },
+            { "model": "mangrove_leaves2", "y": 180 },
+            { "model": "mangrove_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [
+            { "cube": "mangrove_leaves" },
+            { "cube": "mangrove_leaves", "y": 90 },
+            { "cube": "mangrove_leaves", "y": 180 },
+            { "cube": "mangrove_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:oak_leaves",
+      "kind": "cube",
+      "template": "leaves",
+      "faces": { "all": { "texture": "block/oak_leaves", "tint": true } },
+      "surface": "cutout",
+      "tint": { "source": "foliage", "color": "#659f37" },
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "extra_geometry", "random_variants", "wood:oak"],
+      "cubes": { "oak_leaves": { "all": { "texture": "block/oak_leaves", "tint": true } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [{ "cube": "oak_leaves" }, { "cube": "oak_leaves", "y": 90 }, { "cube": "oak_leaves", "y": 180 }, { "cube": "oak_leaves", "y": 270 }]
+        },
+        {
+          "when": [{ "distance": "7|6|5|4", "persistent": "false" }],
+          "looks": [
+            { "cube": "oak_leaves" },
+            { "cube": "oak_leaves", "y": 90 },
+            { "cube": "oak_leaves", "y": 180 },
+            { "cube": "oak_leaves", "y": 270 },
+            { "model": "oak_leaves2", "weight": 3 },
+            { "model": "oak_leaves2", "y": 90, "weight": 3 },
+            { "model": "oak_leaves2", "y": 180, "weight": 3 },
+            { "model": "oak_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "oak_leaves", "weight": 2 },
+            { "cube": "oak_leaves", "y": 90, "weight": 2 },
+            { "cube": "oak_leaves", "y": 180, "weight": 2 },
+            { "cube": "oak_leaves", "y": 270, "weight": 2 },
+            { "model": "oak_leaves2" },
+            { "model": "oak_leaves2", "y": 90 },
+            { "model": "oak_leaves2", "y": 180 },
+            { "model": "oak_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [{ "cube": "oak_leaves" }, { "cube": "oak_leaves", "y": 90 }, { "cube": "oak_leaves", "y": 180 }, { "cube": "oak_leaves", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:orange_poplar_leaves",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/orange_poplar_leaves" } },
+      "surface": "cutout",
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "color:orange", "extra_geometry", "random_variants"],
+      "cubes": { "orange_poplar_leaves": { "all": { "texture": "block/orange_poplar_leaves" } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [
+            { "cube": "orange_poplar_leaves" },
+            { "cube": "orange_poplar_leaves", "y": 90 },
+            { "cube": "orange_poplar_leaves", "y": 180 },
+            { "cube": "orange_poplar_leaves", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "7|6|5|4", "persistent": "false" }],
+          "looks": [
+            { "cube": "orange_poplar_leaves" },
+            { "cube": "orange_poplar_leaves", "y": 90 },
+            { "cube": "orange_poplar_leaves", "y": 180 },
+            { "cube": "orange_poplar_leaves", "y": 270 },
+            { "model": "orange_poplar_leaves2", "weight": 3 },
+            { "model": "orange_poplar_leaves2", "y": 90, "weight": 3 },
+            { "model": "orange_poplar_leaves2", "y": 180, "weight": 3 },
+            { "model": "orange_poplar_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "orange_poplar_leaves", "weight": 2 },
+            { "cube": "orange_poplar_leaves", "y": 90, "weight": 2 },
+            { "cube": "orange_poplar_leaves", "y": 180, "weight": 2 },
+            { "cube": "orange_poplar_leaves", "y": 270, "weight": 2 },
+            { "model": "orange_poplar_leaves2" },
+            { "model": "orange_poplar_leaves2", "y": 90 },
+            { "model": "orange_poplar_leaves2", "y": 180 },
+            { "model": "orange_poplar_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [
+            { "cube": "orange_poplar_leaves" },
+            { "cube": "orange_poplar_leaves", "y": 90 },
+            { "cube": "orange_poplar_leaves", "y": 180 },
+            { "cube": "orange_poplar_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:pale_oak_leaves",
+      "kind": "cube",
+      "template": "leaves",
+      "faces": { "all": { "texture": "block/pale_oak_leaves", "tint": true } },
+      "surface": "cutout",
+      "tint": { "source": "foliage", "color": "#659f37" },
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "extra_geometry", "random_variants", "tint_guessed", "wood:pale_oak"],
+      "cubes": { "pale_oak_leaves": { "all": { "texture": "block/pale_oak_leaves", "tint": true } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [
+            { "cube": "pale_oak_leaves" },
+            { "cube": "pale_oak_leaves", "y": 90 },
+            { "cube": "pale_oak_leaves", "y": 180 },
+            { "cube": "pale_oak_leaves", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "7|6|5|4", "persistent": "false" }],
+          "looks": [
+            { "cube": "pale_oak_leaves" },
+            { "cube": "pale_oak_leaves", "y": 90 },
+            { "cube": "pale_oak_leaves", "y": 180 },
+            { "cube": "pale_oak_leaves", "y": 270 },
+            { "model": "pale_oak_leaves2", "weight": 3 },
+            { "model": "pale_oak_leaves2", "y": 90, "weight": 3 },
+            { "model": "pale_oak_leaves2", "y": 180, "weight": 3 },
+            { "model": "pale_oak_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "pale_oak_leaves", "weight": 2 },
+            { "cube": "pale_oak_leaves", "y": 90, "weight": 2 },
+            { "cube": "pale_oak_leaves", "y": 180, "weight": 2 },
+            { "cube": "pale_oak_leaves", "y": 270, "weight": 2 },
+            { "model": "pale_oak_leaves2" },
+            { "model": "pale_oak_leaves2", "y": 90 },
+            { "model": "pale_oak_leaves2", "y": 180 },
+            { "model": "pale_oak_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [
+            { "cube": "pale_oak_leaves" },
+            { "cube": "pale_oak_leaves", "y": 90 },
+            { "cube": "pale_oak_leaves", "y": 180 },
+            { "cube": "pale_oak_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:red_poplar_leaves",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/red_poplar_leaves" } },
+      "surface": "cutout",
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "color:red", "extra_geometry", "random_variants"],
+      "cubes": { "red_poplar_leaves": { "all": { "texture": "block/red_poplar_leaves" } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [
+            { "cube": "red_poplar_leaves" },
+            { "cube": "red_poplar_leaves", "y": 90 },
+            { "cube": "red_poplar_leaves", "y": 180 },
+            { "cube": "red_poplar_leaves", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "7|6|5|4", "persistent": "false" }],
+          "looks": [
+            { "cube": "red_poplar_leaves" },
+            { "cube": "red_poplar_leaves", "y": 90 },
+            { "cube": "red_poplar_leaves", "y": 180 },
+            { "cube": "red_poplar_leaves", "y": 270 },
+            { "model": "red_poplar_leaves2", "weight": 3 },
+            { "model": "red_poplar_leaves2", "y": 90, "weight": 3 },
+            { "model": "red_poplar_leaves2", "y": 180, "weight": 3 },
+            { "model": "red_poplar_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "red_poplar_leaves", "weight": 2 },
+            { "cube": "red_poplar_leaves", "y": 90, "weight": 2 },
+            { "cube": "red_poplar_leaves", "y": 180, "weight": 2 },
+            { "cube": "red_poplar_leaves", "y": 270, "weight": 2 },
+            { "model": "red_poplar_leaves2" },
+            { "model": "red_poplar_leaves2", "y": 90 },
+            { "model": "red_poplar_leaves2", "y": 180 },
+            { "model": "red_poplar_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [
+            { "cube": "red_poplar_leaves" },
+            { "cube": "red_poplar_leaves", "y": 90 },
+            { "cube": "red_poplar_leaves", "y": 180 },
+            { "cube": "red_poplar_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:spruce_leaves",
+      "kind": "cube",
+      "template": "leaves",
+      "faces": { "all": { "texture": "block/spruce_leaves", "tint": true } },
+      "surface": "cutout",
+      "tint": { "source": "constant", "color": "#619961" },
+      "tags": ["animated", "extra_geometry", "random_rotation", "wood:spruce"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "spruce_leaves" },
+            { "model": "spruce_leaves", "y": 90 },
+            { "model": "spruce_leaves", "y": 180 },
+            { "model": "spruce_leaves", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:yellow_poplar_leaves",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/yellow_poplar_leaves" } },
+      "surface": "cutout",
+      "states": { "distance": ["1", "2", "3", "4", "5", "6", "7"], "persistent": ["false", "true"] },
+      "tags": ["animated", "color:yellow", "extra_geometry", "random_variants"],
+      "cubes": { "yellow_poplar_leaves": { "all": { "texture": "block/yellow_poplar_leaves" } } },
+      "multipart": [
+        {
+          "when": [{ "persistent": "true" }],
+          "looks": [
+            { "cube": "yellow_poplar_leaves" },
+            { "cube": "yellow_poplar_leaves", "y": 90 },
+            { "cube": "yellow_poplar_leaves", "y": 180 },
+            { "cube": "yellow_poplar_leaves", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "7|6|5|4", "persistent": "false" }],
+          "looks": [
+            { "cube": "yellow_poplar_leaves" },
+            { "cube": "yellow_poplar_leaves", "y": 90 },
+            { "cube": "yellow_poplar_leaves", "y": 180 },
+            { "cube": "yellow_poplar_leaves", "y": 270 },
+            { "model": "yellow_poplar_leaves2", "weight": 3 },
+            { "model": "yellow_poplar_leaves2", "y": 90, "weight": 3 },
+            { "model": "yellow_poplar_leaves2", "y": 180, "weight": 3 },
+            { "model": "yellow_poplar_leaves2", "y": 270, "weight": 3 }
+          ]
+        },
+        {
+          "when": [{ "distance": "3|2", "persistent": "false" }],
+          "looks": [
+            { "cube": "yellow_poplar_leaves", "weight": 2 },
+            { "cube": "yellow_poplar_leaves", "y": 90, "weight": 2 },
+            { "cube": "yellow_poplar_leaves", "y": 180, "weight": 2 },
+            { "cube": "yellow_poplar_leaves", "y": 270, "weight": 2 },
+            { "model": "yellow_poplar_leaves2" },
+            { "model": "yellow_poplar_leaves2", "y": 90 },
+            { "model": "yellow_poplar_leaves2", "y": 180 },
+            { "model": "yellow_poplar_leaves2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "distance": "1", "persistent": "false" }],
+          "looks": [
+            { "cube": "yellow_poplar_leaves" },
+            { "cube": "yellow_poplar_leaves", "y": 90 },
+            { "cube": "yellow_poplar_leaves", "y": 180 },
+            { "cube": "yellow_poplar_leaves", "y": 270 }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "category": "storage",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:barrel",
+      "kind": "cube",
+      "template": "cube_bottom_top",
+      "faces": { "top": { "texture": "block/barrel_top" }, "bottom": { "texture": "block/barrel_bottom" }, "side": { "texture": "block/barrel_side" } },
+      "orientation": "facing",
+      "states": { "facing": ["down", "east", "north", "south", "up", "west"], "open": ["false", "true"] },
+      "tags": ["default_rotated_x"],
+      "cubes": {
+        "barrel": { "top": { "texture": "block/barrel_top" }, "bottom": { "texture": "block/barrel_bottom" }, "side": { "texture": "block/barrel_side" } },
+        "barrel_open": {
+          "top": { "texture": "block/barrel_top_open" },
+          "bottom": { "texture": "block/barrel_bottom" },
+          "side": { "texture": "block/barrel_side" }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "down", "open": "false" }, "looks": [{ "cube": "barrel", "x": 180 }] },
+        { "when": { "facing": "down", "open": "true" }, "looks": [{ "cube": "barrel_open", "x": 180 }] },
+        { "when": { "facing": "east", "open": "false" }, "looks": [{ "cube": "barrel", "x": 90, "y": 90 }] },
+        { "when": { "facing": "east", "open": "true" }, "looks": [{ "cube": "barrel_open", "x": 90, "y": 90 }] },
+        { "when": { "facing": "north", "open": "false" }, "looks": [{ "cube": "barrel", "x": 90 }] },
+        { "when": { "facing": "north", "open": "true" }, "looks": [{ "cube": "barrel_open", "x": 90 }] },
+        { "when": { "facing": "south", "open": "false" }, "looks": [{ "cube": "barrel", "x": 90, "y": 180 }] },
+        { "when": { "facing": "south", "open": "true" }, "looks": [{ "cube": "barrel_open", "x": 90, "y": 180 }] },
+        { "when": { "facing": "up", "open": "false" }, "looks": [{ "cube": "barrel" }] },
+        { "when": { "facing": "up", "open": "true" }, "looks": [{ "cube": "barrel_open" }] },
+        { "when": { "facing": "west", "open": "false" }, "looks": [{ "cube": "barrel", "x": 90, "y": 270 }] },
+        { "when": { "facing": "west", "open": "true" }, "looks": [{ "cube": "barrel_open", "x": 90, "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:black_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/black_shulker_box" },
+      "tags": ["base_texture", "color:black", "placeholder"],
+      "cubes": { "black_shulker_box": { "all": { "texture": "block/black_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "black_shulker_box" }] }]
+    },
+    {
+      "id": "base:blue_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/blue_shulker_box" },
+      "tags": ["base_texture", "color:blue", "placeholder"],
+      "cubes": { "blue_shulker_box": { "all": { "texture": "block/blue_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "blue_shulker_box" }] }]
+    },
+    {
+      "id": "base:brown_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/brown_shulker_box" },
+      "tags": ["base_texture", "color:brown", "placeholder"],
+      "cubes": { "brown_shulker_box": { "all": { "texture": "block/brown_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "brown_shulker_box" }] }]
+    },
+    {
+      "id": "base:chest",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["placeholder"],
+      "cubes": { "chest": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "chest" }] }]
+    },
+    {
+      "id": "base:cyan_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/cyan_shulker_box" },
+      "tags": ["base_texture", "color:cyan", "placeholder"],
+      "cubes": { "cyan_shulker_box": { "all": { "texture": "block/cyan_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "cyan_shulker_box" }] }]
+    },
+    {
+      "id": "base:ender_chest",
+      "kind": "entity",
+      "textures": { "particle": "block/obsidian" },
+      "light": { "level": 7, "color": "#b3b0ff" },
+      "tags": ["placeholder"],
+      "cubes": { "ender_chest": { "all": { "texture": "block/obsidian" } } },
+      "variants": [{ "looks": [{ "cube": "ender_chest" }] }]
+    },
+    {
+      "id": "base:gray_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/gray_shulker_box" },
+      "tags": ["base_texture", "color:gray", "placeholder"],
+      "cubes": { "gray_shulker_box": { "all": { "texture": "block/gray_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "gray_shulker_box" }] }]
+    },
+    {
+      "id": "base:green_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/green_shulker_box" },
+      "tags": ["base_texture", "color:green", "placeholder"],
+      "cubes": { "green_shulker_box": { "all": { "texture": "block/green_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "green_shulker_box" }] }]
+    },
+    {
+      "id": "base:light_blue_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/light_blue_shulker_box" },
+      "tags": ["base_texture", "color:light_blue", "placeholder"],
+      "cubes": { "light_blue_shulker_box": { "all": { "texture": "block/light_blue_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "light_blue_shulker_box" }] }]
+    },
+    {
+      "id": "base:light_gray_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/light_gray_shulker_box" },
+      "tags": ["base_texture", "color:light_gray", "placeholder"],
+      "cubes": { "light_gray_shulker_box": { "all": { "texture": "block/light_gray_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "light_gray_shulker_box" }] }]
+    },
+    {
+      "id": "base:lime_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/lime_shulker_box" },
+      "tags": ["base_texture", "color:lime", "placeholder"],
+      "cubes": { "lime_shulker_box": { "all": { "texture": "block/lime_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "lime_shulker_box" }] }]
+    },
+    {
+      "id": "base:magenta_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/magenta_shulker_box" },
+      "tags": ["base_texture", "color:magenta", "placeholder"],
+      "cubes": { "magenta_shulker_box": { "all": { "texture": "block/magenta_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "magenta_shulker_box" }] }]
+    },
+    {
+      "id": "base:orange_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/orange_shulker_box" },
+      "tags": ["base_texture", "color:orange", "placeholder"],
+      "cubes": { "orange_shulker_box": { "all": { "texture": "block/orange_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "orange_shulker_box" }] }]
+    },
+    {
+      "id": "base:pink_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/pink_shulker_box" },
+      "tags": ["base_texture", "color:pink", "placeholder"],
+      "cubes": { "pink_shulker_box": { "all": { "texture": "block/pink_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "pink_shulker_box" }] }]
+    },
+    {
+      "id": "base:purple_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/purple_shulker_box" },
+      "tags": ["base_texture", "color:purple", "placeholder"],
+      "cubes": { "purple_shulker_box": { "all": { "texture": "block/purple_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "purple_shulker_box" }] }]
+    },
+    {
+      "id": "base:red_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/red_shulker_box" },
+      "tags": ["base_texture", "color:red", "placeholder"],
+      "cubes": { "red_shulker_box": { "all": { "texture": "block/red_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "red_shulker_box" }] }]
+    },
+    {
+      "id": "base:shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/shulker_box" },
+      "tags": ["base_texture", "placeholder"],
+      "cubes": { "shulker_box": { "all": { "texture": "block/shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "shulker_box" }] }]
+    },
+    {
+      "id": "base:trapped_chest",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["placeholder"],
+      "cubes": { "trapped_chest": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "trapped_chest" }] }]
+    },
+    {
+      "id": "base:white_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/white_shulker_box" },
+      "tags": ["base_texture", "color:white", "placeholder"],
+      "cubes": { "white_shulker_box": { "all": { "texture": "block/white_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "white_shulker_box" }] }]
+    },
+    {
+      "id": "base:yellow_shulker_box",
+      "kind": "entity",
+      "textures": { "particle": "block/yellow_shulker_box" },
+      "tags": ["base_texture", "color:yellow", "placeholder"],
+      "cubes": { "yellow_shulker_box": { "all": { "texture": "block/yellow_shulker_box" } } },
+      "variants": [{ "looks": [{ "cube": "yellow_shulker_box" }] }]
+    }
+  ]
+}

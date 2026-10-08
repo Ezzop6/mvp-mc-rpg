@@ -1,0 +1,39 @@
+// Raster/meshes (docs/v2.md §5.15): pages of greedy quads per chunk and face direction, the mesh state; MESH_* and PAGE_QUADS come from Meshes.Defines; compute shaders define MESH_STATE.
+struct Page {
+	ivec4 chunk; // xyz = world chunk, w = direction (axis * 2 + positive) | quad count << 8, count 0 = free
+	uvec4 box;   // x = min, y = max of the quads' extent (5 bits per axis), z = generation of the chunk's mesh slot
+};
+struct DrawArgs { uint index_count; uint instance_count; uint first_index; uint vertex_offset; uint first_instance; };
+
+#ifdef MESH_STATE
+layout(set = 0, binding = 5, std430) restrict buffer MeshState { // Meshes.State
+	uint free_count, taken, popped, pushed; // free page stack: height, pops asked / done in BUILD, pushes in CULL_EARLY
+	uint fail_count, page_cap, quad_count, page_high; // chunks that did not fit since the reset, capacity, quads in use, 1 + highest page used
+	uint list_count, min_stale, inside, total; // stale chunks found, offset index of the nearest left unbuilt, offsets in the sphere / with the shell
+	int ring; float trust; uint cam_solid, pad0; // mesh slot ring per axis, blocks around the camera where every chunk's mesh is current, camera in a cell rays stop in
+	uint build_args[3];
+	uint cull_args[3];
+	uint pad1, pad2;
+	DrawArgs draw[2];
+} M;
+
+layout(set = 0, binding = 6, std430) restrict buffer Slots { uvec4 slots[]; }; // per mesh slot: chunk hash, content key last seen (0 = none), generation, stale
+layout(set = 0, binding = 7, std430) restrict readonly buffer Offsets { uint offsets[]; }; // chunk offsets from the camera chunk, nearest first
+#endif
+
+const float RASTER_NEAR = 0.05; // near plane of the raster projection, blocks (depth = RASTER_NEAR / view depth)
+const int CELL_BIAS = 32768; // raster cells are anchor-relative, stored as uint16
+
+uint pack5(uvec3 v) { return v.x | v.y << 5 | v.z << 10; }
+uvec3 unpack5(uint p) { return uvec3(p, p >> 5, p >> 10) & 31u; }
+uint pack_quad(uvec3 cell, uvec2 size) { return pack5(cell) | (size.x - 1u) << 15 | (size.y - 1u) << 20; }
+uvec2 quad_size(uint q) { return (uvec2(q >> 15, q >> 20) & 31u) + 1u; }
+int page_dir(int w) { return w & 7; }
+int page_quads(int w) { return w >> 8; }
+
+#ifdef MESH_STATE
+ivec3 offset_at(uint i) { uint o = offsets[i]; return ivec3(o & 255u, o >> 8 & 255u, o >> 16 & 255u) - 128; }
+ivec3 cam_chunk() { return cam.anchor.xyz + ivec3(floor(cam.frac.xyz / float(CHUNK))); }
+uint mesh_slot(ivec3 wc) { uint r = uint(M.ring); uvec3 s = uvec3(wc + M.ring * 0x100000) % r; return s.x + r * (s.y + r * s.z); } // shifted positive: % of negatives is undefined
+uint page_gen(ivec3 wc) { return slots[mesh_slot(wc)].z; }
+#endif

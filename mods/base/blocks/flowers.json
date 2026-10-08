@@ -1,0 +1,536 @@
+{
+  "category": "flowers",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:allium",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/allium", "particle": "block/allium" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [{ "looks": [{ "model": "allium" }, { "model": "allium", "y": 90 }, { "model": "allium", "y": 180 }, { "model": "allium", "y": 270 }] }]
+    },
+    {
+      "id": "base:azure_bluet",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/azure_bluet", "particle": "block/azure_bluet" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [{ "model": "azure_bluet" }, { "model": "azure_bluet", "y": 90 }, { "model": "azure_bluet", "y": 180 }, { "model": "azure_bluet", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:blue_orchid",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/blue_orchid", "particle": "block/blue_orchid" },
+      "surface": "cutout",
+      "tags": ["animated", "color:blue", "random_rotation"],
+      "variants": [
+        {
+          "looks": [{ "model": "blue_orchid" }, { "model": "blue_orchid", "y": 90 }, { "model": "blue_orchid", "y": 180 }, { "model": "blue_orchid", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:cactus_flower",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/cactus_flower", "particle": "block/cactus_flower" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "cactus_flower" },
+            { "model": "cactus_flower", "y": 90 },
+            { "model": "cactus_flower", "y": 180 },
+            { "model": "cactus_flower", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:closed_eyeblossom",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/closed_eyeblossom", "particle": "block/closed_eyeblossom" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "closed_eyeblossom" },
+            { "model": "closed_eyeblossom", "y": 90 },
+            { "model": "closed_eyeblossom", "y": 180 },
+            { "model": "closed_eyeblossom", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:cornflower",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/cornflower", "particle": "block/cornflower" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        { "looks": [{ "model": "cornflower" }, { "model": "cornflower", "y": 90 }, { "model": "cornflower", "y": 180 }, { "model": "cornflower", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:dandelion",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/dandelion", "particle": "block/dandelion" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        { "looks": [{ "model": "dandelion" }, { "model": "dandelion", "y": 90 }, { "model": "dandelion", "y": 180 }, { "model": "dandelion", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:flowering_azalea",
+      "kind": "custom",
+      "textures": {
+        "particle": "block/azalea_plant",
+        "plant": "block/azalea_plant",
+        "side": "block/flowering_azalea_side",
+        "top": "block/flowering_azalea_top"
+      },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "flowering_azalea" },
+            { "model": "flowering_azalea", "y": 90 },
+            { "model": "flowering_azalea", "y": 180 },
+            { "model": "flowering_azalea", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:golden_dandelion",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/golden_dandelion", "particle": "block/golden_dandelion" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "golden_dandelion" },
+            { "model": "golden_dandelion", "y": 90 },
+            { "model": "golden_dandelion", "y": 180 },
+            { "model": "golden_dandelion", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:lilac",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/lilac_bottom", "particle": "block/lilac_bottom" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "states": { "half": ["lower", "upper"] },
+      "multiblock": "half",
+      "tags": ["tint_guessed"],
+      "variants": [
+        { "when": { "half": "lower" }, "looks": [{ "model": "lilac_bottom" }] },
+        { "when": { "half": "upper" }, "looks": [{ "model": "lilac_top" }] }
+      ]
+    },
+    {
+      "id": "base:lily_of_the_valley",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/lily_of_the_valley", "particle": "block/lily_of_the_valley" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "lily_of_the_valley" },
+            { "model": "lily_of_the_valley", "y": 90 },
+            { "model": "lily_of_the_valley", "y": 180 },
+            { "model": "lily_of_the_valley", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:open_eyeblossom",
+      "kind": "custom",
+      "textures": { "cross": "block/open_eyeblossom", "cross_emissive": "block/open_eyeblossom_emissive", "particle": "block/open_eyeblossom" },
+      "surface": "cutout",
+      "emission": 0.004,
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "open_eyeblossom" },
+            { "model": "open_eyeblossom", "y": 90 },
+            { "model": "open_eyeblossom", "y": 180 },
+            { "model": "open_eyeblossom", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:orange_tulip",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/orange_tulip", "particle": "block/orange_tulip" },
+      "surface": "cutout",
+      "tags": ["animated", "color:orange", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "orange_tulip" },
+            { "model": "orange_tulip", "y": 90 },
+            { "model": "orange_tulip", "y": 180 },
+            { "model": "orange_tulip", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:oxeye_daisy",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/oxeye_daisy", "particle": "block/oxeye_daisy" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [{ "model": "oxeye_daisy" }, { "model": "oxeye_daisy", "y": 90 }, { "model": "oxeye_daisy", "y": 180 }, { "model": "oxeye_daisy", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:peony",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/peony_bottom", "particle": "block/peony_bottom" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "states": { "half": ["lower", "upper"] },
+      "multiblock": "half",
+      "tags": ["tint_guessed"],
+      "variants": [
+        { "when": { "half": "lower" }, "looks": [{ "model": "peony_bottom" }] },
+        { "when": { "half": "upper" }, "looks": [{ "model": "peony_top" }] }
+      ]
+    },
+    {
+      "id": "base:pink_petals",
+      "kind": "custom",
+      "textures": { "flowerbed": "block/pink_petals", "particle": "block/pink_petals", "stem": "block/pink_petals_stem" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "flower_amount": ["1", "2", "3", "4"] },
+      "tags": ["color:pink", "random_variants", "tint_guessed"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "pink_petals_1", "weight": 6 }, { "model": "pink_petals_1b", "weight": 5 }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "pink_petals_1", "y": 90, "weight": 6 }, { "model": "pink_petals_1b", "y": 90, "weight": 5 }] },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [{ "model": "pink_petals_1", "y": 180, "weight": 6 }, { "model": "pink_petals_1b", "y": 180, "weight": 5 }]
+        },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "pink_petals_1", "y": 270, "weight": 6 }, { "model": "pink_petals_1b", "y": 270, "weight": 5 }] },
+        {
+          "when": [{ "facing": "north", "flower_amount": "2|3|4" }],
+          "looks": [{ "model": "pink_petals_2", "weight": 7 }, { "model": "pink_petals_2b", "weight": 6 }]
+        },
+        {
+          "when": [{ "facing": "east", "flower_amount": "2|3|4" }],
+          "looks": [{ "model": "pink_petals_2", "y": 90, "weight": 7 }, { "model": "pink_petals_2b", "y": 90, "weight": 6 }]
+        },
+        {
+          "when": [{ "facing": "south", "flower_amount": "2|3|4" }],
+          "looks": [{ "model": "pink_petals_2", "y": 180, "weight": 7 }, { "model": "pink_petals_2b", "y": 180, "weight": 6 }]
+        },
+        {
+          "when": [{ "facing": "west", "flower_amount": "2|3|4" }],
+          "looks": [{ "model": "pink_petals_2", "y": 270, "weight": 7 }, { "model": "pink_petals_2b", "y": 270, "weight": 6 }]
+        },
+        {
+          "when": [{ "facing": "north", "flower_amount": "3|4" }],
+          "looks": [{ "model": "pink_petals_3", "weight": 8 }, { "model": "pink_petals_3b", "weight": 7 }]
+        },
+        {
+          "when": [{ "facing": "east", "flower_amount": "3|4" }],
+          "looks": [{ "model": "pink_petals_3", "y": 90, "weight": 8 }, { "model": "pink_petals_3b", "y": 90, "weight": 7 }]
+        },
+        {
+          "when": [{ "facing": "south", "flower_amount": "3|4" }],
+          "looks": [{ "model": "pink_petals_3", "y": 180, "weight": 8 }, { "model": "pink_petals_3b", "y": 180, "weight": 7 }]
+        },
+        {
+          "when": [{ "facing": "west", "flower_amount": "3|4" }],
+          "looks": [{ "model": "pink_petals_3", "y": 270, "weight": 8 }, { "model": "pink_petals_3b", "y": 270, "weight": 7 }]
+        },
+        {
+          "when": [{ "facing": "north", "flower_amount": "4" }],
+          "looks": [{ "model": "pink_petals_4", "weight": 9 }, { "model": "pink_petals_4b", "weight": 8 }]
+        },
+        {
+          "when": [{ "facing": "east", "flower_amount": "4" }],
+          "looks": [{ "model": "pink_petals_4", "y": 90, "weight": 9 }, { "model": "pink_petals_4b", "y": 90, "weight": 8 }]
+        },
+        {
+          "when": [{ "facing": "south", "flower_amount": "4" }],
+          "looks": [{ "model": "pink_petals_4", "y": 180, "weight": 9 }, { "model": "pink_petals_4b", "y": 180, "weight": 8 }]
+        },
+        {
+          "when": [{ "facing": "west", "flower_amount": "4" }],
+          "looks": [{ "model": "pink_petals_4", "y": 270, "weight": 9 }, { "model": "pink_petals_4b", "y": 270, "weight": 8 }]
+        }
+      ]
+    },
+    {
+      "id": "base:pink_tulip",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/pink_tulip", "particle": "block/pink_tulip" },
+      "surface": "cutout",
+      "tags": ["animated", "color:pink", "random_rotation"],
+      "variants": [
+        { "looks": [{ "model": "pink_tulip" }, { "model": "pink_tulip", "y": 90 }, { "model": "pink_tulip", "y": 180 }, { "model": "pink_tulip", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:pitcher_plant",
+      "kind": "custom",
+      "textures": { "bottom": "block/pitcher_crop_bottom_stage_4", "particle": "block/pitcher_crop_bottom_stage_4" },
+      "surface": "cutout",
+      "emission": 0.005,
+      "states": { "half": ["lower", "upper"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "half": "lower" }, "looks": [{ "model": "pitcher_plant_bottom" }] },
+        { "when": { "half": "upper" }, "looks": [{ "model": "pitcher_plant_topa" }, { "model": "pitcher_plant_topb" }] }
+      ]
+    },
+    {
+      "id": "base:poppy",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/poppy", "particle": "block/poppy" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [{ "looks": [{ "model": "poppy" }, { "model": "poppy", "y": 90 }, { "model": "poppy", "y": 180 }, { "model": "poppy", "y": 270 }] }]
+    },
+    {
+      "id": "base:potted_open_eyeblossom",
+      "kind": "custom",
+      "textures": {
+        "cross_emissive": "block/open_eyeblossom_emissive",
+        "dirt": "block/dirt",
+        "flowerpot": "block/extra/flower_pot",
+        "particle": "block/extra/flower_pot",
+        "plant": "block/open_eyeblossom"
+      },
+      "surface": "cutout",
+      "emission": 0.002,
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_open_eyeblossom" },
+            { "model": "potted_open_eyeblossom", "y": 90 },
+            { "model": "potted_open_eyeblossom", "y": 180 },
+            { "model": "potted_open_eyeblossom", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:red_tulip",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/red_tulip", "particle": "block/red_tulip" },
+      "surface": "cutout",
+      "tags": ["animated", "color:red", "random_rotation"],
+      "variants": [
+        { "looks": [{ "model": "red_tulip" }, { "model": "red_tulip", "y": 90 }, { "model": "red_tulip", "y": 180 }, { "model": "red_tulip", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:rose_bush",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/rose_bush_bottom", "particle": "block/rose_bush_bottom" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "states": { "half": ["lower", "upper"] },
+      "multiblock": "half",
+      "tags": ["tint_guessed"],
+      "variants": [
+        { "when": { "half": "lower" }, "looks": [{ "model": "rose_bush_bottom" }] },
+        { "when": { "half": "upper" }, "looks": [{ "model": "rose_bush_top" }] }
+      ]
+    },
+    {
+      "id": "base:spore_blossom",
+      "kind": "custom",
+      "textures": {
+        "base": "block/spore_blossom_base",
+        "extra": "block/extra/spore_blossom_extra",
+        "flower": "block/spore_blossom",
+        "particle": "block/spore_blossom"
+      },
+      "surface": "cutout",
+      "emission": 0.01,
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "spore_blossom" },
+            { "model": "spore_blossom", "y": 90 },
+            { "model": "spore_blossom", "y": 180 },
+            { "model": "spore_blossom", "y": 270 },
+            { "model": "spore_blossom2" },
+            { "model": "spore_blossom2", "y": 90 },
+            { "model": "spore_blossom2", "y": 180 },
+            { "model": "spore_blossom2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:sunflower",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/sunflower_bottom", "particle": "block/sunflower_bottom" },
+      "surface": "cutout",
+      "states": { "half": ["lower", "upper"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "half": "lower" }, "looks": [{ "model": "sunflower_bottom" }] },
+        {
+          "when": { "half": "upper" },
+          "looks": [{ "model": "sunflower_top", "weight": 3 }, { "model": "sunflower_top2", "weight": 2 }, { "model": "sunflower_top3" }]
+        }
+      ]
+    },
+    {
+      "id": "base:torchflower",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/torchflower", "particle": "block/torchflower" },
+      "surface": "cutout",
+      "emission": 0.011,
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [{ "model": "torchflower" }, { "model": "torchflower", "y": 90 }, { "model": "torchflower", "y": 180 }, { "model": "torchflower", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:white_tulip",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/white_tulip", "particle": "block/white_tulip" },
+      "surface": "cutout",
+      "tags": ["animated", "color:white", "random_rotation"],
+      "variants": [
+        {
+          "looks": [{ "model": "white_tulip" }, { "model": "white_tulip", "y": 90 }, { "model": "white_tulip", "y": 180 }, { "model": "white_tulip", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:wildflowers",
+      "kind": "custom",
+      "textures": { "flowerbed": "block/wildflowers", "particle": "block/wildflowers", "stem": "block/pink_petals_stem" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "flower_amount": ["1", "2", "3", "4"] },
+      "tags": ["random_variants", "tint_guessed"],
+      "multipart": [
+        { "when": [{ "facing": "north" }], "looks": [{ "model": "wildflowers_1", "weight": 6 }, { "model": "wildflowers_1b", "weight": 5 }] },
+        { "when": [{ "facing": "east" }], "looks": [{ "model": "wildflowers_1", "y": 90, "weight": 6 }, { "model": "wildflowers_1b", "y": 90, "weight": 5 }] },
+        {
+          "when": [{ "facing": "south" }],
+          "looks": [{ "model": "wildflowers_1", "y": 180, "weight": 6 }, { "model": "wildflowers_1b", "y": 180, "weight": 5 }]
+        },
+        { "when": [{ "facing": "west" }], "looks": [{ "model": "wildflowers_1", "y": 270, "weight": 6 }, { "model": "wildflowers_1b", "y": 270, "weight": 5 }] },
+        {
+          "when": [{ "facing": "north", "flower_amount": "2|3|4" }],
+          "looks": [{ "model": "wildflowers_2", "weight": 7 }, { "model": "wildflowers_2b", "weight": 6 }]
+        },
+        {
+          "when": [{ "facing": "east", "flower_amount": "2|3|4" }],
+          "looks": [{ "model": "wildflowers_2", "y": 90, "weight": 7 }, { "model": "wildflowers_2b", "y": 90, "weight": 6 }]
+        },
+        {
+          "when": [{ "facing": "south", "flower_amount": "2|3|4" }],
+          "looks": [{ "model": "wildflowers_2", "y": 180, "weight": 7 }, { "model": "wildflowers_2b", "y": 180, "weight": 6 }]
+        },
+        {
+          "when": [{ "facing": "west", "flower_amount": "2|3|4" }],
+          "looks": [{ "model": "wildflowers_2", "y": 270, "weight": 7 }, { "model": "wildflowers_2b", "y": 270, "weight": 6 }]
+        },
+        {
+          "when": [{ "facing": "north", "flower_amount": "3|4" }],
+          "looks": [{ "model": "wildflowers_3", "weight": 8 }, { "model": "wildflowers_3b", "weight": 7 }]
+        },
+        {
+          "when": [{ "facing": "east", "flower_amount": "3|4" }],
+          "looks": [{ "model": "wildflowers_3", "y": 90, "weight": 8 }, { "model": "wildflowers_3b", "y": 90, "weight": 7 }]
+        },
+        {
+          "when": [{ "facing": "south", "flower_amount": "3|4" }],
+          "looks": [{ "model": "wildflowers_3", "y": 180, "weight": 8 }, { "model": "wildflowers_3b", "y": 180, "weight": 7 }]
+        },
+        {
+          "when": [{ "facing": "west", "flower_amount": "3|4" }],
+          "looks": [{ "model": "wildflowers_3", "y": 270, "weight": 8 }, { "model": "wildflowers_3b", "y": 270, "weight": 7 }]
+        },
+        {
+          "when": [{ "facing": "north", "flower_amount": "4" }],
+          "looks": [{ "model": "wildflowers_4", "weight": 9 }, { "model": "wildflowers_4b", "weight": 8 }]
+        },
+        {
+          "when": [{ "facing": "east", "flower_amount": "4" }],
+          "looks": [{ "model": "wildflowers_4", "y": 90, "weight": 9 }, { "model": "wildflowers_4b", "y": 90, "weight": 8 }]
+        },
+        {
+          "when": [{ "facing": "south", "flower_amount": "4" }],
+          "looks": [{ "model": "wildflowers_4", "y": 180, "weight": 9 }, { "model": "wildflowers_4b", "y": 180, "weight": 8 }]
+        },
+        {
+          "when": [{ "facing": "west", "flower_amount": "4" }],
+          "looks": [{ "model": "wildflowers_4", "y": 270, "weight": 9 }, { "model": "wildflowers_4b", "y": 270, "weight": 8 }]
+        }
+      ]
+    },
+    {
+      "id": "base:wither_rose",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/wither_rose", "particle": "block/wither_rose" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [{ "model": "wither_rose" }, { "model": "wither_rose", "y": 90 }, { "model": "wither_rose", "y": 180 }, { "model": "wither_rose", "y": 270 }]
+        }
+      ]
+    }
+  ]
+}

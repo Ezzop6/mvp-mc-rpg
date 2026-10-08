@@ -1,0 +1,61 @@
+// World data in set 1 (layout: docs/v2.md §3.3): directory, chunk records, brick pools, occupancy.
+#include "faces.glsli"
+
+layout(set = WORLD_SET, binding = WB_DIR, std430) restrict buffer Dir { uvec2 dir[]; };           // per ring slot: NONE, UNI | block + fluid, or record index
+layout(set = WORLD_SET, binding = WB_RECORDS, std430) restrict buffer Records { uint records[]; }; // CHUNK_REC_WORDS per chunk: 125 group entries (uvec2)
+layout(set = WORLD_SET, binding = WB_BRICK4, std430) restrict buffer Brick4 { uint brick4[]; };
+layout(set = WORLD_SET, binding = WB_BRICK16, std430) restrict buffer Brick16 { uint brick16[]; };
+layout(set = WORLD_SET, binding = WB_BRICK125, std430) restrict buffer Brick125 { uint brick125[]; };
+layout(set = WORLD_SET, binding = WB_OCCUPANCY, std430) restrict buffer Occupancy { uint occ[]; };    // bit per ring slot: not only air
+layout(set = WORLD_SET, binding = WB_OCCUPANCY_MIP, std430) restrict buffer OccupancyMip { uint occ_mip[]; }; // bit per 4^3 slots
+layout(set = WORLD_SET, binding = WB_VISIBLE, std430) restrict buffer Visible { uint vis_bits[]; }; // bit per slot: a sampled primary ray hit or wanted (missing) the chunk since the last readback (World.ApplyVisible)
+// Level L of detail (docs/v2.md §5.17): min = world chunk of the ring's first slot row (w = drawn from, blocks), size = D (w = slots), off = pmod(min, D) (w = wanted radius, chunks), base = first slot, first column slot, columns.
+struct Level { ivec4 min; ivec4 size; ivec4 off; uvec4 base; };
+layout(set = WORLD_SET, binding = WB_WORLD, std430) restrict buffer World {
+	vec4 near;       // PROBE: xyz = camera chunk, w = NearRadius in chunks
+	uvec4 probe;     // NONE chunks within x = near.w, y = w (mid radius, chunks); z = entries generated over a resident one; cleared every frame
+	ivec4 lod;       // x = levels
+	Level lv[LOD_LEVELS];
+	uint used[4];    // by PL_*: bump high water (FIXUP clamps it to cap)
+	uint cap[4];
+	uint fail[4];    // chunks that did not fit
+	int free_top[4]; // free stack heights; failed pops take them below 0 until FIXUP
+	int top_y[LOD_LEVELS]; // per level: 1 + highest occupied world chunk y since the reset (only grows), lv.min.y = none
+	uint lod_stat[4]; // x = column features dropped (MAX_COL_FEATURES)
+	int perm[PERM_SIZE];
+} W;
+
+int lvl = 0; // the level the ring helpers address (LVL: 0 without LOD, the compiler folds it)
+#if LOD_ON
+#define LVL lvl
+#else
+#define LVL 0
+#endif
+const uint MISSING = 0xFFFFFFFFu, LOD_COLOR = PART; // lookup of a NONE chunk; L >= 1: a colour word (gen.compute lod_color_word)
+int pmod(int a, int m) { return a >= 0 ? a % m : m - 1 - (-a - 1) % m; } // GLSL % is undefined for negative operands
+int fdiv(int a, int b) { return a >= 0 ? a / b : -((-a - 1) / b) - 1; }
+
+int group_index(ivec3 c) { return c.x + GROUP * (c.y + GROUP * c.z); }
+ivec3 group_cell(int i) { return ivec3(i % GROUP, (i / GROUP) % GROUP, i / (GROUP * GROUP)); }
+
+uint pack_box(uvec3 lo, uvec3 hi) { return (lo.x | lo.y << 3 | lo.z << 6 | hi.x << 9 | hi.y << 12 | hi.z << 15) << 8; }
+uvec3 box_lo(uint w) { uint b = w >> 8; return uvec3(b, b >> 3, b >> 6) & 7u; }
+uvec3 box_hi(uint w) { uint b = w >> 8; return uvec3(b >> 9, b >> 12, b >> 15) & 7u; }
+
+// Ring slot of a world chunk of level lvl, as coordinates and as one index (all levels in one directory).
+ivec3 ring_size() { return W.lv[LVL].size.xyz; }
+ivec3 slot_of(ivec3 wc) { ivec3 d = ring_size(); return ivec3(pmod(wc.x, d.x), pmod(wc.y, d.y), pmod(wc.z, d.z)); }
+uint slot_index(ivec3 s) { ivec3 d = ring_size(); return W.lv[LVL].base.x + uint(s.x + d.x * (s.y + d.y * s.z)); }
+uint chunk_slot(ivec3 wc) { return slot_index(slot_of(wc)); }
+uint mip_index(ivec3 s) { ivec3 m = s >> 2, md = ring_size() >> 2; return W.lv[LVL].base.x / 64u + uint(m.x + md.x * (m.y + md.y * m.z)); }
+bool bit_of(uint w, uint i) { return (w >> (i & 31u) & 1u) != 0u; }
+
+const uint ENTRY_AIR = CLASS_AIR << CLASS_SHIFT;
+uint entry_class(uint x) { return x >> CLASS_SHIFT; }
+
+uint brick_word(uint cls, uint i) { return cls == 0u ? brick4[i] : cls == 1u ? brick16[i] : brick125[i]; }
+uint brick_base(uint cls, uint b) { return b * (cls == 0u ? BRICK4_WORDS : cls == 1u ? BRICK16_WORDS : BRICK125_WORDS); }
+uint brick_index(uint cls, uint base, uint v) { return (brick_word(cls, base + (v >> 2)) >> ((v & 3u) * 8u)) & 0xFFu; }
+uvec2 brick_pair(uint cls, uint base, uint i) { uint o = base + BRICK_INDEX_WORDS + 2u * i; return uvec2(brick_word(cls, o), brick_word(cls, o + 1u)); }
+
+uint pal_flags(uint w) { return w >> PAL_FLAG_SHIFT; }

@@ -1,0 +1,140 @@
+{
+  "Note": "fog room (coloured fog, doorway) and a dense fog cube outside, sky behind it",
+  "Created": "2026-10-07T20:47:08",
+  "Commit": "Transparency pass",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 2,
+      "Y": 0,
+      "Z": 1
+    },
+    "Local": {
+      "X": 11.5,
+      "Y": 1.5,
+      "Z": 8.5
+    },
+    "Yaw": -0.17985349979247828,
+    "Pitch": -0.08920534354754178
+  },
+  "TimeOfDay": 13,
+  "Day": 0,
+  "TimePaused": true,
+  "Clock": 0,
+  "Width": 3840,
+  "Height": 2160,
+  "Render": {
+    "Passes": {
+      "Animation": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "mcmeta"
+      },
+      "Raster": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "meshes"
+      },
+      "Primary": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "dda"
+      },
+      "AO": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "neighbors8"
+      },
+      "Shadows": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "dda-quad"
+      },
+      "Lights": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "cubemaps"
+      },
+      "Shade": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "lambert"
+      },
+      "Sky": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "gradient"
+      },
+      "Stars": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "cells"
+      },
+      "Moon": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "disc"
+      },
+      "Sun": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "disc"
+      },
+      "Clouds": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "layer"
+      },
+      "Haze": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "analytic"
+      },
+      "HeightFog": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "analytic"
+      },
+      "Shafts": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "quarter-res"
+      },
+      "Temporal": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "catmull-variance"
+      },
+      "Sharpen": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "clamp4"
+      },
+      "Present": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "godot-quad"
+      }
+    },
+    "EffectsOff": false,
+    "DebugView": "None",
+    "RenderScale": 1,
+    "EffectiveScale": 1,
+    "View": "Ultra",
+    "Lod": false,
+    "HorizonM": 0,
+    "LodPixels": 0,
+    "LodLevels": 4,
+    "LodRef": 0,
+    "FixedBudget": false,
+    "GenTargetMs": 2,
+    "StreamCpuMs": 3,
+    "EditChunksPerFrame": 64,
+    "Preset": null,
+    "Tune": {
+      "Values": {},
+      "Variants": {}
+    }
+  }
+}

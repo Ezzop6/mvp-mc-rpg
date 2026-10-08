@@ -1,0 +1,29 @@
+{
+  "category": "weapons",
+  "source": "import",
+  "entries": [
+    { "id": "base:arrow", "model": "item/arrow", "layers": ["item/arrow"] },
+    { "id": "base:bow", "model": "item/bow", "layers": ["item/bow"] },
+    { "id": "base:copper_spear", "model": "item/copper_spear", "layers": ["item/copper_spear"] },
+    { "id": "base:copper_sword", "model": "item/copper_sword", "layers": ["item/copper_sword"] },
+    { "id": "base:crossbow", "model": "item/crossbow_arrow", "layers": ["item/crossbow_arrow"] },
+    { "id": "base:diamond_spear", "model": "item/diamond_spear", "layers": ["item/diamond_spear"] },
+    { "id": "base:diamond_sword", "model": "item/diamond_sword", "layers": ["item/diamond_sword"] },
+    { "id": "base:fire_charge", "model": "item/fire_charge", "layers": ["item/fire_charge"] },
+    { "id": "base:golden_spear", "model": "item/golden_spear", "layers": ["item/golden_spear"] },
+    { "id": "base:golden_sword", "model": "item/golden_sword", "layers": ["item/golden_sword"] },
+    { "id": "base:iron_spear", "model": "item/iron_spear", "layers": ["item/iron_spear"] },
+    { "id": "base:iron_sword", "model": "item/iron_sword", "layers": ["item/iron_sword"] },
+    { "id": "base:mace", "model": "item/mace", "layers": ["item/mace"] },
+    { "id": "base:netherite_spear", "model": "item/netherite_spear", "layers": ["item/netherite_spear"] },
+    { "id": "base:netherite_sword", "model": "item/netherite_sword", "layers": ["item/netherite_sword"] },
+    { "id": "base:spectral_arrow", "model": "item/spectral_arrow", "layers": ["item/spectral_arrow"] },
+    { "id": "base:stone_spear", "model": "item/stone_spear", "layers": ["item/stone_spear"] },
+    { "id": "base:stone_sword", "model": "item/stone_sword", "layers": ["item/stone_sword"] },
+    { "id": "base:tipped_arrow", "model": "item/tipped_arrow", "layers": ["item/tipped_arrow_head", "item/tipped_arrow_base"] },
+    { "id": "base:trident", "model": "item/trident", "layers": ["item/trident"] },
+    { "id": "base:wind_charge", "model": "item/wind_charge", "layers": ["item/wind_charge"] },
+    { "id": "base:wooden_spear", "model": "item/wooden_spear", "layers": ["item/wooden_spear"] },
+    { "id": "base:wooden_sword", "model": "item/wooden_sword", "layers": ["item/wooden_sword"] }
+  ]
+}

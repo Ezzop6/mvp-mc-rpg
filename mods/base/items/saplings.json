@@ -1,0 +1,16 @@
+{
+  "category": "saplings",
+  "source": "import",
+  "entries": [
+    { "id": "base:acacia_sapling", "block": "base:acacia_sapling" },
+    { "id": "base:birch_sapling", "block": "base:birch_sapling" },
+    { "id": "base:cherry_sapling", "block": "base:cherry_sapling" },
+    { "id": "base:dark_oak_sapling", "block": "base:dark_oak_sapling" },
+    { "id": "base:jungle_sapling", "block": "base:jungle_sapling" },
+    { "id": "base:mangrove_propagule", "block": "base:mangrove_propagule" },
+    { "id": "base:oak_sapling", "block": "base:oak_sapling" },
+    { "id": "base:pale_oak_sapling", "block": "base:pale_oak_sapling" },
+    { "id": "base:poplar_sapling", "block": "base:poplar_sapling" },
+    { "id": "base:spruce_sapling", "block": "base:spruce_sapling" }
+  ]
+}

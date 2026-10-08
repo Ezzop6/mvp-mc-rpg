@@ -1,0 +1,116 @@
+const int MAX_FEATURE_LIGHTS = 1;
+const int SC_CELLS = CHUNK / GROUP;
+
+layout(set = WORLD_SET, binding = GB_SHOWCASE_BLOCKS, std430) restrict readonly buffer ShowcaseBlocks { uint sc_blocks[]; };
+
+uint sc_table(int z) { return z > 0 ? 1u : sc_blocks[0]; }
+int sc_rows(uint t) { return int(sc_blocks[t]); }
+int sc_model_rows() { return (int(mdata[MH_MODELS]) + SC_MODEL_ROW - 1) / SC_MODEL_ROW; }
+
+bool sc_overlap(ivec2 lo, ivec2 hi, ivec2 rlo, ivec2 rhi) { return all(lessThan(lo, rhi)) && all(greaterThan(hi, rlo)); }
+
+bool sc_floor(ivec2 lo, ivec2 hi) {
+	return sc_overlap(lo, hi, ivec2(1), ivec2(2 * SC_BLOCK_ROW + 2, 2 * sc_rows(1u) + 2)) ||
+		sc_overlap(lo, hi, ivec2(1, -2 * sc_rows(sc_blocks[0]) - 1), ivec2(2 * SC_BLOCK_ROW + 2, 0)) ||
+		sc_overlap(lo, hi, ivec2(-GROUP * SC_MODEL_ROW - 1, 1), ivec2(0, GROUP * sc_model_rows() + 1));
+}
+
+uint sc_ground(ivec2 p) { return p.x == 0 || p.y == 0 ? SC_AXIS : sc_floor(p, p + 1) ? SC_FLOOR : 0u; }
+
+uint sc_block(ivec2 p) {
+	uint t = sc_table(p.y);
+	p.y = abs(p.y);
+	if (p.x < 2 || p.y < 2 || ((p.x | p.y) & 1) != 0) return 0u;
+	int r = p.y / 2 - 1, c = p.x / 2 - 1;
+	if (r >= sc_rows(t) || c >= SC_BLOCK_ROW) return 0u;
+	uint i = sc_blocks[t + 1u + uint(r)] + uint(c);
+	return i < sc_blocks[t + 2u + uint(r)] ? sc_blocks[i] : 0u;
+}
+
+uint sc_classify(ivec3 lo, ivec3 hi, bool exact) {
+	if (lo.y <= -1 && hi.y > -1 && (lo.x <= 0 && hi.x > 0 || lo.z <= 0 && hi.z > 0 || sc_floor(lo.xz, hi.xz))) return 0u;
+	if (lo.y > 0 || hi.y <= 0) return UNI;
+	if (!exact) return sc_overlap(lo.xz, hi.xz, ivec2(2), ivec2(2 * SC_BLOCK_ROW + 1, 2 * sc_rows(1u) + 1)) ||
+		sc_overlap(lo.xz, hi.xz, ivec2(2, -2 * sc_rows(sc_blocks[0])), ivec2(2 * SC_BLOCK_ROW + 1, -1)) ? 0u : UNI;
+	for (int z = lo.z + (lo.z & 1); z < hi.z; z += 2)
+		for (int x = lo.x + (lo.x & 1); x < hi.x; x += 2)
+			if (sc_block(ivec2(x, z)) != 0u) return 0u;
+	return UNI;
+}
+
+float gen_column(ivec2 b) { return 0.0; }
+
+// The model on lattice cell g (a row of them along -x per z row).
+bool sc_feature(ivec2 g, out ivec4 f) {
+	f = ivec4(0);
+	int i = -1 - g.x, m = g.y * SC_MODEL_ROW + i;
+	if (i < 0 || i >= SC_MODEL_ROW || g.y < 0 || m >= int(mdata[MH_MODELS])) return false;
+	ivec3 d = model_cells(model_rec(uint(m)));
+	if (any(greaterThanEqual(d.xz, ivec2(GROUP)))) return false;
+	f = ivec4(g.x * GROUP + GROUP - 1 - d.x + d.x / 2, -1, g.y * GROUP + 1 + d.z / 2, m << 8);
+	return true;
+}
+
+bool gen_feature(ivec2 col, uint k, out ivec4 f) { return sc_feature(col * SC_CELLS + ivec2(int(k) % SC_CELLS, int(k) / SC_CELLS), f); }
+
+void gen_feature_box(ivec4 f, out ivec3 lo, out ivec3 hi) { ivec3 d = obj_dims(f); lo = obj_origin(f, d); hi = lo + d; }
+
+int gen_feature_lights(ivec4 f, out vec3 pos[MAX_FEATURE_LIGHTS], out uint type[MAX_FEATURE_LIGHTS]) { return 0; }
+
+uint gen_classify_chunk(ivec3 lo, vec2 mm, uint li) { return sc_classify(lo, lo + CHUNK, false); }
+
+uint gen_classify_group(ivec3 gb) { return sc_classify(gb, gb + GROUP, true); }
+
+shared uint s_obj;
+shared ivec4 s_feat;
+
+void gen_group_begin(ivec3 gb, uint slot, uint v) {
+	if (v == 0u) s_obj = 0u;
+	barrier();
+	if (v < feature_count(slot) && box_hits(col_feature(slot, v), gb, gb + GROUP)) { s_obj = v + 1u; s_feat = col_feature(slot, v); }
+	barrier();
+}
+
+uint gen_block(ivec3 b, ivec3 l) {
+	if (b.y == -1) return sc_ground(b.xz);
+	uint id = b.y == 0 ? sc_block(b.xz) : 0u;
+	return id == 0u && s_obj != 0u && obj_cell_at(s_feat, b) != EMPTY_REF ? PART | (s_obj - 1u) : id;
+}
+
+// L >= 1 (docs/v2.md §5.17): the same blocks by sample, the models of the lattice cells under the coarse group (a model fits its cell).
+uint gen_classify_lod(ivec3 lo, ivec3 hi, vec2 mm) { return sc_classify(lo, hi, false); }
+
+const uint SC_LOD_OBJECTS = 64u;
+shared ivec4 s_objs[SC_LOD_OBJECTS];
+shared uint s_nobj;
+
+void gen_group_begin_lod(ivec3 gb, uint slot, int level, uint v) {
+	if (v == 0u) s_nobj = 0u;
+	barrier();
+	int n = 1 << level;
+	ivec2 g = ivec2(fdiv(gb.x, GROUP), fdiv(gb.z, GROUP)) + ivec2(int(v) % n, int(v) / n);
+	ivec4 f;
+	if (v < uint(n * n) && sc_feature(g, f)) { uint i = atomicAdd(s_nobj, 1u); if (i < SC_LOD_OBJECTS) s_objs[i] = f; }
+	barrier();
+	if (v == 0u) s_nobj = min(s_nobj, SC_LOD_OBJECTS);
+	barrier();
+}
+
+uint gen_block_lod(ivec3 b, ivec2 sc, int level) {
+	if (b.y == -1) return sc_ground(b.xz);
+	uint id = b.y == 0 ? sc_block(b.xz) : 0u;
+	for (uint j = 0u; j < s_nobj && id == 0u; j++) if (obj_cell_at(s_objs[j], b) != EMPTY_REF) id = PART | j;
+	return id;
+}
+
+ivec4 gen_part_lod(uint j) { return s_objs[j]; }
+
+bool gen_cell_lod(ivec3 lo, ivec3 hi) {
+	for (uint j = 0u; j < s_nobj; j++) if (box_hits(s_objs[j], lo, hi)) return true;
+	return false;
+}
+
+uint gen_feature_lod(ivec3 b) {
+	for (uint j = 0u; j < s_nobj; j++) if (obj_cell_at(s_objs[j], b) != EMPTY_REF) return PART | j;
+	return 0u;
+}

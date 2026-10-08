@@ -1,0 +1,123 @@
+{
+  "category": "torches",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:copper_torch",
+      "kind": "torch",
+      "template": "template_torch",
+      "textures": { "particle": "block/copper_torch", "torch": "block/copper_torch" },
+      "surface": "cutout",
+      "light": { "level": 14, "color": "#a3ff72" },
+      "tags": ["animated", "random_variants"],
+      "variants": [{ "looks": [{ "model": "copper_torch" }, { "model": "copper_torch2" }] }]
+    },
+    {
+      "id": "base:copper_wall_torch",
+      "kind": "torch",
+      "template": "template_torch_wall",
+      "textures": { "particle": "block/copper_torch", "ring": "block/exposed_copper_lantern", "torch": "block/copper_torch" },
+      "surface": "cutout",
+      "emission": 0.006,
+      "light": { "level": 14, "color": "#66ff54" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["animated", "random_variants"],
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "model": "copper_wall_torch" }, { "model": "copper_wall_torch2" }] },
+        { "when": { "facing": "north" }, "looks": [{ "model": "copper_wall_torch", "y": 270 }, { "model": "copper_wall_torch2", "y": 270 }] },
+        { "when": { "facing": "south" }, "looks": [{ "model": "copper_wall_torch", "y": 90 }, { "model": "copper_wall_torch2", "y": 90 }] },
+        { "when": { "facing": "west" }, "looks": [{ "model": "copper_wall_torch", "y": 180 }, { "model": "copper_wall_torch2", "y": 180 }] }
+      ]
+    },
+    {
+      "id": "base:redstone_torch",
+      "kind": "torch",
+      "template": "template_torch_unlit",
+      "textures": { "particle": "block/redstone_torch_off", "torch": "block/redstone_torch_off" },
+      "surface": "cutout",
+      "light": { "level": 7, "when": "lit=true", "color": "#ff9274" },
+      "states": { "lit": ["false", "true"] },
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "model": "redstone_torch_off" }] },
+        { "when": { "lit": "true" }, "looks": [{ "model": "redstone_torch" }] }
+      ]
+    },
+    {
+      "id": "base:redstone_wall_torch",
+      "kind": "torch",
+      "template": "template_torch_wall_unlit",
+      "textures": { "particle": "block/redstone_torch_off", "torch": "block/redstone_torch_off" },
+      "surface": "cutout",
+      "light": { "level": 7, "when": "lit=true", "color": "#ff9274" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "lit": ["false", "true"] },
+      "variants": [
+        { "when": { "facing": "east", "lit": "false" }, "looks": [{ "model": "redstone_wall_torch_off" }] },
+        { "when": { "facing": "east", "lit": "true" }, "looks": [{ "model": "redstone_wall_torch" }] },
+        { "when": { "facing": "north", "lit": "false" }, "looks": [{ "model": "redstone_wall_torch_off", "y": 270 }] },
+        { "when": { "facing": "north", "lit": "true" }, "looks": [{ "model": "redstone_wall_torch", "y": 270 }] },
+        { "when": { "facing": "south", "lit": "false" }, "looks": [{ "model": "redstone_wall_torch_off", "y": 90 }] },
+        { "when": { "facing": "south", "lit": "true" }, "looks": [{ "model": "redstone_wall_torch", "y": 90 }] },
+        { "when": { "facing": "west", "lit": "false" }, "looks": [{ "model": "redstone_wall_torch_off", "y": 180 }] },
+        { "when": { "facing": "west", "lit": "true" }, "looks": [{ "model": "redstone_wall_torch", "y": 180 }] }
+      ]
+    },
+    {
+      "id": "base:soul_torch",
+      "kind": "torch",
+      "template": "template_torch",
+      "textures": { "particle": "block/soul_torch", "torch": "block/soul_torch" },
+      "surface": "cutout",
+      "light": { "level": 10, "color": "#6afff2" },
+      "tags": ["animated", "random_variants"],
+      "variants": [{ "looks": [{ "model": "soul_torch" }, { "model": "soul_torch2" }] }]
+    },
+    {
+      "id": "base:soul_wall_torch",
+      "kind": "torch",
+      "template": "template_torch_wall",
+      "textures": { "particle": "block/soul_torch", "ring": "block/soul_lantern", "torch": "block/soul_torch" },
+      "surface": "cutout",
+      "emission": 0.007,
+      "light": { "level": 10, "color": "#b5fffb" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["animated", "random_variants"],
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "model": "soul_wall_torch" }, { "model": "soul_wall_torch2" }] },
+        { "when": { "facing": "north" }, "looks": [{ "model": "soul_wall_torch", "y": 270 }, { "model": "soul_wall_torch2", "y": 270 }] },
+        { "when": { "facing": "south" }, "looks": [{ "model": "soul_wall_torch", "y": 90 }, { "model": "soul_wall_torch2", "y": 90 }] },
+        { "when": { "facing": "west" }, "looks": [{ "model": "soul_wall_torch", "y": 180 }, { "model": "soul_wall_torch2", "y": 180 }] }
+      ]
+    },
+    {
+      "id": "base:torch",
+      "kind": "torch",
+      "template": "template_torch",
+      "textures": { "particle": "block/torch", "torch": "block/torch" },
+      "surface": "cutout",
+      "light": { "level": 14, "color": "#ff9f41" },
+      "tags": ["animated", "random_variants"],
+      "variants": [{ "looks": [{ "model": "torch" }, { "model": "torch2" }] }]
+    },
+    {
+      "id": "base:wall_torch",
+      "kind": "torch",
+      "template": "template_torch_wall",
+      "textures": { "particle": "block/torch", "ring": "block/lantern", "torch": "block/torch" },
+      "surface": "cutout",
+      "emission": 0.007,
+      "light": { "level": 14, "color": "#ffe0b8" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["animated", "random_variants"],
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "model": "wall_torch" }, { "model": "wall_torch2" }] },
+        { "when": { "facing": "north" }, "looks": [{ "model": "wall_torch", "y": 270 }, { "model": "wall_torch2", "y": 270 }] },
+        { "when": { "facing": "south" }, "looks": [{ "model": "wall_torch", "y": 90 }, { "model": "wall_torch2", "y": 90 }] },
+        { "when": { "facing": "west" }, "looks": [{ "model": "wall_torch", "y": 180 }, { "model": "wall_torch2", "y": 180 }] }
+      ]
+    }
+  ]
+}

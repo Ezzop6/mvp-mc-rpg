@@ -1,0 +1,262 @@
+{
+  "category": "banners",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:black_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:black", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:black_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:black", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:blue_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:blue", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:blue_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:blue", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:brown_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:brown", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:brown_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:brown", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:cyan_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:cyan", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:cyan_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:cyan", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:gray_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:gray", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:gray_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:gray", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:green_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:green", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:green_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:green", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:light_blue_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:light_blue", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:light_blue_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:light_blue", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:light_gray_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:light_gray", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:light_gray_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:light_gray", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:lime_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:lime", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:lime_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:lime", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:magenta_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:magenta", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:magenta_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:magenta", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:orange_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:orange", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:orange_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:orange", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:pink_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:pink", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:pink_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:pink", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:purple_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:purple", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:purple_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:purple", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:red_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:red", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:red_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:red", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:white_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:white", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:white_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:white", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:yellow_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:yellow", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    },
+    {
+      "id": "base:yellow_wall_banner",
+      "kind": "entity",
+      "textures": { "particle": "block/oak_planks" },
+      "tags": ["color:yellow", "placeholder"],
+      "cubes": { "banner": { "all": { "texture": "block/oak_planks" } } },
+      "variants": [{ "looks": [{ "cube": "banner" }] }]
+    }
+  ]
+}

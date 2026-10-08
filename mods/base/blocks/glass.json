@@ -1,0 +1,252 @@
+{
+  "category": "glass",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:black_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/black_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:black"],
+      "cubes": { "black_stained_glass": { "all": { "texture": "block/black_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "black_stained_glass" }] }]
+    },
+    {
+      "id": "base:blue_ice",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/blue_ice" } },
+      "tags": ["color:blue"],
+      "cubes": { "blue_ice": { "all": { "texture": "block/blue_ice" } } },
+      "variants": [{ "looks": [{ "cube": "blue_ice" }] }]
+    },
+    {
+      "id": "base:blue_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/blue_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:blue"],
+      "cubes": { "blue_stained_glass": { "all": { "texture": "block/blue_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "blue_stained_glass" }] }]
+    },
+    {
+      "id": "base:brown_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/brown_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:brown"],
+      "cubes": { "brown_stained_glass": { "all": { "texture": "block/brown_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "brown_stained_glass" }] }]
+    },
+    {
+      "id": "base:cyan_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cyan_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:cyan"],
+      "cubes": { "cyan_stained_glass": { "all": { "texture": "block/cyan_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "cyan_stained_glass" }] }]
+    },
+    {
+      "id": "base:frosted_ice",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/frosted_ice_0" } },
+      "surface": "translucent",
+      "states": { "age": ["0", "1", "2", "3"] },
+      "tags": ["base_texture"],
+      "cubes": {
+        "frosted_ice_0": { "all": { "texture": "block/frosted_ice_0" } },
+        "frosted_ice_1": { "all": { "texture": "block/frosted_ice_1" } },
+        "frosted_ice_2": { "all": { "texture": "block/frosted_ice_2" } },
+        "frosted_ice_3": { "all": { "texture": "block/frosted_ice_3" } }
+      },
+      "variants": [
+        { "when": { "age": "0" }, "looks": [{ "cube": "frosted_ice_0" }] },
+        { "when": { "age": "1" }, "looks": [{ "cube": "frosted_ice_1" }] },
+        { "when": { "age": "2" }, "looks": [{ "cube": "frosted_ice_2" }] },
+        { "when": { "age": "3" }, "looks": [{ "cube": "frosted_ice_3" }] }
+      ]
+    },
+    {
+      "id": "base:glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/glass" } },
+      "surface": "cutout",
+      "tags": ["animated"],
+      "cubes": { "glass": { "all": { "texture": "block/glass" } } },
+      "variants": [{ "looks": [{ "cube": "glass" }] }]
+    },
+    {
+      "id": "base:gray_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/gray_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:gray"],
+      "cubes": { "gray_stained_glass": { "all": { "texture": "block/gray_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "gray_stained_glass" }] }]
+    },
+    {
+      "id": "base:green_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/green_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:green"],
+      "cubes": { "green_stained_glass": { "all": { "texture": "block/green_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "green_stained_glass" }] }]
+    },
+    {
+      "id": "base:honey_block",
+      "kind": "cube",
+      "template": "elements",
+      "faces": { "all": { "texture": "block/honey_block_side" } },
+      "surface": "translucent",
+      "tags": ["extra_geometry"],
+      "cubes": { "honey_block": { "all": { "texture": "block/honey_block_side" } } },
+      "variants": [{ "looks": [{ "cube": "honey_block" }] }]
+    },
+    {
+      "id": "base:ice",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/ice" } },
+      "surface": "translucent",
+      "cubes": { "ice": { "all": { "texture": "block/ice" } } },
+      "variants": [{ "looks": [{ "cube": "ice" }] }]
+    },
+    {
+      "id": "base:light_blue_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/light_blue_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:light_blue"],
+      "cubes": { "light_blue_stained_glass": { "all": { "texture": "block/light_blue_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "light_blue_stained_glass" }] }]
+    },
+    {
+      "id": "base:light_gray_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/light_gray_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:light_gray"],
+      "cubes": { "light_gray_stained_glass": { "all": { "texture": "block/light_gray_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "light_gray_stained_glass" }] }]
+    },
+    {
+      "id": "base:lime_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/lime_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:lime"],
+      "cubes": { "lime_stained_glass": { "all": { "texture": "block/lime_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "lime_stained_glass" }] }]
+    },
+    {
+      "id": "base:magenta_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/magenta_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:magenta"],
+      "cubes": { "magenta_stained_glass": { "all": { "texture": "block/magenta_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "magenta_stained_glass" }] }]
+    },
+    {
+      "id": "base:orange_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/orange_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:orange"],
+      "cubes": { "orange_stained_glass": { "all": { "texture": "block/orange_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "orange_stained_glass" }] }]
+    },
+    {
+      "id": "base:packed_ice",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/packed_ice" } },
+      "cubes": { "packed_ice": { "all": { "texture": "block/packed_ice" } } },
+      "variants": [{ "looks": [{ "cube": "packed_ice" }] }]
+    },
+    {
+      "id": "base:pink_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/pink_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:pink"],
+      "cubes": { "pink_stained_glass": { "all": { "texture": "block/pink_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "pink_stained_glass" }] }]
+    },
+    {
+      "id": "base:purple_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/purple_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:purple"],
+      "cubes": { "purple_stained_glass": { "all": { "texture": "block/purple_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "purple_stained_glass" }] }]
+    },
+    {
+      "id": "base:red_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/red_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:red"],
+      "cubes": { "red_stained_glass": { "all": { "texture": "block/red_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "red_stained_glass" }] }]
+    },
+    {
+      "id": "base:slime_block",
+      "kind": "cube",
+      "template": "elements",
+      "faces": { "all": { "texture": "block/slime_block" } },
+      "surface": "translucent",
+      "tags": ["extra_geometry"],
+      "cubes": { "slime_block": { "all": { "texture": "block/slime_block" } } },
+      "variants": [{ "looks": [{ "cube": "slime_block" }] }]
+    },
+    {
+      "id": "base:tinted_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/tinted_glass" } },
+      "surface": "translucent",
+      "cubes": { "tinted_glass": { "all": { "texture": "block/tinted_glass" } } },
+      "variants": [{ "looks": [{ "cube": "tinted_glass" }] }]
+    },
+    {
+      "id": "base:white_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/white_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:white"],
+      "cubes": { "white_stained_glass": { "all": { "texture": "block/white_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "white_stained_glass" }] }]
+    },
+    {
+      "id": "base:yellow_stained_glass",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/yellow_stained_glass" } },
+      "surface": "translucent",
+      "tags": ["color:yellow"],
+      "cubes": { "yellow_stained_glass": { "all": { "texture": "block/yellow_stained_glass" } } },
+      "variants": [{ "looks": [{ "cube": "yellow_stained_glass" }] }]
+    }
+  ]
+}

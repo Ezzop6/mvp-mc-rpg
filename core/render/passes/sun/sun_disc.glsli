@@ -1,0 +1,6 @@
+// v1 sun disc texture in the sun's direction, added on sky pixels.
+#include "res://core/render/passes/sun/disc.glsli"
+
+vec3 sun_disc(vec3 c, vec3 d, bool sky, sampler2D tex) {
+	return sky ? c + sky_disc(tex, vec4(0.0, 0.0, 1.0, 1.0), d, P.sky_sun.xyz, P.sun_size) * P.sun_disc_intensity * above_horizon(d) : c;
+}

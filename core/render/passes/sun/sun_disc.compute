@@ -1,0 +1,5 @@
+#include "res://core/render/passes/sky/atmosphere.glsli"
+#include "sun_disc.glsli"
+layout(set = 0, binding = 5) uniform sampler2D disc_tex;
+
+vec3 atmosphere(vec3 c, vec3 d, bool sky, float t, vec2 uv) { return sun_disc(c, d, sky, disc_tex); }

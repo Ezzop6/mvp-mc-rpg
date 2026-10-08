@@ -1,0 +1,25 @@
+{
+  "category": "other_items",
+  "source": "import",
+  "entries": [
+    { "id": "base:black_cushion", "model": "item/black_cushion", "layers": ["item/black_cushion"] },
+    { "id": "base:blue_cushion", "model": "item/blue_cushion", "layers": ["item/blue_cushion"] },
+    { "id": "base:bowl", "model": "item/bowl", "layers": ["item/bowl"] },
+    { "id": "base:brown_cushion", "model": "item/brown_cushion", "layers": ["item/brown_cushion"] },
+    { "id": "base:cyan_cushion", "model": "item/cyan_cushion", "layers": ["item/cyan_cushion"] },
+    { "id": "base:debug_stick", "model": "item/debug_stick", "layers": ["item/stick"] },
+    { "id": "base:end_crystal", "model": "item/end_crystal", "layers": ["item/end_crystal"] },
+    { "id": "base:gray_cushion", "model": "item/gray_cushion", "layers": ["item/gray_cushion"] },
+    { "id": "base:green_cushion", "model": "item/green_cushion", "layers": ["item/green_cushion"] },
+    { "id": "base:light_blue_cushion", "model": "item/light_blue_cushion", "layers": ["item/light_blue_cushion"] },
+    { "id": "base:light_gray_cushion", "model": "item/light_gray_cushion", "layers": ["item/light_gray_cushion"] },
+    { "id": "base:lime_cushion", "model": "item/lime_cushion", "layers": ["item/lime_cushion"] },
+    { "id": "base:magenta_cushion", "model": "item/magenta_cushion", "layers": ["item/magenta_cushion"] },
+    { "id": "base:orange_cushion", "model": "item/orange_cushion", "layers": ["item/orange_cushion"] },
+    { "id": "base:pink_cushion", "model": "item/pink_cushion", "layers": ["item/pink_cushion"] },
+    { "id": "base:purple_cushion", "model": "item/purple_cushion", "layers": ["item/purple_cushion"] },
+    { "id": "base:red_cushion", "model": "item/red_cushion", "layers": ["item/red_cushion"] },
+    { "id": "base:white_cushion", "model": "item/white_cushion", "layers": ["item/white_cushion"] },
+    { "id": "base:yellow_cushion", "model": "item/yellow_cushion", "layers": ["item/yellow_cushion"] }
+  ]
+}

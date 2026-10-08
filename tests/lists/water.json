@@ -1,0 +1,18 @@
+{
+  "Note": "water (docs/v2.md \u00a75.24): the transparency world with a 20 blocks deep lake: pool by day and night, deep lake, camera under water sideways and up, glint at a low sun; 4K, Shadows and Lights on",
+  "Bookmarks": [
+    "water-pool-day",
+    "water-pool-night",
+    "water-deep",
+    "water-under-side",
+    "water-under-up",
+    "water-glint"
+  ],
+  "Capture": [
+    "Shot",
+    "PassMs"
+  ],
+  "Views": [
+    "Sun"
+  ]
+}

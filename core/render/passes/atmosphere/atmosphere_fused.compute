@@ -1,0 +1,24 @@
+// Atmosphere/fused: the members' functions in pass order (bits as AtmosphereFused.Members) on one read of Color.
+#include "res://core/render/passes/sky/atmosphere.glsli"
+#include "res://core/render/passes/sky/sky_gradient.glsli"
+#include "res://core/render/passes/stars/stars_cells.glsli"
+#include "res://core/render/passes/moon/moon_disc.glsli"
+#include "res://core/render/passes/sun/sun_disc.glsli"
+#include "res://core/render/passes/clouds/clouds_layer.glsli"
+#include "res://core/render/passes/haze/haze_analytic.glsli"
+#include "res://core/render/passes/heightfog/heightfog_analytic.glsli"
+layout(set = 0, binding = 5) uniform sampler2D sun_tex;
+layout(set = 0, binding = 6) uniform sampler2D moon_tex;
+
+bool on(uint k) { return (uint(P.fused.x) >> k & 1u) != 0u; }
+
+vec3 atmosphere(vec3 c, vec3 d, bool sky, float t, vec2 uv) {
+	if (on(0u)) c = sky_gradient(c, d, sky);
+	if (on(1u)) c = stars_cells(c, d, sky);
+	if (on(2u)) c = moon_disc(c, d, sky, moon_tex);
+	if (on(3u)) c = sun_disc(c, d, sky, sun_tex);
+	if (on(4u)) c = clouds_layer(c, d, sky);
+	if (on(5u)) c = haze_analytic(c, d, t);
+	if (on(6u)) c = heightfog_analytic(c, d, t);
+	return c;
+}

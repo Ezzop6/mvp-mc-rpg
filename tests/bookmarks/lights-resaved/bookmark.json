@@ -1,0 +1,107 @@
+{
+  "Note": "lights-outside saved again through --save-bookmark (Render filled in, region v3)",
+  "Created": "2026-10-06T21:42:38",
+  "Commit": "3dd384b-dirty",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": -1,
+      "Y": 0,
+      "Z": -1
+    },
+    "Local": {
+      "X": 7.5,
+      "Y": 6,
+      "Z": 7.5
+    },
+    "Yaw": -2.3561945,
+    "Pitch": -0.3885643
+  },
+  "TimeOfDay": 23,
+  "Width": 1920,
+  "Height": 1080,
+  "Render": {
+    "Passes": {
+      "Primary": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "dda"
+      },
+      "Shade": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "lambert"
+      },
+      "Sky": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "gradient"
+      },
+      "Stars": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "cells"
+      },
+      "Moon": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "disc"
+      },
+      "Sun": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "disc"
+      },
+      "Clouds": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "layer"
+      },
+      "Haze": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "analytic"
+      },
+      "HeightFog": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "analytic"
+      },
+      "Shafts": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "quarter-res"
+      },
+      "Temporal": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "catmull-variance"
+      },
+      "Sharpen": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "clamp4"
+      },
+      "Present": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "godot-quad"
+      }
+    },
+    "EffectsOff": false,
+    "DebugView": "None",
+    "RenderScale": 0,
+    "EffectiveScale": 1,
+    "View": "Ultra",
+    "FixedBudget": false,
+    "GenTargetMs": 2,
+    "StreamCpuMs": 3,
+    "EditChunksPerFrame": 64,
+    "Preset": null,
+    "Tune": {
+      "Values": {},
+      "Variants": {}
+    }
+  }
+}

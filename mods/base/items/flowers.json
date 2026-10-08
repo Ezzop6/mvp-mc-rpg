@@ -1,0 +1,33 @@
+{
+  "category": "flowers",
+  "source": "import",
+  "entries": [
+    { "id": "base:allium", "block": "base:allium" },
+    { "id": "base:azure_bluet", "block": "base:azure_bluet" },
+    { "id": "base:blue_orchid", "block": "base:blue_orchid" },
+    { "id": "base:cactus_flower", "block": "base:cactus_flower" },
+    { "id": "base:closed_eyeblossom", "block": "base:closed_eyeblossom" },
+    { "id": "base:cornflower", "block": "base:cornflower" },
+    { "id": "base:dandelion", "block": "base:dandelion" },
+    { "id": "base:flowering_azalea", "block": "base:flowering_azalea" },
+    { "id": "base:golden_dandelion", "block": "base:golden_dandelion" },
+    { "id": "base:lilac", "block": "base:lilac" },
+    { "id": "base:lily_of_the_valley", "block": "base:lily_of_the_valley" },
+    { "id": "base:open_eyeblossom", "block": "base:open_eyeblossom" },
+    { "id": "base:orange_tulip", "block": "base:orange_tulip" },
+    { "id": "base:oxeye_daisy", "block": "base:oxeye_daisy" },
+    { "id": "base:peony", "block": "base:peony" },
+    { "id": "base:pink_petals", "block": "base:pink_petals" },
+    { "id": "base:pink_tulip", "block": "base:pink_tulip" },
+    { "id": "base:pitcher_plant", "block": "base:pitcher_plant" },
+    { "id": "base:poppy", "block": "base:poppy" },
+    { "id": "base:red_tulip", "block": "base:red_tulip" },
+    { "id": "base:rose_bush", "block": "base:rose_bush" },
+    { "id": "base:spore_blossom", "block": "base:spore_blossom" },
+    { "id": "base:sunflower", "block": "base:sunflower" },
+    { "id": "base:torchflower", "block": "base:torchflower" },
+    { "id": "base:white_tulip", "block": "base:white_tulip" },
+    { "id": "base:wildflowers", "block": "base:wildflowers" },
+    { "id": "base:wither_rose", "block": "base:wither_rose" }
+  ]
+}

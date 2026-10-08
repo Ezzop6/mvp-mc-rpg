@@ -1,0 +1,4 @@
+#include "res://core/render/passes/sky/atmosphere.glsli"
+#include "clouds_layer.glsli"
+
+vec3 atmosphere(vec3 c, vec3 d, bool sky, float t, vec2 uv) { return clouds_layer(c, d, sky); }

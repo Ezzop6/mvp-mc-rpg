@@ -1,0 +1,238 @@
+// Raster/meshes (docs/v2.md §5.15): finds chunks of the mesh sphere whose mesh is not current, builds the nearest within the budget (greedy quads, MESH_BUILD: a workgroup per chunk), the ray start per pixel.
+layout(local_size_x = GROUP_X) in;
+#include "world.glsli"
+#include "camera.glsli"
+#include "blocks.glsli"
+#include "models.glsli"
+#include "rays.glsli"
+#define MESH_STATE
+#include "mesh.glsli"
+
+layout(set = 0, binding = 2, std430) restrict buffer Quads { uint quads[]; }; // pack_quad, PAGE_QUADS per page
+layout(set = 0, binding = 3, std430) restrict buffer Pages { Page pages[]; };
+layout(set = 0, binding = 4, std430) restrict buffer PageFree { uint page_free_stack[]; };
+layout(set = 0, binding = 8, std430) restrict buffer List { uint list[]; }; // offset indices of the stale chunks built this frame
+layout(set = 0, binding = 9, rgba16ui) restrict readonly uniform uimage2D vis; // raster_draw: xyz = cell + CELL_BIAS, w = 1 + the face axis where a quad was drawn, 0 elsewhere
+layout(set = 0, binding = 10, r32f) restrict writeonly uniform image2D start_out;
+
+layout(push_constant, std430) uniform PC { uint step; uint count; uint row; uint first; } pc;
+
+const uint NONE_KEY = 1u, PAD = uint(CHUNK) + 2u, PAD_CELLS = PAD * PAD * PAD;
+
+uint hash(uint h, uint v) { h = (h ^ v) * 0x9E3779B1u; return h ^ (h >> 16); }
+uint chunk_hash(ivec3 wc) { return hash(hash(hash(0x2545F491u, uint(wc.x)), uint(wc.y)), uint(wc.z)); }
+
+// What the chunk's mesh is built from: its directory entry, for a record the generation's stamp (records are reused); NONE_KEY when not in memory.
+uint content_key(ivec3 wc) {
+	uvec2 e = dir[chunk_slot(wc)];
+	if (e.x == NONE) return NONE_KEY;
+	uint stamp = (e.x & UNI) == 0u ? records[e.x * CHUNK_REC_WORDS + CHUNK_STAMP_WORD] : 0u;
+	return max(hash(hash(hash(0x68E31DA4u, e.x), e.y), stamp), 2u);
+}
+
+bool solid(uint w) { return w != 0u && w != MISSING && (pal_flags(w) & F_INVISIBLE) == 0u; } // a cell trace_world stops in or tests (fog blocks: Transparency)
+
+shared uint s_solid[(PAD_CELLS + 31u) / 32u]; // the chunk plus a 1 block border, a bit per block
+shared uint s_used[6 * CHUNK * CHUNK];        // per slice task: cells already covered by a quad, a 25-bit mask per row
+shared uint s_first[6 * CHUNK];               // per slice task: quad count, then its first quad index within the direction
+shared uint s_dir_quads[6], s_dir_page[7];    // per direction: quads, first local page (s_dir_page[6] = total)
+shared uint s_base, s_gen, s_key;             // free stack index of the first page (NO_PAGE = none), the slot's new generation, content key
+const uint NO_PAGE = 0xFFFFFFFFu;
+
+bool blk(ivec3 p) { uint i = uint(p.x + 1) + PAD * (uint(p.y + 1) + PAD * uint(p.z + 1)); return (s_solid[i >> 5] >> (i & 31u) & 1u) != 0u; } // chunk-local, -1..25
+
+bool face_at(int d, int s, int i, int j) {
+	int axis = d >> 1;
+	ivec2 uv = face_axes(axis);
+	ivec3 p; p[axis] = s; p[uv.x] = i; p[uv.y] = j;
+	return blk(p) && !blk(p + face_step(d));
+}
+
+// Greedy quads of slice task (d = task / 25, s = task % 25): counts them, or writes them from `first` on, same quads.
+uint slice_quads(uint task, bool emit, uint first) {
+	int d = int(task / uint(CHUNK)), s = int(task % uint(CHUNK)), axis = d >> 1;
+	ivec2 uv = face_axes(axis);
+	uint row0 = task * uint(CHUNK), n = 0u;
+	for (uint j = 0u; j < uint(CHUNK); j++) s_used[row0 + j] = 0u;
+	for (int j = 0; j < CHUNK; j++)
+		for (int i = 0; i < CHUNK; i++) {
+			if ((s_used[row0 + uint(j)] >> uint(i) & 1u) != 0u || !face_at(d, s, i, j)) continue;
+			int w = 1;
+			while (i + w < CHUNK && (s_used[row0 + uint(j)] >> uint(i + w) & 1u) == 0u && face_at(d, s, i + w, j)) w++;
+			int h = 1;
+			for (; j + h < CHUNK; h++) {
+				bool row = true;
+				for (int k = 0; k < w && row; k++) row = (s_used[row0 + uint(j + h)] >> uint(i + k) & 1u) == 0u && face_at(d, s, i + k, j + h);
+				if (!row) break;
+			}
+			uint bits = ((1u << uint(w)) - 1u) << uint(i);
+			for (int k = 0; k < h; k++) s_used[row0 + uint(j + k)] |= bits;
+			if (emit) {
+				ivec3 c; c[axis] = s; c[uv.x] = i; c[uv.y] = j;
+				uint qi = first + n, lp = s_dir_page[d] + qi / PAGE_QUADS;
+				quads[page_free_stack[s_base + lp] * PAGE_QUADS + qi % PAGE_QUADS] = pack_quad(uvec3(c), uvec2(w, h));
+			}
+			n++;
+			i += w - 1;
+		}
+	return n;
+}
+
+// The cell box lookup returns covers the whole chunk at anchor-relative c0 and is solid / see-through as asked.
+bool chunk_is(ivec3 c0, bool want_solid) {
+	ivec3 lo, hi;
+	uint w = lookup(c0, lo, hi);
+	return solid(w) == want_solid && all(lessThanEqual(lo, c0)) && all(greaterThanEqual(hi, c0 + CHUNK));
+}
+
+bool nothing_to_mesh(ivec3 c0) {
+	if (chunk_is(c0, false)) return true;
+	if (!chunk_is(c0, true)) return false;
+	for (int k = 0; k < 6; k++) if (!chunk_is(c0 + face_step(k) * CHUNK, true)) return false;
+	return true;
+}
+
+void build(uint wg, uint li) {
+	uint i = list[wg];
+	ivec3 wc = cam_chunk() + offset_at(i), c0 = (wc - cam.anchor.xyz) * CHUNK;
+	uint ms = mesh_slot(wc);
+	if (li == 0u) {
+		s_gen = slots[ms].z + 1u;
+		slots[ms].z = s_gen; // the old pages die (CULL_EARLY frees them)
+		s_key = content_key(wc);
+	}
+
+	for (uint w = li; w < (PAD_CELLS + 31u) / 32u; w += GROUP_X) {
+		uint bits = 0u;
+		for (uint b = 0u; b < 32u; b++) {
+			uint k = w * 32u + b;
+			ivec3 lo, hi, p = ivec3(k % PAD, (k / PAD) % PAD, k / (PAD * PAD)) - 1;
+			if (k < PAD_CELLS && solid(lookup(c0 + p, lo, hi))) bits |= 1u << b;
+		}
+		s_solid[w] = bits;
+	}
+	barrier();
+
+	if (li < uint(6 * CHUNK)) s_first[li] = slice_quads(li, false, 0u);
+	barrier();
+	if (li == 0u) {
+		uint pages_total = 0u, quads_total = 0u;
+		for (uint d = 0u; d < 6u; d++) {
+			uint sum = 0u;
+			for (uint s = 0u; s < uint(CHUNK); s++) { uint c = s_first[d * uint(CHUNK) + s]; s_first[d * uint(CHUNK) + s] = sum; sum += c; }
+			s_dir_quads[d] = sum;
+			s_dir_page[d] = pages_total;
+			pages_total += (sum + PAGE_QUADS - 1u) / PAGE_QUADS;
+			quads_total += sum;
+		}
+		s_dir_page[6] = pages_total;
+		s_base = NO_PAGE;
+		uint t = atomicAdd(M.taken, pages_total);
+		if (t + pages_total <= M.free_count) {
+			s_base = M.free_count - t - pages_total;
+			atomicAdd(M.popped, pages_total);
+			atomicAdd(M.quad_count, quads_total);
+			slots[ms] = uvec4(chunk_hash(wc), s_key, s_gen, 0u);
+		} else {
+			atomicAdd(M.fail_count, 1u);
+			atomicMin(M.min_stale, i);
+			slots[ms] = uvec4(chunk_hash(wc), s_key, s_gen, 1u);
+		}
+	}
+	barrier();
+	if (s_base == NO_PAGE) return;
+
+	if (li < uint(6 * CHUNK)) slice_quads(li, true, s_first[li]);
+	memoryBarrierBuffer();
+	barrier();
+
+	for (uint lp = li; lp < s_dir_page[6]; lp += GROUP_X) {
+		uint d = 0u;
+		while (lp >= s_dir_page[d + 1u]) d++;
+		uint page = page_free_stack[s_base + lp], q0 = (lp - s_dir_page[d]) * PAGE_QUADS, n = min(PAGE_QUADS, s_dir_quads[d] - q0);
+		int axis = int(d >> 1u);
+		ivec2 uv = face_axes(axis);
+		uvec3 lo = uvec3(31u), hi = uvec3(0u);
+		for (uint k = 0u; k < n; k++) {
+			uint q = quads[page * PAGE_QUADS + k];
+			uvec3 a = unpack5(q), b = a;
+			a[axis] += d & 1u; b[axis] = a[axis];
+			uvec2 size = quad_size(q);
+			b[uv.x] += size.x;
+			b[uv.y] += size.y;
+			lo = min(lo, a); hi = max(hi, b);
+		}
+		pages[page] = Page(ivec4(wc, int(d | n << 8)), uvec4(pack5(lo), pack5(hi), s_gen, 0u));
+		atomicMax(M.page_high, page + 1u);
+	}
+}
+
+// MESH_DIRTY, thread i = offset i from the camera chunk: the shell past the sphere drops meshes; a changed chunk is noted once and makes itself and its neighbours stale.
+void dirty(uint i) {
+	ivec3 wc = cam_chunk() + offset_at(i);
+	uint ms = mesh_slot(wc);
+	uvec4 s = slots[ms];
+	if (i >= M.inside) {
+		if (s.y != 0u) slots[ms] = uvec4(s.x, 0u, s.z + 1u, 0u);
+		return;
+	}
+	uint key = content_key(wc);
+	if (s.x != chunk_hash(wc) || s.y == 0u || s.y == key) return;
+	for (int k = 0; k < 6; k++) slots[mesh_slot(wc + face_step(k))].w = 1u;
+	slots[ms].yw = uvec2(key, 1u);
+}
+
+// A stale chunk without faces (air, or solid inside solid) is current at once, the rest go to MESH_BUILD; one not in memory limits the trusted radius (rays there go to a coarser level).
+void check(uint i) {
+	ivec3 wc = cam_chunk() + offset_at(i);
+	uint ms = mesh_slot(wc), key = content_key(wc);
+	if (key == NONE_KEY) atomicMin(M.min_stale, i);
+	uvec4 s = slots[ms];
+	if (s.x == chunk_hash(wc) && s.y == key && s.w == 0u) return;
+	if (nothing_to_mesh((wc - cam.anchor.xyz) * CHUNK)) { slots[ms] = uvec4(chunk_hash(wc), key, s.z + 1u, 0u); return; }
+	uint k = atomicAdd(M.list_count, 1u);
+	if (k < pc.first) list[k] = i;
+	else atomicMin(M.min_stale, i);
+}
+
+// Where the pixel's primary ray starts: where it crosses the plane of the face drawn in the pixel (as trace_world computes it), at most the trusted radius; at the camera when it is in a cell rays stop in.
+void start(uint i) {
+	ivec2 size = imageSize(start_out), px = ivec2(int(i % uint(size.x)), int(i / uint(size.x)));
+	float t = M.cam_solid != 0u ? 0.0 : M.trust;
+	uvec4 v = imageLoad(vis, px);
+	if (t > 0.0 && v.w != 0u) {
+		vec3 rd = safe_dir(pixel_dir(px, size)), tn = (vec3(ivec3(v.xyz) - CELL_BIAS) + vec3(lessThan(rd, vec3(0.0))) - cam.frac.xyz) * (1.0 / rd);
+		t = min(t, tn[v.w - 1u]);
+	}
+	imageStore(start_out, px, vec4(max(t, 0.0)));
+}
+
+void main() {
+	if (pc.step == MESH_BUILD) { ring_setup(); build(gl_WorkGroupID.x, gl_LocalInvocationIndex); return; }
+	uint i = gl_GlobalInvocationID.x + gl_GlobalInvocationID.y * pc.row;
+	if (i >= pc.count) return;
+	if (pc.step == MESH_RESET) {
+		uint r = uint(M.ring);
+		if (i < M.page_cap) { page_free_stack[i] = M.page_cap - 1u - i; pages[i].chunk.w = 0; }
+		if (i < r * r * r) slots[i] = uvec4(0u);
+		if (i == 0u) { M.free_count = M.page_cap; M.taken = 0u; M.popped = 0u; M.pushed = 0u; M.fail_count = 0u; M.quad_count = 0u; M.page_high = 0u; }
+	} else if (pc.step == MESH_DIRTY) {
+		if (i == 0u) {
+			ring_setup();
+			ivec3 lo, hi;
+			M.cam_solid = lookup(ivec3(floor(cam.frac.xyz)), lo, hi) != 0u ? 1u : 0u;
+			M.list_count = 0u;
+			M.min_stale = M.inside;
+		}
+		dirty(i);
+	} else if (pc.step == MESH_CHECK) { ring_setup(); check(i); }
+	else if (pc.step == MESH_ARGS) M.build_args = uint[](min(M.list_count, pc.first), 1u, 1u);
+	else if (pc.step == MESH_FINALIZE) {
+		M.free_count -= M.popped;
+		M.popped = 0u;
+		M.taken = 0u;
+		M.trust = max(length(vec3(offset_at(M.min_stale))) - sqrt(3.0), 0.0) * float(CHUNK);
+		M.cull_args = uint[]((M.page_high + pc.first - 1u) / pc.first, 1u, 1u);
+		for (int k = 0; k < 2; k++) M.draw[k] = DrawArgs(PAGE_QUADS * QUAD_INDICES, 0u, 0u, 0u, 0u);
+	} else if (pc.step == MESH_START) start(i);
+}

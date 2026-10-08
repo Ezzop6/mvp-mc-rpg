@@ -1,0 +1,80 @@
+// Raster/meshes: two-phase occlusion culling of mesh pages against the depth pyramid (v1 cull.compute); frees the pages of meshes built again.
+layout(local_size_x = GROUP_X) in;
+#include "camera.glsli"
+#define MESH_STATE
+#include "mesh.glsli"
+
+layout(set = 0, binding = 3, std430) restrict buffer Pages { Page pages[]; };
+layout(set = 0, binding = 4, std430) restrict buffer PageFree { uint page_free_stack[]; };
+layout(set = 0, binding = 11, std430) restrict writeonly buffer Visible { uint visible[]; }; // draw 0 from 0, draw 1 from page_cap
+layout(set = 0, binding = 12, std430) restrict buffer PageVis { uint page_vis[]; };         // 1 = visible last frame
+layout(set = 0, binding = 13) uniform sampler2D hiz; // mip m texel: farthest depth (reverse Z: smallest) over 2^(m+1) px squared
+
+layout(push_constant, std430) uniform PC { uint step; uint count; uint row; uint first; } pc;
+
+// Camera-relative box of the page's quads; false outside the mesh sphere with its shell, if every quad faces away or the box is outside the frustum.
+bool in_view(Page p, out vec3 lo, out vec3 hi) {
+	ivec3 d = p.chunk.xyz - cam_chunk(), e = offset_at(M.total - 1u);
+	if (dot(d, d) > dot(e, e)) return false;
+	int dir = page_dir(p.chunk.w), axis = dir >> 1;
+	vec3 o = vec3((p.chunk.xyz - cam.anchor.xyz) * CHUNK) - cam.frac.xyz;
+	lo = o + vec3(unpack5(p.box.x)); hi = o + vec3(unpack5(p.box.y));
+	if ((dir & 1) != 0 ? lo[axis] >= 0.0 : hi[axis] <= 0.0) return false;
+	float th = cam.fwd.w * 1.02, tw = th * cam.right.w;
+	vec3 n[4] = vec3[](cam.fwd.xyz * tw + cam.right.xyz, cam.fwd.xyz * tw - cam.right.xyz, cam.fwd.xyz * th + cam.up.xyz, cam.fwd.xyz * th - cam.up.xyz);
+	for (int k = 0; k < 4; k++)
+		if (dot(n[k], mix(lo, hi, greaterThan(n[k], vec3(0.0)))) < 0.0) return false;
+	return true;
+}
+
+bool occluded(vec3 lo, vec3 hi) {
+	float th = cam.fwd.w, tw = th * cam.right.w;
+	vec2 size = vec2(2.0 * th / cam.lens.x * cam.right.w, 2.0 * th / cam.lens.x);
+	vec2 mn = vec2(1e9), mx = vec2(-1e9);
+	float zmin = 1e9;
+	for (int k = 0; k < 8; k++) {
+		vec3 p = mix(lo, hi, bvec3((k & 1) != 0, (k & 2) != 0, (k & 4) != 0));
+		float z = dot(p, cam.fwd.xyz);
+		if (z < RASTER_NEAR) return false;
+		vec2 ndc = vec2(dot(p, cam.right.xyz) / (z * tw), -dot(p, cam.up.xyz) / (z * th));
+		mn = min(mn, ndc); mx = max(mx, ndc);
+		zmin = min(zmin, z);
+	}
+	vec2 pmin = max((mn * 0.5 + 0.5) * size - 1.0, vec2(0.0)), pmax = min((mx * 0.5 + 0.5) * size + 1.0, size - 1.0);
+	if (any(greaterThan(pmin, pmax))) return false;
+	// Mip whose texels are at least as big as the rectangle: it touches at most 2x2 of them.
+	float ext = max(pmax.x - pmin.x, pmax.y - pmin.y);
+	int levels = textureQueryLevels(hiz), m = clamp(int(ceil(log2(max(ext, 1.0)))) - 1, 0, levels - 1);
+	ivec2 msize = textureSize(hiz, m) - 1;
+	ivec2 a = min(ivec2(pmin) >> (m + 1), msize), b = min(ivec2(pmax) >> (m + 1), msize);
+	float far = min(min(texelFetch(hiz, a, m).r, texelFetch(hiz, ivec2(b.x, a.y), m).r), min(texelFetch(hiz, ivec2(a.x, b.y), m).r, texelFetch(hiz, b, m).r));
+	return RASTER_NEAR / zmin < far;
+}
+
+void main() {
+	uint i = gl_GlobalInvocationID.x;
+	if (pc.step == MESH_APPLY_FREE) {
+		if (i == 0u) { M.free_count += M.pushed; M.pushed = 0u; }
+		return;
+	}
+	if (i >= M.page_high) return;
+	Page p = pages[i];
+	int quads = page_quads(p.chunk.w);
+	if (quads == 0) return;
+	if (pc.step == MESH_CULL_EARLY && page_gen(p.chunk.xyz) != p.box.z) {
+		atomicAdd(M.quad_count, uint(-quads));
+		pages[i].chunk.w = 0;
+		page_vis[i] = 0u;
+		page_free_stack[M.free_count + atomicAdd(M.pushed, 1u)] = i;
+		return;
+	}
+	vec3 lo, hi;
+	bool live = in_view(p, lo, hi);
+	if (pc.step == MESH_CULL_EARLY) {
+		if (live && page_vis[i] != 0u) visible[atomicAdd(M.draw[0].instance_count, 1u)] = i;
+	} else if (pc.step == MESH_CULL_LATE) {
+		bool vis = live && !occluded(lo, hi);
+		if (vis && page_vis[i] == 0u) visible[M.page_cap + atomicAdd(M.draw[1].instance_count, 1u)] = i;
+		page_vis[i] = vis ? 1u : 0u;
+	}
+}

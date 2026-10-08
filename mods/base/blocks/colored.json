@@ -1,0 +1,958 @@
+{
+  "category": "colored",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:black_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/black_concrete" } },
+      "tags": ["color:black"],
+      "cubes": { "black_concrete": { "all": { "texture": "block/black_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "black_concrete" }] }]
+    },
+    {
+      "id": "base:black_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/black_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/black_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/black_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/black_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/black_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/black_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:black"],
+      "cubes": {
+        "black_glazed_terracotta": {
+          "top": { "texture": "block/black_glazed_terracotta" },
+          "bottom": { "texture": "block/black_glazed_terracotta" },
+          "front": { "texture": "block/black_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/black_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/black_glazed_terracotta" },
+          "right": { "texture": "block/black_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "black_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "black_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "black_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "black_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:black_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/black_terracotta" } },
+      "tags": ["color:black"],
+      "cubes": { "black_terracotta": { "all": { "texture": "block/black_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "black_terracotta" }] }]
+    },
+    {
+      "id": "base:black_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/black_wool" } },
+      "tags": ["color:black"],
+      "cubes": { "black_wool": { "all": { "texture": "block/black_wool" } } },
+      "variants": [{ "looks": [{ "cube": "black_wool" }] }]
+    },
+    {
+      "id": "base:blue_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/blue_concrete" } },
+      "tags": ["color:blue"],
+      "cubes": { "blue_concrete": { "all": { "texture": "block/blue_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "blue_concrete" }] }]
+    },
+    {
+      "id": "base:blue_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/blue_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/blue_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/blue_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/blue_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/blue_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/blue_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:blue"],
+      "cubes": {
+        "blue_glazed_terracotta": {
+          "top": { "texture": "block/blue_glazed_terracotta" },
+          "bottom": { "texture": "block/blue_glazed_terracotta" },
+          "front": { "texture": "block/blue_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/blue_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/blue_glazed_terracotta" },
+          "right": { "texture": "block/blue_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "blue_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "blue_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "blue_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "blue_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:blue_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/blue_terracotta" } },
+      "tags": ["color:blue"],
+      "cubes": { "blue_terracotta": { "all": { "texture": "block/blue_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "blue_terracotta" }] }]
+    },
+    {
+      "id": "base:blue_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/blue_wool" } },
+      "tags": ["color:blue"],
+      "cubes": { "blue_wool": { "all": { "texture": "block/blue_wool" } } },
+      "variants": [{ "looks": [{ "cube": "blue_wool" }] }]
+    },
+    {
+      "id": "base:brown_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/brown_concrete" } },
+      "tags": ["color:brown"],
+      "cubes": { "brown_concrete": { "all": { "texture": "block/brown_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "brown_concrete" }] }]
+    },
+    {
+      "id": "base:brown_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/brown_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/brown_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/brown_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/brown_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/brown_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/brown_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:brown"],
+      "cubes": {
+        "brown_glazed_terracotta": {
+          "top": { "texture": "block/brown_glazed_terracotta" },
+          "bottom": { "texture": "block/brown_glazed_terracotta" },
+          "front": { "texture": "block/brown_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/brown_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/brown_glazed_terracotta" },
+          "right": { "texture": "block/brown_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "brown_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "brown_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "brown_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "brown_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:brown_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/brown_terracotta" } },
+      "tags": ["color:brown"],
+      "cubes": { "brown_terracotta": { "all": { "texture": "block/brown_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "brown_terracotta" }] }]
+    },
+    {
+      "id": "base:brown_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/brown_wool" } },
+      "tags": ["color:brown"],
+      "cubes": { "brown_wool": { "all": { "texture": "block/brown_wool" } } },
+      "variants": [{ "looks": [{ "cube": "brown_wool" }] }]
+    },
+    {
+      "id": "base:cyan_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cyan_concrete" } },
+      "tags": ["color:cyan"],
+      "cubes": { "cyan_concrete": { "all": { "texture": "block/cyan_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "cyan_concrete" }] }]
+    },
+    {
+      "id": "base:cyan_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/cyan_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/cyan_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/cyan_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/cyan_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/cyan_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/cyan_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:cyan"],
+      "cubes": {
+        "cyan_glazed_terracotta": {
+          "top": { "texture": "block/cyan_glazed_terracotta" },
+          "bottom": { "texture": "block/cyan_glazed_terracotta" },
+          "front": { "texture": "block/cyan_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/cyan_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/cyan_glazed_terracotta" },
+          "right": { "texture": "block/cyan_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "cyan_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "cyan_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "cyan_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "cyan_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:cyan_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cyan_terracotta" } },
+      "tags": ["color:cyan"],
+      "cubes": { "cyan_terracotta": { "all": { "texture": "block/cyan_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "cyan_terracotta" }] }]
+    },
+    {
+      "id": "base:cyan_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/cyan_wool" } },
+      "tags": ["color:cyan"],
+      "cubes": { "cyan_wool": { "all": { "texture": "block/cyan_wool" } } },
+      "variants": [{ "looks": [{ "cube": "cyan_wool" }] }]
+    },
+    {
+      "id": "base:gray_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/gray_concrete" } },
+      "tags": ["color:gray"],
+      "cubes": { "gray_concrete": { "all": { "texture": "block/gray_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "gray_concrete" }] }]
+    },
+    {
+      "id": "base:gray_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/gray_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/gray_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/gray_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/gray_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/gray_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/gray_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:gray"],
+      "cubes": {
+        "gray_glazed_terracotta": {
+          "top": { "texture": "block/gray_glazed_terracotta" },
+          "bottom": { "texture": "block/gray_glazed_terracotta" },
+          "front": { "texture": "block/gray_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/gray_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/gray_glazed_terracotta" },
+          "right": { "texture": "block/gray_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "gray_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "gray_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "gray_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "gray_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:gray_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/gray_terracotta" } },
+      "tags": ["color:gray"],
+      "cubes": { "gray_terracotta": { "all": { "texture": "block/gray_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "gray_terracotta" }] }]
+    },
+    {
+      "id": "base:gray_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/gray_wool" } },
+      "tags": ["color:gray"],
+      "cubes": { "gray_wool": { "all": { "texture": "block/gray_wool" } } },
+      "variants": [{ "looks": [{ "cube": "gray_wool" }] }]
+    },
+    {
+      "id": "base:green_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/green_concrete" } },
+      "tags": ["color:green"],
+      "cubes": { "green_concrete": { "all": { "texture": "block/green_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "green_concrete" }] }]
+    },
+    {
+      "id": "base:green_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/green_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/green_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/green_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/green_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/green_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/green_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:green"],
+      "cubes": {
+        "green_glazed_terracotta": {
+          "top": { "texture": "block/green_glazed_terracotta" },
+          "bottom": { "texture": "block/green_glazed_terracotta" },
+          "front": { "texture": "block/green_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/green_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/green_glazed_terracotta" },
+          "right": { "texture": "block/green_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "green_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "green_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "green_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "green_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:green_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/green_terracotta" } },
+      "tags": ["color:green"],
+      "cubes": { "green_terracotta": { "all": { "texture": "block/green_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "green_terracotta" }] }]
+    },
+    {
+      "id": "base:green_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/green_wool" } },
+      "tags": ["color:green"],
+      "cubes": { "green_wool": { "all": { "texture": "block/green_wool" } } },
+      "variants": [{ "looks": [{ "cube": "green_wool" }] }]
+    },
+    {
+      "id": "base:light_blue_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/light_blue_concrete" } },
+      "tags": ["color:light_blue"],
+      "cubes": { "light_blue_concrete": { "all": { "texture": "block/light_blue_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "light_blue_concrete" }] }]
+    },
+    {
+      "id": "base:light_blue_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/light_blue_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/light_blue_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/light_blue_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/light_blue_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/light_blue_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/light_blue_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:light_blue"],
+      "cubes": {
+        "light_blue_glazed_terracotta": {
+          "top": { "texture": "block/light_blue_glazed_terracotta" },
+          "bottom": { "texture": "block/light_blue_glazed_terracotta" },
+          "front": { "texture": "block/light_blue_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/light_blue_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/light_blue_glazed_terracotta" },
+          "right": { "texture": "block/light_blue_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "light_blue_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "light_blue_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "light_blue_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "light_blue_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:light_blue_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/light_blue_terracotta" } },
+      "tags": ["color:light_blue"],
+      "cubes": { "light_blue_terracotta": { "all": { "texture": "block/light_blue_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "light_blue_terracotta" }] }]
+    },
+    {
+      "id": "base:light_blue_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/light_blue_wool" } },
+      "tags": ["color:light_blue"],
+      "cubes": { "light_blue_wool": { "all": { "texture": "block/light_blue_wool" } } },
+      "variants": [{ "looks": [{ "cube": "light_blue_wool" }] }]
+    },
+    {
+      "id": "base:light_gray_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/light_gray_concrete" } },
+      "tags": ["color:light_gray"],
+      "cubes": { "light_gray_concrete": { "all": { "texture": "block/light_gray_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "light_gray_concrete" }] }]
+    },
+    {
+      "id": "base:light_gray_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/light_gray_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/light_gray_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/light_gray_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/light_gray_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/light_gray_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/light_gray_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:light_gray"],
+      "cubes": {
+        "light_gray_glazed_terracotta": {
+          "top": { "texture": "block/light_gray_glazed_terracotta" },
+          "bottom": { "texture": "block/light_gray_glazed_terracotta" },
+          "front": { "texture": "block/light_gray_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/light_gray_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/light_gray_glazed_terracotta" },
+          "right": { "texture": "block/light_gray_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "light_gray_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "light_gray_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "light_gray_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "light_gray_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:light_gray_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/light_gray_terracotta" } },
+      "tags": ["color:light_gray"],
+      "cubes": { "light_gray_terracotta": { "all": { "texture": "block/light_gray_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "light_gray_terracotta" }] }]
+    },
+    {
+      "id": "base:light_gray_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/light_gray_wool" } },
+      "tags": ["color:light_gray"],
+      "cubes": { "light_gray_wool": { "all": { "texture": "block/light_gray_wool" } } },
+      "variants": [{ "looks": [{ "cube": "light_gray_wool" }] }]
+    },
+    {
+      "id": "base:lime_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/lime_concrete" } },
+      "tags": ["color:lime"],
+      "cubes": { "lime_concrete": { "all": { "texture": "block/lime_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "lime_concrete" }] }]
+    },
+    {
+      "id": "base:lime_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/lime_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/lime_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/lime_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/lime_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/lime_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/lime_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:lime"],
+      "cubes": {
+        "lime_glazed_terracotta": {
+          "top": { "texture": "block/lime_glazed_terracotta" },
+          "bottom": { "texture": "block/lime_glazed_terracotta" },
+          "front": { "texture": "block/lime_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/lime_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/lime_glazed_terracotta" },
+          "right": { "texture": "block/lime_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "lime_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "lime_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "lime_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "lime_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:lime_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/lime_terracotta" } },
+      "tags": ["color:lime"],
+      "cubes": { "lime_terracotta": { "all": { "texture": "block/lime_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "lime_terracotta" }] }]
+    },
+    {
+      "id": "base:lime_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/lime_wool" } },
+      "tags": ["color:lime"],
+      "cubes": { "lime_wool": { "all": { "texture": "block/lime_wool" } } },
+      "variants": [{ "looks": [{ "cube": "lime_wool" }] }]
+    },
+    {
+      "id": "base:magenta_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/magenta_concrete" } },
+      "tags": ["color:magenta"],
+      "cubes": { "magenta_concrete": { "all": { "texture": "block/magenta_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "magenta_concrete" }] }]
+    },
+    {
+      "id": "base:magenta_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/magenta_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/magenta_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/magenta_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/magenta_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/magenta_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/magenta_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:magenta"],
+      "cubes": {
+        "magenta_glazed_terracotta": {
+          "top": { "texture": "block/magenta_glazed_terracotta" },
+          "bottom": { "texture": "block/magenta_glazed_terracotta" },
+          "front": { "texture": "block/magenta_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/magenta_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/magenta_glazed_terracotta" },
+          "right": { "texture": "block/magenta_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "magenta_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "magenta_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "magenta_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "magenta_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:magenta_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/magenta_terracotta" } },
+      "tags": ["color:magenta"],
+      "cubes": { "magenta_terracotta": { "all": { "texture": "block/magenta_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "magenta_terracotta" }] }]
+    },
+    {
+      "id": "base:magenta_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/magenta_wool" } },
+      "tags": ["color:magenta"],
+      "cubes": { "magenta_wool": { "all": { "texture": "block/magenta_wool" } } },
+      "variants": [{ "looks": [{ "cube": "magenta_wool" }] }]
+    },
+    {
+      "id": "base:orange_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/orange_concrete" } },
+      "tags": ["color:orange"],
+      "cubes": { "orange_concrete": { "all": { "texture": "block/orange_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "orange_concrete" }] }]
+    },
+    {
+      "id": "base:orange_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/orange_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/orange_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/orange_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/orange_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/orange_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/orange_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:orange"],
+      "cubes": {
+        "orange_glazed_terracotta": {
+          "top": { "texture": "block/orange_glazed_terracotta" },
+          "bottom": { "texture": "block/orange_glazed_terracotta" },
+          "front": { "texture": "block/orange_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/orange_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/orange_glazed_terracotta" },
+          "right": { "texture": "block/orange_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "orange_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "orange_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "orange_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "orange_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:orange_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/orange_terracotta" } },
+      "tags": ["color:orange"],
+      "cubes": { "orange_terracotta": { "all": { "texture": "block/orange_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "orange_terracotta" }] }]
+    },
+    {
+      "id": "base:orange_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/orange_wool" } },
+      "tags": ["color:orange"],
+      "cubes": { "orange_wool": { "all": { "texture": "block/orange_wool" } } },
+      "variants": [{ "looks": [{ "cube": "orange_wool" }] }]
+    },
+    {
+      "id": "base:pink_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/pink_concrete" } },
+      "tags": ["color:pink"],
+      "cubes": { "pink_concrete": { "all": { "texture": "block/pink_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "pink_concrete" }] }]
+    },
+    {
+      "id": "base:pink_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/pink_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/pink_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/pink_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/pink_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/pink_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/pink_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:pink"],
+      "cubes": {
+        "pink_glazed_terracotta": {
+          "top": { "texture": "block/pink_glazed_terracotta" },
+          "bottom": { "texture": "block/pink_glazed_terracotta" },
+          "front": { "texture": "block/pink_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/pink_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/pink_glazed_terracotta" },
+          "right": { "texture": "block/pink_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "pink_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "pink_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "pink_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "pink_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:pink_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/pink_terracotta" } },
+      "tags": ["color:pink"],
+      "cubes": { "pink_terracotta": { "all": { "texture": "block/pink_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "pink_terracotta" }] }]
+    },
+    {
+      "id": "base:pink_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/pink_wool" } },
+      "tags": ["color:pink"],
+      "cubes": { "pink_wool": { "all": { "texture": "block/pink_wool" } } },
+      "variants": [{ "looks": [{ "cube": "pink_wool" }] }]
+    },
+    {
+      "id": "base:purple_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/purple_concrete" } },
+      "tags": ["color:purple"],
+      "cubes": { "purple_concrete": { "all": { "texture": "block/purple_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "purple_concrete" }] }]
+    },
+    {
+      "id": "base:purple_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/purple_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/purple_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/purple_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/purple_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/purple_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/purple_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:purple"],
+      "cubes": {
+        "purple_glazed_terracotta": {
+          "top": { "texture": "block/purple_glazed_terracotta" },
+          "bottom": { "texture": "block/purple_glazed_terracotta" },
+          "front": { "texture": "block/purple_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/purple_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/purple_glazed_terracotta" },
+          "right": { "texture": "block/purple_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "purple_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "purple_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "purple_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "purple_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:purple_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/purple_terracotta" } },
+      "tags": ["color:purple"],
+      "cubes": { "purple_terracotta": { "all": { "texture": "block/purple_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "purple_terracotta" }] }]
+    },
+    {
+      "id": "base:purple_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/purple_wool" } },
+      "tags": ["color:purple"],
+      "cubes": { "purple_wool": { "all": { "texture": "block/purple_wool" } } },
+      "variants": [{ "looks": [{ "cube": "purple_wool" }] }]
+    },
+    {
+      "id": "base:red_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/red_concrete" } },
+      "tags": ["color:red"],
+      "cubes": { "red_concrete": { "all": { "texture": "block/red_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "red_concrete" }] }]
+    },
+    {
+      "id": "base:red_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/red_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/red_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/red_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/red_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/red_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/red_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:red"],
+      "cubes": {
+        "red_glazed_terracotta": {
+          "top": { "texture": "block/red_glazed_terracotta" },
+          "bottom": { "texture": "block/red_glazed_terracotta" },
+          "front": { "texture": "block/red_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/red_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/red_glazed_terracotta" },
+          "right": { "texture": "block/red_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "red_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "red_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "red_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "red_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:red_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/red_terracotta" } },
+      "tags": ["color:red"],
+      "cubes": { "red_terracotta": { "all": { "texture": "block/red_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "red_terracotta" }] }]
+    },
+    {
+      "id": "base:red_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/red_wool" } },
+      "tags": ["color:red"],
+      "cubes": { "red_wool": { "all": { "texture": "block/red_wool" } } },
+      "variants": [{ "looks": [{ "cube": "red_wool" }] }]
+    },
+    {
+      "id": "base:terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/terracotta" } },
+      "cubes": { "terracotta": { "all": { "texture": "block/terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "terracotta" }] }]
+    },
+    {
+      "id": "base:white_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/white_concrete" } },
+      "tags": ["color:white"],
+      "cubes": { "white_concrete": { "all": { "texture": "block/white_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "white_concrete" }] }]
+    },
+    {
+      "id": "base:white_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/white_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/white_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/white_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/white_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/white_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/white_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:white"],
+      "cubes": {
+        "white_glazed_terracotta": {
+          "top": { "texture": "block/white_glazed_terracotta" },
+          "bottom": { "texture": "block/white_glazed_terracotta" },
+          "front": { "texture": "block/white_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/white_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/white_glazed_terracotta" },
+          "right": { "texture": "block/white_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "white_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "white_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "white_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "white_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:white_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/white_terracotta" } },
+      "tags": ["color:white"],
+      "cubes": { "white_terracotta": { "all": { "texture": "block/white_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "white_terracotta" }] }]
+    },
+    {
+      "id": "base:white_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/white_wool" } },
+      "tags": ["color:white"],
+      "cubes": { "white_wool": { "all": { "texture": "block/white_wool" } } },
+      "variants": [{ "looks": [{ "cube": "white_wool" }] }]
+    },
+    {
+      "id": "base:yellow_concrete",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/yellow_concrete" } },
+      "tags": ["color:yellow"],
+      "cubes": { "yellow_concrete": { "all": { "texture": "block/yellow_concrete" } } },
+      "variants": [{ "looks": [{ "cube": "yellow_concrete" }] }]
+    },
+    {
+      "id": "base:yellow_glazed_terracotta",
+      "kind": "cube",
+      "template": "template_glazed_terracotta",
+      "faces": {
+        "top": { "texture": "block/yellow_glazed_terracotta", "rotation": 180 },
+        "bottom": { "texture": "block/yellow_glazed_terracotta", "rotation": 180 },
+        "front": { "texture": "block/yellow_glazed_terracotta", "rotation": 270 },
+        "back": { "texture": "block/yellow_glazed_terracotta", "rotation": 90 },
+        "left": { "texture": "block/yellow_glazed_terracotta", "rotation": 180 },
+        "right": { "texture": "block/yellow_glazed_terracotta" }
+      },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["color:yellow"],
+      "cubes": {
+        "yellow_glazed_terracotta": {
+          "top": { "texture": "block/yellow_glazed_terracotta" },
+          "bottom": { "texture": "block/yellow_glazed_terracotta" },
+          "front": { "texture": "block/yellow_glazed_terracotta", "rotation": 90 },
+          "back": { "texture": "block/yellow_glazed_terracotta", "rotation": 270 },
+          "left": { "texture": "block/yellow_glazed_terracotta" },
+          "right": { "texture": "block/yellow_glazed_terracotta", "rotation": 180 }
+        }
+      },
+      "variants": [
+        { "when": { "facing": "east" }, "looks": [{ "cube": "yellow_glazed_terracotta", "y": 270 }] },
+        { "when": { "facing": "north" }, "looks": [{ "cube": "yellow_glazed_terracotta", "y": 180 }] },
+        { "when": { "facing": "south" }, "looks": [{ "cube": "yellow_glazed_terracotta" }] },
+        { "when": { "facing": "west" }, "looks": [{ "cube": "yellow_glazed_terracotta", "y": 90 }] }
+      ]
+    },
+    {
+      "id": "base:yellow_terracotta",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/yellow_terracotta" } },
+      "tags": ["color:yellow"],
+      "cubes": { "yellow_terracotta": { "all": { "texture": "block/yellow_terracotta" } } },
+      "variants": [{ "looks": [{ "cube": "yellow_terracotta" }] }]
+    },
+    {
+      "id": "base:yellow_wool",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/yellow_wool" } },
+      "tags": ["color:yellow"],
+      "cubes": { "yellow_wool": { "all": { "texture": "block/yellow_wool" } } },
+      "variants": [{ "looks": [{ "cube": "yellow_wool" }] }]
+    }
+  ]
+}

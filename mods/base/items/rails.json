@@ -1,0 +1,10 @@
+{
+  "category": "rails",
+  "source": "import",
+  "entries": [
+    { "id": "base:activator_rail", "block": "base:activator_rail" },
+    { "id": "base:detector_rail", "block": "base:detector_rail" },
+    { "id": "base:powered_rail", "block": "base:powered_rail" },
+    { "id": "base:rail", "block": "base:rail" }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "category": "mechanisms",
+  "source": "import",
+  "entries": [
+    { "id": "base:calibrated_sculk_sensor", "block": "base:calibrated_sculk_sensor" },
+    { "id": "base:crafter", "block": "base:crafter" },
+    { "id": "base:daylight_detector", "block": "base:daylight_detector" },
+    { "id": "base:dispenser", "block": "base:dispenser" },
+    { "id": "base:dropper", "block": "base:dropper" },
+    { "id": "base:exposed_lightning_rod", "block": "base:exposed_lightning_rod" },
+    { "id": "base:hopper", "block": "base:hopper" },
+    { "id": "base:lightning_rod", "block": "base:lightning_rod" },
+    { "id": "base:note_block", "block": "base:note_block" },
+    { "id": "base:observer", "block": "base:observer" },
+    { "id": "base:oxidized_lightning_rod", "block": "base:oxidized_lightning_rod" },
+    { "id": "base:piston", "block": "base:piston" },
+    { "id": "base:sculk_sensor", "block": "base:sculk_sensor" },
+    { "id": "base:sculk_shrieker", "block": "base:sculk_shrieker" },
+    { "id": "base:sticky_piston", "block": "base:sticky_piston" },
+    { "id": "base:target", "block": "base:target" },
+    { "id": "base:tnt", "block": "base:tnt" },
+    { "id": "base:tripwire_hook", "block": "base:tripwire_hook" },
+    { "id": "base:waxed_exposed_lightning_rod", "block": "base:waxed_exposed_lightning_rod" },
+    { "id": "base:waxed_lightning_rod", "block": "base:waxed_lightning_rod" },
+    { "id": "base:waxed_oxidized_lightning_rod", "block": "base:waxed_oxidized_lightning_rod" },
+    { "id": "base:waxed_weathered_lightning_rod", "block": "base:waxed_weathered_lightning_rod" },
+    { "id": "base:weathered_lightning_rod", "block": "base:weathered_lightning_rod" }
+  ]
+}

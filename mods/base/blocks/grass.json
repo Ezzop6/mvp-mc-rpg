@@ -1,0 +1,184 @@
+{
+  "category": "grass",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:bush",
+      "kind": "cross",
+      "template": "tinted_cross",
+      "textures": { "cross": "block/bush", "particle": "block/bush" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "tags": ["random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "bush" },
+            { "model": "bush", "y": 90 },
+            { "model": "bush", "y": 180 },
+            { "model": "bush", "y": 270 },
+            { "model": "bush2" },
+            { "model": "bush2", "y": 90 },
+            { "model": "bush2", "y": 180 },
+            { "model": "bush2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:dead_bush",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/dead_bush", "particle": "block/dead_bush" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        { "looks": [{ "model": "dead_bush" }, { "model": "dead_bush", "y": 90 }, { "model": "dead_bush", "y": 180 }, { "model": "dead_bush", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:fern",
+      "kind": "cross",
+      "template": "tinted_cross",
+      "textures": { "cross": "block/fern", "particle": "block/fern" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "tags": ["random_rotation"],
+      "variants": [{ "looks": [{ "model": "fern" }, { "model": "fern", "y": 90 }, { "model": "fern", "y": 180 }, { "model": "fern", "y": 270 }] }]
+    },
+    {
+      "id": "base:firefly_bush",
+      "kind": "custom",
+      "textures": { "cross": "block/firefly_bush", "cross_emissive": "block/firefly_bush_emissive", "particle": "block/firefly_bush" },
+      "surface": "cutout",
+      "light": { "level": 2, "color": "#f8ff95" },
+      "tags": ["animated", "random_variants"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "firefly_bush" },
+            { "model": "firefly_bush", "y": 90 },
+            { "model": "firefly_bush", "y": 180 },
+            { "model": "firefly_bush", "y": 270 },
+            { "model": "firefly_bush2" },
+            { "model": "firefly_bush2", "y": 90 },
+            { "model": "firefly_bush2", "y": 180 },
+            { "model": "firefly_bush2", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:large_fern",
+      "kind": "cross",
+      "template": "tinted_cross",
+      "textures": {
+        "cross": "block/large_fern_bottom",
+        "extra": "block/extra/large_fern_bottom_extra",
+        "particle": "block/large_fern_bottom",
+        "small": "block/fern"
+      },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "states": { "half": ["lower", "upper"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "half": "lower" }, "looks": [{ "model": "large_fern_bottom" }] },
+        { "when": { "half": "upper" }, "looks": [{ "model": "large_fern_top" }] }
+      ]
+    },
+    {
+      "id": "base:leaf_litter",
+      "kind": "custom",
+      "textures": { "particle": "block/leaf_litter", "texture": "block/leaf_litter" },
+      "surface": "cutout",
+      "tint": { "source": "dryFoliage", "color": "#c2986b" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"], "segment_amount": ["1", "2", "3", "4"] },
+      "multipart": [
+        { "when": [{ "facing": "north", "segment_amount": "1" }], "looks": [{ "model": "leaf_litter_1" }] },
+        { "when": [{ "facing": "east", "segment_amount": "1" }], "looks": [{ "model": "leaf_litter_1", "y": 90 }] },
+        { "when": [{ "facing": "south", "segment_amount": "1" }], "looks": [{ "model": "leaf_litter_1", "y": 180 }] },
+        { "when": [{ "facing": "west", "segment_amount": "1" }], "looks": [{ "model": "leaf_litter_1", "y": 270 }] },
+        { "when": [{ "facing": "north", "segment_amount": "2|3" }], "looks": [{ "model": "leaf_litter_2" }] },
+        { "when": [{ "facing": "east", "segment_amount": "2|3" }], "looks": [{ "model": "leaf_litter_2", "y": 90 }] },
+        { "when": [{ "facing": "south", "segment_amount": "2|3" }], "looks": [{ "model": "leaf_litter_2", "y": 180 }] },
+        { "when": [{ "facing": "west", "segment_amount": "2|3" }], "looks": [{ "model": "leaf_litter_2", "y": 270 }] },
+        { "when": [{ "facing": "north", "segment_amount": "3" }], "looks": [{ "model": "leaf_litter_3" }] },
+        { "when": [{ "facing": "east", "segment_amount": "3" }], "looks": [{ "model": "leaf_litter_3", "y": 90 }] },
+        { "when": [{ "facing": "south", "segment_amount": "3" }], "looks": [{ "model": "leaf_litter_3", "y": 180 }] },
+        { "when": [{ "facing": "west", "segment_amount": "3" }], "looks": [{ "model": "leaf_litter_3", "y": 270 }] },
+        { "when": [{ "facing": "north", "segment_amount": "4" }], "looks": [{ "model": "leaf_litter_4" }] },
+        { "when": [{ "facing": "east", "segment_amount": "4" }], "looks": [{ "model": "leaf_litter_4", "y": 90 }] },
+        { "when": [{ "facing": "south", "segment_amount": "4" }], "looks": [{ "model": "leaf_litter_4", "y": 180 }] },
+        { "when": [{ "facing": "west", "segment_amount": "4" }], "looks": [{ "model": "leaf_litter_4", "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:short_dry_grass",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/short_dry_grass", "particle": "block/short_dry_grass" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "tags": ["random_rotation", "tint_guessed"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "short_dry_grass" },
+            { "model": "short_dry_grass", "y": 90 },
+            { "model": "short_dry_grass", "y": 180 },
+            { "model": "short_dry_grass", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:short_grass",
+      "kind": "cross",
+      "template": "tinted_cross",
+      "textures": { "cross": "block/short_grass", "particle": "block/short_grass" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [{ "model": "short_grass" }, { "model": "short_grass", "y": 90 }, { "model": "short_grass", "y": 180 }, { "model": "short_grass", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:tall_dry_grass",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/tall_dry_grass", "cross2": "block/short_dry_grass", "particle": "block/tall_dry_grass" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "tags": ["random_rotation", "tint_guessed"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "tall_dry_grass" },
+            { "model": "tall_dry_grass", "y": 90 },
+            { "model": "tall_dry_grass", "y": 180 },
+            { "model": "tall_dry_grass", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:tall_grass",
+      "kind": "cross",
+      "template": "tinted_cross",
+      "textures": { "cross": "block/tall_grass_bottom", "grass": "block/short_grass", "particle": "block/tall_grass_bottom" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "states": { "half": ["lower", "upper"] },
+      "multiblock": "half",
+      "variants": [
+        { "when": { "half": "lower" }, "looks": [{ "model": "tall_grass_bottom" }] },
+        { "when": { "half": "upper" }, "looks": [{ "model": "tall_grass_top" }] }
+      ]
+    }
+  ]
+}

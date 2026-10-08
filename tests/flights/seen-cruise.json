@@ -1,0 +1,34 @@
+{
+  "Note": "Primary/dda-seen measurement: random-crazy at 320 m, 150 m/s straight; a seen report every 4 s (what the rays touched in that window)",
+  "Scene": "random-crazy",
+  "TimeOfDay": 14,
+  "Path": [
+    {
+      "T": 0,
+      "Pos": {
+        "X": 0,
+        "Y": 320,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -15
+    },
+    {
+      "T": 20,
+      "Pos": {
+        "X": 3000,
+        "Y": 320,
+        "Z": 0
+      },
+      "Yaw": -90,
+      "Pitch": -15
+    }
+  ],
+  "Shots": [
+    4,
+    8,
+    12,
+    16,
+    20
+  ]
+}

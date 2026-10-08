@@ -1,0 +1,254 @@
+{
+  "category": "vines",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:cave_vines",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/cave_vines", "particle": "block/cave_vines" },
+      "surface": "cutout",
+      "light": { "level": 14, "when": "berries=true", "color": "#c2ff47" },
+      "states": { "berries": ["false", "true"] },
+      "variants": [
+        { "when": { "berries": "false" }, "looks": [{ "model": "cave_vines" }] },
+        { "when": { "berries": "true" }, "looks": [{ "model": "cave_vines_lit" }] }
+      ]
+    },
+    {
+      "id": "base:cave_vines_plant",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/cave_vines_plant", "particle": "block/cave_vines_plant" },
+      "surface": "cutout",
+      "light": { "level": 14, "when": "berries=true", "color": "#c0ff4a" },
+      "states": { "berries": ["false", "true"] },
+      "multipart": [
+        { "when": [{ "berries": "false" }], "looks": [{ "model": "cave_vines_plant" }] },
+        { "when": [{ "berries": "true" }], "looks": [{ "model": "cave_vines_plant_lit" }] },
+        {
+          "when": [{ "berries": "false" }],
+          "looks": [
+            { "model": "cave_vine_extra" },
+            { "model": "cave_vine_extra", "y": 90 },
+            { "model": "cave_vine_extra", "y": 180 },
+            { "model": "cave_vine_extra", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "berries": "true" }],
+          "looks": [
+            { "model": "cave_vine_lit_extra" },
+            { "model": "cave_vine_lit_extra", "y": 90 },
+            { "model": "cave_vine_lit_extra", "y": 180 },
+            { "model": "cave_vine_lit_extra", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:glow_lichen",
+      "kind": "custom",
+      "textures": { "glow_lichen": "block/glow_lichen", "particle": "block/glow_lichen" },
+      "surface": "cutout",
+      "emission": 0.012,
+      "light": { "level": 7, "color": "#e8ffea" },
+      "states": {
+        "down": ["false", "true"],
+        "east": ["false", "true"],
+        "north": ["false", "true"],
+        "south": ["false", "true"],
+        "up": ["false", "true"],
+        "west": ["false", "true"]
+      },
+      "multipart": [
+        { "when": [{ "north": "true" }], "looks": [{ "model": "glow_lichen" }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "glow_lichen" }]
+        },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "glow_lichen", "y": 90, "uvlock": true }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "glow_lichen", "y": 90, "uvlock": true }]
+        },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "glow_lichen", "y": 180, "uvlock": true }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "glow_lichen", "y": 180, "uvlock": true }]
+        },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "glow_lichen", "y": 270, "uvlock": true }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "glow_lichen", "y": 270, "uvlock": true }]
+        },
+        { "when": [{ "up": "true" }], "looks": [{ "model": "glow_lichen", "x": 270, "uvlock": true }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "glow_lichen", "x": 270, "uvlock": true }]
+        },
+        { "when": [{ "down": "true" }], "looks": [{ "model": "glow_lichen", "x": 90, "uvlock": true }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "glow_lichen", "x": 90, "uvlock": true }]
+        }
+      ]
+    },
+    {
+      "id": "base:hanging_roots",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/hanging_roots", "particle": "block/hanging_roots" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "hanging_roots" },
+            { "model": "hanging_roots", "y": 90 },
+            { "model": "hanging_roots", "y": 180 },
+            { "model": "hanging_roots", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:pale_hanging_moss",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/pale_hanging_moss", "particle": "block/pale_hanging_moss" },
+      "surface": "cutout",
+      "states": { "tip": ["false", "true"] },
+      "variants": [
+        { "when": { "tip": "false" }, "looks": [{ "model": "pale_hanging_moss" }] },
+        { "when": { "tip": "true" }, "looks": [{ "model": "pale_hanging_moss_tip" }] }
+      ]
+    },
+    {
+      "id": "base:sculk_vein",
+      "kind": "custom",
+      "textures": { "particle": "block/sculk_vein", "sculk_vein": "block/sculk_vein" },
+      "surface": "cutout",
+      "emission": 0.009,
+      "states": {
+        "down": ["false", "true"],
+        "east": ["false", "true"],
+        "north": ["false", "true"],
+        "south": ["false", "true"],
+        "up": ["false", "true"],
+        "west": ["false", "true"]
+      },
+      "tags": ["animated"],
+      "multipart": [
+        { "when": [{ "north": "true" }], "looks": [{ "model": "sculk_vein" }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "sculk_vein" }]
+        },
+        { "when": [{ "east": "true" }], "looks": [{ "model": "sculk_vein", "y": 90, "uvlock": true }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "sculk_vein", "y": 90, "uvlock": true }]
+        },
+        { "when": [{ "south": "true" }], "looks": [{ "model": "sculk_vein", "y": 180, "uvlock": true }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "sculk_vein", "y": 180, "uvlock": true }]
+        },
+        { "when": [{ "west": "true" }], "looks": [{ "model": "sculk_vein", "y": 270, "uvlock": true }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "sculk_vein", "y": 270, "uvlock": true }]
+        },
+        { "when": [{ "up": "true" }], "looks": [{ "model": "sculk_vein", "x": 270, "uvlock": true }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "sculk_vein", "x": 270, "uvlock": true }]
+        },
+        { "when": [{ "down": "true" }], "looks": [{ "model": "sculk_vein", "x": 90, "uvlock": true }] },
+        {
+          "when": [{ "down": "false", "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }],
+          "looks": [{ "model": "sculk_vein", "x": 90, "uvlock": true }]
+        }
+      ]
+    },
+    {
+      "id": "base:twisting_vines",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/twisting_vines", "particle": "block/twisting_vines" },
+      "surface": "cutout",
+      "emission": 0.047,
+      "variants": [{ "looks": [{ "model": "twisting_vines" }] }]
+    },
+    {
+      "id": "base:twisting_vines_plant",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/twisting_vines_plant", "particle": "block/twisting_vines_plant" },
+      "surface": "cutout",
+      "emission": 0.034,
+      "variants": [{ "looks": [{ "model": "twisting_vines_plant" }] }]
+    },
+    {
+      "id": "base:vine",
+      "kind": "custom",
+      "textures": { "cross": "block/vine", "particle": "block/vine" },
+      "surface": "cutout",
+      "tint": { "source": "foliage", "color": "#659f37" },
+      "states": { "east": ["false", "true"], "north": ["false", "true"], "south": ["false", "true"], "up": ["false", "true"], "west": ["false", "true"] },
+      "variants": [
+        { "when": { "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }, "looks": [{ "model": "vine_cross" }] },
+        { "when": { "east": "false", "north": "false", "south": "true", "up": "false", "west": "false" }, "looks": [{ "model": "vine_1" }] },
+        { "when": { "east": "false", "north": "false", "south": "false", "up": "false", "west": "true" }, "looks": [{ "model": "vine_1", "y": 90 }] },
+        { "when": { "east": "false", "north": "true", "south": "false", "up": "false", "west": "false" }, "looks": [{ "model": "vine_1", "y": 180 }] },
+        { "when": { "east": "true", "north": "false", "south": "false", "up": "false", "west": "false" }, "looks": [{ "model": "vine_1", "y": 270 }] },
+        { "when": { "east": "true", "north": "true", "south": "false", "up": "false", "west": "false" }, "looks": [{ "model": "vine_2" }] },
+        { "when": { "east": "true", "north": "false", "south": "true", "up": "false", "west": "false" }, "looks": [{ "model": "vine_2", "y": 90 }] },
+        { "when": { "east": "false", "north": "false", "south": "true", "up": "false", "west": "true" }, "looks": [{ "model": "vine_2", "y": 180 }] },
+        { "when": { "east": "false", "north": "true", "south": "false", "up": "false", "west": "true" }, "looks": [{ "model": "vine_2", "y": 270 }] },
+        { "when": { "east": "true", "north": "false", "south": "false", "up": "false", "west": "true" }, "looks": [{ "model": "vine_2_opposite" }] },
+        { "when": { "east": "false", "north": "true", "south": "true", "up": "false", "west": "false" }, "looks": [{ "model": "vine_2_opposite", "y": 90 }] },
+        { "when": { "east": "true", "north": "true", "south": "true", "up": "false", "west": "false" }, "looks": [{ "model": "vine_3" }] },
+        { "when": { "east": "true", "north": "false", "south": "true", "up": "false", "west": "true" }, "looks": [{ "model": "vine_3", "y": 90 }] },
+        { "when": { "east": "false", "north": "true", "south": "true", "up": "false", "west": "true" }, "looks": [{ "model": "vine_3", "y": 180 }] },
+        { "when": { "east": "true", "north": "true", "south": "false", "up": "false", "west": "true" }, "looks": [{ "model": "vine_3", "y": 270 }] },
+        { "when": { "east": "true", "north": "true", "south": "true", "up": "false", "west": "true" }, "looks": [{ "model": "vine_4" }] },
+        { "when": { "east": "false", "north": "false", "south": "false", "up": "true", "west": "false" }, "looks": [{ "model": "vine_u" }] },
+        { "when": { "east": "false", "north": "false", "south": "true", "up": "true", "west": "false" }, "looks": [{ "model": "vine_1u" }] },
+        { "when": { "east": "false", "north": "false", "south": "false", "up": "true", "west": "true" }, "looks": [{ "model": "vine_1u", "y": 90 }] },
+        { "when": { "east": "false", "north": "true", "south": "false", "up": "true", "west": "false" }, "looks": [{ "model": "vine_1u", "y": 180 }] },
+        { "when": { "east": "true", "north": "false", "south": "false", "up": "true", "west": "false" }, "looks": [{ "model": "vine_1u", "y": 270 }] },
+        { "when": { "east": "true", "north": "true", "south": "false", "up": "true", "west": "false" }, "looks": [{ "model": "vine_2u" }] },
+        { "when": { "east": "true", "north": "false", "south": "true", "up": "true", "west": "false" }, "looks": [{ "model": "vine_2u", "y": 90 }] },
+        { "when": { "east": "false", "north": "false", "south": "true", "up": "true", "west": "true" }, "looks": [{ "model": "vine_2u", "y": 180 }] },
+        { "when": { "east": "false", "north": "true", "south": "false", "up": "true", "west": "true" }, "looks": [{ "model": "vine_2u", "y": 270 }] },
+        { "when": { "east": "true", "north": "false", "south": "false", "up": "true", "west": "true" }, "looks": [{ "model": "vine_2u_opposite" }] },
+        { "when": { "east": "false", "north": "true", "south": "true", "up": "true", "west": "false" }, "looks": [{ "model": "vine_2u_opposite", "y": 90 }] },
+        { "when": { "east": "true", "north": "true", "south": "true", "up": "true", "west": "false" }, "looks": [{ "model": "vine_3u" }] },
+        { "when": { "east": "true", "north": "false", "south": "true", "up": "true", "west": "true" }, "looks": [{ "model": "vine_3u", "y": 90 }] },
+        { "when": { "east": "false", "north": "true", "south": "true", "up": "true", "west": "true" }, "looks": [{ "model": "vine_3u", "y": 180 }] },
+        { "when": { "east": "true", "north": "true", "south": "false", "up": "true", "west": "true" }, "looks": [{ "model": "vine_3u", "y": 270 }] },
+        { "when": { "east": "true", "north": "true", "south": "true", "up": "true", "west": "true" }, "looks": [{ "model": "vine_4u" }] }
+      ]
+    },
+    {
+      "id": "base:weeping_vines",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/weeping_vines", "particle": "block/weeping_vines" },
+      "surface": "cutout",
+      "emission": 0.044,
+      "variants": [{ "looks": [{ "model": "weeping_vines" }] }]
+    },
+    {
+      "id": "base:weeping_vines_plant",
+      "kind": "cross",
+      "template": "cross",
+      "textures": { "cross": "block/weeping_vines_plant", "particle": "block/weeping_vines_plant" },
+      "surface": "cutout",
+      "emission": 0.037,
+      "variants": [{ "looks": [{ "model": "weeping_vines_plant" }] }]
+    }
+  ]
+}

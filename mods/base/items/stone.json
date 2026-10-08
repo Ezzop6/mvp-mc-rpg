@@ -1,0 +1,29 @@
+{
+  "category": "stone",
+  "source": "import",
+  "entries": [
+    { "id": "base:andesite", "block": "base:andesite" },
+    { "id": "base:bedrock", "block": "base:bedrock" },
+    { "id": "base:budding_amethyst", "block": "base:budding_amethyst" },
+    { "id": "base:calcite", "block": "base:calcite" },
+    { "id": "base:cinnabar", "block": "base:cinnabar" },
+    { "id": "base:cobbled_deepslate", "block": "base:cobbled_deepslate" },
+    { "id": "base:deepslate", "block": "base:deepslate" },
+    { "id": "base:diorite", "block": "base:diorite" },
+    { "id": "base:dripstone_block", "block": "base:dripstone_block" },
+    { "id": "base:granite", "block": "base:granite" },
+    { "id": "base:infested_deepslate", "block": "base:infested_deepslate" },
+    { "id": "base:infested_stone", "block": "base:infested_stone" },
+    { "id": "base:pointed_dripstone", "block": "base:pointed_dripstone" },
+    { "id": "base:potent_sulfur", "block": "base:potent_sulfur" },
+    { "id": "base:reinforced_deepslate", "block": "base:reinforced_deepslate" },
+    { "id": "base:resin_block", "block": "base:resin_block" },
+    { "id": "base:resin_clump", "block": "base:resin_clump" },
+    { "id": "base:sculk", "block": "base:sculk" },
+    { "id": "base:sculk_catalyst", "block": "base:sculk_catalyst" },
+    { "id": "base:stone", "block": "base:stone" },
+    { "id": "base:sulfur", "block": "base:sulfur" },
+    { "id": "base:sulfur_spike", "block": "base:sulfur_spike" },
+    { "id": "base:tuff", "block": "base:tuff" }
+  ]
+}

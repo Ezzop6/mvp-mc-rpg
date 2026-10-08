@@ -1,0 +1,777 @@
+{
+  "category": "walls",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:andesite_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/andesite", "wall": "block/andesite" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "andesite_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "andesite_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "andesite_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "andesite_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "andesite_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "andesite_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "andesite_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "andesite_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "andesite_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:blackstone_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/blackstone", "wall": "block/blackstone" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "blackstone_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "blackstone_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "blackstone_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "blackstone_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "blackstone_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "blackstone_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "blackstone_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "blackstone_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "blackstone_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/bricks", "wall": "block/bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:cinnabar_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/cinnabar_bricks", "wall": "block/cinnabar_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "cinnabar_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "cinnabar_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "cinnabar_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "cinnabar_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "cinnabar_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "cinnabar_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "cinnabar_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "cinnabar_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "cinnabar_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:cinnabar_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/cinnabar", "wall": "block/cinnabar" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "cinnabar_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "cinnabar_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "cinnabar_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "cinnabar_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "cinnabar_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "cinnabar_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "cinnabar_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "cinnabar_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "cinnabar_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:cobbled_deepslate_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/cobbled_deepslate", "wall": "block/cobbled_deepslate" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "cobbled_deepslate_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "cobbled_deepslate_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "cobbled_deepslate_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "cobbled_deepslate_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "cobbled_deepslate_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "cobbled_deepslate_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "cobbled_deepslate_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "cobbled_deepslate_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "cobbled_deepslate_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:cobblestone_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/cobblestone", "wall": "block/cobblestone" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "cobblestone_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "cobblestone_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "cobblestone_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "cobblestone_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "cobblestone_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "cobblestone_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "cobblestone_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "cobblestone_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "cobblestone_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:deepslate_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/deepslate_bricks", "wall": "block/deepslate_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "deepslate_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "deepslate_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "deepslate_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "deepslate_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "deepslate_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "deepslate_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "deepslate_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "deepslate_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "deepslate_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:deepslate_tile_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/deepslate_tiles", "wall": "block/deepslate_tiles" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "deepslate_tile_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "deepslate_tile_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "deepslate_tile_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "deepslate_tile_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "deepslate_tile_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "deepslate_tile_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "deepslate_tile_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "deepslate_tile_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "deepslate_tile_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:diorite_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/diorite", "wall": "block/diorite" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "diorite_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "diorite_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "diorite_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "diorite_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "diorite_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "diorite_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "diorite_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "diorite_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "diorite_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:end_stone_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/end_stone_bricks", "wall": "block/end_stone_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "end_stone_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "end_stone_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "end_stone_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "end_stone_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "end_stone_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "end_stone_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "end_stone_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "end_stone_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "end_stone_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:granite_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/granite", "wall": "block/granite" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "granite_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "granite_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "granite_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "granite_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "granite_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "granite_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "granite_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "granite_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "granite_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:mossy_cobblestone_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/mossy_cobblestone", "wall": "block/mossy_cobblestone" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "mossy_cobblestone_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "mossy_cobblestone_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "mossy_cobblestone_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "mossy_cobblestone_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "mossy_cobblestone_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "mossy_cobblestone_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "mossy_cobblestone_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "mossy_cobblestone_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "mossy_cobblestone_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:mossy_stone_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/mossy_stone_bricks", "wall": "block/mossy_stone_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "mossy_stone_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "mossy_stone_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "mossy_stone_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "mossy_stone_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "mossy_stone_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "mossy_stone_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "mossy_stone_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "mossy_stone_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "mossy_stone_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:mud_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/mud_bricks", "wall": "block/mud_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "mud_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "mud_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "mud_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "mud_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "mud_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "mud_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "mud_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "mud_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "mud_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:nether_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/nether_bricks", "wall": "block/nether_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "nether_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "nether_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "nether_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "nether_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "nether_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "nether_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "nether_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "nether_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "nether_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:polished_blackstone_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/polished_blackstone_bricks", "wall": "block/polished_blackstone_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "polished_blackstone_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "polished_blackstone_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "polished_blackstone_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "polished_blackstone_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "polished_blackstone_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "polished_blackstone_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "polished_blackstone_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "polished_blackstone_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "polished_blackstone_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:polished_blackstone_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/polished_blackstone", "wall": "block/polished_blackstone" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "polished_blackstone_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "polished_blackstone_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "polished_blackstone_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "polished_blackstone_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "polished_blackstone_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "polished_blackstone_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "polished_blackstone_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "polished_blackstone_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "polished_blackstone_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:polished_cinnabar_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/polished_cinnabar", "wall": "block/polished_cinnabar" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "polished_cinnabar_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "polished_cinnabar_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "polished_cinnabar_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "polished_cinnabar_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "polished_cinnabar_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "polished_cinnabar_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "polished_cinnabar_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "polished_cinnabar_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "polished_cinnabar_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:polished_deepslate_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/polished_deepslate", "wall": "block/polished_deepslate" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "polished_deepslate_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "polished_deepslate_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "polished_deepslate_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "polished_deepslate_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "polished_deepslate_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "polished_deepslate_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "polished_deepslate_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "polished_deepslate_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "polished_deepslate_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:polished_sulfur_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/polished_sulfur", "wall": "block/polished_sulfur" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "polished_sulfur_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "polished_sulfur_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "polished_sulfur_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "polished_sulfur_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "polished_sulfur_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "polished_sulfur_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "polished_sulfur_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "polished_sulfur_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "polished_sulfur_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:polished_tuff_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/polished_tuff", "wall": "block/polished_tuff" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "polished_tuff_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "polished_tuff_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "polished_tuff_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "polished_tuff_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "polished_tuff_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "polished_tuff_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "polished_tuff_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "polished_tuff_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "polished_tuff_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:prismarine_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/prismarine", "wall": "block/prismarine" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "tags": ["animated"],
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "prismarine_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "prismarine_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "prismarine_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "prismarine_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "prismarine_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "prismarine_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "prismarine_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "prismarine_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "prismarine_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:red_nether_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/red_nether_bricks", "wall": "block/red_nether_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "tags": ["color:red"],
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "red_nether_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "red_nether_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "red_nether_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "red_nether_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "red_nether_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "red_nether_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "red_nether_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "red_nether_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "red_nether_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:red_sandstone_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/red_sandstone", "wall": "block/red_sandstone" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "tags": ["color:red"],
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "red_sandstone_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "red_sandstone_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "red_sandstone_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "red_sandstone_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "red_sandstone_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "red_sandstone_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "red_sandstone_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "red_sandstone_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "red_sandstone_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:resin_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/resin_bricks", "wall": "block/resin_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "resin_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "resin_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "resin_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "resin_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "resin_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "resin_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "resin_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "resin_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "resin_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:sandstone_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/sandstone", "wall": "block/sandstone" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "sandstone_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "sandstone_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "sandstone_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "sandstone_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "sandstone_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "sandstone_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "sandstone_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "sandstone_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "sandstone_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:stone_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/stone_bricks", "wall": "block/stone_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "stone_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "stone_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "stone_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "stone_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "stone_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "stone_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "stone_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "stone_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "stone_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:sulfur_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/sulfur_bricks", "wall": "block/sulfur_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "sulfur_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "sulfur_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "sulfur_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "sulfur_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "sulfur_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "sulfur_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "sulfur_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "sulfur_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "sulfur_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:sulfur_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/sulfur", "wall": "block/sulfur" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "sulfur_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "sulfur_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "sulfur_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "sulfur_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "sulfur_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "sulfur_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "sulfur_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "sulfur_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "sulfur_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:tuff_brick_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/tuff_bricks", "wall": "block/tuff_bricks" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "tuff_brick_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "tuff_brick_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "tuff_brick_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "tuff_brick_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "tuff_brick_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "tuff_brick_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "tuff_brick_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "tuff_brick_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "tuff_brick_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    },
+    {
+      "id": "base:tuff_wall",
+      "kind": "wall",
+      "template": "template_wall_side",
+      "textures": { "particle": "block/tuff", "wall": "block/tuff" },
+      "states": {
+        "east": ["none", "low", "tall"],
+        "north": ["none", "low", "tall"],
+        "south": ["none", "low", "tall"],
+        "up": ["false", "true"],
+        "west": ["none", "low", "tall"]
+      },
+      "multipart": [
+        { "when": [{ "up": "true" }], "looks": [{ "model": "tuff_wall_post" }] },
+        { "when": [{ "north": "low" }], "looks": [{ "model": "tuff_wall_side", "uvlock": true }] },
+        { "when": [{ "east": "low" }], "looks": [{ "model": "tuff_wall_side", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "low" }], "looks": [{ "model": "tuff_wall_side", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "low" }], "looks": [{ "model": "tuff_wall_side", "y": 270, "uvlock": true }] },
+        { "when": [{ "north": "tall" }], "looks": [{ "model": "tuff_wall_side_tall", "uvlock": true }] },
+        { "when": [{ "east": "tall" }], "looks": [{ "model": "tuff_wall_side_tall", "y": 90, "uvlock": true }] },
+        { "when": [{ "south": "tall" }], "looks": [{ "model": "tuff_wall_side_tall", "y": 180, "uvlock": true }] },
+        { "when": [{ "west": "tall" }], "looks": [{ "model": "tuff_wall_side_tall", "y": 270, "uvlock": true }] }
+      ]
+    }
+  ]
+}

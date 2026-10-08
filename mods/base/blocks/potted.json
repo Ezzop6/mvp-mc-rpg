@@ -1,0 +1,691 @@
+{
+  "category": "potted",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:potted_acacia_sapling",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/acacia_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_acacia_sapling" },
+            { "model": "potted_acacia_sapling", "y": 90 },
+            { "model": "potted_acacia_sapling", "y": 180 },
+            { "model": "potted_acacia_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_allium",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/allium" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_allium" },
+            { "model": "potted_allium", "y": 90 },
+            { "model": "potted_allium", "y": 180 },
+            { "model": "potted_allium", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_azalea_bush",
+      "kind": "potted",
+      "template": "template_potted_azalea_bush",
+      "textures": {
+        "dirt": "block/dirt",
+        "flowerpot": "block/extra/flower_pot",
+        "particle": "block/extra/flower_pot",
+        "plant": "block/azalea_plant",
+        "side": "block/azalea_side",
+        "top": "block/azalea_leaves"
+      },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_azalea_bush" },
+            { "model": "potted_azalea_bush", "y": 90 },
+            { "model": "potted_azalea_bush", "y": 180 },
+            { "model": "potted_azalea_bush", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_azure_bluet",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": {
+        "dirt": "block/dirt",
+        "flowerpot": "block/extra/flower_pot",
+        "particle": "block/extra/flower_pot",
+        "plant": "block/extra/potted_azure_bluet"
+      },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_azure_bluet" },
+            { "model": "potted_azure_bluet", "y": 90 },
+            { "model": "potted_azure_bluet", "y": 180 },
+            { "model": "potted_azure_bluet", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_birch_sapling",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/birch_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_birch_sapling" },
+            { "model": "potted_birch_sapling", "y": 90 },
+            { "model": "potted_birch_sapling", "y": 180 },
+            { "model": "potted_birch_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_blue_orchid",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/blue_orchid" },
+      "surface": "cutout",
+      "tags": ["animated", "color:blue", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_blue_orchid" },
+            { "model": "potted_blue_orchid", "y": 90 },
+            { "model": "potted_blue_orchid", "y": 180 },
+            { "model": "potted_blue_orchid", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_brown_mushroom",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": {
+        "dirt": "block/dirt",
+        "flowerpot": "block/extra/flower_pot",
+        "particle": "block/extra/flower_pot",
+        "plant": "block/extra/potted_brown_mushroom"
+      },
+      "surface": "cutout",
+      "tags": ["color:brown", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_brown_mushroom" },
+            { "model": "potted_brown_mushroom", "y": 90 },
+            { "model": "potted_brown_mushroom", "y": 180 },
+            { "model": "potted_brown_mushroom", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_cherry_sapling",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/cherry_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_cherry_sapling" },
+            { "model": "potted_cherry_sapling", "y": 90 },
+            { "model": "potted_cherry_sapling", "y": 180 },
+            { "model": "potted_cherry_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_closed_eyeblossom",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/closed_eyeblossom" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_closed_eyeblossom" },
+            { "model": "potted_closed_eyeblossom", "y": 90 },
+            { "model": "potted_closed_eyeblossom", "y": 180 },
+            { "model": "potted_closed_eyeblossom", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_cornflower",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/cornflower" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_cornflower" },
+            { "model": "potted_cornflower", "y": 90 },
+            { "model": "potted_cornflower", "y": 180 },
+            { "model": "potted_cornflower", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_crimson_fungus",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/crimson_fungus" },
+      "surface": "cutout",
+      "emission": 0.014,
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_crimson_fungus" },
+            { "model": "potted_crimson_fungus", "y": 90 },
+            { "model": "potted_crimson_fungus", "y": 180 },
+            { "model": "potted_crimson_fungus", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_crimson_roots",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": {
+        "dirt": "block/dirt",
+        "flowerpot": "block/extra/flower_pot",
+        "particle": "block/extra/flower_pot",
+        "plant": "block/extra/potted_crimson_roots"
+      },
+      "surface": "cutout",
+      "emission": 0.014,
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_crimson_roots" },
+            { "model": "potted_crimson_roots", "y": 90 },
+            { "model": "potted_crimson_roots", "y": 180 },
+            { "model": "potted_crimson_roots", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_dandelion",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/extra/potted_dandelion" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_dandelion" },
+            { "model": "potted_dandelion", "y": 90 },
+            { "model": "potted_dandelion", "y": 180 },
+            { "model": "potted_dandelion", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_dark_oak_sapling",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/dark_oak_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_dark_oak_sapling" },
+            { "model": "potted_dark_oak_sapling", "y": 90 },
+            { "model": "potted_dark_oak_sapling", "y": 180 },
+            { "model": "potted_dark_oak_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_dead_bush",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/dead_bush" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_dead_bush" },
+            { "model": "potted_dead_bush", "y": 90 },
+            { "model": "potted_dead_bush", "y": 180 },
+            { "model": "potted_dead_bush", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_fern",
+      "kind": "potted",
+      "template": "tinted_flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/fern" },
+      "surface": "cutout",
+      "tint": { "source": "grass", "color": "#8db650" },
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [{ "model": "potted_fern" }, { "model": "potted_fern", "y": 90 }, { "model": "potted_fern", "y": 180 }, { "model": "potted_fern", "y": 270 }]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_flowering_azalea_bush",
+      "kind": "potted",
+      "template": "template_potted_azalea_bush",
+      "textures": {
+        "dirt": "block/dirt",
+        "flowerpot": "block/extra/flower_pot",
+        "particle": "block/extra/flower_pot",
+        "plant": "block/azalea_plant",
+        "side": "block/flowering_azalea_side",
+        "top": "block/flowering_azalea_leaves"
+      },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_flowering_azalea_bush" },
+            { "model": "potted_flowering_azalea_bush", "y": 90 },
+            { "model": "potted_flowering_azalea_bush", "y": 180 },
+            { "model": "potted_flowering_azalea_bush", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_golden_dandelion",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": {
+        "dirt": "block/dirt",
+        "flowerpot": "block/extra/flower_pot",
+        "particle": "block/extra/flower_pot",
+        "plant": "block/extra/potted_golden_dandelion"
+      },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_golden_dandelion" },
+            { "model": "potted_golden_dandelion", "y": 90 },
+            { "model": "potted_golden_dandelion", "y": 180 },
+            { "model": "potted_golden_dandelion", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_jungle_sapling",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/jungle_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_jungle_sapling" },
+            { "model": "potted_jungle_sapling", "y": 90 },
+            { "model": "potted_jungle_sapling", "y": 180 },
+            { "model": "potted_jungle_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_lily_of_the_valley",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/lily_of_the_valley" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_lily_of_the_valley" },
+            { "model": "potted_lily_of_the_valley", "y": 90 },
+            { "model": "potted_lily_of_the_valley", "y": 180 },
+            { "model": "potted_lily_of_the_valley", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_oak_sapling",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/oak_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_oak_sapling" },
+            { "model": "potted_oak_sapling", "y": 90 },
+            { "model": "potted_oak_sapling", "y": 180 },
+            { "model": "potted_oak_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_orange_tulip",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/orange_tulip" },
+      "surface": "cutout",
+      "tags": ["animated", "color:orange", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_orange_tulip" },
+            { "model": "potted_orange_tulip", "y": 90 },
+            { "model": "potted_orange_tulip", "y": 180 },
+            { "model": "potted_orange_tulip", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_oxeye_daisy",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": {
+        "dirt": "block/dirt",
+        "flowerpot": "block/extra/flower_pot",
+        "particle": "block/extra/flower_pot",
+        "plant": "block/extra/potted_oxeye_daisy"
+      },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_oxeye_daisy" },
+            { "model": "potted_oxeye_daisy", "y": 90 },
+            { "model": "potted_oxeye_daisy", "y": 180 },
+            { "model": "potted_oxeye_daisy", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_pale_oak_sapling",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/pale_oak_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_pale_oak_sapling" },
+            { "model": "potted_pale_oak_sapling", "y": 90 },
+            { "model": "potted_pale_oak_sapling", "y": 180 },
+            { "model": "potted_pale_oak_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_pink_tulip",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/pink_tulip" },
+      "surface": "cutout",
+      "tags": ["animated", "color:pink", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_pink_tulip" },
+            { "model": "potted_pink_tulip", "y": 90 },
+            { "model": "potted_pink_tulip", "y": 180 },
+            { "model": "potted_pink_tulip", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_poplar_sapling",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/poplar_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_poplar_sapling" },
+            { "model": "potted_poplar_sapling", "y": 90 },
+            { "model": "potted_poplar_sapling", "y": 180 },
+            { "model": "potted_poplar_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_poppy",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/extra/potted_poppy" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_poppy" },
+            { "model": "potted_poppy", "y": 90 },
+            { "model": "potted_poppy", "y": 180 },
+            { "model": "potted_poppy", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_red_mushroom",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": {
+        "dirt": "block/dirt",
+        "flowerpot": "block/extra/flower_pot",
+        "particle": "block/extra/flower_pot",
+        "plant": "block/extra/potted_red_mushroom"
+      },
+      "surface": "cutout",
+      "tags": ["color:red", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_red_mushroom" },
+            { "model": "potted_red_mushroom", "y": 90 },
+            { "model": "potted_red_mushroom", "y": 180 },
+            { "model": "potted_red_mushroom", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_red_tulip",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/red_tulip" },
+      "surface": "cutout",
+      "tags": ["animated", "color:red", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_red_tulip" },
+            { "model": "potted_red_tulip", "y": 90 },
+            { "model": "potted_red_tulip", "y": 180 },
+            { "model": "potted_red_tulip", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_spruce_sapling",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/spruce_sapling" },
+      "surface": "cutout",
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_spruce_sapling" },
+            { "model": "potted_spruce_sapling", "y": 90 },
+            { "model": "potted_spruce_sapling", "y": 180 },
+            { "model": "potted_spruce_sapling", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_torchflower",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": {
+        "dirt": "block/dirt",
+        "flowerpot": "block/extra/flower_pot",
+        "particle": "block/extra/flower_pot",
+        "plant": "block/extra/potted_torchflower"
+      },
+      "surface": "cutout",
+      "emission": 0.004,
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_torchflower" },
+            { "model": "potted_torchflower", "y": 90 },
+            { "model": "potted_torchflower", "y": 180 },
+            { "model": "potted_torchflower", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_warped_fungus",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/warped_fungus" },
+      "surface": "cutout",
+      "emission": 0.01,
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_warped_fungus" },
+            { "model": "potted_warped_fungus", "y": 90 },
+            { "model": "potted_warped_fungus", "y": 180 },
+            { "model": "potted_warped_fungus", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_warped_roots",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": {
+        "dirt": "block/dirt",
+        "flowerpot": "block/extra/flower_pot",
+        "particle": "block/extra/flower_pot",
+        "plant": "block/extra/potted_warped_roots"
+      },
+      "surface": "cutout",
+      "emission": 0.032,
+      "tags": ["random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_warped_roots" },
+            { "model": "potted_warped_roots", "y": 90 },
+            { "model": "potted_warped_roots", "y": 180 },
+            { "model": "potted_warped_roots", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_white_tulip",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/white_tulip" },
+      "surface": "cutout",
+      "tags": ["animated", "color:white", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_white_tulip" },
+            { "model": "potted_white_tulip", "y": 90 },
+            { "model": "potted_white_tulip", "y": 180 },
+            { "model": "potted_white_tulip", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:potted_wither_rose",
+      "kind": "potted",
+      "template": "flower_pot_cross",
+      "textures": { "dirt": "block/dirt", "flowerpot": "block/extra/flower_pot", "particle": "block/extra/flower_pot", "plant": "block/wither_rose" },
+      "surface": "cutout",
+      "tags": ["animated", "random_rotation"],
+      "variants": [
+        {
+          "looks": [
+            { "model": "potted_wither_rose" },
+            { "model": "potted_wither_rose", "y": 90 },
+            { "model": "potted_wither_rose", "y": 180 },
+            { "model": "potted_wither_rose", "y": 270 }
+          ]
+        }
+      ]
+    }
+  ]
+}

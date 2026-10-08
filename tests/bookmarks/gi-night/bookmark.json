@@ -1,0 +1,172 @@
+{
+  "Note": "GI: white room with a doorway at night: glowstone, a lava pool, a sea lantern and a torch (Lights, Emission)",
+  "Created": "2026-10-08T08:52:56",
+  "Commit": "GI pass",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 3,
+      "Y": 0,
+      "Z": 0
+    },
+    "Local": {
+      "X": 10.75,
+      "Y": 1.6,
+      "Z": 1.0
+    },
+    "Yaw": 3.141592653589793,
+    "Pitch": -0.3490658503988659
+  },
+  "Move": "Fly",
+  "TimeOfDay": 23,
+  "Day": 0,
+  "TimePaused": true,
+  "Clock": 0,
+  "Width": 3840,
+  "Height": 2160,
+  "Render": {
+    "Passes": {
+      "Animation": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "mcmeta"
+      },
+      "Raster": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "meshes"
+      },
+      "Primary": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "dda"
+      },
+      "AO": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "neighbors8"
+      },
+      "Shadows": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "dda-quad"
+      },
+      "Lights": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "cubemaps"
+      },
+      "GI": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "cache"
+      },
+      "Shade": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "lambert"
+      },
+      "Sky": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "gradient"
+      },
+      "Stars": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "cells"
+      },
+      "Moon": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "disc"
+      },
+      "Sun": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "disc"
+      },
+      "Clouds": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "layer"
+      },
+      "Fluid": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "reflect-refract"
+      },
+      "Transparency": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "segment"
+      },
+      "Haze": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "analytic"
+      },
+      "HeightFog": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "analytic"
+      },
+      "Shafts": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "quarter-res"
+      },
+      "Temporal": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "catmull-variance"
+      },
+      "Sharpen": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "clamp4"
+      },
+      "Grade": {
+        "Enabled": false,
+        "Active": false,
+        "Variant": "simple"
+      },
+      "Present": {
+        "Enabled": true,
+        "Active": true,
+        "Variant": "godot-quad"
+      }
+    },
+    "EffectsOff": false,
+    "DebugView": "None",
+    "RenderScale": 1,
+    "EffectiveScale": 1,
+    "View": "Ultra",
+    "Lod": false,
+    "HorizonM": 0,
+    "LodPixels": 0,
+    "LodLevels": 4,
+    "LodRef": 0,
+    "FixedBudget": false,
+    "GenTargetMs": 2,
+    "StreamCpuMs": 3,
+    "EditChunksPerFrame": 64,
+    "Preset": null,
+    "Tune": {
+      "Values": {
+        "day": {
+          "Shade.lambert.Emission": [
+            1
+          ]
+        },
+        "night": {
+          "Shade.lambert.Emission": [
+            1
+          ]
+        }
+      },
+      "Variants": {}
+    }
+  }
+}

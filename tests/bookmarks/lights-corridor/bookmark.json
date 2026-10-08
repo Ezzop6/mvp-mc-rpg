@@ -1,0 +1,25 @@
+{
+  "Note": "lights world: a roofed corridor with a torch every 8 blocks, night, from its open end",
+  "Created": "2026-10-07T00:00:00",
+  "Commit": "Lights phase 11",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": 0,
+      "Y": 0,
+      "Z": 2
+    },
+    "Local": {
+      "X": 0.0,
+      "Y": 0.8,
+      "Z": 0.5
+    },
+    "Yaw": 3.141592653589793,
+    "Pitch": -0.08726646259971647
+  },
+  "TimeOfDay": 23,
+  "Width": 1920,
+  "Height": 1080,
+  "Render": null
+}

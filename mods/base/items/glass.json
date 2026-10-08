@@ -1,0 +1,29 @@
+{
+  "category": "glass",
+  "source": "import",
+  "entries": [
+    { "id": "base:black_stained_glass", "block": "base:black_stained_glass" },
+    { "id": "base:blue_ice", "block": "base:blue_ice" },
+    { "id": "base:blue_stained_glass", "block": "base:blue_stained_glass" },
+    { "id": "base:brown_stained_glass", "block": "base:brown_stained_glass" },
+    { "id": "base:cyan_stained_glass", "block": "base:cyan_stained_glass" },
+    { "id": "base:glass", "block": "base:glass" },
+    { "id": "base:gray_stained_glass", "block": "base:gray_stained_glass" },
+    { "id": "base:green_stained_glass", "block": "base:green_stained_glass" },
+    { "id": "base:honey_block", "block": "base:honey_block" },
+    { "id": "base:ice", "block": "base:ice" },
+    { "id": "base:light_blue_stained_glass", "block": "base:light_blue_stained_glass" },
+    { "id": "base:light_gray_stained_glass", "block": "base:light_gray_stained_glass" },
+    { "id": "base:lime_stained_glass", "block": "base:lime_stained_glass" },
+    { "id": "base:magenta_stained_glass", "block": "base:magenta_stained_glass" },
+    { "id": "base:orange_stained_glass", "block": "base:orange_stained_glass" },
+    { "id": "base:packed_ice", "block": "base:packed_ice" },
+    { "id": "base:pink_stained_glass", "block": "base:pink_stained_glass" },
+    { "id": "base:purple_stained_glass", "block": "base:purple_stained_glass" },
+    { "id": "base:red_stained_glass", "block": "base:red_stained_glass" },
+    { "id": "base:slime_block", "block": "base:slime_block" },
+    { "id": "base:tinted_glass", "block": "base:tinted_glass" },
+    { "id": "base:white_stained_glass", "block": "base:white_stained_glass" },
+    { "id": "base:yellow_stained_glass", "block": "base:yellow_stained_glass" }
+  ]
+}

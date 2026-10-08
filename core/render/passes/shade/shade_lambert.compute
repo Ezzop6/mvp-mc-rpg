@@ -1,0 +1,92 @@
+layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
+#include "camera.glsli"
+#include "gbuffer.glsli"
+#ifdef SHADE_EMISSION
+layout(set = 0, binding = 0, std430) restrict readonly buffer ParamsBuf { PARAMS } P;
+#endif
+layout(set = 0, binding = 2, rgba8) restrict readonly uniform image2D albedo_in;
+layout(set = 0, binding = 3, r32ui) restrict readonly uniform uimage2D hit_in;
+layout(set = 0, binding = 4, rgba16f) restrict writeonly uniform image2D color_out;
+#ifdef AO
+layout(set = 0, binding = 5, r8) restrict readonly uniform image2D ao_in;
+#endif
+#ifdef SUN_VIS
+layout(set = 0, binding = 6, rgba8) restrict readonly uniform image2D sunvis_in; // Shadows: sun transmittance
+#endif
+#ifdef LAMP
+layout(set = 0, binding = 7, rgba16f) restrict readonly uniform image2D lamp_in; // Lights: block light, a = lights in reach
+#define LAMP_TERM + imageLoad(lamp_in, px).rgb
+#else
+#define LAMP_TERM
+#endif
+#ifdef GI
+layout(set = 0, binding = 8, rgba16f) restrict readonly uniform image2D gi_in; // GI: cached ambient, a = its weight
+#endif
+
+// Flat ambient and the ground bounce on faces turned down, with GI the cache's light over them by its weight; with AO lit more from above (v1 ambient(n)) and occluded.
+vec3 ambient(ivec2 px, uint face) {
+	vec3 n = hit_normal(face), g = cam.ground.rgb * max(-n.y, 0.0);
+#ifdef AO
+	vec3 a = cam.amb_col.rgb * (1.0 - cam.amb_col.w + cam.amb_col.w * n.y) + g;
+#else
+	vec3 a = cam.amb_col.rgb + g;
+#endif
+#ifdef GI
+	vec4 gi = imageLoad(gi_in, px);
+	a = mix(a, gi.rgb, gi.a);
+#endif
+#ifdef AO
+	a *= imageLoad(ao_in, px).r;
+#endif
+	return a;
+}
+
+void main() {
+	ivec2 px = ivec2(gl_GlobalInvocationID.xy), size = imageSize(color_out);
+	if (any(greaterThanEqual(px, size))) return;
+	uint hit = imageLoad(hit_in, px).r, face = hit_face(hit);
+	vec3 c = cam.amb_col.rgb;
+#ifdef DEBUG_VIEW
+	c = albedo_decode(imageLoad(albedo_in, px)); // debug views show the albedo target as it is
+#ifdef VIEW_AO
+#ifdef AO
+	c = face == HIT_SKY ? vec3(0.0) : albedo_decode(imageLoad(ao_in, px).rrrr);
+#else
+	c = vec3(face == HIT_SKY ? 0.0 : 1.0);
+#endif
+#endif
+#ifdef VIEW_SUN
+#ifdef SUN_VIS
+	c = face == HIT_SKY ? vec3(0.0) : imageLoad(sunvis_in, px).rgb;
+#else
+	c = vec3(face == HIT_SKY ? 0.0 : 1.0);
+#endif
+#endif
+#ifdef VIEW_LAMP
+	c = vec3(0.0);
+#ifdef LAMP
+	c = imageLoad(lamp_in, px).rgb;
+#endif
+#endif
+#ifdef VIEW_GI
+	c = face == HIT_SKY ? vec3(0.0) : ambient(px, face);
+#endif
+#ifdef VIEW_LIGHT_COUNT
+	float h = 0.0;
+#ifdef LAMP
+	h = imageLoad(lamp_in, px).a / 16.0; // v1 heat colours, 16 lights = red
+#endif
+	c = face == HIT_SKY ? vec3(0.0) : h <= 0.0 ? vec3(0.05) : clamp(vec3(h * 2.0 - 1.0, 1.0 - abs(h * 2.0 - 1.0), 1.0 - h * 2.0), 0.0, 1.0);
+#endif
+#else
+	vec3 sun = cam.sun_col.rgb;
+#ifdef SUN_VIS
+	sun *= imageLoad(sunvis_in, px).rgb;
+#endif
+	if (face != HIT_SKY) c = albedo_decode(imageLoad(albedo_in, px)) * (sun * max(dot(hit_normal(face), cam.sun_dir.xyz), 0.0) + ambient(px, face) LAMP_TERM);
+#ifdef SHADE_EMISSION
+	if (face != HIT_SKY) { vec4 a = imageLoad(albedo_in, px); c += albedo_decode(a) * (a.a * ((hit & HIT_MODEL) != 0u ? P.model_emission : (hit & HIT_FLUID) != 0u ? P.liquid_emission : P.emission_scale)); } // v1: face emission × EmissionScale × albedo, model emission × ModelEmission
+#endif
+#endif
+	imageStore(color_out, px, vec4(c, 1.0));
+}

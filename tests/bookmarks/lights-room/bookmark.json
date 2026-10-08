@@ -1,0 +1,25 @@
+{
+  "Note": "lights world: a closed dark room (stone bricks) with one torch, night, from inside",
+  "Created": "2026-10-07T00:00:00",
+  "Commit": "Lights phase 11",
+  "Status": "Open",
+  "Redirect": null,
+  "Camera": {
+    "Anchor": {
+      "X": -1,
+      "Y": 0,
+      "Z": -1
+    },
+    "Local": {
+      "X": 10.75,
+      "Y": 1.25,
+      "Z": 10.75
+    },
+    "Yaw": -2.356194490192345,
+    "Pitch": -0.2617993877991494
+  },
+  "TimeOfDay": 23,
+  "Width": 1920,
+  "Height": 1080,
+  "Render": null
+}

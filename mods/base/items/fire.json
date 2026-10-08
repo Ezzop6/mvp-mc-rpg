@@ -1,0 +1,5 @@
+{
+  "category": "fire",
+  "source": "import",
+  "entries": [{ "id": "base:campfire", "block": "base:campfire" }, { "id": "base:soul_campfire", "block": "base:soul_campfire" }]
+}

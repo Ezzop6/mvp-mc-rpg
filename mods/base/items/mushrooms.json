@@ -1,0 +1,17 @@
+{
+  "category": "mushrooms",
+  "source": "import",
+  "entries": [
+    { "id": "base:brown_mushroom", "block": "base:brown_mushroom" },
+    { "id": "base:brown_mushroom_block", "block": "base:brown_mushroom_block" },
+    { "id": "base:crimson_fungus", "block": "base:crimson_fungus" },
+    { "id": "base:crimson_roots", "block": "base:crimson_roots" },
+    { "id": "base:mushroom_stem", "block": "base:mushroom_stem" },
+    { "id": "base:nether_sprouts", "block": "base:nether_sprouts" },
+    { "id": "base:red_mushroom", "block": "base:red_mushroom" },
+    { "id": "base:red_mushroom_block", "block": "base:red_mushroom_block" },
+    { "id": "base:shelf_mushroom", "block": "base:shelf_mushroom" },
+    { "id": "base:warped_fungus", "block": "base:warped_fungus" },
+    { "id": "base:warped_roots", "block": "base:warped_roots" }
+  ]
+}

@@ -1,0 +1,64 @@
+// What the generator modules call (docs/v2.md §4.2, L0), over the column ring; includes the module. After world.glsli, blocks.glsli, models.glsli.
+layout(set = 0, binding = 0, std430) restrict buffer Heights { float heights[]; };
+layout(set = 0, binding = 1, std430) restrict buffer ColMinMax { vec2 colmm[]; };        // per column slot
+layout(set = 0, binding = 2, std430) restrict buffer ColFeatureCount { uint col_feature_count[]; };
+layout(set = 0, binding = 3, std430) restrict buffer ColFeatures { ivec4 col_features[]; }; // MAX_COL_FEATURES per column slot
+
+uint col_slot(ivec2 col) { ivec3 d = ring_size(); return W.lv[LVL].base.y + uint(pmod(col.x, d.x) + d.x * pmod(col.y, d.z)); } // column of level lvl
+float column_value(ivec2 b) { // gen_column of block column b (L0)
+	ivec2 col = ivec2(fdiv(b.x, CHUNK), fdiv(b.y, CHUNK)), l = b - col * CHUNK;
+	return heights[col_slot(col) * uint(CHUNK * CHUNK) + uint(l.x + CHUNK * l.y)];
+}
+// L >= 1: block column of sample column sc (0-9 per axis: coarse cell sc / 2, sample sc % 2 at 1/4 or 3/4 of the cell) of the group at block gb (docs/v2.md §5.17).
+ivec2 lod_sample_column(ivec3 gb, ivec2 sc, int level) {
+	int s = 1 << level;
+	return gb.xz + (sc >> 1) * s + mix(ivec2(s / 4), ivec2(3 * s / 4), notEqual(sc & 1, ivec2(0)));
+}
+uint feature_count(uint slot) { return min(col_feature_count[slot], MAX_COL_FEATURES); }
+ivec4 col_feature(uint slot, uint k) { return col_features[slot * MAX_COL_FEATURES + k]; }
+
+void gen_feature_box(ivec4 f, out ivec3 lo, out ivec3 hi);
+bool box_hits(ivec4 f, ivec3 lo, ivec3 hi) {
+	ivec3 flo, fhi;
+	gen_feature_box(f, flo, fhi);
+	return all(lessThan(flo, hi)) && all(greaterThan(fhi, lo));
+}
+
+float center_m(int b) { return (float(b) + 0.5) * BS; }
+vec3 center_m(ivec3 b) { return (vec3(b) + 0.5) * BS; }
+
+uint pcg(uvec3 v) {
+	v = v * 1664525u + 1013904223u;
+	v.x += v.y * v.z; v.y += v.z * v.x; v.z += v.x * v.y;
+	v ^= v >> 16u;
+	v.x += v.y * v.z; v.y += v.z * v.x; v.z += v.x * v.y;
+	return v.x ^ v.y ^ v.z;
+}
+uint hash3(ivec3 p, uint salt) { return pcg(uvec3(p) ^ uvec3(salt * 0x9E3779B9u, uint(W.perm[7]) * 0x85EBCA6Bu, salt + uint(W.perm[3]))); }
+float hash01(ivec3 p, uint salt) { return float(hash3(p, salt) & 0xFFFFFFu) / 16777216.0; }
+
+float fade(float t) { return t * t * t * (t * (t * 6.0 - 15.0) + 10.0); }
+float grad(int h, float x, float y, float z) {
+	h &= 15;
+	float u = h < 8 ? x : y;
+	float v = h < 4 ? y : ((h == 12 || h == 14) ? x : z);
+	return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);
+}
+// Same noise as Perlin in WorldGenerator.cs.
+float noise3(float x, float y, float z) {
+	int X = int(floor(x)), Y = int(floor(y)), Z = int(floor(z));
+	x -= float(X); y -= float(Y); z -= float(Z);
+	X &= 255; Y &= 255; Z &= 255;
+	float u = fade(x), v = fade(y), w = fade(z);
+	int A = W.perm[X] + Y, AA = W.perm[A] + Z, AB = W.perm[A + 1] + Z;
+	int B = W.perm[X + 1] + Y, BA = W.perm[B] + Z, BB = W.perm[B + 1] + Z;
+	return mix(
+		mix(mix(grad(W.perm[AA], x, y, z), grad(W.perm[BA], x - 1.0, y, z), u),
+			mix(grad(W.perm[AB], x, y - 1.0, z), grad(W.perm[BB], x - 1.0, y - 1.0, z), u), v),
+		mix(mix(grad(W.perm[AA + 1], x, y, z - 1.0), grad(W.perm[BA + 1], x - 1.0, y, z - 1.0), u),
+			mix(grad(W.perm[AB + 1], x, y - 1.0, z - 1.0), grad(W.perm[BB + 1], x - 1.0, y - 1.0, z - 1.0), u), v), w);
+}
+
+shared vec4 s_v[2u * GROUP_X]; // per thread partial results (COLUMN_MIN_MAX, gen_classify_chunk)
+
+#include "GENERATOR_MODULE"

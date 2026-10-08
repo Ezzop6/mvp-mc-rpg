@@ -1,0 +1,39 @@
+{
+  "Name": "atmo-haze-dusk",
+  "Format": 1,
+  "Dimensions": {
+    "overworld": {
+      "Generator": "flat",
+      "GeneratorVersion": 1,
+      "Params": null
+    }
+  },
+  "Blocks": {
+    "base:blast_furnace": 106,
+    "base:furnace": 434,
+    "base:glowstone": 440,
+    "base:jack_o_lantern": 513,
+    "base:lava": 542,
+    "base:magma_block": 627,
+    "base:prismarine": 895,
+    "base:redstone_lamp": 968,
+    "base:sea_lantern": 996,
+    "base:shroomlight": 1002,
+    "base:smoker": 1010,
+    "base:water": 1181
+  },
+  "Models": {},
+  "Player": {
+    "Dimension": "overworld",
+    "Position": {
+      "X": 0,
+      "Y": 0,
+      "Z": 0
+    },
+    "Yaw": 0,
+    "Pitch": 0
+  },
+  "TimeOfDay": 0,
+  "Day": 0,
+  "Bookmarks": []
+}

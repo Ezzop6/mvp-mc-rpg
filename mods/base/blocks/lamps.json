@@ -1,0 +1,878 @@
+{
+  "category": "lamps",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:beacon",
+      "kind": "cube",
+      "template": "elements",
+      "faces": { "all": { "texture": "block/glass" } },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#fff7f5" },
+      "tags": ["animated", "extra_geometry"],
+      "cubes": { "beacon": { "all": { "texture": "block/glass" } } },
+      "variants": [{ "looks": [{ "cube": "beacon" }] }]
+    },
+    {
+      "id": "base:conduit",
+      "kind": "entity",
+      "textures": { "particle": "block/conduit" },
+      "surface": "cutout",
+      "light": { "level": 15, "color": "#ffdfb5" },
+      "tags": ["base_texture", "placeholder"],
+      "cubes": { "conduit": { "all": { "texture": "block/conduit" } } },
+      "variants": [{ "looks": [{ "cube": "conduit" }] }]
+    },
+    {
+      "id": "base:copper_bulb",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/copper_bulb" } },
+      "light": { "level": 15, "when": "lit=true", "color": "#ff906a" },
+      "states": { "lit": ["false", "true"], "powered": ["false", "true"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "copper_bulb": { "all": { "texture": "block/copper_bulb" } },
+        "copper_bulb_lit": { "all": { "texture": "block/copper_bulb_lit", "emission": 0.236 } },
+        "copper_bulb_lit_powered": { "all": { "texture": "block/copper_bulb_lit_powered", "emission": 0.243 } },
+        "copper_bulb_powered": { "all": { "texture": "block/copper_bulb_powered", "emission": 0.008 } }
+      },
+      "variants": [
+        {
+          "when": { "lit": "false", "powered": "false" },
+          "looks": [{ "cube": "copper_bulb" }, { "cube": "copper_bulb", "y": 90 }, { "cube": "copper_bulb", "y": 180 }, { "cube": "copper_bulb", "y": 270 }]
+        },
+        {
+          "when": { "lit": "false", "powered": "true" },
+          "looks": [
+            { "cube": "copper_bulb_powered" },
+            { "cube": "copper_bulb_powered", "y": 90 },
+            { "cube": "copper_bulb_powered", "y": 180 },
+            { "cube": "copper_bulb_powered", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "false" },
+          "looks": [
+            { "cube": "copper_bulb_lit" },
+            { "cube": "copper_bulb_lit", "y": 90 },
+            { "cube": "copper_bulb_lit", "y": 180 },
+            { "cube": "copper_bulb_lit", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "true" },
+          "looks": [
+            { "cube": "copper_bulb_lit_powered" },
+            { "cube": "copper_bulb_lit_powered", "y": 90 },
+            { "cube": "copper_bulb_lit_powered", "y": 180 },
+            { "cube": "copper_bulb_lit_powered", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:end_rod",
+      "kind": "custom",
+      "textures": { "end_rod": "block/end_rod", "particle": "block/end_rod" },
+      "surface": "cutout",
+      "emission": 0.167,
+      "light": { "level": 14, "color": "#fffefc" },
+      "orientation": "facing",
+      "states": { "facing": ["down", "east", "north", "south", "up", "west"] },
+      "tags": ["default_rotated_x"],
+      "variants": [
+        { "when": { "facing": "down" }, "looks": [{ "model": "end_rod", "x": 180 }] },
+        { "when": { "facing": "east" }, "looks": [{ "model": "end_rod", "x": 90, "y": 90 }] },
+        { "when": { "facing": "north" }, "looks": [{ "model": "end_rod", "x": 90 }] },
+        { "when": { "facing": "south" }, "looks": [{ "model": "end_rod", "x": 90, "y": 180 }] },
+        { "when": { "facing": "up" }, "looks": [{ "model": "end_rod" }] },
+        { "when": { "facing": "west" }, "looks": [{ "model": "end_rod", "x": 90, "y": 270 }] }
+      ]
+    },
+    {
+      "id": "base:exposed_copper_bulb",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/exposed_copper_bulb" } },
+      "light": { "level": 12, "when": "lit=true", "color": "#ffd9a7" },
+      "states": { "lit": ["false", "true"], "powered": ["false", "true"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "exposed_copper_bulb": { "all": { "texture": "block/exposed_copper_bulb" } },
+        "exposed_copper_bulb_lit": { "all": { "texture": "block/exposed_copper_bulb_lit", "emission": 0.133 } },
+        "exposed_copper_bulb_lit_powered": { "all": { "texture": "block/exposed_copper_bulb_lit_powered", "emission": 0.138 } },
+        "exposed_copper_bulb_powered": { "all": { "texture": "block/exposed_copper_bulb_powered", "emission": 0.005 } }
+      },
+      "variants": [
+        {
+          "when": { "lit": "false", "powered": "false" },
+          "looks": [
+            { "cube": "exposed_copper_bulb" },
+            { "cube": "exposed_copper_bulb", "y": 90 },
+            { "cube": "exposed_copper_bulb", "y": 180 },
+            { "cube": "exposed_copper_bulb", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "false", "powered": "true" },
+          "looks": [
+            { "cube": "exposed_copper_bulb_powered" },
+            { "cube": "exposed_copper_bulb_powered", "y": 90 },
+            { "cube": "exposed_copper_bulb_powered", "y": 180 },
+            { "cube": "exposed_copper_bulb_powered", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "false" },
+          "looks": [
+            { "cube": "exposed_copper_bulb_lit" },
+            { "cube": "exposed_copper_bulb_lit", "y": 90 },
+            { "cube": "exposed_copper_bulb_lit", "y": 180 },
+            { "cube": "exposed_copper_bulb_lit", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "true" },
+          "looks": [
+            { "cube": "exposed_copper_bulb_lit_powered" },
+            { "cube": "exposed_copper_bulb_lit_powered", "y": 90 },
+            { "cube": "exposed_copper_bulb_lit_powered", "y": 180 },
+            { "cube": "exposed_copper_bulb_lit_powered", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:glowstone",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/glowstone", "emission": 0.286 } },
+      "light": { "level": 15, "color": "#ffcc72" },
+      "cubes": { "glowstone": { "all": { "texture": "block/glowstone", "emission": 0.286 } } },
+      "variants": [{ "looks": [{ "cube": "glowstone" }] }]
+    },
+    {
+      "id": "base:jack_o_lantern",
+      "kind": "cube",
+      "template": "orientable",
+      "faces": {
+        "top": { "texture": "block/pumpkin_top", "rotation": 180 },
+        "bottom": { "texture": "block/pumpkin_top" },
+        "front": { "texture": "block/jack_o_lantern", "emission": 0.117 },
+        "back": { "texture": "block/pumpkin_side3" },
+        "left": { "texture": "block/pumpkin_side2" },
+        "right": { "texture": "block/pumpkin_side4" }
+      },
+      "light": { "level": 15, "color": "#ffd03f" },
+      "orientation": "horizontal",
+      "states": { "facing": ["east", "north", "south", "west"] },
+      "tags": ["random_variants"],
+      "cubes": {
+        "jack_o_lantern": {
+          "top": { "texture": "block/pumpkin_top", "rotation": 180 },
+          "bottom": { "texture": "block/pumpkin_top" },
+          "front": { "texture": "block/jack_o_lantern", "emission": 0.117 },
+          "back": { "texture": "block/pumpkin_side3" },
+          "left": { "texture": "block/pumpkin_side2" },
+          "right": { "texture": "block/pumpkin_side4" }
+        },
+        "jack_o_lantern2": {
+          "top": { "texture": "block/pumpkin_top", "rotation": 270 },
+          "bottom": { "texture": "block/pumpkin_top", "rotation": 90 },
+          "front": { "texture": "block/jack_o_lantern2", "emission": 0.07 },
+          "back": { "texture": "block/pumpkin_side4" },
+          "left": { "texture": "block/pumpkin_side3" },
+          "right": { "texture": "block/pumpkin_side" }
+        },
+        "jack_o_lantern2_extra": {
+          "top": { "texture": "block/extra/pumpkin_top_extra", "rotation": 270 },
+          "bottom": { "texture": "block/extra/pumpkin_top_extra", "rotation": 90 },
+          "front": { "texture": "block/extra/jack_o_lantern2_extra", "emission": 0.07 },
+          "back": { "texture": "block/extra/pumpkin_side4_extra" },
+          "left": { "texture": "block/extra/pumpkin_side3_extra" },
+          "right": { "texture": "block/extra/pumpkin_side_extra" }
+        },
+        "jack_o_lantern3": {
+          "top": { "texture": "block/pumpkin_top" },
+          "bottom": { "texture": "block/pumpkin_top", "rotation": 180 },
+          "front": { "texture": "block/jack_o_lantern3", "emission": 0.048 },
+          "back": { "texture": "block/pumpkin_side" },
+          "left": { "texture": "block/pumpkin_side4" },
+          "right": { "texture": "block/pumpkin_side2" }
+        },
+        "jack_o_lantern3_extra": {
+          "top": { "texture": "block/extra/pumpkin_top_extra" },
+          "bottom": { "texture": "block/extra/pumpkin_top_extra", "rotation": 180 },
+          "front": { "texture": "block/extra/jack_o_lantern3_extra", "emission": 0.048 },
+          "back": { "texture": "block/extra/pumpkin_side_extra" },
+          "left": { "texture": "block/extra/pumpkin_side4_extra" },
+          "right": { "texture": "block/extra/pumpkin_side2_extra" }
+        },
+        "jack_o_lantern4": {
+          "top": { "texture": "block/pumpkin_top", "rotation": 90 },
+          "bottom": { "texture": "block/pumpkin_top", "rotation": 270 },
+          "front": { "texture": "block/jack_o_lantern4", "emission": 0.077 },
+          "back": { "texture": "block/pumpkin_side2" },
+          "left": { "texture": "block/pumpkin_side" },
+          "right": { "texture": "block/pumpkin_side3" }
+        },
+        "jack_o_lantern4_extra": {
+          "top": { "texture": "block/extra/pumpkin_top_extra", "rotation": 90 },
+          "bottom": { "texture": "block/extra/pumpkin_top_extra", "rotation": 270 },
+          "front": { "texture": "block/extra/jack_o_lantern4_extra", "emission": 0.077 },
+          "back": { "texture": "block/extra/pumpkin_side2_extra" },
+          "left": { "texture": "block/extra/pumpkin_side_extra" },
+          "right": { "texture": "block/extra/pumpkin_side3_extra" }
+        },
+        "jack_o_lantern_extra": {
+          "top": { "texture": "block/extra/pumpkin_top_extra", "rotation": 180 },
+          "bottom": { "texture": "block/extra/pumpkin_top_extra" },
+          "front": { "texture": "block/extra/jack_o_lantern_extra", "emission": 0.117 },
+          "back": { "texture": "block/extra/pumpkin_side3_extra" },
+          "left": { "texture": "block/extra/pumpkin_side2_extra" },
+          "right": { "texture": "block/extra/pumpkin_side4_extra" }
+        }
+      },
+      "variants": [
+        {
+          "when": { "facing": "north" },
+          "looks": [
+            { "cube": "jack_o_lantern" },
+            { "cube": "jack_o_lantern2" },
+            { "cube": "jack_o_lantern3" },
+            { "cube": "jack_o_lantern4" },
+            { "cube": "jack_o_lantern_extra" },
+            { "cube": "jack_o_lantern2_extra" },
+            { "cube": "jack_o_lantern3_extra" },
+            { "cube": "jack_o_lantern4_extra" }
+          ]
+        },
+        {
+          "when": { "facing": "east" },
+          "looks": [
+            { "cube": "jack_o_lantern", "y": 90 },
+            { "cube": "jack_o_lantern2", "y": 90 },
+            { "cube": "jack_o_lantern3", "y": 90 },
+            { "cube": "jack_o_lantern4", "y": 90 },
+            { "cube": "jack_o_lantern_extra", "y": 90 },
+            { "cube": "jack_o_lantern2_extra", "y": 90 },
+            { "cube": "jack_o_lantern3_extra", "y": 90 },
+            { "cube": "jack_o_lantern4_extra", "y": 90 }
+          ]
+        },
+        {
+          "when": { "facing": "south" },
+          "looks": [
+            { "cube": "jack_o_lantern", "y": 180 },
+            { "cube": "jack_o_lantern2", "y": 180 },
+            { "cube": "jack_o_lantern3", "y": 180 },
+            { "cube": "jack_o_lantern4", "y": 180 },
+            { "cube": "jack_o_lantern_extra", "y": 180 },
+            { "cube": "jack_o_lantern2_extra", "y": 180 },
+            { "cube": "jack_o_lantern3_extra", "y": 180 },
+            { "cube": "jack_o_lantern4_extra", "y": 180 }
+          ]
+        },
+        {
+          "when": { "facing": "west" },
+          "looks": [
+            { "cube": "jack_o_lantern", "y": 270 },
+            { "cube": "jack_o_lantern2", "y": 270 },
+            { "cube": "jack_o_lantern3", "y": 270 },
+            { "cube": "jack_o_lantern4", "y": 270 },
+            { "cube": "jack_o_lantern_extra", "y": 270 },
+            { "cube": "jack_o_lantern2_extra", "y": 270 },
+            { "cube": "jack_o_lantern3_extra", "y": 270 },
+            { "cube": "jack_o_lantern4_extra", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:ochre_froglight",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/ochre_froglight_top", "emission": 0.122 },
+        "bottom": { "texture": "block/ochre_froglight_top", "emission": 0.122 },
+        "side": { "texture": "block/ochre_froglight_side", "emission": 0.122 }
+      },
+      "light": { "level": 15, "color": "#ffebb3" },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "ochre_froglight": {
+          "top": { "texture": "block/ochre_froglight_top", "emission": 0.122 },
+          "bottom": { "texture": "block/ochre_froglight_top", "emission": 0.122 },
+          "side": { "texture": "block/ochre_froglight_side", "emission": 0.122 }
+        }
+      },
+      "multipart": [
+        {
+          "when": [{ "axis": "x" }],
+          "looks": [
+            { "cube": "ochre_froglight", "x": 90, "y": 90 },
+            { "cube": "ochre_froglight", "x": 270, "y": 270 },
+            { "cube": "ochre_froglight", "x": 90, "y": 270 },
+            { "cube": "ochre_froglight", "x": 270, "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "axis": "y" }],
+          "looks": [
+            { "cube": "ochre_froglight" },
+            { "cube": "ochre_froglight", "y": 90 },
+            { "cube": "ochre_froglight", "y": 180 },
+            { "cube": "ochre_froglight", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "axis": "z" }],
+          "looks": [
+            { "cube": "ochre_froglight", "x": 90 },
+            { "cube": "ochre_froglight", "x": 270, "y": 180 },
+            { "cube": "ochre_froglight", "x": 90, "y": 180 },
+            { "cube": "ochre_froglight", "x": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:oxidized_copper_bulb",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/oxidized_copper_bulb" } },
+      "light": { "level": 4, "when": "lit=true", "color": "#8dffd1" },
+      "states": { "lit": ["false", "true"], "powered": ["false", "true"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "oxidized_copper_bulb": { "all": { "texture": "block/oxidized_copper_bulb" } },
+        "oxidized_copper_bulb_lit": { "all": { "texture": "block/oxidized_copper_bulb_lit", "emission": 0.021 } },
+        "oxidized_copper_bulb_lit_powered": { "all": { "texture": "block/oxidized_copper_bulb_lit_powered", "emission": 0.023 } },
+        "oxidized_copper_bulb_powered": { "all": { "texture": "block/oxidized_copper_bulb_powered" } }
+      },
+      "variants": [
+        {
+          "when": { "lit": "false", "powered": "false" },
+          "looks": [
+            { "cube": "oxidized_copper_bulb" },
+            { "cube": "oxidized_copper_bulb", "y": 90 },
+            { "cube": "oxidized_copper_bulb", "y": 180 },
+            { "cube": "oxidized_copper_bulb", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "false", "powered": "true" },
+          "looks": [
+            { "cube": "oxidized_copper_bulb_powered" },
+            { "cube": "oxidized_copper_bulb_powered", "y": 90 },
+            { "cube": "oxidized_copper_bulb_powered", "y": 180 },
+            { "cube": "oxidized_copper_bulb_powered", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "false" },
+          "looks": [
+            { "cube": "oxidized_copper_bulb_lit" },
+            { "cube": "oxidized_copper_bulb_lit", "y": 90 },
+            { "cube": "oxidized_copper_bulb_lit", "y": 180 },
+            { "cube": "oxidized_copper_bulb_lit", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "true" },
+          "looks": [
+            { "cube": "oxidized_copper_bulb_lit_powered" },
+            { "cube": "oxidized_copper_bulb_lit_powered", "y": 90 },
+            { "cube": "oxidized_copper_bulb_lit_powered", "y": 180 },
+            { "cube": "oxidized_copper_bulb_lit_powered", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:pearlescent_froglight",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/pearlescent_froglight_top", "emission": 0.122 },
+        "bottom": { "texture": "block/pearlescent_froglight_top", "emission": 0.122 },
+        "side": { "texture": "block/pearlescent_froglight_side", "emission": 0.122 }
+      },
+      "light": { "level": 15, "color": "#ffd6fa" },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "pearlescent_froglight": {
+          "top": { "texture": "block/pearlescent_froglight_top", "emission": 0.122 },
+          "bottom": { "texture": "block/pearlescent_froglight_top", "emission": 0.122 },
+          "side": { "texture": "block/pearlescent_froglight_side", "emission": 0.122 }
+        }
+      },
+      "multipart": [
+        {
+          "when": [{ "axis": "x" }],
+          "looks": [
+            { "cube": "pearlescent_froglight", "x": 90, "y": 90 },
+            { "cube": "pearlescent_froglight", "x": 270, "y": 270 },
+            { "cube": "pearlescent_froglight", "x": 90, "y": 270 },
+            { "cube": "pearlescent_froglight", "x": 270, "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "axis": "y" }],
+          "looks": [
+            { "cube": "pearlescent_froglight" },
+            { "cube": "pearlescent_froglight", "y": 90 },
+            { "cube": "pearlescent_froglight", "y": 180 },
+            { "cube": "pearlescent_froglight", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "axis": "z" }],
+          "looks": [
+            { "cube": "pearlescent_froglight", "x": 90 },
+            { "cube": "pearlescent_froglight", "x": 270, "y": 180 },
+            { "cube": "pearlescent_froglight", "x": 90, "y": 180 },
+            { "cube": "pearlescent_froglight", "x": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:redstone_lamp",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/redstone_lamp" } },
+      "light": { "level": 15, "when": "lit=true", "color": "#ffa66b" },
+      "states": { "lit": ["false", "true"] },
+      "cubes": {
+        "redstone_lamp": { "all": { "texture": "block/redstone_lamp" } },
+        "redstone_lamp_on": { "all": { "texture": "block/redstone_lamp_on", "emission": 0.258 } }
+      },
+      "variants": [
+        { "when": { "lit": "false" }, "looks": [{ "cube": "redstone_lamp" }] },
+        { "when": { "lit": "true" }, "looks": [{ "cube": "redstone_lamp_on" }] }
+      ]
+    },
+    {
+      "id": "base:respawn_anchor",
+      "kind": "cube",
+      "template": "cube_bottom_top",
+      "faces": {
+        "top": { "texture": "block/respawn_anchor_top_off", "emission": 0.007 },
+        "bottom": { "texture": "block/crying_obsidian", "emission": 0.021 },
+        "side": { "texture": "block/respawn_anchor_side0", "emission": 0.005 }
+      },
+      "light": { "level": 15, "when": "charges=4", "color": "#9128ff" },
+      "states": { "charges": ["0", "1", "2", "3", "4"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "respawn_anchor_0": {
+          "top": { "texture": "block/respawn_anchor_top_off", "emission": 0.007 },
+          "bottom": { "texture": "block/crying_obsidian", "emission": 0.021 },
+          "side": { "texture": "block/respawn_anchor_side0", "emission": 0.005 }
+        },
+        "respawn_anchor_1": {
+          "top": { "texture": "block/respawn_anchor_top", "emission": 0.005 },
+          "bottom": { "texture": "block/crying_obsidian", "emission": 0.021 },
+          "side": { "texture": "block/respawn_anchor_side1", "emission": 0.015 }
+        },
+        "respawn_anchor_2": {
+          "top": { "texture": "block/respawn_anchor_top", "emission": 0.005 },
+          "bottom": { "texture": "block/crying_obsidian", "emission": 0.021 },
+          "side": { "texture": "block/respawn_anchor_side2", "emission": 0.022 }
+        },
+        "respawn_anchor_3": {
+          "top": { "texture": "block/respawn_anchor_top", "emission": 0.005 },
+          "bottom": { "texture": "block/crying_obsidian", "emission": 0.021 },
+          "side": { "texture": "block/respawn_anchor_side3", "emission": 0.03 }
+        },
+        "respawn_anchor_4": {
+          "top": { "texture": "block/respawn_anchor_top", "emission": 0.005 },
+          "bottom": { "texture": "block/crying_obsidian", "emission": 0.021 },
+          "side": { "texture": "block/respawn_anchor_side4", "emission": 0.037 }
+        }
+      },
+      "multipart": [
+        {
+          "when": [{ "charges": "0" }],
+          "looks": [
+            { "cube": "respawn_anchor_0" },
+            { "cube": "respawn_anchor_0", "y": 90 },
+            { "cube": "respawn_anchor_0", "y": 180 },
+            { "cube": "respawn_anchor_0", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "charges": "1" }],
+          "looks": [
+            { "cube": "respawn_anchor_1" },
+            { "cube": "respawn_anchor_1", "y": 90 },
+            { "cube": "respawn_anchor_1", "y": 180 },
+            { "cube": "respawn_anchor_1", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "charges": "2" }],
+          "looks": [
+            { "cube": "respawn_anchor_2" },
+            { "cube": "respawn_anchor_2", "y": 90 },
+            { "cube": "respawn_anchor_2", "y": 180 },
+            { "cube": "respawn_anchor_2", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "charges": "3" }],
+          "looks": [
+            { "cube": "respawn_anchor_3" },
+            { "cube": "respawn_anchor_3", "y": 90 },
+            { "cube": "respawn_anchor_3", "y": 180 },
+            { "cube": "respawn_anchor_3", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "charges": "4" }],
+          "looks": [
+            { "cube": "respawn_anchor_4" },
+            { "cube": "respawn_anchor_4", "y": 90 },
+            { "cube": "respawn_anchor_4", "y": 180 },
+            { "cube": "respawn_anchor_4", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:sea_lantern",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/sea_lantern", "emission": 0.422 } },
+      "light": { "level": 15, "color": "#c3fff7" },
+      "tags": ["animated"],
+      "cubes": { "sea_lantern": { "all": { "texture": "block/sea_lantern", "emission": 0.422 } } },
+      "variants": [{ "looks": [{ "cube": "sea_lantern" }] }]
+    },
+    {
+      "id": "base:shroomlight",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/shroomlight", "emission": 0.193 } },
+      "light": { "level": 15, "color": "#ffa255" },
+      "cubes": { "shroomlight": { "all": { "texture": "block/shroomlight", "emission": 0.193 } } },
+      "variants": [{ "looks": [{ "cube": "shroomlight" }] }]
+    },
+    {
+      "id": "base:verdant_froglight",
+      "kind": "cube",
+      "template": "cube_column",
+      "faces": {
+        "top": { "texture": "block/verdant_froglight_top", "emission": 0.122 },
+        "bottom": { "texture": "block/verdant_froglight_top", "emission": 0.122 },
+        "side": { "texture": "block/verdant_froglight_side", "emission": 0.122 }
+      },
+      "light": { "level": 15, "color": "#d4ffd0" },
+      "orientation": "axis",
+      "states": { "axis": ["x", "y", "z"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "verdant_froglight": {
+          "top": { "texture": "block/verdant_froglight_top", "emission": 0.122 },
+          "bottom": { "texture": "block/verdant_froglight_top", "emission": 0.122 },
+          "side": { "texture": "block/verdant_froglight_side", "emission": 0.122 }
+        }
+      },
+      "multipart": [
+        {
+          "when": [{ "axis": "x" }],
+          "looks": [
+            { "cube": "verdant_froglight", "x": 90, "y": 90 },
+            { "cube": "verdant_froglight", "x": 270, "y": 270 },
+            { "cube": "verdant_froglight", "x": 90, "y": 270 },
+            { "cube": "verdant_froglight", "x": 270, "y": 90 }
+          ]
+        },
+        {
+          "when": [{ "axis": "y" }],
+          "looks": [
+            { "cube": "verdant_froglight" },
+            { "cube": "verdant_froglight", "y": 90 },
+            { "cube": "verdant_froglight", "y": 180 },
+            { "cube": "verdant_froglight", "y": 270 }
+          ]
+        },
+        {
+          "when": [{ "axis": "z" }],
+          "looks": [
+            { "cube": "verdant_froglight", "x": 90 },
+            { "cube": "verdant_froglight", "x": 270, "y": 180 },
+            { "cube": "verdant_froglight", "x": 90, "y": 180 },
+            { "cube": "verdant_froglight", "x": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_copper_bulb",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/copper_bulb" } },
+      "light": { "level": 15, "when": "lit=true", "color": "#ff906a" },
+      "states": { "lit": ["false", "true"], "powered": ["false", "true"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "copper_bulb": { "all": { "texture": "block/copper_bulb" } },
+        "copper_bulb_lit": { "all": { "texture": "block/copper_bulb_lit", "emission": 0.236 } },
+        "copper_bulb_lit_powered": { "all": { "texture": "block/copper_bulb_lit_powered", "emission": 0.243 } },
+        "copper_bulb_powered": { "all": { "texture": "block/copper_bulb_powered", "emission": 0.008 } }
+      },
+      "variants": [
+        {
+          "when": { "lit": "false", "powered": "false" },
+          "looks": [{ "cube": "copper_bulb" }, { "cube": "copper_bulb", "y": 90 }, { "cube": "copper_bulb", "y": 180 }, { "cube": "copper_bulb", "y": 270 }]
+        },
+        {
+          "when": { "lit": "false", "powered": "true" },
+          "looks": [
+            { "cube": "copper_bulb_powered" },
+            { "cube": "copper_bulb_powered", "y": 90 },
+            { "cube": "copper_bulb_powered", "y": 180 },
+            { "cube": "copper_bulb_powered", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "false" },
+          "looks": [
+            { "cube": "copper_bulb_lit" },
+            { "cube": "copper_bulb_lit", "y": 90 },
+            { "cube": "copper_bulb_lit", "y": 180 },
+            { "cube": "copper_bulb_lit", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "true" },
+          "looks": [
+            { "cube": "copper_bulb_lit_powered" },
+            { "cube": "copper_bulb_lit_powered", "y": 90 },
+            { "cube": "copper_bulb_lit_powered", "y": 180 },
+            { "cube": "copper_bulb_lit_powered", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_exposed_copper_bulb",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/exposed_copper_bulb" } },
+      "light": { "level": 12, "when": "lit=true", "color": "#ffd9a7" },
+      "states": { "lit": ["false", "true"], "powered": ["false", "true"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "exposed_copper_bulb": { "all": { "texture": "block/exposed_copper_bulb" } },
+        "exposed_copper_bulb_lit": { "all": { "texture": "block/exposed_copper_bulb_lit", "emission": 0.133 } },
+        "exposed_copper_bulb_lit_powered": { "all": { "texture": "block/exposed_copper_bulb_lit_powered", "emission": 0.138 } },
+        "exposed_copper_bulb_powered": { "all": { "texture": "block/exposed_copper_bulb_powered", "emission": 0.005 } }
+      },
+      "variants": [
+        {
+          "when": { "lit": "false", "powered": "false" },
+          "looks": [
+            { "cube": "exposed_copper_bulb" },
+            { "cube": "exposed_copper_bulb", "y": 90 },
+            { "cube": "exposed_copper_bulb", "y": 180 },
+            { "cube": "exposed_copper_bulb", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "false", "powered": "true" },
+          "looks": [
+            { "cube": "exposed_copper_bulb_powered" },
+            { "cube": "exposed_copper_bulb_powered", "y": 90 },
+            { "cube": "exposed_copper_bulb_powered", "y": 180 },
+            { "cube": "exposed_copper_bulb_powered", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "false" },
+          "looks": [
+            { "cube": "exposed_copper_bulb_lit" },
+            { "cube": "exposed_copper_bulb_lit", "y": 90 },
+            { "cube": "exposed_copper_bulb_lit", "y": 180 },
+            { "cube": "exposed_copper_bulb_lit", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "true" },
+          "looks": [
+            { "cube": "exposed_copper_bulb_lit_powered" },
+            { "cube": "exposed_copper_bulb_lit_powered", "y": 90 },
+            { "cube": "exposed_copper_bulb_lit_powered", "y": 180 },
+            { "cube": "exposed_copper_bulb_lit_powered", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_oxidized_copper_bulb",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/oxidized_copper_bulb" } },
+      "light": { "level": 4, "when": "lit=true", "color": "#8dffd1" },
+      "states": { "lit": ["false", "true"], "powered": ["false", "true"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "oxidized_copper_bulb": { "all": { "texture": "block/oxidized_copper_bulb" } },
+        "oxidized_copper_bulb_lit": { "all": { "texture": "block/oxidized_copper_bulb_lit", "emission": 0.021 } },
+        "oxidized_copper_bulb_lit_powered": { "all": { "texture": "block/oxidized_copper_bulb_lit_powered", "emission": 0.023 } },
+        "oxidized_copper_bulb_powered": { "all": { "texture": "block/oxidized_copper_bulb_powered" } }
+      },
+      "variants": [
+        {
+          "when": { "lit": "false", "powered": "false" },
+          "looks": [
+            { "cube": "oxidized_copper_bulb" },
+            { "cube": "oxidized_copper_bulb", "y": 90 },
+            { "cube": "oxidized_copper_bulb", "y": 180 },
+            { "cube": "oxidized_copper_bulb", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "false", "powered": "true" },
+          "looks": [
+            { "cube": "oxidized_copper_bulb_powered" },
+            { "cube": "oxidized_copper_bulb_powered", "y": 90 },
+            { "cube": "oxidized_copper_bulb_powered", "y": 180 },
+            { "cube": "oxidized_copper_bulb_powered", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "false" },
+          "looks": [
+            { "cube": "oxidized_copper_bulb_lit" },
+            { "cube": "oxidized_copper_bulb_lit", "y": 90 },
+            { "cube": "oxidized_copper_bulb_lit", "y": 180 },
+            { "cube": "oxidized_copper_bulb_lit", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "true" },
+          "looks": [
+            { "cube": "oxidized_copper_bulb_lit_powered" },
+            { "cube": "oxidized_copper_bulb_lit_powered", "y": 90 },
+            { "cube": "oxidized_copper_bulb_lit_powered", "y": 180 },
+            { "cube": "oxidized_copper_bulb_lit_powered", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:waxed_weathered_copper_bulb",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/weathered_copper_bulb" } },
+      "light": { "level": 8, "when": "lit=true", "color": "#d9ffca" },
+      "states": { "lit": ["false", "true"], "powered": ["false", "true"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "weathered_copper_bulb": { "all": { "texture": "block/weathered_copper_bulb" } },
+        "weathered_copper_bulb_lit": { "all": { "texture": "block/weathered_copper_bulb_lit", "emission": 0.064 } },
+        "weathered_copper_bulb_lit_powered": { "all": { "texture": "block/weathered_copper_bulb_lit_powered", "emission": 0.067 } },
+        "weathered_copper_bulb_powered": { "all": { "texture": "block/weathered_copper_bulb_powered" } }
+      },
+      "variants": [
+        {
+          "when": { "lit": "false", "powered": "false" },
+          "looks": [
+            { "cube": "weathered_copper_bulb" },
+            { "cube": "weathered_copper_bulb", "y": 90 },
+            { "cube": "weathered_copper_bulb", "y": 180 },
+            { "cube": "weathered_copper_bulb", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "false", "powered": "true" },
+          "looks": [
+            { "cube": "weathered_copper_bulb_powered" },
+            { "cube": "weathered_copper_bulb_powered", "y": 90 },
+            { "cube": "weathered_copper_bulb_powered", "y": 180 },
+            { "cube": "weathered_copper_bulb_powered", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "false" },
+          "looks": [
+            { "cube": "weathered_copper_bulb_lit" },
+            { "cube": "weathered_copper_bulb_lit", "y": 90 },
+            { "cube": "weathered_copper_bulb_lit", "y": 180 },
+            { "cube": "weathered_copper_bulb_lit", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "true" },
+          "looks": [
+            { "cube": "weathered_copper_bulb_lit_powered" },
+            { "cube": "weathered_copper_bulb_lit_powered", "y": 90 },
+            { "cube": "weathered_copper_bulb_lit_powered", "y": 180 },
+            { "cube": "weathered_copper_bulb_lit_powered", "y": 270 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "base:weathered_copper_bulb",
+      "kind": "cube",
+      "template": "cube_all",
+      "faces": { "all": { "texture": "block/weathered_copper_bulb" } },
+      "light": { "level": 8, "when": "lit=true", "color": "#d9ffca" },
+      "states": { "lit": ["false", "true"], "powered": ["false", "true"] },
+      "tags": ["random_rotation"],
+      "cubes": {
+        "weathered_copper_bulb": { "all": { "texture": "block/weathered_copper_bulb" } },
+        "weathered_copper_bulb_lit": { "all": { "texture": "block/weathered_copper_bulb_lit", "emission": 0.064 } },
+        "weathered_copper_bulb_lit_powered": { "all": { "texture": "block/weathered_copper_bulb_lit_powered", "emission": 0.067 } },
+        "weathered_copper_bulb_powered": { "all": { "texture": "block/weathered_copper_bulb_powered" } }
+      },
+      "variants": [
+        {
+          "when": { "lit": "false", "powered": "false" },
+          "looks": [
+            { "cube": "weathered_copper_bulb" },
+            { "cube": "weathered_copper_bulb", "y": 90 },
+            { "cube": "weathered_copper_bulb", "y": 180 },
+            { "cube": "weathered_copper_bulb", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "false", "powered": "true" },
+          "looks": [
+            { "cube": "weathered_copper_bulb_powered" },
+            { "cube": "weathered_copper_bulb_powered", "y": 90 },
+            { "cube": "weathered_copper_bulb_powered", "y": 180 },
+            { "cube": "weathered_copper_bulb_powered", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "false" },
+          "looks": [
+            { "cube": "weathered_copper_bulb_lit" },
+            { "cube": "weathered_copper_bulb_lit", "y": 90 },
+            { "cube": "weathered_copper_bulb_lit", "y": 180 },
+            { "cube": "weathered_copper_bulb_lit", "y": 270 }
+          ]
+        },
+        {
+          "when": { "lit": "true", "powered": "true" },
+          "looks": [
+            { "cube": "weathered_copper_bulb_lit_powered" },
+            { "cube": "weathered_copper_bulb_lit_powered", "y": 90 },
+            { "cube": "weathered_copper_bulb_lit_powered", "y": 180 },
+            { "cube": "weathered_copper_bulb_lit_powered", "y": 270 }
+          ]
+        }
+      ]
+    }
+  ]
+}

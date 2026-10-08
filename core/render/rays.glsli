@@ -1,0 +1,492 @@
+// DDA over the rings of the levels of detail in level cells relative to the camera anchor (docs/v2.md §3.1, §5.17); after world.glsli, camera.glsli, blocks.glsli, models.glsli; part_features = the column features of gen.compute.
+layout(set = WORLD_SET, binding = WB_COL_FEATURES, std430) restrict readonly buffer PartFeatures { ivec4 part_features[]; };
+const int MAX_MODEL_CELLS = 96;
+
+ivec3 r_off;      // ring-relative cell of level-local cell 0
+ivec3 r_lo, r_hi; // the ring, level-local cells
+ivec3 lv_q;       // world cell of level-local cell 0
+vec3 lv_r;        // anchor-relative block 0 within that cell, blocks (< 2^L): level position = (p + lv_r) / lv_scale
+float lv_scale;   // blocks per cell of the level
+
+// The ring helpers and the DDA address level L (lookup, trace_world).
+void level_setup(int L) {
+#if !LOD_ON
+	L = 0;
+#endif
+	lvl = L;
+	int s = 1 << L;
+	ivec3 a = cam.anchor.xyz * CHUNK;
+	lv_q = ivec3(fdiv(a.x, s), fdiv(a.y, s), fdiv(a.z, s));
+	lv_r = vec3(a - lv_q * s);
+	lv_scale = float(s);
+	r_off = lv_q - W.lv[L].min.xyz * CHUNK;
+	r_lo = -r_off;
+	r_hi = W.lv[L].size.xyz * CHUNK - r_off;
+}
+
+void ring_setup() { level_setup(0); }
+
+vec3 level_pos(vec3 p) { return (p + lv_r) / lv_scale; } // anchor-relative blocks to level-local cells
+
+vec3 safe_dir(vec3 d) { return mix(d, vec3(1e-6), lessThan(abs(d), vec3(1e-6))); } // avoid 1/0 in the DDA
+
+float level_hold = 0.0; // shadow rays: a level keeps the ray this many of its cells from the origin (a coarser level's cell may still fill the surface it left)
+float origin_t = 0.0; // camera distance of the ray's origin (blocks; shadow rays): levels of detail, texture and model levels go by distance from the camera
+int cutout_pass = 0x7FFFFFFF; // cutout blocks a ray passes through before the next one blocks it (shadow rays: v1's third leaf is solid)
+
+int tex_lvl(float lod, float t) { return int(clamp(lod + log2(max(t, 1.0)), 0.0, float(TEX_MIPS - 1))); }
+
+// Alpha a cutout texel must reach: 0.5, falling to 0 (solid, gaps take the texture's mean colour in albedo_at) over cam.cutout; sub-pixel holes would flicker in motion.
+float cutout_alpha(float lod, float t) { return cam.cutout.y > 0.0 ? 0.5 - 0.5 * smoothstep(cam.cutout.x, cam.cutout.x + cam.cutout.y, lod + log2(max(t, 1.0))) : 0.5; }
+
+uint look_fluid; // fluid word of the pair the last lookup answered
+
+// Block word a ray sees in a (block, fluid) pair: the block, else the fluid's variant (drawn as in v1 until phase 13).
+uint pair_word(uvec2 p) { look_fluid = p.y; return p.x != 0u ? p.x : p.y != 0u ? block_word(p.y & PAL_ID_MASK) : 0u; }
+
+// L >= 1: a fluid cell's surface in the cell: the top of its water block (gen.compute lod_cell: blocks to it in the level bits), as at L0.
+float lod_fill(uint fluid, uint id) { return (float((fluid >> FLUID_LEVEL_SHIFT) & 15u) - 1.0 + types[id].tint.w) / lv_scale; }
+
+// L >= 1: the linear colour of a colour word (models and object parts, gen.compute lod_color_word).
+vec3 lod_color(uint w) { return pow(vec3(w & 127u, (w >> 7) & 255u, (w >> 15) & 127u) / vec3(127.0, 255.0, 127.0), vec3(2.2)); }
+
+#if defined(SEE_THROUGH) || defined(SEE_WATER) || defined(WATER) || defined(LIQUID)
+#define SEE_ANY
+#endif
+#ifndef SEE_MASK
+#define SEE_MASK (F_INVISIBLE | F_VOLUME)
+#endif
+
+#ifdef WATER
+bool water_in = false; // Primary with Water: the ray is under water: its length counts, a surface from below stops it
+float water_len = 0.0; // blocks under water
+uint water_id = 0u;
+#endif
+
+#ifdef LIQUID
+bool liq_in = false;        // Primary with Liquid: the ray starts inside or has entered a translucent liquid
+float liq_len = 0.0;        // blocks through translucent liquid
+vec3 liq_trans = vec3(1.0); // Beer-Lambert transmittance of that path, 1 = none
+uint liq_id = 0u;           // variant of the first liquid surface
+float liq_surface = 0.0;    // signed distance of the first surface, blocks (> 0 from above, < 0 from below)
+#endif
+
+
+#ifdef SEE_ANY
+vec3 see_trans, see_acc, see_sun; // glass, ice, fog and (shadow and light rays) water passed since see_reset (docs/v2.md §5.23): transmittance, light added in front, fog's by the sun
+vec2 see_span;                    // blocks: entry into the first and exit from the last see-through cell
+float see_fog_t, see_fog_w;       // SEE_SCATTER: in-scatter weighted distance of fog (blocks) and its weight
+uint see_prev;                    // variant of the previous cell: a run of the same glass tints once
+
+void see_reset() {
+	see_trans = vec3(1.0); see_acc = vec3(0.0); see_sun = vec3(0.0); see_span = vec2(3.4e38, 0.0); see_fog_t = 0.0; see_fog_w = 0.0; see_prev = 0u;
+#ifdef SEE_THROUGH
+	see_mat = 0u;
+#endif
+}
+bool see_opaque() { if (max(see_trans.r, max(see_trans.g, see_trans.b)) >= 0.02) return false; see_trans = vec3(0.0); return true; }
+void see_spanned(float a, float b) { see_span = vec2(min(see_span.x, a), max(see_span.y, b)); }
+
+// Beer-Lambert through a fluid of colour tint over len blocks (v1 fluid_trans).
+vec3 fluid_trans(vec3 tint, float len) { return exp(-len * BS * (1.0 - tint) * cam.media.x); }
+
+// A pane of colour col and opacity a, normal n towards the ray: SEE_SCATTER adds sun and ambient on it and the sky's Fresnel reflection (v1, the sky as the ambient); every ray takes its tint.
+bool see_glass(vec3 col, float a, vec3 n, vec3 rd) {
+#ifdef SEE_SCATTER
+	float fres = cam.glass.y + (1.0 - cam.glass.y) * pow(1.0 - abs(dot(rd, n)), 5.0);
+	see_acc += see_trans * (a * col * (cam.sun_col.rgb * max(dot(n, cam.sun_dir.xyz), 0.0) * cam.glass.z + cam.amb_col.rgb) + fres * cam.amb_col.rgb * cam.glass.w);
+	see_trans *= 1.0 - fres;
+#endif
+	see_trans *= mix(vec3(1.0), col, min(a * cam.glass.x, 1.0));
+	return see_opaque();
+}
+
+// Fog block id between t0 and t1: extinction by its density; SEE_SCATTER in-scatter of its colour by the ambient and the sun.
+bool see_volume(uint id, float t0, float t1) {
+	vec4 fog = types[id].tint;
+	float k = fog.w * cam.media.y * BS, a = exp(-k * (t1 - t0));
+#ifdef SEE_SCATTER
+	vec3 s = see_trans * (1.0 - a) * fog.rgb;
+	float w = dot(s, vec3(0.3, 0.6, 0.1));
+	see_acc += s * cam.amb_col.rgb;
+	see_sun += s * cam.sun_col.rgb * cam.media.z;
+	see_fog_t += w * (t0 + 0.5 * min(t1 - t0, 1.0 / max(k, 1e-4)));
+	see_fog_w += w;
+#endif
+	see_spanned(t0, t1);
+	see_trans *= a;
+	return see_opaque();
+}
+#endif
+
+ivec3 trace_cost; // DEBUG_VIEW: DDA steps, model march steps, model cells entered
+ivec3 step_kind;  // DEBUG_VIEW: DDA steps by look_level
+ivec2 dda_stall;  // DEBUG_VIEW: backstop restarts, trace_world calls that ran out of steps
+#ifdef DEBUG_VIEW
+int look_level; // what the last lookup answered at: 0 a chunk or 4^3 chunks, 1 a group, 2 a cell
+#define LOOK_LEVEL(l) look_level = l
+#else
+#define LOOK_LEVEL(l)
+#endif
+
+#ifdef SEEN_FEEDBACK
+uint seen_last = 0xFFFFFFFFu;
+
+// The L0 ring slot of the chunk the ray steps in gets its bit (read first: most steps find it set).
+void mark_seen(ivec3 cell) {
+	if (LVL != 0) return;
+	ivec3 d = ring_size(), s = ivec3(uvec3(cell + r_off) / uint(CHUNK)) + W.lv[0].off.xyz;
+	s -= ivec3(greaterThanEqual(s, d)) * d;
+	uint i = slot_index(s), b = 1u << (i & 31u);
+	if (i == seen_last || i >> 5 >= uint(seen.length())) return;
+	seen_last = i;
+	if ((seen[i >> 5] & b) == 0u) atomicOr(seen[i >> 5], b);
+}
+#define SEEN_STEP(c) mark_seen(c)
+#else
+#define SEEN_STEP(c)
+#endif
+
+// Block word of a level-local cell inside the level's ring (0 = empty, MISSING = not in memory) and the box [lo, hi) of cells known to look the same.
+uint lookup(ivec3 cell, out ivec3 lo, out ivec3 hi) {
+	uvec3 r = uvec3(cell + r_off), ch = r / uint(CHUNK);
+	ivec3 d = ring_size(), s = ivec3(ch) + W.lv[LVL].off.xyz;
+	s -= ivec3(greaterThanEqual(s, d)) * d;
+	uint m = mip_index(s);
+	LOOK_LEVEL(0);
+	if (!bit_of(occ_mip[m >> 5], m)) {
+		ivec3 c0 = ivec3(ch) - (s & 3);
+		lo = max(c0 * CHUNK, ivec3(0)) - r_off;
+		hi = min((c0 + 4) * CHUNK, d * CHUNK) - r_off;
+		return 0u;
+	}
+	uint si = slot_index(s);
+	lo = ivec3(ch) * CHUNK - r_off; hi = lo + CHUNK;
+	if (!bit_of(occ[si >> 5], si)) return 0u;
+	uvec2 e = dir[si];
+	if (e.x == NONE) return MISSING;
+	if ((e.x & UNI) != 0u) return pair_word(uvec2(e.x & ~UNI, e.y));
+	uvec3 u5 = r / uint(GROUP), l = r - u5 * uint(GROUP);
+	uint o = e.x * CHUNK_REC_WORDS + 2u * uint(group_index(ivec3(u5 - (u5 / uint(GROUP)) * uint(GROUP))));
+	uvec2 ge = uvec2(records[o], records[o + 1u]);
+	lo = ivec3(u5 * uint(GROUP)) - r_off; hi = lo + GROUP;
+	LOOK_LEVEL(1);
+	if ((ge.x & UNI) != 0u) return pair_word(uvec2(ge.x & ~UNI, ge.y));
+	uint cls = entry_class(ge.x);
+	if (cls == CLASS_AIR) {
+		lo = ivec3((u5 - box_lo(ge.y)) * uint(GROUP)) - r_off;
+		hi = ivec3((u5 + 1u + box_hi(ge.y)) * uint(GROUP)) - r_off;
+		return 0u;
+	}
+	LOOK_LEVEL(2);
+	uint base = brick_base(cls, ge.x & INDEX_MASK);
+	uvec2 p = brick_pair(cls, base, brick_index(cls, base, uint(group_index(ivec3(l)))));
+	lo = cell; hi = cell + 1;
+	if (p == uvec2(0u)) {
+		uint bw = brick_word(cls, base + BRICK_BOX_WORD);
+		uvec3 blo = box_lo(bw), bhi = box_hi(bw);
+		if (all(greaterThanEqual(l, blo)) && all(lessThan(l, bhi))) { lo = ivec3(u5 * uint(GROUP) + blo) - r_off; hi = ivec3(u5 * uint(GROUP) + bhi) - r_off; }
+	}
+	return pair_word(p);
+}
+
+// Cell a ray is in right after distance t (stepped like the DDA over faces the nudge stays behind), and its entry axis.
+ivec3 cell_at(vec3 ro, vec3 rd, vec3 inv, float t, out int axis) {
+	ivec3 cell = ivec3(floor(ro + rd * (t + 1e-3)));
+	vec3 te = (vec3(cell + ivec3(greaterThan(rd, vec3(0.0)))) - ro) * inv;
+	cell += ivec3(lessThanEqual(abs(te - t), vec3(1e-3))) * (2 * ivec3(greaterThan(rd, vec3(0.0))) - 1);
+	cell = clamp(cell, r_lo, r_hi - 1);
+	vec3 entry = (vec3(cell + ivec3(lessThan(rd, vec3(0.0)))) - ro) * inv;
+	axis = entry.x >= entry.y && entry.x >= entry.z ? 0 : entry.y >= entry.z ? 1 : 2;
+	return cell;
+}
+
+#if defined(WATER) || defined(LIQUID)
+// Level-local cell c holds a translucent liquid (the camera's ring level).
+bool water_at(ivec3 c) {
+	if (any(lessThan(c, r_lo)) || any(greaterThanEqual(c, r_hi))) return false;
+	ivec3 l, h;
+	uint w = lookup(c, l, h);
+	return w != 0u && w != MISSING && w < F_MODEL << PAL_FLAG_SHIFT && (pal_flags(w) & (F_FLUID | F_TRANSLUCENT)) == (F_FLUID | F_TRANSLUCENT);
+}
+#endif
+
+// First visible cell along ro + rd t from tmin (level-local cells), clipped to the level's highest occupied chunk as v1: w = its block word, fluid = stopped at a fluid surface; model blocks and object parts (L0) or colour words (L >= 1) stop it with their cell; missing = stopped at a chunk not in memory (t = its entry). A point on a face belongs to the cell the ray moves into (floor alone sent rays down an edge back up, looping to max_steps); more zero-length steps than one corner has restart from cell_at (backstop).
+// snap: a ray that comes from a finer level and starts inside a solid cell hits it at its entry face, never on the transition sphere; going down it is lit as the top face (also under a fluid surface): flat ground and water stay flat across the transition.
+bool trace_world(vec3 ro, vec3 rd, float tmin, float tmax, int max_steps, float lod, bool snap, out float t, out int axis, out uint w, out bool fluid, out ivec3 cell, out int s, out bool missing) {
+	vec3 inv = 1.0 / rd;
+	vec3 t0 = (vec3(r_lo) - ro) * inv, t1 = (vec3(r_hi) - ro) * inv, tn = min(t0, t1), tf = max(t0, t1);
+	float tin = max(max(tn.x, tn.y), tn.z), tout = min(min(tf.x, tf.y), tf.z);
+	w = 0u; axis = 1; t = max(tin, 0.0); s = 0; fluid = false; missing = false;
+	if (tin > tout || tout < 0.0 || t >= tmax) return false;
+	cell = clamp(ivec3(floor(ro + rd * (t + 1e-4))), r_lo, r_hi - 1);
+	if (tin > 0.0) {
+		axis = tn.x == tin ? 0 : tn.y == tin ? 1 : 2;
+		cell[axis] = rd[axis] > 0.0 ? r_lo[axis] : r_hi[axis] - 1;
+	}
+	if (tmin > t || tin <= 0.0) { t = max(t, tmin); cell = cell_at(ro, rd, inv, t, axis); }
+	tmax = min(tmax, tout);
+	int top = W.top_y[LVL] * CHUNK - lv_q.y;
+	float t_top = (float(top) - ro.y) * inv.y;
+	if (top <= r_lo.y) return false;
+	if (rd.y > 0.0) tmax = min(tmax, t_top);
+	else if (t_top > t) {
+		t = t_top; axis = 1;
+		cell = clamp(ivec3(floor(ro + rd * t)), r_lo, r_hi - 1);
+		cell.y = top - 1;
+	}
+	if (t >= tmax) return false;
+	ivec3 forward = ivec3(greaterThan(rd, vec3(0.0)));
+	bvec3 back = lessThan(rd, vec3(0.0));
+	int still = 0;
+	for (s = 0; s < max_steps; s++) {
+		ivec3 lo, hi;
+		uint word = lookup(cell, lo, hi), f = pal_flags(word), id = word & PAL_ID_MASK;
+		SEEN_STEP(cell);
+#ifdef DEBUG_VIEW
+		step_kind[look_level]++;
+#endif
+		if (word == MISSING) { missing = true; return false; }
+		bool see_through = word == 0u || word < F_MODEL << PAL_FLAG_SHIFT && (f & SEE_MASK) != 0u;
+		bool cutout = LVL == 0 && !see_through && (f & F_CUTOUT) != 0u, liquid = !see_through && word < F_MODEL << PAL_FLAG_SHIFT && (f & F_FLUID) != 0u;
+		if (snap && s == 0 && !see_through && !liquid) {
+			vec3 en = (vec3(cell + ivec3(back)) - ro) * inv;
+			t = max(max(max(en.x, en.y), en.z), 0.0);
+			axis = rd.y < 0.0 ? 1 : en.x >= en.y && en.x >= en.z ? 0 : en.y >= en.z ? 1 : 2; // a ray going down sees the coarse cell's top as its neighbours do, not a side wall along the transition
+		}
+		if (word >= F_MODEL << PAL_FLAG_SHIFT) { w = word; return true; }
+		float surf = liquid ? (LVL == 0 ? types[id].tint.w : lod_fill(look_fluid, id)) : 0.0;
+#if defined(WATER) || defined(LIQUID)
+#ifdef WATER
+		bool water_box = water_in && liquid && (f & F_TRANSLUCENT) != 0u && surf >= 1.0;
+#else
+		bool water_box = liq_in && liquid && (f & F_TRANSLUCENT) != 0u && surf >= 1.0;
+#endif
+		if (cutout || liquid && !water_box) { lo = cell; hi = cell + 1; }
+#else
+		if (cutout || liquid) { lo = cell; hi = cell + 1; }
+#endif
+		vec3 te = (vec3(lo + forward * (hi - lo)) - ro) * inv;
+		float tx = min(min(te.x, te.y), te.z);
+		int ax = te.x == tx ? 0 : te.y == tx ? 1 : 2;
+#ifdef SEE_THROUGH
+		if (word != 0u && word < F_MODEL << PAL_FLAG_SHIFT && (f & F_VOLUME) != 0u && see_volume(id, t * lv_scale, min(tx, tmax) * lv_scale)) { w = word; return true; }
+#endif
+		if (!see_through) {
+			w = word;
+			if (cutout) {
+				for (int k = 0; k < 2; k++) {
+					float tk = k == 0 ? t : tx;
+					int ak = k == 0 ? axis : ax;
+					vec3 n = vec3(0.0); n[ak] = k == 0 ? -sign(rd[ak]) : sign(rd[ak]);
+					uint fw = face_word(id, ak, n);
+					if (texel4(face_layer(fw), tex_lvl(lod, tk + origin_t), face_uv(ro + rd * tk, ak, n, fw)).a >= cutout_alpha(lod, tk + origin_t)) { t = tk; axis = ak; return true; }
+				}
+				if (--cutout_pass < 0) return true;
+			} else if (liquid) {
+				float ty = (float(cell.y) + surf - ro.y) * inv.y, a = rd.y < 0.0 ? max(t, ty) : t, b = rd.y > 0.0 ? min(tx, ty) : tx;
+#ifdef LIQUID
+				if ((f & F_TRANSLUCENT) != 0u) { // straight on, no refraction: record the first surface and accumulate Beer-Lambert
+					if (water_box) { ty = (float(hi.y) - ro.y) * inv.y; a = t; b = rd.y > 0.0 ? min(tx, ty) : tx; }
+					if (a < b) {
+						if (liq_in) {
+							ivec3 above = ivec3(floor(ro + rd * tx));
+							above.y = hi.y;
+							if (rd.y > 0.0 && (b < tx || ax == 1 && !water_at(above))) { if (liq_surface == 0.0) liq_surface = -b * lv_scale; liq_in = false; } // the surface from below
+						} else {
+							if (liq_surface == 0.0 && a * lv_scale >= cam.media.w) { liq_id = id; liq_surface = a * lv_scale; t = a; fluid = true; return true; } // past the fade: an opaque surface
+							if (liq_surface == 0.0) { liq_id = id; liq_surface = a * lv_scale; }
+							liq_in = true;
+						}
+						liq_len += (b - a) * lv_scale;
+						liq_trans *= fluid_trans(types[id].tint.rgb, (b - a) * lv_scale);
+						if (max(liq_trans.r, max(liq_trans.g, liq_trans.b)) < 0.01) { t = a; fluid = true; return true; }
+					}
+				} else
+#elif defined(WATER)
+				if (water_in && (f & F_TRANSLUCENT) != 0u) {
+					if (water_box) { ty = (float(hi.y) - ro.y) * inv.y; a = t; b = rd.y > 0.0 ? min(tx, ty) : tx; }
+					if (a < b) {
+						water_len += (b - a) * lv_scale;
+						water_id = id;
+						vec3 wt = fluid_trans(types[id].tint.rgb, water_len);
+						if (max(wt.r, max(wt.g, wt.b)) < 0.01) { t = a; return true; }
+						ivec3 above = ivec3(floor(ro + rd * tx));
+						above.y = hi.y;
+						if (rd.y > 0.0 && (b < tx || ax == 1 && !water_at(above))) { t = b; axis = 1; fluid = true; return true; } // the surface from below
+					}
+				} else
+#elif defined(SEE_ANY) && !defined(SEE_SCATTER)
+				if (a < b && (f & F_TRANSLUCENT) != 0u) {
+					see_spanned(a * lv_scale, b * lv_scale);
+					see_trans *= fluid_trans(types[id].tint.rgb, (b - a) * lv_scale);
+					if (see_opaque()) { t = a; fluid = true; return true; }
+				} else
+#endif
+				if (a < b) { axis = a > t || snap && s == 0 && rd.y < 0.0 ? 1 : axis; t = a; fluid = true; return true; } // a ray from a finer level that starts under the surface sees it from above
+			}
+#ifdef SEE_THROUGH
+			else if ((f & F_TRANSLUCENT) != 0u) {
+				if (id != see_prev) {
+					vec3 n = vec3(0.0); n[axis] = -sign(rd[axis]);
+					uint fw = face_word(id, axis, n);
+					vec3 p = ro + rd * t;
+#ifdef SEE_SCATTER
+					vec4 c = texel4(face_layer(fw), tex_lvl(lod, t + origin_t), face_uv(p, axis, n, fw));
+#else
+					vec4 c = texel4(face_layer(fw), TEX_MIPS - 1, vec2(0.5));
+#endif
+					see_spanned(t * lv_scale, tx * lv_scale);
+					if (see_glass(to_linear(c.rgb) * face_tint(id, fw, (vec3(lv_q) + p) * lv_scale), c.a, n, rd)) return true;
+				}
+			}
+#endif
+			else return true;
+		}
+#ifdef SEE_THROUGH
+		see_prev = word == 0u ? 0u : id;
+#endif
+		still = tx > t ? 0 : still + 1;
+		t = tx; axis = ax;
+		if (t >= tmax) return false;
+		vec3 p = ro + rd * t;
+		ivec3 next = clamp(ivec3(mix(floor(p), ceil(p) - 1.0, back)), lo, hi - 1);
+		next[axis] = rd[axis] > 0.0 ? hi[axis] : lo[axis] - 1;
+		if (next[axis] < r_lo[axis] || next[axis] >= r_hi[axis]) return false;
+		cell = next;
+		if (still > 3) {
+			cell = cell_at(ro, rd, inv, t, axis);
+			still = 0;
+#ifdef DEBUG_VIEW
+			dda_stall.x++;
+#endif
+		}
+	}
+#ifdef DEBUG_VIEW
+	dda_stall.y++;
+#endif
+	return false;
+}
+
+bool mark_vis = false; // Primary: this pixel's ray reports the chunks it hits or wants (missing) to World.ApplyVisible
+
+// The visibility bit of the chunk of a level-local cell, past the mid sphere and its margin (read first: most are set already).
+void mark_visible(ivec3 cell, float t) {
+	if (!mark_vis || LVL == 0 && t < float((W.probe.w + MID_MARGIN) * uint(CHUNK))) return;
+	ivec3 d = ring_size(), s = ivec3(uvec3(cell + r_off) / uint(CHUNK)) + W.lv[LVL].off.xyz;
+	s -= ivec3(greaterThanEqual(s, d)) * d;
+	uint i = slot_index(s), b = 1u << (i & 31u);
+	if ((vis_bits[i >> 5] & b) == 0u) atomicOr(vis_bits[i >> 5], b);
+}
+
+int model_lvl(float lod, float t) { return clamp(int(lod + log2(max(t, 1e-3))), 0, 4); } // by pixel footprint, as texture mips
+
+uint hit_mat; // material, normal, tint and mip of the last model voxel trace() hit
+vec3 hit_n, hit_tint;
+int hit_lvl;
+int hit_level;     // level of detail of the hit (level_setup is left at it)
+bool hit_fallback; // a chunk not in memory sent the ray to a coarser level than its distance asks for
+bool hit_hole;     // a miss through a chunk of the coarsest level not in memory (sky where terrain may be)
+
+// From `from` (blocks) level by level: each from the distance its cells are LodPixels wide (W.lv[L].min.w) to the next one's or its wanted radius, a missing chunk goes on at the next coarser level (never finer again);
+// at L0 model blocks and object parts through one march_model, past MAX_MODEL_CELLS of them the world counts as missed (v1). A model voxel hit keeps the cell's word in w and sets hit_mat; t in blocks.
+bool trace(vec3 ro, vec3 rd, float from, float tmax, int max_steps, float lod, out float t, out int axis, out uint w, out bool fluid) {
+	vec3 inv = 1.0 / rd;
+#ifdef DEBUG_VIEW
+	trace_cost = ivec3(0);
+	step_kind = ivec3(0);
+	dda_stall = ivec2(0);
+#endif
+#if LOD_ON
+	int L = 0, n = W.lod.x;
+#else
+	int L = 0, n = 1;
+#endif
+	while (L + 1 < n && from + origin_t >= float(W.lv[L + 1].min.w)) L++;
+	bool snap = false;
+	hit_fallback = false;
+	hit_hole = false;
+	t = from; axis = 1; w = 0u; fluid = false;
+	for (int k = 0; k < MAX_MODEL_CELLS + LOD_LEVELS; k++) {
+		level_setup(L);
+		float end = min(tmax, max(min(L + 1 < n ? float(W.lv[L + 1].min.w) : 3.4e38, float((W.lv[L].off.w + 2) * CHUNK) * lv_scale) - origin_t, level_hold * lv_scale));
+		ivec3 cell;
+		int s;
+		bool missing;
+		bool hit = trace_world(level_pos(ro), rd, from / lv_scale, end / lv_scale, max_steps, lod, snap, t, axis, w, fluid, cell, s, missing);
+		t *= lv_scale;
+		if (hit || missing) mark_visible(cell, t);
+#ifdef DEBUG_VIEW
+		trace_cost += ivec3(s, 0, 0);
+#endif
+		if (!hit) {
+#if LOD_ON
+			if (L + 1 >= n) { hit_hole = missing; return false; }
+			hit_fallback = hit_fallback || missing;
+			from = max(from, missing ? t : max(t, end));
+			L++;
+			snap = true;
+			continue;
+#else
+			hit_hole = missing;
+			return false;
+#endif
+		}
+		hit_level = L;
+		if (L > 0 || w < F_MODEL << PAL_FLAG_SHIFT) return true;
+		snap = false;
+		ivec3 org = cell, wcell = cam.anchor.xyz * CHUNK + cell;
+		uint mi, r;
+		if (w >= PART) {
+			ivec3 c = cam.anchor.xyz + ivec3(fdiv(cell.x, CHUNK), 0, fdiv(cell.z, CHUNK)), d = ring_size();
+			ivec4 f = part_features[(W.lv[0].base.y + uint(pmod(c.x, d.x) + d.x * pmod(c.z, d.z))) * MAX_COL_FEATURES + (w & ~PART)];
+			mi = obj_model(f); r = obj_rot(f);
+			org = obj_origin(f, obj_dims(f)) - cam.anchor.xyz * CHUNK;
+		} else {
+			uint v = w & PAL_ID_MASK, look = block_look(v, wcell);
+			mi = look & LOOK_MODEL_MASK; r = (look >> LOOK_ROT_SHIFT) & 31u;
+		}
+		uvec4 rec = model_rec(mi);
+		ivec3 p = rot_perm(r);
+		mat3 m = rot_world_to_model(r);
+		vec3 te = (vec3(cell + ivec3(greaterThan(rd, vec3(0.0)))) - ro) * inv;
+		vec3 o = m * (ro - vec3(org)) + vec3(lessThan(rot_signs(r), ivec3(0))) * vec3(model_cells(rec));
+		float t0 = t, t1 = min(min(te.x, te.y), te.z), th;
+		from = t1;
+		int ah, ms = 0, ml = model_lvl(lod, t0 + origin_t);
+		uint mv = t0 < t1 ? march_model(rec, o, m * rd, t0, t1, p.x == axis ? 0 : p.y == axis ? 1 : 2, ml, t0 <= 0.0, th, ah, ms) : 0u;
+#ifdef SEE_THROUGH
+		if (see_mat != 0u) {
+			uint gm = see_mat;
+			see_mat = 0u;
+			see_spanned(see_th, mv != 0u ? th : t1);
+			if (see_glass(material_albedo(gm) * (w < PART && material_tinted(gm) ? block_tint(w & PAL_ID_MASK, vec3(wcell)) : vec3(1.0)), material_alpha(gm), transpose(m) * face_normal(uint(see_ax)), rd)) { mv = gm - rec.y; th = see_th; ah = see_ax; }
+		}
+#endif
+#ifdef DEBUG_VIEW
+		trace_cost += ivec3(0, ms, 1);
+#endif
+		if (mv == 0u) continue;
+		hit_mat = rec.y + mv; hit_n = transpose(m) * face_normal(uint(ah)); hit_lvl = ml;
+		hit_tint = w < PART && material_tinted(hit_mat) ? block_tint(w & PAL_ID_MASK, vec3(wcell)) : vec3(1.0);
+		vec3 a = abs(hit_n);
+		t = th;
+		axis = a.x >= a.y && a.x >= a.z ? 0 : a.y >= a.z ? 1 : 2;
+		return true;
+	}
+	return false;
+}
+
+
+// Tint goes on the overlay when the face has one (grass block sides), else on the texture; uv from p, the tint's climate from world_p.
+vec3 albedo_at(uint id, vec3 p, vec3 world_p, int axis, vec3 n, float mip) {
+	uint fw = face_word(id, axis, n);
+	int layer = face_layer(fw), l0 = int(mip), l1 = min(l0 + 1, TEX_MIPS - 1), ov = face_overlay(fw);
+	vec2 uv = face_uv(p, axis, n, fw);
+	vec4 a = mix(texel4(layer, l0, uv), texel4(layer, l1, uv), fract(mip));
+	if (a.a < 0.5) a = texel4(layer, TEX_MIPS - 1, uv);
+	vec3 tint = face_tint(id, fw, world_p);
+	if (ov < 0) return to_linear(a.rgb) * tint;
+	vec4 o = mix(texel4(ov, l0, uv), texel4(ov, l1, uv), fract(mip));
+	return o.a >= 0.5 ? to_linear(o.rgb) * tint : to_linear(a.rgb);
+}

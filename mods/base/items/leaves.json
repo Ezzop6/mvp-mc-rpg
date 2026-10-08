@@ -1,0 +1,20 @@
+{
+  "category": "leaves",
+  "source": "import",
+  "entries": [
+    { "id": "base:acacia_leaves", "block": "base:acacia_leaves" },
+    { "id": "base:azalea_leaves", "block": "base:azalea_leaves" },
+    { "id": "base:birch_leaves", "block": "base:birch_leaves" },
+    { "id": "base:cherry_leaves", "block": "base:cherry_leaves" },
+    { "id": "base:dark_oak_leaves", "block": "base:dark_oak_leaves" },
+    { "id": "base:flowering_azalea_leaves", "block": "base:flowering_azalea_leaves" },
+    { "id": "base:jungle_leaves", "block": "base:jungle_leaves" },
+    { "id": "base:mangrove_leaves", "block": "base:mangrove_leaves" },
+    { "id": "base:oak_leaves", "block": "base:oak_leaves" },
+    { "id": "base:orange_poplar_leaves", "block": "base:orange_poplar_leaves" },
+    { "id": "base:pale_oak_leaves", "block": "base:pale_oak_leaves" },
+    { "id": "base:red_poplar_leaves", "block": "base:red_poplar_leaves" },
+    { "id": "base:spruce_leaves", "block": "base:spruce_leaves" },
+    { "id": "base:yellow_poplar_leaves", "block": "base:yellow_poplar_leaves" }
+  ]
+}

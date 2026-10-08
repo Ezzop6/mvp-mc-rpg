@@ -1,0 +1,28 @@
+// The cloud layer of Clouds (clouds_layer.compute), also read by Shafts: fbm shape and opacity.
+#include "res://core/render/passes/sky/sky_hash.glsli"
+
+float value_noise(vec2 p) {
+	vec2 i = floor(p), f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	return mix(mix(sky_hash(i), sky_hash(i + vec2(1.0, 0.0)), f.x), mix(sky_hash(i + vec2(0.0, 1.0)), sky_hash(i + 1.0), f.x), f.y);
+}
+
+float cloud_fbm(vec2 p, float px, int octaves) {
+	float s = 0.0, a = 0.5;
+	for (int i = 0; i < octaves; i++) {
+		s += a * mix(value_noise(p), 0.5, clamp(px * 2.0 - 0.5, 0.0, 1.0));
+		p = mat2(1.6, 1.2, -1.2, 1.6) * p + 17.3;
+		px *= 2.0;
+		a *= 0.5;
+	}
+	return s / (1.0 - 2.0 * a);
+}
+
+float cloud_shape(vec2 p, float px, int octaves, float coverage, float softness) {
+	return smoothstep(1.0 - coverage, 1.0 - coverage + softness, cloud_fbm(p, px, octaves));
+}
+
+// Opacity of the layer at distance ct (m) along a ray with slope dy; body = density x thickness.
+float cloud_alpha(float dens, float ct, float dy, float body, float fade) {
+	return (1.0 - exp(-dens * body / max(abs(dy), 1e-3))) * exp(-ct * ct / (fade * fade));
+}

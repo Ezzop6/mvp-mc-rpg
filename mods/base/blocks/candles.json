@@ -1,0 +1,345 @@
+{
+  "category": "candles",
+  "source": "import",
+  "entries": [
+    {
+      "id": "base:black_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/black_candle", "flame": "block/extra/candle_wick", "particle": "block/black_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#c6b6ff" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:black"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "black_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "black_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "black_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "black_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "black_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "black_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "black_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "black_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:blue_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/blue_candle", "flame": "block/extra/candle_wick", "particle": "block/blue_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#6982ff" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:blue"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "blue_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "blue_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "blue_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "blue_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "blue_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "blue_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "blue_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "blue_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:brown_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/brown_candle", "flame": "block/extra/candle_wick", "particle": "block/brown_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffa356" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:brown"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "brown_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "brown_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "brown_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "brown_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "brown_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "brown_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "brown_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "brown_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/candle", "flame": "block/extra/candle_wick", "particle": "block/candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffe5b5" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:cyan_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/cyan_candle", "flame": "block/extra/candle_wick", "particle": "block/cyan_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#38fff5" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:cyan"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "cyan_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "cyan_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "cyan_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "cyan_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "cyan_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "cyan_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "cyan_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "cyan_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:gray_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/gray_candle", "flame": "block/extra/candle_wick", "particle": "block/gray_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#e3fff5" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:gray"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "gray_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "gray_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "gray_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "gray_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "gray_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "gray_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "gray_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "gray_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:green_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/green_candle", "flame": "block/extra/candle_wick", "particle": "block/green_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#cbff32" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:green"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "green_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "green_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "green_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "green_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "green_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "green_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "green_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "green_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:light_blue_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/light_blue_candle", "flame": "block/extra/candle_wick", "particle": "block/light_blue_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#3ebaff" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:light_blue"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "light_blue_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "light_blue_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "light_blue_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "light_blue_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "light_blue_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "light_blue_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "light_blue_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "light_blue_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:light_gray_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/light_gray_candle", "flame": "block/extra/candle_wick", "particle": "block/light_gray_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#fffae6" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:light_gray"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "light_gray_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "light_gray_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "light_gray_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "light_gray_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "light_gray_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "light_gray_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "light_gray_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "light_gray_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:lime_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/lime_candle", "flame": "block/extra/candle_wick", "particle": "block/lime_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#9bff1f" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:lime"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "lime_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "lime_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "lime_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "lime_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "lime_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "lime_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "lime_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "lime_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:magenta_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/magenta_candle", "flame": "block/extra/candle_wick", "particle": "block/magenta_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ff53ea" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:magenta"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "magenta_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "magenta_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "magenta_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "magenta_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "magenta_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "magenta_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "magenta_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "magenta_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:orange_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/orange_candle", "flame": "block/extra/candle_wick", "particle": "block/orange_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ff7909" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:orange"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "orange_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "orange_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "orange_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "orange_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "orange_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "orange_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "orange_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "orange_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:pink_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/pink_candle", "flame": "block/extra/candle_wick", "particle": "block/pink_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ff81ab" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:pink"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "pink_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "pink_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "pink_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "pink_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "pink_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "pink_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "pink_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "pink_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:purple_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/purple_candle", "flame": "block/extra/candle_wick", "particle": "block/purple_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#b341ff" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:purple"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "purple_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "purple_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "purple_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "purple_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "purple_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "purple_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "purple_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "purple_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:red_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/red_candle", "flame": "block/extra/candle_wick", "particle": "block/red_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ff4a38" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:red"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "red_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "red_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "red_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "red_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "red_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "red_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "red_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "red_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:white_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/white_candle", "flame": "block/extra/candle_wick", "particle": "block/white_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#f9fffe" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:white"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "white_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "white_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "white_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "white_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "white_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "white_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "white_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "white_candle_four_candles_lit" }] }
+      ]
+    },
+    {
+      "id": "base:yellow_candle",
+      "kind": "candle",
+      "template": "template_candle",
+      "textures": { "all": "block/yellow_candle", "flame": "block/extra/candle_wick", "particle": "block/yellow_candle" },
+      "surface": "cutout",
+      "light": { "level": 3, "when": "lit=true", "color": "#ffc93b" },
+      "states": { "candles": ["1", "2", "3", "4"], "lit": ["false", "true"] },
+      "tags": ["color:yellow"],
+      "variants": [
+        { "when": { "candles": "1", "lit": "false" }, "looks": [{ "model": "yellow_candle_one_candle" }] },
+        { "when": { "candles": "1", "lit": "true" }, "looks": [{ "model": "yellow_candle_one_candle_lit" }] },
+        { "when": { "candles": "2", "lit": "false" }, "looks": [{ "model": "yellow_candle_two_candles" }] },
+        { "when": { "candles": "2", "lit": "true" }, "looks": [{ "model": "yellow_candle_two_candles_lit" }] },
+        { "when": { "candles": "3", "lit": "false" }, "looks": [{ "model": "yellow_candle_three_candles" }] },
+        { "when": { "candles": "3", "lit": "true" }, "looks": [{ "model": "yellow_candle_three_candles_lit" }] },
+        { "when": { "candles": "4", "lit": "false" }, "looks": [{ "model": "yellow_candle_four_candles" }] },
+        { "when": { "candles": "4", "lit": "true" }, "looks": [{ "model": "yellow_candle_four_candles_lit" }] }
+      ]
+    }
+  ]
+}
