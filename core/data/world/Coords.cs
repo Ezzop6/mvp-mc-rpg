@@ -28,7 +28,7 @@ public readonly record struct RegionPos(Coord X, Coord Y, Coord Z)
 
 public static class Coords
 {
-	public const int ChunkSize = 25;  // blocks per edge
+	public const int ChunkSize = 30;  // blocks per edge
 	public const int GroupSize = 5;   // blocks per edge of a group (brick), divides ChunkSize
 	public const int RegionSize = 5;  // chunks per edge
 	public const float BlockMeters = 0.5f;
