@@ -8,7 +8,7 @@ using Renesance.World;
 public static class Voxel
 {
 	public const float BlockSize = Coords.BlockMeters;
-	public const float ChunkMeters = Coords.ChunkSize * BlockSize;   // 25^3 blocks
+	public const float ChunkMeters = Coords.ChunkSize * BlockSize;   // ChunkSize^3 blocks
 }
 
 // Improved Perlin; gen.compute gets the same permutation table (World.Gpu header).

@@ -8,6 +8,7 @@ public enum WorldPool { Records, Brick4, Brick16, BrickFull }
 // The world format (docs/v2.md §3.3), shared with the shaders through Gpu's prelude; Godot-free for tests/World.
 public static class Layout
 {
+	// Chunk, Group: blocks per edge; GroupsPerAxis: groups per chunk edge, Groups: groups per chunk; GroupCells: cells (blocks) per group.
 	public const int Chunk = Coords.ChunkSize, Group = Coords.GroupSize, GroupsPerAxis = Chunk / Group, Groups = GroupsPerAxis * GroupsPerAxis * GroupsPerAxis, GroupCells = Group * Group * Group;
 	public const uint Uni = 1u << 31, None = 0x7FFFFFFF, Part = 1u << 30;
 	public const int FlagShift = 22, ClassShift = 28, FluidLevelShift = 22;
@@ -20,8 +21,8 @@ public static class Layout
 
 	static Layout()
 	{
-		if (Chunk % Group != 0 || Group > 7 || GroupsPerAxis > 8) throw new InvalidOperationException("air boxes pack 3 bits per axis: Group <= 7, Chunk / Group <= 8 and a whole number");
-		if (GroupCells <= ClassPairs[1] || GroupCells > 256) throw new InvalidOperationException("brick classes need 16 < Group^3 <= 256 (a byte per cell)");
+		if (Chunk % Group != 0 || GroupsPerAxis > 15) throw new InvalidOperationException("Chunk must be a multiple of Group, air boxes pack 4 bits per axis: Chunk / Group <= 15");
+		if (GroupCells <= ClassPairs[1] || GroupCells > 256) throw new InvalidOperationException("brick classes need 16 < Group^3 <= 256 (a byte per cell): Group 3 to 6");
 	}
 
 	public static int BrickWords(int cls) => IndexWords + 2 * ClassPairs[cls];

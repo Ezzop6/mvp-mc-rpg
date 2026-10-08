@@ -207,7 +207,7 @@ void classify(uint j, uint li) {
 		return;
 	}
 	if (li < GROUPS_PER_CHUNK) {
-		ivec3 gc = group_cell(int(li)), gb = lo + gc * (GROUP * s);
+		ivec3 gc = group_coord(int(li)), gb = lo + gc * (GROUP * s);
 		bool hit = en != 0u && edits_from(ef, en, li * GROUP_CELLS * es) < edits_from(ef, en, (li + 1u) * GROUP_CELLS * es);
 		for (uint k = 0u; k < nf && !hit; k++) hit = box_hits(col_feature(slot, k), gb, gb + GROUP * s);
 		uint ge = hit ? 0u : lvl == 0 ? gen_classify_group(gb) : gen_classify_lod(gb, gb + GROUP * s, group_minmax(slot, gc));
@@ -306,7 +306,7 @@ uint lod_feature_word(ivec3 b) {
 	return lod_model_color(rec, model_cell(rec, ivec3(0)), false);
 }
 
-// L >= 1: the pair of coarse cell l of the group at gb from 2^3 samples on the group's 10 x 10 sample columns (sc, edits by key0 + sample): solid from 4 solid or LOD_CUTOUT_MIN cutout samples,
+// L >= 1: the pair of coarse cell l of the group at gb from 2^3 samples on the group's 2 GROUP x 2 GROUP sample columns (sc, edits by key0 + sample): solid from 4 solid or LOD_CUTOUT_MIN cutout samples,
 // material the most frequent at the surface (no solid sample above it in the cell). Fluid from the blocks of one sample column, so the surface is the L0 one at every level:
 // water above the topmost solid block makes it a fluid cell, its level bits = blocks from the cell's bottom to the top of the water (1..2^L); the column is read from the top down to its first solid block, and not at all when its bottom block is dry air.
 // From L2 a cell touched by features (gen_cell_lod) is also solid when every one of the 4 lines along some axis through the sample positions
@@ -385,7 +385,7 @@ void fill() {
 	uint j = mixed[k] >> JOB_BITS, g = mixed[k] & ((1u << JOB_BITS) - 1u), gslot = j * GROUPS_PER_CHUNK + g;
 	lvl = job_level(j);
 	int cs = cell_blocks();
-	ivec3 wc = jobs[j].chunk.xyz, gb = wc * (CHUNK * cs) + group_cell(int(g)) * (GROUP * cs);
+	ivec3 wc = jobs[j].chunk.xyz, gb = wc * (CHUNK * cs) + group_coord(int(g)) * (GROUP * cs);
 	uint es = edit_scale(), slot = col_slot(wc.xz);
 	if (v < MASK_WORDS) { s_bits[v] = 0u; s_air[v] = 0u; }
 	if (v < BRICK_INDEX_WORDS) s_words[v] = 0u;
@@ -502,7 +502,7 @@ void pack(uint j, uint li) {
 		e = uvec2(cls << CLASS_SHIFT | item, 0u);
 	}
 	if (grp && e.x == ENTRY_AIR) {
-		ivec3 g = group_cell(int(li)), lo, hi;
+		ivec3 g = group_coord(int(li)), lo, hi;
 		grow_box(s_bits, GROUPS_PER_AXIS, g, lo, hi);
 		e.y = pack_box(uvec3(g - lo), uvec3(hi - 1 - g));
 	}
@@ -590,7 +590,7 @@ void lights(uint j, uint li) {
 	uvec2 e = dir[slot];
 	bool mixed = (e.x & UNI) == 0u;
 	uvec2 ge = mixed && li < GROUPS_PER_CHUNK ? uvec2(records[e.x * CHUNK_REC_WORDS + 2u * li], records[e.x * CHUNK_REC_WORDS + 2u * li + 1u]) : uvec2(ENTRY_AIR, 0u);
-	ivec3 g = group_cell(int(li)) * GROUP;
+	ivec3 g = group_coord(int(li)) * GROUP;
 	bool may = group_may_light(ge);
 	if (li == 0u) { s_lit = 0u; s_any = 0u; }
 	barrier();

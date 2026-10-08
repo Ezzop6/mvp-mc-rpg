@@ -41,10 +41,12 @@ public sealed class ShowcaseGenerator : WorldGenerator
 
 	public override string ShaderModule => "res://mods/base/generator/showcase/showcase.glsli";
 	public override IEnumerable<string> Blocks => new[] { FloorBlock, AxisBlock };
-	public override int FeatureCandidates => Coords.ChunkSize / global::Layout.Group * (Coords.ChunkSize / global::Layout.Group);
+	const int Cell = 5; // model lattice in blocks, independent of chunk and group size
+	static readonly int Span = Coords.ChunkSize % Cell == 0 ? Coords.ChunkSize / Cell : (Coords.ChunkSize + Cell - 2) / Cell + 1; // lattice cells a chunk column can touch
+	public override int FeatureCandidates => Span * Span;
 
 	public override string ShaderConstants() =>
-		$"const int SC_BLOCK_ROW = {BlockRow}, SC_MODEL_ROW = {ModelRow};\n" +
+		$"const int SC_BLOCK_ROW = {BlockRow}, SC_MODEL_ROW = {ModelRow}, SC_CELL = {Cell}, SC_SPAN = {Span};\n" +
 		$"const uint SC_FLOOR = {Gpu.BlockConstant(FloorBlock)}, SC_AXIS = {Gpu.BlockConstant(AxisBlock)}, GB_SHOWCASE_BLOCKS = WB_GEN_BUFFERS;\n";
 
 	public override byte[] ShaderParams() => new byte[16];

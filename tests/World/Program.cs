@@ -309,11 +309,12 @@ Check(fs.State(farC) == SlotState.Queued && fs.Failed == 0, "a failed chunk ente
 // --- palette and bricks (mirror of gen.compute FILL) ---
 (uint, uint) stone = (5 | 1u << Layout.FlagShift, 0), air = (0, 0), water = (0, 9), fence = (12 | 128u << Layout.FlagShift, 9);
 Check(Layout.PackBrick(Enumerable.Repeat(stone, Layout.GroupCells).ToArray()).Class == -1, "one pair is a uniform group, no brick");
-var cells = Enumerable.Range(0, Layout.GroupCells).Select(v => v < 50 ? stone : v < 100 ? air : v % 2 == 0 ? water : fence).ToArray();
+int third = Layout.GroupCells / 3;
+var cells = Enumerable.Range(0, Layout.GroupCells).Select(v => v < third ? stone : v < 2 * third ? air : v % 2 == 0 ? water : fence).ToArray();
 var (cls, words) = Layout.PackBrick(cells);
 Check(cls == 0 && words.Length == Layout.BrickWords(0) && Layout.BrickWords(0) == Layout.IndexWords + 8, "4 pairs: Brick4, index words + 4 pairs");
 Check(Enumerable.Range(0, Layout.GroupCells).All(v => Layout.Cell(words, v) == cells[v]), "Brick4 cells read back");
-Check((words[0] & 0xFF) == 0 && (words[50 >> 2] >> 16 & 0xFF) == 1, "palette in first-use order, a byte index per cell");
+Check((words[0] & 0xFF) == 0 && (words[third >> 2] >> (third & 3) * 8 & 0xFF) == 1, "palette in first-use order, a byte index per cell");
 Check((words[Layout.BoxWord] & ~0xFFu) == 0 && Layout.BoxWord * 4 >= Layout.GroupCells - 1, "bytes 1-3 of the box word left for the air box");
 var many = Enumerable.Range(0, Layout.GroupCells).Select(v => ((uint)(v % 16 + 1), 0u)).ToArray();
 Check(Layout.PackBrick(many).Class == 1 && Layout.BrickWords(1) == Layout.IndexWords + 32, "16 pairs: Brick16");

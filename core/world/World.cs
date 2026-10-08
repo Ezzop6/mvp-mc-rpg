@@ -634,13 +634,13 @@ public partial class World : Node3D
 	void EditRecords(ChunkPos c, int level, List<uint> into)
 	{
 		if (level > 0 ? !coarseEdits[level].Contains(c) : !Edits.Has(c)) return; // most chunks have no edits: no per-chunk sort and allocation
-		int n = 1 << level, size = Layout.Chunk * n, g = Layout.Group, ga = Layout.GroupsPerAxis;
+		int n = 1 << level, size = Layout.Chunk * n, gs = Layout.Group, gpa = Layout.GroupsPerAxis; // gs: cells per group edge, gpa: groups per chunk edge
 		var cells = new SortedDictionary<uint, (uint Block, uint Fluid)>();
 		const uint none = uint.MaxValue;
 		uint Key(BlockPos p)
 		{
 			int x = p.X - c.X * size, y = p.Y - c.Y * size, z = p.Z - c.Z * size, cx = x >> level, cy = y >> level, cz = z >> level;
-			uint k = (uint)((cx / g + ga * (cy / g + ga * (cz / g))) * Layout.GroupCells + cx % g + g * (cy % g + g * (cz % g)));
+			uint k = (uint)((cx / gs + gpa * (cy / gs + gpa * (cz / gs))) * Layout.GroupCells + cx % gs + gs * (cy % gs + gs * (cz % gs)));
 			if (level == 0) return k;
 			int s = Lod.SampleOf(level, x & (n - 1), y & (n - 1), z & (n - 1));
 			return s < 0 ? none : k * Lod.Samples + (uint)s;

@@ -326,9 +326,9 @@ shared uint s_nf;
 // The first `cap` features touching [gb, ge); where they overlap the highest .w wins.
 void group_features(ivec3 gb, ivec3 ge, uint slot, uint v, uint cap) {
 	uint nfeat = feature_count(slot);
-	if (v < (MAX_COL_FEATURES + 31u) / 32u) s_hit[v] = 0u;
+	for (uint w = v; w < (MAX_COL_FEATURES + 31u) / 32u; w += GROUP_X) s_hit[w] = 0u;
 	barrier();
-	if (v < nfeat && box_hits(col_feature(slot, v), gb, ge)) atomicOr(s_hit[v >> 5], 1u << (v & 31u));
+	for (uint k = v; k < nfeat; k += GROUP_X) if (box_hits(col_feature(slot, k), gb, ge)) atomicOr(s_hit[k >> 5], 1u << (k & 31u));
 	barrier();
 	if (v == 0u) {
 		uint nf = 0u;
@@ -340,7 +340,7 @@ void group_features(ivec3 gb, ivec3 ge, uint slot, uint v, uint cap) {
 }
 
 void gen_group_begin(ivec3 gb, uint slot, uint v) {
-	if (v < uint(GROUP * GROUP)) s_hs[v] = column_value(ivec2(gb.x + int(v) % GROUP, gb.z + int(v) / GROUP));
+	for (uint k = v; k < uint(GROUP * GROUP); k += GROUP_X) s_hs[k] = column_value(ivec2(gb.x + int(k) % GROUP, gb.z + int(k) / GROUP));
 	group_features(gb, gb + GROUP, slot, v, GROUP_FEATURES);
 }
 
@@ -399,11 +399,11 @@ void add_feature_lod(ivec4 f, ivec3 gb, ivec3 ge) {
 }
 
 // Every fine, coarse and large anchor whose feature can reach [gb, ge), as gen_feature enumerates them per column.
-shared float s_hs_lod[4 * GROUP * GROUP]; // heights of the group's 10 x 10 sample columns
+shared float s_hs_lod[4 * GROUP * GROUP]; // heights of the group's 2 GROUP x 2 GROUP sample columns
 
 void gen_group_begin_lod(ivec3 gb, uint slot, int level, uint v) {
 	ivec3 ge = gb + (GROUP << level);
-	if (v < uint(4 * GROUP * GROUP)) s_hs_lod[v] = gen_column(lod_sample_column(gb, ivec2(int(v) % (2 * GROUP), int(v) / (2 * GROUP)), level));
+	for (uint k = v; k < uint(4 * GROUP * GROUP); k += GROUP_X) s_hs_lod[k] = gen_column(lod_sample_column(gb, ivec2(int(k) % (2 * GROUP), int(k) / (2 * GROUP)), level));
 	if (v == 0u) s_nf = 0u;
 	barrier();
 	int reach = tdir[0].z + 1;

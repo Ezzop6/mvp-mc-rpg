@@ -35,14 +35,15 @@ const uint MISSING = 0xFFFFFFFFu, LOD_COLOR = PART; // lookup of a NONE chunk; L
 int pmod(int a, int m) { return a >= 0 ? a % m : m - 1 - (-a - 1) % m; } // GLSL % is undefined for negative operands
 int fdiv(int a, int b) { return a >= 0 ? a / b : -((-a - 1) / b) - 1; }
 
-int group_index(ivec3 g) { return g.x + GROUPS_PER_AXIS * (g.y + GROUPS_PER_AXIS * g.z); } // a group of the chunk
-ivec3 group_cell(int i) { return ivec3(i % GROUPS_PER_AXIS, (i / GROUPS_PER_AXIS) % GROUPS_PER_AXIS, i / (GROUPS_PER_AXIS * GROUPS_PER_AXIS)); }
+int group_index(ivec3 g) { return g.x + GROUPS_PER_AXIS * (g.y + GROUPS_PER_AXIS * g.z); } // a group of the chunk, g in groups
+ivec3 group_coord(int i) { return ivec3(i % GROUPS_PER_AXIS, (i / GROUPS_PER_AXIS) % GROUPS_PER_AXIS, i / (GROUPS_PER_AXIS * GROUPS_PER_AXIS)); }
 int cell_index(ivec3 c) { return c.x + GROUP * (c.y + GROUP * c.z); } // a cell of the group
 ivec3 cell_coord(int i) { return ivec3(i % GROUP, (i / GROUP) % GROUP, i / (GROUP * GROUP)); }
 
-uint pack_box(uvec3 lo, uvec3 hi) { return (lo.x | lo.y << 3 | lo.z << 6 | hi.x << 9 | hi.y << 12 | hi.z << 15) << 8; }
-uvec3 box_lo(uint w) { uint b = w >> 8; return uvec3(b, b >> 3, b >> 6) & 7u; }
-uvec3 box_hi(uint w) { uint b = w >> 8; return uvec3(b >> 9, b >> 12, b >> 15) & 7u; }
+// Air box, 4 bits per value in bits 8-31: cells of a group ([lo, hi) in the brick's box word) or groups of the chunk (extent around an air group entry).
+uint pack_box(uvec3 lo, uvec3 hi) { return (lo.x | lo.y << 4 | lo.z << 8 | hi.x << 12 | hi.y << 16 | hi.z << 20) << 8; }
+uvec3 box_lo(uint w) { uint b = w >> 8; return uvec3(b, b >> 4, b >> 8) & 15u; }
+uvec3 box_hi(uint w) { uint b = w >> 8; return uvec3(b >> 12, b >> 16, b >> 20) & 15u; }
 
 // Ring slot of a world chunk of level lvl, as coordinates and as one index (all levels in one directory).
 ivec3 ring_size() { return W.lv[LVL].size.xyz; }

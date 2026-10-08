@@ -1,5 +1,4 @@
 const int MAX_FEATURE_LIGHTS = 1;
-const int SC_CELLS = CHUNK / GROUP;
 
 layout(set = WORLD_SET, binding = GB_SHOWCASE_BLOCKS, std430) restrict readonly buffer ShowcaseBlocks { uint sc_blocks[]; };
 
@@ -12,7 +11,7 @@ bool sc_overlap(ivec2 lo, ivec2 hi, ivec2 rlo, ivec2 rhi) { return all(lessThan(
 bool sc_floor(ivec2 lo, ivec2 hi) {
 	return sc_overlap(lo, hi, ivec2(1), ivec2(2 * SC_BLOCK_ROW + 2, 2 * sc_rows(1u) + 2)) ||
 		sc_overlap(lo, hi, ivec2(1, -2 * sc_rows(sc_blocks[0]) - 1), ivec2(2 * SC_BLOCK_ROW + 2, 0)) ||
-		sc_overlap(lo, hi, ivec2(-GROUP * SC_MODEL_ROW - 1, 1), ivec2(0, GROUP * sc_model_rows() + 1));
+		sc_overlap(lo, hi, ivec2(-SC_CELL * SC_MODEL_ROW - 1, 1), ivec2(0, SC_CELL * sc_model_rows() + 1));
 }
 
 uint sc_ground(ivec2 p) { return p.x == 0 || p.y == 0 ? SC_AXIS : sc_floor(p, p + 1) ? SC_FLOOR : 0u; }
@@ -46,12 +45,12 @@ bool sc_feature(ivec2 g, out ivec4 f) {
 	int i = -1 - g.x, m = g.y * SC_MODEL_ROW + i;
 	if (i < 0 || i >= SC_MODEL_ROW || g.y < 0 || m >= int(mdata[MH_MODELS])) return false;
 	ivec3 d = model_cells(model_rec(uint(m)));
-	if (any(greaterThanEqual(d.xz, ivec2(GROUP)))) return false;
-	f = ivec4(g.x * GROUP + GROUP - 1 - d.x + d.x / 2, -1, g.y * GROUP + 1 + d.z / 2, m << 8);
+	if (any(greaterThanEqual(d.xz, ivec2(SC_CELL)))) return false;
+	f = ivec4(g.x * SC_CELL + SC_CELL - 1 - d.x + d.x / 2, -1, g.y * SC_CELL + 1 + d.z / 2, m << 8);
 	return true;
 }
 
-bool gen_feature(ivec2 col, uint k, out ivec4 f) { return sc_feature(col * SC_CELLS + ivec2(int(k) % SC_CELLS, int(k) / SC_CELLS), f); }
+bool gen_feature(ivec2 col, uint k, out ivec4 f) { return sc_feature(ivec2(fdiv(col.x * CHUNK, SC_CELL), fdiv(col.y * CHUNK, SC_CELL)) + ivec2(int(k) % SC_SPAN, int(k) / SC_SPAN), f); }
 
 void gen_feature_box(ivec4 f, out ivec3 lo, out ivec3 hi) { ivec3 d = obj_dims(f); lo = obj_origin(f, d); hi = lo + d; }
 
@@ -61,36 +60,41 @@ uint gen_classify_chunk(ivec3 lo, vec2 mm, uint li) { return sc_classify(lo, lo 
 
 uint gen_classify_group(ivec3 gb) { return sc_classify(gb, gb + GROUP, true); }
 
-shared uint s_obj;
-shared ivec4 s_feat;
+const uint SC_LOD_OBJECTS = 64u;
+shared ivec4 s_objs[SC_LOD_OBJECTS];
+shared uint s_idx[SC_LOD_OBJECTS]; // L0: the column feature index (rays find parts by it)
+shared uint s_nobj;
 
+// The models of the column whose boxes touch the group.
 void gen_group_begin(ivec3 gb, uint slot, uint v) {
-	if (v == 0u) s_obj = 0u;
+	if (v == 0u) s_nobj = 0u;
 	barrier();
-	if (v < feature_count(slot) && box_hits(col_feature(slot, v), gb, gb + GROUP)) { s_obj = v + 1u; s_feat = col_feature(slot, v); }
+	for (uint k = v; k < feature_count(slot); k += GROUP_X)
+		if (box_hits(col_feature(slot, k), gb, gb + GROUP)) { uint i = atomicAdd(s_nobj, 1u); if (i < SC_LOD_OBJECTS) { s_objs[i] = col_feature(slot, k); s_idx[i] = k; } }
+	barrier();
+	if (v == 0u) s_nobj = min(s_nobj, SC_LOD_OBJECTS);
 	barrier();
 }
 
 uint gen_block(ivec3 b, ivec3 l) {
 	if (b.y == -1) return sc_ground(b.xz);
 	uint id = b.y == 0 ? sc_block(b.xz) : 0u;
-	return id == 0u && s_obj != 0u && obj_cell_at(s_feat, b) != EMPTY_REF ? PART | (s_obj - 1u) : id;
+	for (uint j = 0u; j < s_nobj && id == 0u; j++) if (obj_cell_at(s_objs[j], b) != EMPTY_REF) id = PART | s_idx[j];
+	return id;
 }
 
-// L >= 1 (docs/v2.md §5.17): the same blocks by sample, the models of the lattice cells under the coarse group (a model fits its cell).
+// L >= 1 (docs/v2.md §5.17): the same blocks by sample, the models of the lattice cells under the coarse group (a model fits its SC_CELL cell).
 uint gen_classify_lod(ivec3 lo, ivec3 hi, vec2 mm) { return sc_classify(lo, hi, false); }
-
-const uint SC_LOD_OBJECTS = 64u;
-shared ivec4 s_objs[SC_LOD_OBJECTS];
-shared uint s_nobj;
 
 void gen_group_begin_lod(ivec3 gb, uint slot, int level, uint v) {
 	if (v == 0u) s_nobj = 0u;
 	barrier();
-	int n = 1 << level;
-	ivec2 g = ivec2(fdiv(gb.x, GROUP), fdiv(gb.z, GROUP)) + ivec2(int(v) % n, int(v) / n);
-	ivec4 f;
-	if (v < uint(n * n) && sc_feature(g, f)) { uint i = atomicAdd(s_nobj, 1u); if (i < SC_LOD_OBJECTS) s_objs[i] = f; }
+	ivec2 g0 = ivec2(fdiv(gb.x, SC_CELL), fdiv(gb.z, SC_CELL));
+	int n = fdiv(gb.x + (GROUP << level) - 1, SC_CELL) - g0.x + 1;
+	for (uint k = v; k < uint(n * n); k += GROUP_X) {
+		ivec4 f;
+		if (sc_feature(g0 + ivec2(int(k) % n, int(k) / n), f)) { uint i = atomicAdd(s_nobj, 1u); if (i < SC_LOD_OBJECTS) s_objs[i] = f; }
+	}
 	barrier();
 	if (v == 0u) s_nobj = min(s_nobj, SC_LOD_OBJECTS);
 	barrier();

@@ -166,16 +166,16 @@ uint lookup(ivec3 cell, out ivec3 lo, out ivec3 hi) {
 	uvec2 e = dir[si];
 	if (e.x == NONE) return MISSING;
 	if ((e.x & UNI) != 0u) return pair_word(uvec2(e.x & ~UNI, e.y));
-	uvec3 u5 = r / uint(GROUP), l = r - u5 * uint(GROUP);
-	uint o = e.x * CHUNK_REC_WORDS + 2u * uint(group_index(ivec3(u5 - ch * uint(GROUPS_PER_AXIS))));
+	uvec3 gc = r / uint(GROUP), l = r - gc * uint(GROUP);
+	uint o = e.x * CHUNK_REC_WORDS + 2u * uint(group_index(ivec3(gc - ch * uint(GROUPS_PER_AXIS))));
 	uvec2 ge = uvec2(records[o], records[o + 1u]);
-	lo = ivec3(u5 * uint(GROUP)) - r_off; hi = lo + GROUP;
+	lo = ivec3(gc * uint(GROUP)) - r_off; hi = lo + GROUP;
 	LOOK_LEVEL(1);
 	if ((ge.x & UNI) != 0u) return pair_word(uvec2(ge.x & ~UNI, ge.y));
 	uint cls = entry_class(ge.x);
 	if (cls == CLASS_AIR) {
-		lo = ivec3((u5 - box_lo(ge.y)) * uint(GROUP)) - r_off;
-		hi = ivec3((u5 + 1u + box_hi(ge.y)) * uint(GROUP)) - r_off;
+		lo = ivec3((gc - box_lo(ge.y)) * uint(GROUP)) - r_off;
+		hi = ivec3((gc + 1u + box_hi(ge.y)) * uint(GROUP)) - r_off;
 		return 0u;
 	}
 	LOOK_LEVEL(2);
@@ -185,7 +185,7 @@ uint lookup(ivec3 cell, out ivec3 lo, out ivec3 hi) {
 	if (p == uvec2(0u)) {
 		uint bw = brick_word(cls, base + BRICK_BOX_WORD);
 		uvec3 blo = box_lo(bw), bhi = box_hi(bw);
-		if (all(greaterThanEqual(l, blo)) && all(lessThan(l, bhi))) { lo = ivec3(u5 * uint(GROUP) + blo) - r_off; hi = ivec3(u5 * uint(GROUP) + bhi) - r_off; }
+		if (all(greaterThanEqual(l, blo)) && all(lessThan(l, bhi))) { lo = ivec3(gc * uint(GROUP) + blo) - r_off; hi = ivec3(gc * uint(GROUP) + bhi) - r_off; }
 	}
 	return pair_word(p);
 }

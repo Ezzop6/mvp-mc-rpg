@@ -97,7 +97,7 @@ public partial class World
 		var rd = Gpu.Rd;
 		Gpu.Init(Variants, generator, gpuLod);
 		gen = Gpu.Compile("gen.compute", (int)Math.Max(128, System.Numerics.BitOperations.RoundUpToPowerOf2((uint)Math.Max(Math.Max(Layout.Groups + 1, Layout.GroupCells), LightNeighbours)))); // FILL: thread per cell, PACK: per group and one for the record, LIGHTS: per neighbour chunk
-		fill = Gpu.Compile("gen.compute", (int)System.Numerics.BitOperations.RoundUpToPowerOf2((uint)Math.Max(Layout.GroupCells, Layout.IndexWords)));
+		fill = Gpu.Compile("gen.compute", (int)Math.Max(32, System.Numerics.BitOperations.RoundUpToPowerOf2((uint)Math.Max(Layout.GroupCells, Layout.MaskWords)))); // a thread per cell, at least a warp
 		featureCandidates = (uint)generator.FeatureCandidates;
 		var p = generator.ShaderParams();
 		genParams = generatorBuffers.Add(rd.StorageBufferCreate((uint)p.Length, p));
