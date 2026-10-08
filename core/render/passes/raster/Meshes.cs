@@ -21,7 +21,7 @@ public sealed class Meshes : RasterPass
 {
 	[Tune("", 50, 1000, 12.5f)] public float MeshRadius = 500; // m
 	[Tune("", 16, MaxBuilds, 16)] public float BuildsPerFrame = 1024;
-	public const int PageQuads = 32, QuadIndices = 6, BudgetMB = 256, MaxBuilds = 4096, Shell = 2, CullGroup = 128, BuildGroup = 160;
+	public const int PageQuads = 32, QuadIndices = 6, BudgetMB = 256, MaxBuilds = 4096, Shell = 2, CullGroup = 128, BuildGroup = (6 * Layout.Chunk + 31) / 32 * 32; // BuildGroup: a thread per slice
 	const string Dir = "res://core/render/passes/raster/";
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -67,7 +67,7 @@ public sealed class Meshes : RasterPass
 		base.Init(gpu);
 		string[] defines = [.. Enum.GetValues<MeshStep>().Select(s => $"MESH_{(Gpu.Snake(s.ToString()))} {(uint)s}u"), $"PAGE_QUADS {PageQuads}u", $"QUAD_INDICES {QuadIndices}u"];
 		build = gpu.Compile("res://core/render/passes/raster/raster_build.compute", BuildGroup, 1, defines);
-		if (build.X < 6 * Layout.Chunk) throw new InvalidOperationException("raster_build.compute: GROUP_X < 6 * CHUNK (MESH_BUILD: thread per slice)");
+		if (Layout.Chunk > 31) throw new InvalidOperationException("raster meshes pack chunk-local positions and extents in 5 bits and rows in 32-bit masks: CHUNK <= 31");
 		cull = gpu.Compile("res://core/render/passes/raster/raster_cull.compute", CullGroup, 1, defines);
 		hiz = gpu.Compile("res://core/render/passes/raster/raster_hiz.compute", 8, 8);
 		drawShader = gpu.CompileRaster(Dir + "raster_draw.raster", defines);

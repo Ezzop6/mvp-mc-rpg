@@ -31,6 +31,7 @@ public sealed class Snapshot
 	public BookmarkStatus Status { get; set; }
 	public string Redirect { get; set; } // another bookmark loaded in this one's place
 	public Pose Camera { get; set; }
+	public int? ChunkSize { get; set; } // of Camera.Anchor, null = 25 (saved before the field)
 	public MoveMode Move { get; set; }
 	public float TimeOfDay { get; set; }
 	public int Day { get; set; }
@@ -40,6 +41,20 @@ public sealed class Snapshot
 	public int Height { get; set; } = 1080;
 	public JsonObject Render { get; set; } // the engine's dump, null = its defaults
 	[JsonIgnore] public string Dir => Path.Combine(Root, Name);
+
+	// Camera with the anchor in chunks of Coords.ChunkSize (the same point in metres).
+	[JsonIgnore] public Pose CameraNow
+	{
+		get
+		{
+			int cs = ChunkSize ?? 25;
+			if (cs == Renesance.World.Coords.ChunkSize) return Camera;
+			double m = cs * Renesance.World.Coords.BlockMeters, cm = Renesance.World.Coords.ChunkSize * Renesance.World.Coords.BlockMeters;
+			(int, float) Axis(int a, float l) { double p = a * m + l; int c = (int)Math.Floor(p / cm); return (c, (float)(p - c * cm)); }
+			var ((x, lx), (y, ly), (z, lz)) = (Axis(Camera.Anchor.X, Camera.Local.X), Axis(Camera.Anchor.Y, Camera.Local.Y), Axis(Camera.Anchor.Z, Camera.Local.Z));
+			return Camera with { Anchor = new Vec3I(x, y, z), Local = new Vec3(lx, ly, lz) };
+		}
+	}
 
 	public static bool Exists(string name) => WorldSave.ValidName(name) && File.Exists(Path.Combine(Root, name, FileName));
 
@@ -284,7 +299,7 @@ public sealed class TestCore
 	void Values()
 	{
 		var c = item.Spec.Capture;
-		if (Host.CameraPose is var cam && cam != snap.Camera) { issues.Add(TestIssue.CameraMoved); GD.Print($"[test] {snap.Name}: camera {cam}, bookmark {snap.Camera}"); }
+		if (Host.CameraPose is var cam && cam != snap.CameraNow) { issues.Add(TestIssue.CameraMoved); GD.Print($"[test] {snap.Name}: camera {cam}, bookmark {snap.CameraNow}"); }
 		passMs = c.Contains(Captured.PassMs) ? Host.PassSamples().ToDictionary(p => p.name, p => Math.Round(p.ms, 3)) : null;
 		frameMs = c.Contains(Captured.PassMs) ? Host.FrameTimes().ToDictionary(p => p.name, p => Math.Round(p.ms, 3)) : null;
 		poolMB = c.Contains(Captured.Pools) ? Host.PoolMB : null;

@@ -24,8 +24,8 @@ void changes(uint i) {
 		if (i < LIGHT_MAP_KEYS && lm_keys[i / 4u][i % 4u] != 0u) atomicOr(lm[i].state, LM_WANT);
 		return;
 	}
-	if (i / 27u >= n) return;
-	ivec3 wc = LL.change[i / 27u].xyz, nc = wc + ivec3(int(i % 3u), int(i / 3u % 3u), int(i / 9u % 3u)) - 1;
+	if (i / LIGHT_NEIGHBOURS >= n) return;
+	ivec3 wc = LL.change[i / LIGHT_NEIGHBOURS].xyz, nc = wc + light_neighbour(i % LIGHT_NEIGHBOURS);
 	if (!in_ring0(nc)) return;
 	uvec2 e = dir[slot0(nc)];
 	if (!has_lights(e)) return;

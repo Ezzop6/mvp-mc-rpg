@@ -56,7 +56,7 @@ public partial class World : Node3D
 	public int MaxLevels = Lod.MaxLevels; // --lod-levels (1 = L0 only), with LodOn
 	public int LodRef; // --lod-ref: that level's band drawn one level finer (lod-vs-finer reference)
 	public int DrawLevels; // > 0: rays read only that many levels (--lod-draw, coarse rings generated but not drawn)
-	public int ClassifyPerFrame = 4096, FillPerFrame = 16384, ColumnsPerFrame = 1024;
+	public int ClassifyPerFrame = 4096 * 15625 / Coords.ChunkVolume, FillPerFrame = 16384 * 125 / Layout.GroupCells, ColumnsPerFrame = 1024 * 625 / (Layout.Chunk * Layout.Chunk); // the volume of 4096 chunks, 16384 groups and 1024 columns of 25^3 / 5^3 blocks
 	[Setting(MenuTab.World, "Streaming and budgets", 1, 256, 1, Label = "Edits (chunks per frame)")] public int EditChunksPerFrame = 64;
 	[Setting(MenuTab.World, "Streaming and budgets", Label = "Fixed counts (per frame, deterministic)")] public bool FixedBudget;        // the counts above every frame (deterministic runs), else scaled by Budget
 	[Setting(MenuTab.World, "Streaming and budgets", Label = "Freeze streaming")] public bool FreezeStreaming;    // the rings keep their centres (no shift, no teleport reset) so the camera can fly out over what is resident; Regenerate still resets at the camera
@@ -630,17 +630,17 @@ public partial class World : Node3D
 		GD.Print($"[world] levels {Lods.Levels}, from {string.Join(" / ", Lods.SwitchM.Select(m => m.ToString("0")))} m, radius {string.Join(" / ", Enumerable.Range(0, Lods.Levels).Select(l => Lods.RadiusM(l).ToString("0")))} m (pixel {alpha * 1e4:0.00}e-4 rad, LodPixels {Lods.LodPixels})");
 	}
 
-	// Edits of chunk c of level `level` as gen.compute reads them, sorted: (group * 125 + cell, variant or ~0, fluid word or ~0, 0); at L >= 1 the key is times 8 + the sample (Lod.SampleOf), edits off the samples are left out.
+	// Edits of chunk c of level `level` as gen.compute reads them, sorted: (group * GroupCells + cell, variant or ~0, fluid word or ~0, 0); at L >= 1 the key is times 8 + the sample (Lod.SampleOf), edits off the samples are left out.
 	void EditRecords(ChunkPos c, int level, List<uint> into)
 	{
 		if (level > 0 ? !coarseEdits[level].Contains(c) : !Edits.Has(c)) return; // most chunks have no edits: no per-chunk sort and allocation
-		int n = 1 << level, size = Layout.Chunk * n, g = Layout.Group;
+		int n = 1 << level, size = Layout.Chunk * n, g = Layout.Group, ga = Layout.GroupsPerAxis;
 		var cells = new SortedDictionary<uint, (uint Block, uint Fluid)>();
 		const uint none = uint.MaxValue;
 		uint Key(BlockPos p)
 		{
 			int x = p.X - c.X * size, y = p.Y - c.Y * size, z = p.Z - c.Z * size, cx = x >> level, cy = y >> level, cz = z >> level;
-			uint k = (uint)((cx / g + g * (cy / g + g * (cz / g))) * Layout.GroupCells + cx % g + g * (cy % g + g * (cz % g)));
+			uint k = (uint)((cx / g + ga * (cy / g + ga * (cz / g))) * Layout.GroupCells + cx % g + g * (cy % g + g * (cz % g)));
 			if (level == 0) return k;
 			int s = Lod.SampleOf(level, x & (n - 1), y & (n - 1), z & (n - 1));
 			return s < 0 ? none : k * Lod.Samples + (uint)s;

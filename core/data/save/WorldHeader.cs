@@ -47,6 +47,8 @@ public sealed class WorldHeader
 	public const int CurrentFormat = 1;
 	public string Name { get; set; }
 	public int Format { get; set; } = CurrentFormat;
+	public int? ChunkSize { get; set; }  // blocks per chunk edge the regions were written with, null = 25 (saved before the field)
+	public int? RegionSize { get; set; } // chunks per region edge, null = 5
 	public Dictionary<string, DimensionInfo> Dimensions { get; set; } = new() { [DefaultDimension] = new() };
 	public Dictionary<string, ushort> Blocks { get; set; } = new();   // block name -> id used in region files
 	public Dictionary<string, uint> Models { get; set; } = new();     // model name -> id used in region files

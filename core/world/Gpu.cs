@@ -11,7 +11,7 @@ using Renesance.Content;
 using Renesance.World;
 
 // Set 1 of every world-reading shader (WB_* in the prelude); GenBuffers + i for the generator's buffers, so it stays last.
-public enum WorldBinding { Dir, Records, Brick4, Brick16, Brick125, Occupancy, OccupancyMip, World, Types, Tex, Colormaps, ModelData, Items, ColFeatures, Visible, Lights, GenParams, GenBuffers }
+public enum WorldBinding { Dir, Records, Brick4, Brick16, BrickFull, Occupancy, OccupancyMip, World, Types, Tex, Colormaps, ModelData, Items, ColFeatures, Visible, Lights, GenParams, GenBuffers }
 
 public sealed class RidGroup
 {
@@ -63,12 +63,12 @@ public sealed class Gpu
 	{
 		var sb = new StringBuilder("#version 450\n#extension GL_GOOGLE_cpp_style_line_directive : enable\n#extension GL_EXT_control_flow_attributes : enable\n");
 		sb.Append(CultureInfo.InvariantCulture, $"const float BS = {Voxel.BlockSize};\nconst int PERM_SIZE = {Perlin.TableSize};\n");
-		sb.Append($"const int CHUNK = {Layout.Chunk}, GROUP = {Layout.Group};\nconst uint GROUPS_PER_CHUNK = {Layout.Groups}u, CHUNK_REC_WORDS = {Layout.ChunkRecWords}u, BRICK_INDEX_WORDS = {Layout.IndexWords}u, BRICK_BOX_WORD = {Layout.BoxWord}u, CHUNK_STAMP_WORD = {Layout.StampWord}u;\n");
-		sb.Append($"const uint BRICK4_WORDS = {Layout.BrickWords(0)}u, BRICK16_WORDS = {Layout.BrickWords(1)}u, BRICK125_WORDS = {Layout.BrickWords(2)}u, BRICK4_PAIRS = {Layout.ClassPairs[0]}u, BRICK16_PAIRS = {Layout.ClassPairs[1]}u;\n");
+		sb.Append($"const int CHUNK = {Layout.Chunk}, GROUP = {Layout.Group}, GROUPS_PER_AXIS = {Layout.GroupsPerAxis};\nconst uint GROUPS_PER_CHUNK = {Layout.Groups}u, GROUP_CELLS = {Layout.GroupCells}u, MASK_WORDS = {Layout.MaskWords}u, JOB_BITS = {32 - System.Numerics.BitOperations.LeadingZeroCount((uint)Layout.Groups - 1)}u, CHUNK_REC_WORDS = {Layout.ChunkRecWords}u, BRICK_INDEX_WORDS = {Layout.IndexWords}u, BRICK_BOX_WORD = {Layout.BoxWord}u, CHUNK_STAMP_WORD = {Layout.StampWord}u;\n");
+		sb.Append($"const uint BRICK4_WORDS = {Layout.BrickWords(0)}u, BRICK16_WORDS = {Layout.BrickWords(1)}u, BRICK_FULL_WORDS = {Layout.BrickWords(2)}u, BRICK4_PAIRS = {Layout.ClassPairs[0]}u, BRICK16_PAIRS = {Layout.ClassPairs[1]}u;\n");
 		sb.Append($"const uint UNI = {Layout.Uni}u, NONE = {Layout.None}u, PART = {Layout.Part}u, PAL_FLAG_SHIFT = {Layout.FlagShift}u, PAL_ID_MASK = {Layout.IdMask}u, FLUID_LEVEL_SHIFT = {Layout.FluidLevelShift}u;\n");
 		sb.Append($"const uint CLASS_SHIFT = {Layout.ClassShift}u, CLASS_AIR = {Layout.ClassAir}u, INDEX_MASK = {Layout.IndexMask}u;\n");
 		sb.Append($"const uint MAX_COL_FEATURES = {(global::World.MaxColFeatures)}u, FAR_RESERVE_DIV = {(global::World.FarReserveDiv)}u, MID_MARGIN = {(global::World.MidMargin)}u;\n");
-		sb.Append($"const uint MAX_CHUNK_LIGHTS = {(global::World.MaxChunkLights)}u, LIGHT_CHANGES = {(global::World.LightChanges)}u;\n");
+		sb.Append($"const uint MAX_CHUNK_LIGHTS = {(global::World.MaxChunkLights)}u, LIGHT_CHANGES = {(global::World.LightChanges)}u, LIGHT_REACH_BLOCKS = {(global::World.LightReach)}u, LIGHT_RING = {(global::World.LightRing)}u, LIGHT_NEIGHBOURS = {(global::World.LightNeighbours)}u, LIGHT_TILE_CHUNKS = {(global::World.LightTileChunks)}u;\n");
 		sb.Append($"const int TEX_SIZE = {GpuBlockTable.TexSize}, TEX_MIPS = {GpuBlockTable.TexMips}, TEXELS_PER_LAYER = {GpuBlockTable.TexelsPerLayer};\n");
 		sb.Append($"const int MIP_OFS[TEX_MIPS] = int[]({string.Join(", ", GpuBlockTable.MipOffsets[..GpuBlockTable.TexMips])});\n");
 		sb.Append($"const uint FACE_LAYER_MASK = {(1 << GpuBlockTable.FaceLayerBits) - 1}u, FACE_OVERLAY_SHIFT = {GpuBlockTable.FaceOverlayShift}u, FACE_ROT_SHIFT = {GpuBlockTable.FaceRotShift}u, " +

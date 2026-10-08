@@ -89,7 +89,7 @@ public sealed class Cubemaps : LightsPass
 		int frame = (int)f.Index;
 		long cl = Gpu.Begin(maps);
 		rd.ComputeListBindUniformSet(cl, assignSet, 0);
-		Gpu.Dispatch(cl, maps, (uint)LightMapStep.Changes, Math.Max(World.LightChanges * 27, Keys), frame);
+		Gpu.Dispatch(cl, maps, (uint)LightMapStep.Changes, Math.Max(World.LightChanges * World.LightNeighbours, Keys), frame);
 		Gpu.Dispatch(cl, maps, (uint)LightMapStep.Assign, maps.X, frame);
 		rd.ComputeListEnd();
 		cl = Gpu.Begin(maps);

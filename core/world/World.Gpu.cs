@@ -19,8 +19,11 @@ public partial class World
 	// ponytail: fixed pool shares of WorldBudgetMB (docs/v2.md §3.6), re-split from measured use when it matters.
 	static readonly float[] PoolShare = { 0.12f, 0.55f, 0.25f, 0.08f };
 	public const int MaxChunkLights = 64, LightLists = 16384, LightChanges = 1024; // lights.glsli; ponytail: a chunk keeps its first 64 light cells, lists over LightLists drop (LL.fail)
+	public static readonly int LightReach = (int)MathF.Ceiling(15 * Renesance.Content.BlockRegistry.LightMetersPerLevel / Coords.BlockMeters); // blocks of the strongest light (level 15)
+	public static readonly int LightRing = (LightReach + Layout.Chunk - 1) / Layout.Chunk, LightNeighbours = (2 * LightRing + 1) * (2 * LightRing + 1) * (2 * LightRing + 1); // chunks around a light's own that it reaches
+	public static readonly int LightTileChunks = Math.Max(8, 64 * 15625 / Coords.ChunkVolume); // Lights/cubemaps: a tile gathers lists from up to this many chunks (the volume of 64 chunks of 25^3), more goes per pixel
 	const int LightHeaderBytes = 32 + LightChanges * 16;
-	public const int MaxColFeatures = 64; // ponytail: L0 overflow drops features (W.lod_stat.x, FeaturesDropped), raise if forests look thin
+	public static readonly int MaxColFeatures = Math.Max(64, (64 * Layout.Chunk * Layout.Chunk / 625 + 15) / 16 * 16); // per column, 64 for 25^2 blocks; ponytail: L0 overflow drops features (W.lod_stat.x, FeaturesDropped), raise if forests look thin
 	const int ColumnBlocks = Layout.Chunk * Layout.Chunk, SlotAlign = 2048; // SlotAlign: a level's slots start on a word of the occupancy mip
 
 	public volatile uint[] PoolUsed = new uint[4], PoolCap = new uint[4], PoolFail = new uint[4], PoolHigh = new uint[4], PoolFree = new uint[4]; // by WorldPool, from the async counter readback: Used = taken and not given back, High = bump high water, Free = free stack height
@@ -93,9 +96,8 @@ public partial class World
 	{
 		var rd = Gpu.Rd;
 		Gpu.Init(Variants, generator, gpuLod);
-		gen = Gpu.Compile("gen.compute", 128);
+		gen = Gpu.Compile("gen.compute", (int)Math.Max(128, System.Numerics.BitOperations.RoundUpToPowerOf2((uint)Math.Max(Math.Max(Layout.Groups + 1, Layout.GroupCells), LightNeighbours)))); // FILL: thread per cell, PACK: per group and one for the record, LIGHTS: per neighbour chunk
 		featureCandidates = (uint)generator.FeatureCandidates;
-		if (gen.X <= Layout.Groups) throw new InvalidOperationException("gen.compute: GROUP_X <= GROUP^3 (FILL: thread per cell, PACK: one more for the record)");
 		var p = generator.ShaderParams();
 		genParams = generatorBuffers.Add(rd.StorageBufferCreate((uint)p.Length, p));
 		genBuffers = generator.LoadBuffers(Variants).Select(b => generatorBuffers.Add(rd.StorageBufferCreate((uint)b.Length, b))).ToArray();
@@ -240,7 +242,7 @@ public partial class World
 		(editCap, releaseCap) = (0, 0);
 		EnsureBuffers(1024, 4096);
 		if (workBoost == 0) UseWork(LoadingBoost);
-		foreach (var (b, rid) in new[] { (WorldBinding.Dir, dir), (WorldBinding.Records, records), (WorldBinding.Brick4, bricks[0]), (WorldBinding.Brick16, bricks[1]), (WorldBinding.Brick125, bricks[2]),
+		foreach (var (b, rid) in new[] { (WorldBinding.Dir, dir), (WorldBinding.Records, records), (WorldBinding.Brick4, bricks[0]), (WorldBinding.Brick16, bricks[1]), (WorldBinding.BrickFull, bricks[2]),
 			(WorldBinding.Occupancy, occ), (WorldBinding.OccupancyMip, occMip), (WorldBinding.World, header), (WorldBinding.ColFeatures, feats), (WorldBinding.Visible, vis), (WorldBinding.Lights, LightBuffer) })
 			Gpu.Publish(b, rid);
 	}

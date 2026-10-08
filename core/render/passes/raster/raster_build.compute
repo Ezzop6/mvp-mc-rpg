@@ -33,13 +33,13 @@ uint content_key(ivec3 wc) {
 bool solid(uint w) { return w != 0u && w != MISSING && (pal_flags(w) & F_INVISIBLE) == 0u; } // a cell trace_world stops in or tests (fog blocks: Transparency)
 
 shared uint s_solid[(PAD_CELLS + 31u) / 32u]; // the chunk plus a 1 block border, a bit per block
-shared uint s_used[6 * CHUNK * CHUNK];        // per slice task: cells already covered by a quad, a 25-bit mask per row
+shared uint s_used[6 * CHUNK * CHUNK];        // per slice task: cells already covered by a quad, a CHUNK-bit mask per row
 shared uint s_first[6 * CHUNK];               // per slice task: quad count, then its first quad index within the direction
 shared uint s_dir_quads[6], s_dir_page[7];    // per direction: quads, first local page (s_dir_page[6] = total)
 shared uint s_base, s_gen, s_key;             // free stack index of the first page (NO_PAGE = none), the slot's new generation, content key
 const uint NO_PAGE = 0xFFFFFFFFu;
 
-bool blk(ivec3 p) { uint i = uint(p.x + 1) + PAD * (uint(p.y + 1) + PAD * uint(p.z + 1)); return (s_solid[i >> 5] >> (i & 31u) & 1u) != 0u; } // chunk-local, -1..25
+bool blk(ivec3 p) { uint i = uint(p.x + 1) + PAD * (uint(p.y + 1) + PAD * uint(p.z + 1)); return (s_solid[i >> 5] >> (i & 31u) & 1u) != 0u; } // chunk-local, -1..CHUNK
 
 bool face_at(int d, int s, int i, int j) {
 	int axis = d >> 1;
@@ -48,7 +48,7 @@ bool face_at(int d, int s, int i, int j) {
 	return blk(p) && !blk(p + face_step(d));
 }
 
-// Greedy quads of slice task (d = task / 25, s = task % 25): counts them, or writes them from `first` on, same quads.
+// Greedy quads of slice task (d = task / CHUNK, s = task % CHUNK): counts them, or writes them from `first` on, same quads.
 uint slice_quads(uint task, bool emit, uint first) {
 	int d = int(task / uint(CHUNK)), s = int(task % uint(CHUNK)), axis = d >> 1;
 	ivec2 uv = face_axes(axis);

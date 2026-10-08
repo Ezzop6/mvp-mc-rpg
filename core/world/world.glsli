@@ -2,10 +2,10 @@
 #include "faces.glsli"
 
 layout(set = WORLD_SET, binding = WB_DIR, std430) restrict buffer Dir { uvec2 dir[]; };           // per ring slot: NONE, UNI | block + fluid, or record index
-layout(set = WORLD_SET, binding = WB_RECORDS, std430) restrict buffer Records { uint records[]; }; // CHUNK_REC_WORDS per chunk: 125 group entries (uvec2)
+layout(set = WORLD_SET, binding = WB_RECORDS, std430) restrict buffer Records { uint records[]; }; // CHUNK_REC_WORDS per chunk: GROUPS_PER_CHUNK group entries (uvec2), the stamp
 layout(set = WORLD_SET, binding = WB_BRICK4, std430) restrict buffer Brick4 { uint brick4[]; };
 layout(set = WORLD_SET, binding = WB_BRICK16, std430) restrict buffer Brick16 { uint brick16[]; };
-layout(set = WORLD_SET, binding = WB_BRICK125, std430) restrict buffer Brick125 { uint brick125[]; };
+layout(set = WORLD_SET, binding = WB_BRICK_FULL, std430) restrict buffer BrickFull { uint brick_full[]; };
 layout(set = WORLD_SET, binding = WB_OCCUPANCY, std430) restrict buffer Occupancy { uint occ[]; };    // bit per ring slot: not only air
 layout(set = WORLD_SET, binding = WB_OCCUPANCY_MIP, std430) restrict buffer OccupancyMip { uint occ_mip[]; }; // bit per 4^3 slots
 layout(set = WORLD_SET, binding = WB_VISIBLE, std430) restrict buffer Visible { uint vis_bits[]; }; // bit per slot: a sampled primary ray hit or wanted (missing) the chunk since the last readback (World.ApplyVisible)
@@ -35,8 +35,10 @@ const uint MISSING = 0xFFFFFFFFu, LOD_COLOR = PART; // lookup of a NONE chunk; L
 int pmod(int a, int m) { return a >= 0 ? a % m : m - 1 - (-a - 1) % m; } // GLSL % is undefined for negative operands
 int fdiv(int a, int b) { return a >= 0 ? a / b : -((-a - 1) / b) - 1; }
 
-int group_index(ivec3 c) { return c.x + GROUP * (c.y + GROUP * c.z); }
-ivec3 group_cell(int i) { return ivec3(i % GROUP, (i / GROUP) % GROUP, i / (GROUP * GROUP)); }
+int group_index(ivec3 g) { return g.x + GROUPS_PER_AXIS * (g.y + GROUPS_PER_AXIS * g.z); } // a group of the chunk
+ivec3 group_cell(int i) { return ivec3(i % GROUPS_PER_AXIS, (i / GROUPS_PER_AXIS) % GROUPS_PER_AXIS, i / (GROUPS_PER_AXIS * GROUPS_PER_AXIS)); }
+int cell_index(ivec3 c) { return c.x + GROUP * (c.y + GROUP * c.z); } // a cell of the group
+ivec3 cell_coord(int i) { return ivec3(i % GROUP, (i / GROUP) % GROUP, i / (GROUP * GROUP)); }
 
 uint pack_box(uvec3 lo, uvec3 hi) { return (lo.x | lo.y << 3 | lo.z << 6 | hi.x << 9 | hi.y << 12 | hi.z << 15) << 8; }
 uvec3 box_lo(uint w) { uint b = w >> 8; return uvec3(b, b >> 3, b >> 6) & 7u; }
@@ -53,8 +55,8 @@ bool bit_of(uint w, uint i) { return (w >> (i & 31u) & 1u) != 0u; }
 const uint ENTRY_AIR = CLASS_AIR << CLASS_SHIFT;
 uint entry_class(uint x) { return x >> CLASS_SHIFT; }
 
-uint brick_word(uint cls, uint i) { return cls == 0u ? brick4[i] : cls == 1u ? brick16[i] : brick125[i]; }
-uint brick_base(uint cls, uint b) { return b * (cls == 0u ? BRICK4_WORDS : cls == 1u ? BRICK16_WORDS : BRICK125_WORDS); }
+uint brick_word(uint cls, uint i) { return cls == 0u ? brick4[i] : cls == 1u ? brick16[i] : brick_full[i]; }
+uint brick_base(uint cls, uint b) { return b * (cls == 0u ? BRICK4_WORDS : cls == 1u ? BRICK16_WORDS : BRICK_FULL_WORDS); }
 uint brick_index(uint cls, uint base, uint v) { return (brick_word(cls, base + (v >> 2)) >> ((v & 3u) * 8u)) & 0xFFu; }
 uvec2 brick_pair(uint cls, uint base, uint i) { uint o = base + BRICK_INDEX_WORDS + 2u * i; return uvec2(brick_word(cls, o), brick_word(cls, o + 1u)); }
 

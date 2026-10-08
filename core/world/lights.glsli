@@ -7,7 +7,8 @@ layout(set = WORLD_SET, binding = WB_LIGHTS, std430) restrict buffer Lights {
 } LL;
 
 const uint LIGHT_COUNT_SHIFT = 24u, LIGHT_LIST_WORDS = 2u * MAX_CHUNK_LIGHTS;
-const float LIGHT_REACH = float(CHUNK); // blocks: a light reaches the chunks next to its own, never further
+const float LIGHT_REACH = float(LIGHT_REACH_BLOCKS); // blocks of the strongest light: it reaches LIGHT_RING chunks around its own, never further
+ivec3 light_neighbour(uint k) { int n = 2 * int(LIGHT_RING) + 1; return ivec3(int(k) % n, int(k) / n % n, int(k) / (n * n)) - int(LIGHT_RING); } // k < LIGHT_NEIGHBOURS
 
 bool has_lights(uvec2 e) { return e.x != NONE && (e.x & UNI) == 0u && e.y != 0u; }
 uint light_count(uint y) { return y >> LIGHT_COUNT_SHIFT; }

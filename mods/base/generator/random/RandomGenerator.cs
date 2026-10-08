@@ -43,8 +43,11 @@ public sealed class RandomParams
 // Test world from the current block set: fbm terrain with optional 3D shape, trees and props, catalog structures, models, scattered blocks and items (random.glsli).
 public sealed class RandomGenerator : WorldGenerator
 {
-	const int Octaves = 6, FineReach = 5, CoarseReach = 2, CoarseAnchor = 2, LargeCell = 100, LargeN = 4, SmallHalf = 16, MaxLargeHalf = 110, WeightOne = 65536;
-	const int Lattice = Coords.ChunkSize / Layout.Group, FineN = Lattice + 2 * FineReach, CoarseN = 2 * CoarseReach + 1;
+	const int Octaves = 6, Fine = 5, Coarse = 25, FineReach = 5, CoarseReach = 2, CoarseAnchor = 2, LargeCell = 100, LargeN = 4, SmallHalf = 16, MaxLargeHalf = 110, WeightOne = 65536; // Fine, Coarse: anchor lattices in blocks, independent of the chunk size
+	static readonly int FineN = Span(Fine) + 2 * FineReach, CoarseN = Span(Coarse) + 2 * CoarseReach;
+
+	// Lattice cells a chunk column [col * ChunkSize, +ChunkSize) can touch.
+	static int Span(int cell) => Coords.ChunkSize % cell == 0 ? Coords.ChunkSize / cell : (Coords.ChunkSize + cell - 2) / cell + 1;
 	const float NoiseY = 0.37f, OctaveY = 1.7f, NoiseBound = 1.1f, FeatureRoom = 70f, WarpY = 11.3f, WarpY2 = 17.9f, IslandTop = 0.25f, IslandDepth = 0.25f, TerraceEdge = 0.7f, CaveScale = 24f;
 	static readonly string[] Used =
 	{
@@ -74,11 +77,11 @@ public sealed class RandomGenerator : WorldGenerator
 	public override string ShaderConstants()
 	{
 		const int chunk = Coords.ChunkSize;
-		if (CoarseReach * chunk + CoarseAnchor * Layout.Group < SmallHalf || (CoarseReach + 1) * chunk - CoarseAnchor * Layout.Group <= SmallHalf)
+		if (CoarseReach * Coarse + CoarseAnchor * Fine < SmallHalf || (CoarseReach + 1) * Coarse - CoarseAnchor * Fine <= SmallHalf)
 			throw new InvalidOperationException("coarse feature candidates don't reach SmallHalf");
 		if ((LargeN - 1) * LargeCell < 2 * (MaxLargeHalf + chunk - 1)) throw new InvalidOperationException("large feature candidates don't reach MaxLargeHalf");
 		return FormattableString.Invariant($"const int RG_OCTAVES = {Octaves};\nconst float RG_NOISE_Y = {NoiseY:R}, RG_OCTAVE_Y = {OctaveY:R}, RG_WARP_Y = {WarpY:R}, RG_WARP_Y2 = {WarpY2:R}, RG_ISLAND_TOP = {IslandTop:R}, RG_ISLAND_DEPTH = {IslandDepth:R}, RG_TERRACE_EDGE = {TerraceEdge:R}, RG_CAVE_SCALE = {CaveScale:R}, RG_NOISE_BOUND = {NoiseBound:R};\n") +
-			$"const int RG_FINE_REACH = {FineReach}, RG_FINE_N = {FineN}, RG_COARSE_REACH = {CoarseReach}, RG_COARSE_N = {CoarseN}, RG_COARSE_ANCHOR = {CoarseAnchor}, RG_LARGE_CELL = {LargeCell}, RG_LARGE_N = {LargeN}, RG_WEIGHT_ONE = {WeightOne};\n" +
+			$"const int RG_FINE = {Fine}, RG_COARSE = {Coarse}, RG_FINE_REACH = {FineReach}, RG_FINE_N = {FineN}, RG_COARSE_REACH = {CoarseReach}, RG_COARSE_N = {CoarseN}, RG_COARSE_ANCHOR = {CoarseAnchor}, RG_LARGE_CELL = {LargeCell}, RG_LARGE_N = {LargeN}, RG_WEIGHT_ONE = {WeightOne};\n" +
 			string.Concat(Enum.GetValues<Buffer>().Select(b => $"const uint GB_{Gpu.Snake(b.ToString())} = WB_GEN_BUFFERS + {(int)b}u;\n"));
 	}
 
@@ -121,7 +124,7 @@ public sealed class RandomGenerator : WorldGenerator
 		};
 	}
 
-	// Catalog structures in two tiers (small on the 25-block grid, large on the 100-block grid), palettes appended to ids.
+	// Catalog structures in two tiers (small on the Coarse grid, large on the LargeCell grid), palettes appended to ids.
 	static (List<Vector4I> dir, byte[] data) Templates(BlockVariants variants, List<uint> ids)
 	{
 		string catalog = ProjectSettings.GlobalizePath($"res://{ContentPaths.Mod(BlockId.BaseMod)}/{Catalog.StructuresFile}"), dir = ProjectSettings.GlobalizePath("res://" + ContentPaths.Structures);

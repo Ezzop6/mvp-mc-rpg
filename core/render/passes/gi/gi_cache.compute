@@ -32,13 +32,13 @@ layout(set = 0, binding = 6, std430) restrict readonly buffer LightMaps { uint l
 #define LM_TAPS 1.0
 #include "res://core/render/passes/lights/light_shade.glsli"
 
-// Block light at an L0 hit p (anchor-relative) of normal n from the lists of its chunk and the 26 around it, as Lights shades a pixel (clamp, saturation, tint) but with ready maps only (never asks: no builds for lights only bounces see) and one PCF tap.
+// Block light at an L0 hit p (anchor-relative) of normal n from the lists of its chunk and the LIGHT_NEIGHBOURS around it, as Lights shades a pixel (clamp, saturation, tint) but with ready maps only (never asks: no builds for lights only bounces see) and one PCF tap.
 vec3 lamp_at(vec3 p, vec3 n) {
 	ivec3 a = cam.anchor.xyz * CHUNK, cell = ivec3(floor(p)), wc0 = cam.anchor.xyz + ivec3(fdiv(cell.x, CHUNK), fdiv(cell.y, CHUNK), fdiv(cell.z, CHUNK));
 	vec3 sum = vec3(0.0);
 	uint count = 0u;
-	for (int k = 0; k < 27; k++) {
-		ivec3 wc = wc0 + ivec3(k % 3, k / 3 % 3, k / 9) - 1;
+	for (uint k = 0u; k < LIGHT_NEIGHBOURS; k++) {
+		ivec3 wc = wc0 + light_neighbour(k);
 		if (chunk_distance(p + vec3(a), wc) >= LIGHT_REACH) continue;
 		uvec2 e = in_ring0(wc) ? dir[slot0(wc)] : uvec2(NONE, 0u);
 		if (has_lights(e))

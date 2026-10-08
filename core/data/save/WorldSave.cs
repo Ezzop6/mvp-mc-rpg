@@ -90,6 +90,7 @@ public sealed class WorldSave
 		foreach (var r in regions.Values) r.Save(Path.Combine(dimDir, Region.FileName(r.Pos)));
 		foreach (var f in Directory.GetFiles(dimDir, "r.*.bin").Where(f => !written.Contains(f))) File.Delete(f);
 		Header.Blocks = used.Order().ToDictionary(id => registry[id].Name, id => id);
+		(Header.ChunkSize, Header.RegionSize) = (Coords.ChunkSize, Coords.RegionSize);
 		SaveHeader();
 	}
 
@@ -99,22 +100,25 @@ public sealed class WorldSave
 		Header.Save(HeaderPath);
 	}
 
-	// Adds the dimension's saved block and fluid edits to `into`, block ids remapped by name to `registry`.
+	// Adds the dimension's saved block and fluid edits to `into`, block ids remapped by name to `registry`; regions of another chunk or region size are read by block position.
 	public void Load(BlockRegistry registry, WorldEdits into, string dimension = WorldHeader.DefaultDimension)
 	{
 		string dimDir = Path.Combine(Dir, dimension);
 		if (!Directory.Exists(dimDir)) return;
 		var remap = registry.RemapFrom(Header.Blocks);
+		int cs = Header.ChunkSize ?? 25, rs = Header.RegionSize ?? 5;
+		BlockPos At(RegionPos r, int ci, int b)
+		{
+			int cx = r.X * rs + ci % rs, cy = r.Y * rs + ci / rs % rs, cz = r.Z * rs + ci / (rs * rs);
+			return new BlockPos(cx * cs + b % cs, cy * cs + b / cs % cs, cz * cs + b / (cs * cs));
+		}
 		foreach (var f in Directory.GetFiles(dimDir, "r.*.bin"))
 		{
 			var region = Region.Load(f, remap);
 			foreach (var (ci, blocks) in region.Edits)
-			{
-				var c = region.Pos.ChunkAt(ci);
-				foreach (var (b, s) in blocks) into.Set(c, b, s);
-			}
+				foreach (var (b, s) in blocks) into.Set(At(region.Pos, ci, b), s);
 			foreach (var (ci, fluids) in region.Fluids)
-				foreach (var (b, fl) in fluids) into.SetFluid(region.Pos.ChunkAt(ci), b, fl);
+				foreach (var (b, fl) in fluids) into.SetFluid(At(region.Pos, ci, b), fl);
 		}
 	}
 }

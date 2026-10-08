@@ -12,10 +12,10 @@ struct Job { ivec4 chunk; uvec4 edits; uint counts[4]; uint base[4]; };
 layout(set = 0, binding = 5, std430) restrict buffer Jobs { Job jobs[]; };
 // GROUPS_PER_CHUNK per job: the final entry, or class << CLASS_SHIFT and the brick's GroupWork index until PACK.
 layout(set = 0, binding = 6, std430) restrict buffer JobGroups { uvec2 job_groups[]; };
-layout(set = 0, binding = 7, std430) restrict buffer Mixed { uint mixed_count; uint mixed_cap; uint mixed_jobs; uint mixed_pad; uint mixed[]; }; // job << 7 | group
-layout(set = 0, binding = 8, std430) restrict buffer GroupWork { uint work[]; }; // BRICK125_WORDS per mixed group: the brick as it is stored
+layout(set = 0, binding = 7, std430) restrict buffer Mixed { uint mixed_count; uint mixed_cap; uint mixed_jobs; uint mixed_pad; uint mixed[]; }; // job << JOB_BITS | group
+layout(set = 0, binding = 8, std430) restrict buffer GroupWork { uint work[]; }; // BRICK_FULL_WORDS per mixed group: the brick as it is stored
 layout(set = 0, binding = 9, std430) restrict writeonly buffer FillArgs { uint fill_args[3]; };
-layout(set = 0, binding = 10, std430) restrict readonly buffer Edits { uvec4 edits[]; }; // per job, sorted: group * 125 + cell (L >= 1: times 8 + sample), variant or ~0, fluid word or ~0
+layout(set = 0, binding = 10, std430) restrict readonly buffer Edits { uvec4 edits[]; }; // per job, sorted: group * GROUP_CELLS + cell (L >= 1: times 8 + sample), variant or ~0, fluid word or ~0
 layout(set = 0, binding = 11, std430) restrict buffer Results { uint deferred_count; uint res_pad0, res_pad1, res_pad2; ivec4 deferred[]; }; // w = failed (pools full) | level << 1
 layout(set = 0, binding = 12, std430) restrict readonly buffer Release { ivec4 rel[]; }; // world chunks that left their level's sphere, w = level
 layout(set = 0, binding = 13, std430) restrict buffer FreeList { uint free_list[]; };   // per pool cap[p] entries, pools in PL_ order
@@ -28,7 +28,7 @@ layout(push_constant, std430) uniform PC {
 } pc;
 
 const uint RESERVE_FAIL = 1u << 4u;
-const uint NO_EDIT = 0xFFFFFFFFu, MIXED_GROUP = 0xFFFFFFFFu, NO_ITEM = 0xFFFFFFFFu, BOX_SEEDS = 9u, JOB_BITS = 7u, RECORD_THREAD = GROUP_X - 1u;
+const uint NO_EDIT = 0xFFFFFFFFu, MIXED_GROUP = 0xFFFFFFFFu, NO_ITEM = 0xFFFFFFFFu, BOX_SEEDS = 9u, RECORD_THREAD = GROUP_X - 1u;
 
 // (block word, fluid word) of a generator id: fluids go to the fluid layer (docs/v2.md §3.5).
 uvec2 gen_pair(uint id) {
@@ -56,7 +56,7 @@ uint edits_from(uint first, uint n, uint key) {
 	return lo;
 }
 
-uint bits_below(uint m[4], uint i) {
+uint bits_below(uint m[MASK_WORDS], uint i) {
 	uint r = bitCount(m[i >> 5] & ((1u << (i & 31u)) - 1u));
 	for (uint w = 0u; w < (i >> 5); w++) r += bitCount(m[w]);
 	return r;
@@ -136,32 +136,32 @@ void replace_entry(uint j, uint slot) {
 
 uvec2 entry_of(uvec2 p) { return p == uvec2(0u) ? uvec2(ENTRY_AIR, 0u) : uvec2(UNI | p.x, p.y); }
 
-// Air bits along x of row y + 5 * z of a 5^3 air mask (index x + 5 * (y + 5 * z)).
-uint air_row(uvec4 m, int r) {
-	uint b = uint(GROUP * r), w = b >> 5, o = b & 31u, v = m[w] >> o;
-	if (o > 32u - uint(GROUP)) v |= m[w + 1u] << (32u - o);
-	return v & ((1u << GROUP) - 1u);
+// Air bits along x of row y + n * z of an n^3 air mask (index x + n * (y + n * z)).
+uint air_row(uint m[MASK_WORDS], int n, int r) {
+	uint b = uint(n * r), w = b >> 5, o = b & 31u, v = m[w] >> o;
+	if (o > 32u - uint(n)) v |= m[w + 1u] << (32u - o);
+	return v & ((1u << n) - 1u);
 }
 
-bool all_air(uvec4 m, ivec3 lo, ivec3 hi) {
+bool all_air(uint m[MASK_WORDS], int n, ivec3 lo, ivec3 hi) {
 	uint xs = ((1u << uint(hi.x - lo.x)) - 1u) << uint(lo.x);
 	for (int z = lo.z; z < hi.z; z++)
 		for (int y = lo.y; y < hi.y; y++)
-			if ((air_row(m, y + GROUP * z) & xs) != xs) return false;
+			if ((air_row(m, n, y + n * z) & xs) != xs) return false;
 	return true;
 }
 
-// Greedy air box [lo, hi) around seed; rays cross it in one DDA step.
-void grow_box(uvec4 m, ivec3 seed, out ivec3 lo, out ivec3 hi) {
+// Greedy air box [lo, hi) around seed in an n^3 mask; rays cross it in one DDA step.
+void grow_box(uint m[MASK_WORDS], int n, ivec3 seed, out ivec3 lo, out ivec3 hi) {
 	lo = seed; hi = seed + 1;
 	for (bool grew = true; grew; ) {
 		grew = false;
 		for (int a = 0; a < 3; a++) {
 			ivec3 l0 = lo, l1 = hi;
 			l0[a] = lo[a] - 1; l1[a] = lo[a];
-			if (lo[a] > 0 && all_air(m, l0, l1)) { lo[a]--; grew = true; }
+			if (lo[a] > 0 && all_air(m, n, l0, l1)) { lo[a]--; grew = true; }
 			l0[a] = hi[a]; l1[a] = hi[a] + 1;
-			if (hi[a] < GROUP && all_air(m, l0, l1)) { hi[a]++; grew = true; }
+			if (hi[a] < n && all_air(m, n, l0, l1)) { hi[a]++; grew = true; }
 		}
 	}
 }
@@ -169,13 +169,13 @@ void grow_box(uvec4 m, ivec3 seed, out ivec3 lo, out ivec3 hi) {
 ivec3 box_seed(uint j) { return j < 8u ? ivec3(j & 1u, (j >> 1) & 1u, j >> 2) * (GROUP - 1) : ivec3(GROUP / 2); }
 
 shared uint s_e, s_n, s_solid, s_fail, s_rec;
-shared uint s_bits[4];  // CLASSIFY: mixed groups; FILL: palette heads; PACK: air groups
-shared uint s_air[4];   // FILL: air cells
-shared uvec2 s_pair[GROUPS_PER_CHUNK];
+shared uint s_bits[MASK_WORDS]; // LIST: mixed groups; FILL: palette heads; PACK: air groups
+shared uint s_air[MASK_WORDS];  // FILL: air cells
+shared uvec2 s_pair[GROUP_CELLS];
 shared uint s_words[BRICK_INDEX_WORDS], s_box[BOX_SEEDS], s_vol[BOX_SEEDS], s_ef, s_ee, s_scan[GROUP_X];
 
 // CLASSIFY: a workgroup per job. A uniform chunk goes to the directory, a mixed one marks its mixed groups for SCAN and LIST.
-// L >= 1: min / max of the group's 5 x 5 coarse column heights.
+// L >= 1: min / max of the group's GROUP x GROUP coarse column heights.
 vec2 group_minmax(uint slot, ivec3 g) {
 	vec2 mm = vec2(1e9, -1e9);
 	for (int z = 0; z < GROUP; z++)
@@ -208,7 +208,7 @@ void classify(uint j, uint li) {
 	}
 	if (li < GROUPS_PER_CHUNK) {
 		ivec3 gc = group_cell(int(li)), gb = lo + gc * (GROUP * s);
-		bool hit = en != 0u && edits_from(ef, en, li * GROUPS_PER_CHUNK * es) < edits_from(ef, en, (li + 1u) * GROUPS_PER_CHUNK * es);
+		bool hit = en != 0u && edits_from(ef, en, li * GROUP_CELLS * es) < edits_from(ef, en, (li + 1u) * GROUP_CELLS * es);
 		for (uint k = 0u; k < nf && !hit; k++) hit = box_hits(col_feature(slot, k), gb, gb + GROUP * s);
 		uint ge = hit ? 0u : lvl == 0 ? gen_classify_group(gb) : gen_classify_lod(gb, gb + GROUP * s, group_minmax(slot, gc));
 		if (ge != 0u) {
@@ -253,7 +253,7 @@ void scan(uint li) {
 // LIST: a workgroup per job, thread g = group g: the job's mixed groups into its FILL slots.
 void list(uint j, uint li) {
 	if (jobs[j].chunk.w != int(JOB_MIXED)) return;
-	if (li < 4u) s_bits[li] = 0u;
+	if (li < MASK_WORDS) s_bits[li] = 0u;
 	barrier();
 	bool m = li < GROUPS_PER_CHUNK && job_groups[j * GROUPS_PER_CHUNK + li].x == MIXED_GROUP;
 	if (m) atomicOr(s_bits[li >> 5], 1u << (li & 31u));
@@ -387,24 +387,24 @@ void fill() {
 	int cs = cell_blocks();
 	ivec3 wc = jobs[j].chunk.xyz, gb = wc * (CHUNK * cs) + group_cell(int(g)) * (GROUP * cs);
 	uint es = edit_scale(), slot = col_slot(wc.xz);
-	if (v < 4u) { s_bits[v] = 0u; s_air[v] = 0u; }
+	if (v < MASK_WORDS) { s_bits[v] = 0u; s_air[v] = 0u; }
 	if (v < BRICK_INDEX_WORDS) s_words[v] = 0u;
 	if (v == 0u) {
 		uint ef = jobs[j].edits.x, en = jobs[j].edits.y;
-		s_ef = edits_from(ef, en, g * GROUPS_PER_CHUNK * es);
-		s_ee = edits_from(ef, en, (g + 1u) * GROUPS_PER_CHUNK * es);
+		s_ef = edits_from(ef, en, g * GROUP_CELLS * es);
+		s_ee = edits_from(ef, en, (g + 1u) * GROUP_CELLS * es);
 	}
 	barrier();
 	if (lvl == 0) gen_group_begin(gb, slot, v);
 	else gen_group_begin_lod(gb, slot, lvl, v);
-	bool cell = v < GROUPS_PER_CHUNK;
+	bool cell = v < GROUP_CELLS;
 	if (cell) {
-		ivec3 l = group_cell(int(v));
+		ivec3 l = cell_coord(int(v));
 		uvec2 p;
 		if (lvl == 0) {
 			p = gen_pair(gen_block(gb + l, l));
-			for (uint e = s_ef; e < s_ee; e++) if (edits[e].x == g * GROUPS_PER_CHUNK + v) p = apply_edit(p, edits[e]);
-		} else p = lod_cell(gb, l, (g * GROUPS_PER_CHUNK + v) * 8u, slot);
+			for (uint e = s_ef; e < s_ee; e++) if (edits[e].x == g * GROUP_CELLS + v) p = apply_edit(p, edits[e]);
+		} else p = lod_cell(gb, l, (g * GROUP_CELLS + v) * 8u, slot);
 		s_pair[v] = p;
 	}
 	barrier();
@@ -415,14 +415,15 @@ void fill() {
 		if (s_pair[v] == uvec2(0u)) atomicOr(s_air[v >> 5], 1u << (v & 31u));
 	}
 	barrier();
-	uint n = bitCount(s_bits[0]) + bitCount(s_bits[1]) + bitCount(s_bits[2]) + bitCount(s_bits[3]);
+	uint n = 0u;
+	for (uint w = 0u; w < MASK_WORDS; w++) n += bitCount(s_bits[w]);
 	if (n == 1u) {
 		if (v != 0u) return;
 		job_groups[gslot] = entry_of(s_pair[0]);
 		if (s_pair[0] != uvec2(0u)) atomicAdd(jobs[j].counts[3], 1u);
 		return;
 	}
-	uint cls = n <= BRICK4_PAIRS ? 0u : n <= BRICK16_PAIRS ? 1u : 2u, base = k * BRICK125_WORDS;
+	uint cls = n <= BRICK4_PAIRS ? 0u : n <= BRICK16_PAIRS ? 1u : 2u, base = k * BRICK_FULL_WORDS;
 	if (cell) {
 		uint idx = bits_below(s_bits, first);
 		atomicOr(s_words[v >> 2], idx << ((v & 3u) * 8u));
@@ -430,12 +431,11 @@ void fill() {
 	}
 	if (v < BOX_SEEDS) {
 		ivec3 seed = box_seed(v);
-		uint sv = uint(group_index(seed));
-		uvec4 air = uvec4(s_air[0], s_air[1], s_air[2], s_air[3]);
+		uint sv = uint(cell_index(seed));
 		s_vol[v] = 0u;
-		if ((air[sv >> 5] & (1u << (sv & 31u))) != 0u) {
+		if ((s_air[sv >> 5] & (1u << (sv & 31u))) != 0u) {
 			ivec3 lo, hi;
-			grow_box(air, seed, lo, hi);
+			grow_box(s_air, GROUP, seed, lo, hi);
 			ivec3 d = hi - lo;
 			s_vol[v] = uint(d.x * d.y * d.z);
 			s_box[v] = pack_box(uvec3(lo), uvec3(hi));
@@ -456,7 +456,7 @@ void fill() {
 void store_brick(uint cls, uint i, uint w) {
 	if (cls == 0u) brick4[i] = w;
 	else if (cls == 1u) brick16[i] = w;
-	else brick125[i] = w;
+	else brick_full[i] = w;
 }
 
 // PACK: a workgroup per job, thread g = group g, the last thread the record. The whole chunk or nothing (docs/v2.md §3.6): a failed take fails the chunk, RECLAIM gives back what it took.
@@ -474,7 +474,7 @@ void pack(uint j, uint li) {
 		jobs[j].chunk.w = int(JOB_UNIFORM);
 		return;
 	}
-	if (li < 4u) s_bits[li] = 0u;
+	if (li < MASK_WORDS) s_bits[li] = 0u;
 	if (li == 0u) s_fail = 0u;
 	barrier();
 	bool grp = li < GROUPS_PER_CHUNK, rec = li == RECORD_THREAD;
@@ -497,13 +497,13 @@ void pack(uint j, uint li) {
 		return;
 	}
 	if (brick) {
-		uint src = e.y * BRICK125_WORDS, dst = brick_base(cls, item), n = cls == 0u ? BRICK4_WORDS : cls == 1u ? BRICK16_WORDS : BRICK125_WORDS;
+		uint src = e.y * BRICK_FULL_WORDS, dst = brick_base(cls, item), n = cls == 0u ? BRICK4_WORDS : cls == 1u ? BRICK16_WORDS : BRICK_FULL_WORDS;
 		for (uint w = 0u; w < n; w++) store_brick(cls, dst + w, work[src + w]);
 		e = uvec2(cls << CLASS_SHIFT | item, 0u);
 	}
 	if (grp && e.x == ENTRY_AIR) {
 		ivec3 g = group_cell(int(li)), lo, hi;
-		grow_box(uvec4(s_bits[0], s_bits[1], s_bits[2], s_bits[3]), g, lo, hi);
+		grow_box(s_bits, GROUPS_PER_AXIS, g, lo, hi);
 		e.y = pack_box(uvec3(g - lo), uvec3(hi - 1 - g));
 	}
 	uint r = s_rec * CHUNK_REC_WORDS;
@@ -558,7 +558,7 @@ bool group_may_light(uvec2 ge) {
 	if ((ge.x & UNI) != 0u) return lit(uvec2(ge.x & ~UNI, ge.y));
 	uint cls = entry_class(ge.x);
 	if (cls == CLASS_AIR) return false;
-	uint base = brick_base(cls, ge.x & INDEX_MASK), n = cls == 0u ? BRICK4_PAIRS : cls == 1u ? BRICK16_PAIRS : GROUPS_PER_CHUNK;
+	uint base = brick_base(cls, ge.x & INDEX_MASK), n = cls == 0u ? BRICK4_PAIRS : cls == 1u ? BRICK16_PAIRS : GROUP_CELLS;
 	for (uint k = 0u; k < n; k++) if (lit(brick_pair(cls, base, k))) return true;
 	return false;
 }
@@ -569,7 +569,7 @@ shared uint s_lit, s_any;
 bool closed(uint rec, ivec3 q) {
 	if (any(lessThan(q, ivec3(0))) || any(greaterThanEqual(q, ivec3(CHUNK)))) return false;
 	uint o = rec * CHUNK_REC_WORDS + 2u * uint(group_index(q / GROUP));
-	uvec2 p = group_pair(uvec2(records[o], records[o + 1u]), uint(group_index(q % GROUP)));
+	uvec2 p = group_pair(uvec2(records[o], records[o + 1u]), uint(cell_index(q % GROUP)));
 	return p.y != 0u || p.x < PART && (pal_flags(p.x) & F_OPAQUE) != 0u;
 }
 
@@ -598,7 +598,7 @@ void lights(uint j, uint li) {
 	barrier();
 	if (s_any != 0u) { // most chunks have no light: no cell scan, no list (PACK left y = 0)
 		uint n = 0u;
-		if (may) for (uint v = 0u; v < GROUPS_PER_CHUNK; v++) if (lit(group_pair(ge, v)) && shines(e.x, g + group_cell(int(v)))) n++;
+		if (may) for (uint v = 0u; v < GROUP_CELLS; v++) if (lit(group_pair(ge, v)) && shines(e.x, g + cell_coord(int(v)))) n++;
 		s_scan[li] = n;
 		barrier();
 		for (uint o = 1u; o < GROUP_X; o <<= 1) {
@@ -614,9 +614,9 @@ void lights(uint j, uint li) {
 		}
 		barrier();
 		if (n != 0u && s_rec != NO_ITEM)
-			for (uint v = 0u, k = s_scan[li] - n; v < GROUPS_PER_CHUNK && k < MAX_CHUNK_LIGHTS; v++) {
+			for (uint v = 0u, k = s_scan[li] - n; v < GROUP_CELLS && k < MAX_CHUNK_LIGHTS; v++) {
 				uvec2 p = group_pair(ge, v);
-				ivec3 b = g + group_cell(int(v));
+				ivec3 b = g + cell_coord(int(v));
 				if (!lit(p) || !shines(e.x, b)) continue;
 				uint o = light_word(s_rec, k++);
 				LL.words[o] = uint(b.x + CHUNK * (b.y + CHUNK * b.z));
@@ -626,8 +626,9 @@ void lights(uint j, uint li) {
 	}
 	memoryBarrierBuffer();
 	barrier();
-	if (li < 27u) {
-		ivec3 nc = wc + ivec3(int(li % 3u), int(li / 3u % 3u), int(li / 9u)) - 1;
+	if (li < LIGHT_NEIGHBOURS) {
+		uint n = 2u * LIGHT_RING + 1u;
+		ivec3 nc = wc + ivec3(int(li % n), int(li / n % n), int(li / (n * n))) - int(LIGHT_RING);
 		if (in_ring0(nc) && has_lights(dir[slot0(nc)])) s_lit = 1u;
 	}
 	barrier();

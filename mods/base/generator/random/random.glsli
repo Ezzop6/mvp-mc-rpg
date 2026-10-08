@@ -88,7 +88,7 @@ uint terrain(ivec3 b, float H) {
 
 // Topmost solid block at lattice column g; false when under water.
 bool find_surface(ivec2 g, out int sy, out uint mat) {
-	float H = height_m(vec2(center_m(g.x * GROUP), center_m(g.y * GROUP)));
+	float H = height_m(vec2(center_m(g.x * RG_FINE), center_m(g.y * RG_FINE)));
 	sy = int(ceil(H / BS - 0.5)) - 1;
 	mat = top_block(center_m(sy));
 	return center_m(sy) >= RP.water;
@@ -223,7 +223,7 @@ int pick_template(int first, int n, uint rnd) {
 	return first + lo;
 }
 
-ivec4 make(ivec2 g, int sy, int kind, uint rnd) { return ivec4(g.x * GROUP, sy, g.y * GROUP, kind | int((rnd & 0xFFFFu) << 16)); }
+ivec4 make(ivec2 g, int sy, int kind, uint rnd) { return ivec4(g.x * RG_FINE, sy, g.y * RG_FINE, kind | int((rnd & 0xFFFFu) << 16)); }
 
 int vegetation(uint mat, ivec2 g, float s) {
 	if (mat == B_GRASS_BLOCK) {
@@ -247,7 +247,7 @@ bool fine_feature(ivec2 g, out ivec4 f) {
 	if (r1 >= RP.trees) {
 		uint n = mdata[MH_PLACEABLE];
 		if (n == 0u) return false;
-		f = ivec4(g.x * GROUP, sy, g.y * GROUP, K_OBJECT | int(mdata[mdata[MH_PLACEABLE_LIST] + rnd % n] << 8 | YAW_ROT[rnd >> 30] << 24));
+		f = ivec4(g.x * RG_FINE, sy, g.y * RG_FINE, K_OBJECT | int(mdata[mdata[MH_PLACEABLE_LIST] + rnd % n] << 8 | YAW_ROT[rnd >> 30] << 24));
 		return true;
 	}
 	int kind = vegetation(mat, g, hash01(ivec3(g.x, 0, g.y), 2u));
@@ -255,15 +255,15 @@ bool fine_feature(ivec2 g, out ivec4 f) {
 	return kind != K_NONE;
 }
 
-// Coarse anchors: one per chunk column (25 blocks, anchor at block cell * 25 + 10), small templates.
+// Coarse anchors: one per RG_COARSE x RG_COARSE blocks (anchor at block cell * RG_COARSE + RG_COARSE_ANCHOR * RG_FINE), small templates.
 bool coarse_feature(ivec2 cell, out ivec4 f) {
 	int small = tdir[0].x;
 	if (small == 0 || hash01(ivec3(cell.x, 5, cell.y), 5u) >= RP.structures) return false;
-	ivec2 g = cell * (CHUNK / GROUP) + RG_COARSE_ANCHOR;
+	ivec2 g = cell * (RG_COARSE / RG_FINE) + RG_COARSE_ANCHOR;
 	int sy; uint mat;
 	if (!find_surface(g, sy, mat)) return false;
 	uint rnd = hash3(ivec3(cell.x, 6, cell.y), 6u);
-	f = ivec4(g.x * GROUP, sy, g.y * GROUP, K_TEMPLATE | pick_template(0, small, rnd) << 8 | int((rnd >> 16) & 3u) << 24);
+	f = ivec4(g.x * RG_FINE, sy, g.y * RG_FINE, K_TEMPLATE | pick_template(0, small, rnd) << 8 | int((rnd >> 16) & 3u) << 24);
 	return true;
 }
 
@@ -271,11 +271,11 @@ bool coarse_feature(ivec2 cell, out ivec4 f) {
 bool large_feature(ivec2 cell, out ivec4 f) {
 	int small = tdir[0].x, large = tdir[0].y;
 	if (large == 0 || hash01(ivec3(cell.x, 9, cell.y), 7u) >= RP.structures) return false;
-	ivec2 g = cell * (RG_LARGE_CELL / GROUP) + RG_LARGE_CELL / (2 * GROUP);
+	ivec2 g = cell * (RG_LARGE_CELL / RG_FINE) + RG_LARGE_CELL / (2 * RG_FINE);
 	int sy; uint mat;
 	if (!find_surface(g, sy, mat)) return false;
 	uint rnd = hash3(ivec3(cell.x, 10, cell.y), 8u);
-	f = ivec4(g.x * GROUP, sy, g.y * GROUP, K_TEMPLATE | pick_template(small, large, rnd) << 8 | int((rnd >> 16) & 3u) << 24);
+	f = ivec4(g.x * RG_FINE, sy, g.y * RG_FINE, K_TEMPLATE | pick_template(small, large, rnd) << 8 | int((rnd >> 16) & 3u) << 24);
 	return true;
 }
 
@@ -292,11 +292,11 @@ float gen_column(ivec2 b) { return height_m(vec2(center_m(b.x), center_m(b.y)));
 bool gen_feature(ivec2 col, uint k, out ivec4 f) {
 	if (k < uint(RG_FINE_N * RG_FINE_N)) {
 		int kk = int(k);
-		return fine_feature(col * (CHUNK / GROUP) - RG_FINE_REACH + ivec2(kk % RG_FINE_N, kk / RG_FINE_N), f);
+		return fine_feature(ivec2(fdiv(col.x * CHUNK, RG_FINE), fdiv(col.y * CHUNK, RG_FINE)) - RG_FINE_REACH + ivec2(kk % RG_FINE_N, kk / RG_FINE_N), f);
 	}
 	if (k < uint(RG_FINE_N * RG_FINE_N + RG_COARSE_N * RG_COARSE_N)) {
 		int kk = int(k) - RG_FINE_N * RG_FINE_N;
-		return coarse_feature(col - RG_COARSE_REACH + ivec2(kk % RG_COARSE_N, kk / RG_COARSE_N), f);
+		return coarse_feature(ivec2(fdiv(col.x * CHUNK, RG_COARSE), fdiv(col.y * CHUNK, RG_COARSE)) - RG_COARSE_REACH + ivec2(kk % RG_COARSE_N, kk / RG_COARSE_N), f);
 	}
 	ivec2 c0 = col * CHUNK;
 	int kk = int(k) - RG_FINE_N * RG_FINE_N - RG_COARSE_N * RG_COARSE_N, reach = tdir[0].z + CHUNK - 1;
@@ -318,7 +318,7 @@ uint gen_classify_group(ivec3 gb) {
 // The group's column heights and the features touching it (list bits, then the records and their index in the column list).
 const uint GROUP_FEATURES_LOD = 64u;
 shared float s_hs[GROUP * GROUP];
-shared uint s_hit[2];
+shared uint s_hit[(MAX_COL_FEATURES + 31u) / 32u];
 shared ivec4 s_feats[GROUP_FEATURES_LOD];
 shared uint s_fidx[GROUP_FEATURES_LOD];
 shared uint s_nf;
@@ -326,7 +326,7 @@ shared uint s_nf;
 // The first `cap` features touching [gb, ge); where they overlap the highest .w wins.
 void group_features(ivec3 gb, ivec3 ge, uint slot, uint v, uint cap) {
 	uint nfeat = feature_count(slot);
-	if (v < 2u) s_hit[v] = 0u;
+	if (v < (MAX_COL_FEATURES + 31u) / 32u) s_hit[v] = 0u;
 	barrier();
 	if (v < nfeat && box_hits(col_feature(slot, v), gb, ge)) atomicOr(s_hit[v >> 5], 1u << (v & 31u));
 	barrier();
@@ -378,7 +378,7 @@ int large_top(ivec3 lo, ivec3 hi) {
 		for (int x = l0.x; x <= l1.x; x++)
 			if (hash01(ivec3(x, 9, z), 7u) < RP.structures) {
 				ivec4 e = templ_entry(pick_template(small, large, hash3(ivec3(x, 10, z), 8u)));
-				ivec2 a = ivec2(x, z) * RG_LARGE_CELL + RG_LARGE_CELL / (2 * GROUP) * GROUP;
+				ivec2 a = ivec2(x, z) * RG_LARGE_CELL + RG_LARGE_CELL / (2 * RG_FINE) * RG_FINE;
 				int r = max(e.y, e.w) / 2 + 1;
 				if (e.z > top && e.z > RG_LOD_TOP && all(greaterThan(a + r, lo.xz)) && all(lessThan(a - r, hi.xz))) top = e.z;
 			}
@@ -407,8 +407,8 @@ void gen_group_begin_lod(ivec3 gb, uint slot, int level, uint v) {
 	if (v == 0u) s_nf = 0u;
 	barrier();
 	int reach = tdir[0].z + 1;
-	ivec2 f0 = ivec2(fdiv(gb.x, GROUP), fdiv(gb.z, GROUP)) - RG_FINE_REACH, fn = ivec2(fdiv(ge.x - 1, GROUP), fdiv(ge.z - 1, GROUP)) + RG_FINE_REACH - f0 + 1;
-	ivec2 c0 = ivec2(fdiv(gb.x, CHUNK), fdiv(gb.z, CHUNK)) - RG_COARSE_REACH, cn = ivec2(fdiv(ge.x - 1, CHUNK), fdiv(ge.z - 1, CHUNK)) + RG_COARSE_REACH - c0 + 1;
+	ivec2 f0 = ivec2(fdiv(gb.x, RG_FINE), fdiv(gb.z, RG_FINE)) - RG_FINE_REACH, fn = ivec2(fdiv(ge.x - 1, RG_FINE), fdiv(ge.z - 1, RG_FINE)) + RG_FINE_REACH - f0 + 1;
+	ivec2 c0 = ivec2(fdiv(gb.x, RG_COARSE), fdiv(gb.z, RG_COARSE)) - RG_COARSE_REACH, cn = ivec2(fdiv(ge.x - 1, RG_COARSE), fdiv(ge.z - 1, RG_COARSE)) + RG_COARSE_REACH - c0 + 1;
 	ivec2 l0 = ivec2(fdiv(gb.x - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL), fdiv(gb.z - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL));
 	ivec2 ln = ivec2(fdiv(ge.x + reach - RG_LARGE_CELL / 2, RG_LARGE_CELL), fdiv(ge.z + reach - RG_LARGE_CELL / 2, RG_LARGE_CELL)) - l0 + 2;
 	uint nf = uint(fn.x * fn.y), nc = uint(cn.x * cn.y), nl = uint(ln.x * ln.y);

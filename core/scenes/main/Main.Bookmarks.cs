@@ -80,7 +80,7 @@ public partial class Main
 		var s = new Snapshot
 		{
 			Name = name, Note = old?.Note ?? note, Created = old?.Created ?? DateTime.Now.ToString("s"), Commit = TestCore.Commit(), Status = old?.Status ?? BookmarkStatus.Open,
-			Redirect = old?.Redirect, Camera = CameraPose, Move = Player.Mode, TimeOfDay = World.TimeOfDay, Day = World.Day, TimePaused = World.TimePaused, Clock = World.Clock, Width = size.X, Height = size.Y,
+			Redirect = old?.Redirect, Camera = CameraPose, ChunkSize = Renesance.World.Coords.ChunkSize, Move = Player.Mode, TimeOfDay = World.TimeOfDay, Day = World.Day, TimePaused = World.TimePaused, Clock = World.Clock, Width = size.X, Height = size.Y,
 			Render = JsonSerializer.SerializeToNode(CaptureRender(), TestCore.Json).AsObject(),
 		};
 		s.Save();
@@ -93,7 +93,7 @@ public partial class Main
 	{
 		RestoreRender(s.Render?.Deserialize<RenderState>(TestCore.Json) ?? startup);
 		World.Load(WorldSave.Open(s.Dir));
-		var c = s.Camera;
+		var c = s.CameraNow;
 		World.Anchor = new Vector3I(c.Anchor.X, c.Anchor.Y, c.Anchor.Z);
 		World.Camera.GlobalPosition = new Vector3(c.Local.X, c.Local.Y, c.Local.Z);
 		Player.Look = (c.Yaw, c.Pitch);

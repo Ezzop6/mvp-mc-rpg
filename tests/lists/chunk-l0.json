@@ -1,0 +1,16 @@
+{
+  "Note": "chunk size comparison: saved regions and block lights near the camera, the shots must match across chunk sizes",
+  "Bookmarks": [
+    "basics-near-day",
+    "lights-chunk",
+    "gi-room",
+    "gi-torch",
+    "fluid-liquids"
+  ],
+  "Capture": [
+    "Shot",
+    "PassMs",
+    "Pools"
+  ],
+  "Views": []
+}

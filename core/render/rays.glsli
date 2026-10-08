@@ -167,7 +167,7 @@ uint lookup(ivec3 cell, out ivec3 lo, out ivec3 hi) {
 	if (e.x == NONE) return MISSING;
 	if ((e.x & UNI) != 0u) return pair_word(uvec2(e.x & ~UNI, e.y));
 	uvec3 u5 = r / uint(GROUP), l = r - u5 * uint(GROUP);
-	uint o = e.x * CHUNK_REC_WORDS + 2u * uint(group_index(ivec3(u5 - (u5 / uint(GROUP)) * uint(GROUP))));
+	uint o = e.x * CHUNK_REC_WORDS + 2u * uint(group_index(ivec3(u5 - ch * uint(GROUPS_PER_AXIS))));
 	uvec2 ge = uvec2(records[o], records[o + 1u]);
 	lo = ivec3(u5 * uint(GROUP)) - r_off; hi = lo + GROUP;
 	LOOK_LEVEL(1);
@@ -180,7 +180,7 @@ uint lookup(ivec3 cell, out ivec3 lo, out ivec3 hi) {
 	}
 	LOOK_LEVEL(2);
 	uint base = brick_base(cls, ge.x & INDEX_MASK);
-	uvec2 p = brick_pair(cls, base, brick_index(cls, base, uint(group_index(ivec3(l)))));
+	uvec2 p = brick_pair(cls, base, brick_index(cls, base, uint(cell_index(ivec3(l)))));
 	lo = cell; hi = cell + 1;
 	if (p == uvec2(0u)) {
 		uint bw = brick_word(cls, base + BRICK_BOX_WORD);

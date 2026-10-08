@@ -26,7 +26,7 @@ float light_strength(vec3 c, vec3 lo, vec3 hi, uint id) {
 	return dot(lc.rgb, vec3(0.3, 0.6, 0.1)) * max(1.0 - length(c - clamp(c, lo, hi)) / min(lc.w, LIGHT_REACH), 0.0);
 }
 
-const uint TILE_LIGHTS = 64u, TILE_CANDIDATES = 256u, TILE_CHUNKS = GROUP_X * GROUP_Y;
+const uint TILE_LIGHTS = 64u, TILE_CANDIDATES = 256u, TILE_CHUNKS = LIGHT_TILE_CHUNKS;
 shared ivec3 s_lo, s_hi;
 shared uint s_n, s_m;
 shared ivec4 s_cand[TILE_CANDIDATES]; // anchor-relative block, variant id
@@ -56,8 +56,8 @@ void main() {
 	ivec3 c0 = cam.anchor.xyz + ivec3(fdiv(lo.x, CHUNK), fdiv(lo.y, CHUNK), fdiv(lo.z, CHUNK)), cn = cam.anchor.xyz + ivec3(fdiv(hi.x, CHUNK), fdiv(hi.y, CHUNK), fdiv(hi.z, CHUNK)) - c0 + 1;
 	bool tiled = s_lo.x <= s_hi.x && cn.x * cn.y * cn.z <= int(TILE_CHUNKS);
 	vec3 blo = vec3(s_lo), bhi = vec3(s_hi + 1);
-	if (tiled && li < uint(cn.x * cn.y * cn.z)) {
-		ivec3 wc = c0 + ivec3(int(li) % cn.x, int(li) / cn.x % cn.y, int(li) / (cn.x * cn.y));
+	for (uint ci = li; tiled && ci < uint(cn.x * cn.y * cn.z); ci += GROUP_X * GROUP_Y) {
+		ivec3 wc = c0 + ivec3(int(ci) % cn.x, int(ci) / cn.x % cn.y, int(ci) / (cn.x * cn.y));
 		uvec2 e = in_ring0(wc) ? dir[slot0(wc)] : uvec2(NONE, 0u);
 		if (has_lights(e))
 			for (uint i = 0u; i < light_count(e.y); i++) {
@@ -92,8 +92,8 @@ void main() {
 		for (uint i = 0u; i < m; i++) add_light(s_light[i].xyz, uint(s_light[i].w), s_slot[i], s_open[i], p, n, sum, count);
 	else if (lit) {
 		ivec3 wc0 = cam.anchor.xyz + ivec3(fdiv(cell.x, CHUNK), fdiv(cell.y, CHUNK), fdiv(cell.z, CHUNK));
-		for (int k = 0; k < 27; k++) {
-			ivec3 wc = wc0 + ivec3(k % 3, k / 3 % 3, k / 9) - 1;
+		for (uint k = 0u; k < LIGHT_NEIGHBOURS; k++) {
+			ivec3 wc = wc0 + light_neighbour(k);
 			uvec2 e = in_ring0(wc) ? dir[slot0(wc)] : uvec2(NONE, 0u);
 			if (has_lights(e))
 				for (uint i = 0u; i < light_count(e.y); i++) { uvec2 L = light_at(e.y, i); add_light(wc * CHUNK + light_block(L.x) - a, L.y, -2, 0.0, p, n, sum, count); }
