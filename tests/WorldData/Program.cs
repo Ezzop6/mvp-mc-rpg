@@ -14,8 +14,8 @@ var reg = BlockRegistry.Load(Path.Combine(root, ContentPaths.Mod(BlockId.BaseMod
 
 // --- coordinates ---
 Check(new BlockPos(-1, 0, 0).Chunk == new ChunkPos(-1, 0, 0), "block -1 is in chunk -1");
-Check(new BlockPos(-25, 0, 0).Chunk == new ChunkPos(-1, 0, 0) && new BlockPos(-26, 0, 0).Chunk == new ChunkPos(-2, 0, 0), "chunk boundary at -25/-26");
-Check(new BlockPos(-1, -1, -1).LocalIndex == Chunk.Index(24, 24, 24), "local index of -1,-1,-1 is 24,24,24");
+Check(new BlockPos(-Coords.ChunkSize, 0, 0).Chunk == new ChunkPos(-1, 0, 0) && new BlockPos(-Coords.ChunkSize - 1, 0, 0).Chunk == new ChunkPos(-2, 0, 0), "chunk boundary at -ChunkSize / -ChunkSize - 1");
+Check(new BlockPos(-1, -1, -1).LocalIndex == Chunk.Index(Coords.ChunkSize - 1, Coords.ChunkSize - 1, Coords.ChunkSize - 1), "local index of -1,-1,-1 is the last of each axis");
 Check(new ChunkPos(-1, 0, -6).Region == new RegionPos(-1, 0, -2), "chunk -> region floor division");
 var cp = new ChunkPos(-7, 3, 12);
 Check(cp.Region.ChunkAt(cp.LocalIndex) == cp, "region local index round-trip");
@@ -233,7 +233,7 @@ var fluid = new FluidState(reg["base:water"].Id, 3);
 edits.SetFluid(new BlockPos(0, 0, 0), fluid);
 edits.SetFluid(new BlockPos(0, 100, 0), FluidState.None);
 Check(edits.FluidCount == 2 && edits.Count == 2 && edits.Chunks.Count() == 3 && edits.TryGetFluid(new BlockPos(0, 0, 0), out var ef) && ef == fluid && edits.TryGet(new BlockPos(0, 0, 0), out var eb) && eb == stone
-	&& !edits.TryGetFluid(ep, out _) && edits.FluidsInChunk(new ChunkPos(0, 4, 0)).Single() == (new BlockPos(0, 100, 0), FluidState.None), "edit store: fluid beside the block, fluid-only chunk listed");
+	&& !edits.TryGetFluid(ep, out _) && edits.FluidsInChunk(new BlockPos(0, 100, 0).Chunk).Single() == (new BlockPos(0, 100, 0), FluidState.None), "edit store: fluid beside the block, fluid-only chunk listed");
 
 // --- chunk serialization ---
 var typical = TypicalSurfaceChunk(reg);
@@ -279,8 +279,8 @@ Check(loaded.UnknownChunkSections[3].Single() is { Version: 7 } u && u.Tag == fu
 string resaved = Path.Combine(dir, "resaved.bin");
 loaded.Save(resaved);
 Check(Region.Load(resaved).UnknownChunkSections[3].Single().Payload.SequenceEqual(futureChunk.Payload), "v3: unknown sections written back");
-var v2 = Region.Load(Path.Combine(root, "tests/WorldData/region-v2.bin"));
-Check(v2.Pos == region.Pos && v2.Edits[typicalChunk][0] == new BlockState(5, 0) && v2.Edits[typicalChunk][Coords.ChunkVolume - 1] == BlockState.Air && v2.Edits[0][7] == new BlockState(9, 3)
+var v2 = Region.Load(Path.Combine(root, "tests/WorldData/region-v2.bin")); // written with 25^3 chunks
+Check(v2.Pos == region.Pos && v2.Edits[typicalChunk][0] == new BlockState(5, 0) && v2.Edits[typicalChunk][25 * 25 * 25 - 1] == BlockState.Air && v2.Edits[0][7] == new BlockState(9, 3)
 	&& v2.Instances.Count == 2 && v2.Instances[1].Data.SequenceEqual(new byte[] { 9, 9 }) && v2.Fluids.Count == 0, "v2 region fixture reads");
 
 // --- name -> id remap ---
@@ -359,13 +359,13 @@ static bool SameBlocks(Chunk a, Chunk b) => Enumerable.Range(0, Coords.ChunkVolu
 static Chunk TypicalSurfaceChunk(BlockRegistry reg)
 {
 	var c = new Chunk();
-	for (int z = 0; z < 25; z++)
-		for (int x = 0; x < 25; x++)
+	for (int z = 0; z < Coords.ChunkSize; z++)
+		for (int x = 0; x < Coords.ChunkSize; x++)
 		{
 			int h = 12 + (int)(4 * Math.Sin(x * 0.3) + 3 * Math.Cos(z * 0.25));
-			for (int y = 0; y < 25; y++)
+			for (int y = 0; y < Coords.ChunkSize; y++)
 				c.Set(x, y, z, y > h ? BlockState.Air : y == h ? reg["base:grass_block"].Default : y > h - 3 ? reg["base:dirt"].Default : reg["base:stone"].Default);
-			if (x == 10 && z < 10) for (int y = h + 1; y < h + 4 && y < 25; y++) c.Set(x, y, z, reg["base:bricks"].Default);
+			if (x == 10 && z < 10) for (int y = h + 1; y < h + 4 && y < Coords.ChunkSize; y++) c.Set(x, y, z, reg["base:bricks"].Default);
 		}
 	return c;
 }

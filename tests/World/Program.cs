@@ -263,13 +263,14 @@ Check(fs.State(farC) == SlotState.Queued && fs.Failed == 0, "a failed chunk ente
 	float a4k = 2 * MathF.Tan(40 * MathF.PI / 180) / 2160, a1080 = 2 * a4k;
 	var u4k = Lod.Plan(a4k, 2, 9600, 325);
 	Check(u4k.Levels == 4 && Math.Abs(u4k.SwitchM[1] - 643.6f) < 1 && Math.Abs(u4k.SwitchM[2] - 1287.2f) < 1 && Math.Abs(u4k.SwitchM[3] - 2574.4f) < 2, "u4k 4K: L1 from ~644 m, then twice as far per level");
-	Check(u4k.Radius[0] == (int)MathF.Ceiling(u4k.SwitchM[1] / 12.5f) + Lod.Margin && u4k.Radius[3] == 96 + Lod.Margin && Math.Abs(u4k.RadiusM(3) - 9800) < 1, "a level reaches the next one's start, the last the horizon (+ margin)");
+	float cm = Coords.ChunkSize * Coords.BlockMeters;
+	Check(u4k.Radius[0] == (int)MathF.Ceiling(u4k.SwitchM[1] / cm) + Lod.Margin && u4k.Radius[3] == (int)MathF.Ceiling(9600 / (8 * cm)) + Lod.Margin && Math.Abs(u4k.RadiusM(3) - u4k.Radius[3] * 8 * cm) < 1 && u4k.RadiusM(3) >= 9600, "a level reaches the next one's start, the last the horizon (+ margin)");
 	Check(Enumerable.Range(1, 3).All(l => Math.Abs(u4k.Radius[l] - u4k.Radius[0]) <= 1 || l == 3), "about the same chunks per level radius");
 	var l1080 = Lod.Plan(a1080, 4, 1200, 325);
 	Check(l1080.Levels == 3 && l1080.SwitchM[1] == 325 && l1080.SwitchM[2] == 650 && l1080.RadiusM(2) >= 1200, "l1080 1080p: never inside the mid sphere, levels double, the horizon reached");
-	Check(Lod.Plan(a4k, 2, 1175, 325, maxLevels: 1) is { Levels: 1 } one && one.Radius[0] == 96 && Lod.Plan(a4k, 2, 9600, 325, maxLevels: 1).Radius[0] == Lod.MaxRadius, "one level: L0 to the horizon, at most MaxRadius chunks");
+	Check(Lod.Plan(a4k, 2, 1175, 325, maxLevels: 1) is { Levels: 1 } one && one.Radius[0] == Math.Min((int)MathF.Ceiling(1175 / cm) + Lod.Margin, Lod.MaxRadius) && Lod.Plan(a4k, 2, 9600, 325, maxLevels: 1).Radius[0] == Lod.MaxRadius, "one level: L0 to the horizon, at most MaxRadius chunks");
 	var reference = Lod.Plan(a4k, 2, 9600, 325, refLevel: 1);
-	Check(reference.SwitchM[1] == u4k.SwitchM[2] && reference.RadiusM(0) >= u4k.SwitchM[2], "lod-ref 1: L1's band is drawn by L0");
+	Check(reference.SwitchM[1] == u4k.SwitchM[2] && (reference.RadiusM(0) >= u4k.SwitchM[2] || reference.Radius[0] == Lod.MaxRadius), "lod-ref 1: L1's band is drawn by L0 (as far as MaxRadius chunks reach)");
 	Check(Lod.SampleOffset(1, 0) == (0, 0, 0) && Lod.SampleOffset(1, 7) == (1, 1, 1) && Lod.SampleOffset(3, 5) == (6, 2, 6), "sample offsets: L1 every block, L3 at 2 and 6");
 	Check(Enumerable.Range(0, 8).All(k => Lod.SampleOffset(2, k) is var o && Lod.SampleOf(2, o.X, o.Y, o.Z) == k) && Lod.SampleOf(2, 0, 1, 1) == -1, "SampleOf inverts SampleOffset, other blocks are no sample");
 	Check(Lod.Parent(new ChunkPos(-1, 5, -8), 2) == new ChunkPos(-1, 1, -2), "parent chunk floors negatives");

@@ -55,7 +55,7 @@ public partial class World
 	readonly System.Collections.Concurrent.ConcurrentQueue<int> counterEpochs = new(); // render thread: epochs of the counter reads in flight, in order
 	Callable countersRead;
 
-	Kernel gen;                                                  // persistent
+	Kernel gen, fill;                                            // persistent; fill: gen.compute sized for FILL alone (a thread per cell)
 	Rid types, tex, colormaps, modelData, items, genParams;      // block table and generator: blockTable group
 	Rid[] genBuffers = Array.Empty<Rid>();
 	Rid header, columns, dir, records, occ, occMip, vis, heights, colmm, featCount, feats, jobs, jobGroups, mixed, groupWork, fillArgs, results, freeList, genSet, argsSet; // Gpu.World
@@ -97,6 +97,7 @@ public partial class World
 		var rd = Gpu.Rd;
 		Gpu.Init(Variants, generator, gpuLod);
 		gen = Gpu.Compile("gen.compute", (int)Math.Max(128, System.Numerics.BitOperations.RoundUpToPowerOf2((uint)Math.Max(Math.Max(Layout.Groups + 1, Layout.GroupCells), LightNeighbours)))); // FILL: thread per cell, PACK: per group and one for the record, LIGHTS: per neighbour chunk
+		fill = Gpu.Compile("gen.compute", (int)System.Numerics.BitOperations.RoundUpToPowerOf2((uint)Math.Max(Layout.GroupCells, Layout.IndexWords)));
 		featureCandidates = (uint)generator.FeatureCandidates;
 		var p = generator.ShaderParams();
 		genParams = generatorBuffers.Add(rd.StorageBufferCreate((uint)p.Length, p));
@@ -324,11 +325,13 @@ public partial class World
 		rd.ComputeListEnd();
 		if (s.JobCount > 0)
 		{
-			cl = Gpu.Begin(gen);
+			cl = Gpu.Begin(fill);
 			rd.ComputeListBindUniformSet(cl, genSet, 0);
 			rd.ComputeListSetPushConstant(cl, Gpu.Push((int)GenStep.Fill), Gpu.PushBytes);
 			rd.ComputeListDispatchIndirect(cl, fillArgs, 0);
-			rd.ComputeListAddBarrier(cl);
+			rd.ComputeListEnd();
+			cl = Gpu.Begin(gen);
+			rd.ComputeListBindUniformSet(cl, genSet, 0);
 			Gpu.Dispatch(cl, gen, (uint)GenStep.Pack, s.JobCount * (long)gen.X, (int)++packStamp);
 			Run(GenStep.Lights, s.JobCount * (long)gen.X);
 			Run(GenStep.Fixup, 1);
