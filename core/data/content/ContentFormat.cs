@@ -49,6 +49,28 @@ public sealed record Light(int Level, string When = null, string Color = null);
 
 public sealed record Look(string Cube = null, string Model = null, int X = 0, int Y = 0, bool Uvlock = false, int? Weight = null);
 
+// A random cube look: quarter turns about x, then y, then z.
+public sealed record LookTurn(int X = 0, int Y = 0, int Z = 0, int? Weight = null)
+{
+	public const int MaxLooks = 24;
+	public Renesance.World.Rotation24 Rotation => Renesance.World.Rotation24.FromTurns(X, Y, Z);
+}
+
+// "all" or a list of LookTurn.
+public sealed class RandomLookConverter : JsonConverter<LookTurn[]>
+{
+	public const string All = "all";
+
+	public override LookTurn[] Read(ref Utf8JsonReader reader, Type type, JsonSerializerOptions options)
+	{
+		if (reader.TokenType != JsonTokenType.String) return JsonSerializer.Deserialize<LookTurn[]>(ref reader, options);
+		if (reader.GetString() != All) throw new JsonException($"random_look: \"{reader.GetString()}\" is neither \"{All}\" nor a list");
+		return Renesance.World.Rotation24.All.Select(r => r.Turns).Select(t => new LookTurn(t.X, t.Y, t.Z)).ToArray();
+	}
+
+	public override void Write(Utf8JsonWriter writer, LookTurn[] value, JsonSerializerOptions options) => JsonSerializer.Serialize(writer, value, options);
+}
+
 public sealed record LookCase(SortedDictionary<string, string> When, Look[] Looks);
 
 public sealed record LookPart(SortedDictionary<string, string>[] When, Look[] Looks);
@@ -57,7 +79,8 @@ public sealed record Entry(string Id, [property: JsonIgnore(Condition = JsonIgno
 	SortedDictionary<string, string> Textures = null, Surface Surface = Surface.Opaque, Tint Tint = null, float Emission = 0,
 	Light Light = null, Orientation Orientation = Orientation.None, SortedDictionary<string, string[]> States = null, string Multiblock = null,
 	string[] Tags = null, SortedDictionary<string, Faces> Cubes = null, LookCase[] Variants = null, LookPart[] Multipart = null,
-	Matter Matter = Matter.Solid, float Density = 0, string Bbmodel = null);
+	Matter Matter = Matter.Solid, float Density = 0, string Bbmodel = null,
+	[property: JsonPropertyName("random_look"), JsonConverter(typeof(RandomLookConverter))] LookTurn[] RandomLook = null);
 
 public sealed record CategoryDef(string Id, string Name, string Parent = null, EntrySource Source = EntrySource.Hand);
 

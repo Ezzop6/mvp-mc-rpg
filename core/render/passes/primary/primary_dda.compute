@@ -153,7 +153,7 @@ void main() {
 	uint id = w >= PART ? B_OBJECT : w & PAL_ID_MASK;
 	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : albedo_at(id, p, world_p, axis, n, clamp(lod + log2(max(tm, 1e-6)) - 0.5, 0.0, float(TEX_MIPS - 1)));
 	vec3 me = model ? material_emission(hit_mat) / max(material_albedo(hit_mat), vec3(1e-3)) : vec3(0.0);
-	float emission = model ? min(max(me.r, max(me.g, me.b)), 1.0) : face_emission(face_word(id, axis, n));
+	float emission = model ? min(max(me.r, max(me.g, me.b)), 1.0) : face_emission(face_word(id, face_block(p, world_p, n), axis, n));
 	imageStore(depth_out, px, vec4(tm));
 	footprint = vec2(lod + log2(max(t, 1e-6)), abs(dot(n, rd)));
 	depth_t = t;

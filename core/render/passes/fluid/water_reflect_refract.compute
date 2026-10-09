@@ -30,7 +30,7 @@ vec3 reflection(vec3 o, vec3 d, float from_t) {
 	if (!model) n[axis] = -sign(d[axis]);
 	uint id = w >= PART ? B_OBJECT : w & PAL_ID_MASK;
 	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : albedo_at(id, o + d * t, vec3(cam.anchor.xyz * CHUNK) + o + d * t, axis, n, 3.0);
-	vec3 emit = model ? material_emission(hit_mat) : albedo * face_emission(face_word(id, axis, n));
+	vec3 emit = model ? material_emission(hit_mat) : albedo * face_emission(face_word(id, face_block(o + d * t, vec3(cam.anchor.xyz * CHUNK) + o + d * t, n), axis, n));
 	return c + albedo * (cam.sun_col.rgb * max(dot(n, cam.sun_dir.xyz), 0.0) + cam.amb_col.rgb) + emit;
 }
 

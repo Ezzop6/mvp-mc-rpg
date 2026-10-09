@@ -132,12 +132,10 @@ uint obj_cell_at(ivec4 f, ivec3 b) {
 	return model_cell(rec, m);
 }
 
-uint pcg(uint v) { uint s = v * 747796405u + 2891336453u; uint w = ((s >> ((s >> 28u) + 4u)) ^ s) * 277803737u; return (w >> 22u) ^ w; }
-
 // One of the variant's weighted looks by the world block's hash.
 uint block_look(uint v, ivec3 b) {
 	uint n = types[v].looks, total = types[v].face[n - 1u] >> LOOK_WEIGHT_SHIFT, k = 0u;
-	uint r = pcg(uint(b.x) * 73856093u ^ uint(b.y) * 19349663u ^ uint(b.z) * 83492791u) % total;
+	uint r = block_hash(b) % total;
 	while (k + 1u < n && r >= types[v].face[k] >> LOOK_WEIGHT_SHIFT) k++;
 	return types[v].face[k];
 }

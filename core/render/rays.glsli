@@ -249,7 +249,7 @@ bool trace_world(vec3 ro, vec3 rd, float tmin, float tmax, int max_steps, float 
 					float tk = k == 0 ? t : tx;
 					int ak = k == 0 ? axis : ax;
 					vec3 n = vec3(0.0); n[ak] = k == 0 ? -sign(rd[ak]) : sign(rd[ak]);
-					uint fw = face_word(id, ak, n);
+					uint fw = face_word(id, cam.anchor.xyz * CHUNK + cell, ak, n);
 					if (texel4(face_layer(fw), tex_lvl(lod, tk + origin_t), face_uv(ro + rd * tk, ak, n, fw)).a >= cutout_alpha(lod, tk + origin_t)) { t = tk; axis = ak; return true; }
 				}
 				if (--cutout_pass < 0) return true;
@@ -299,7 +299,7 @@ bool trace_world(vec3 ro, vec3 rd, float tmin, float tmax, int max_steps, float 
 			else if ((f & F_TRANSLUCENT) != 0u) {
 				if (id != see_prev) {
 					vec3 n = vec3(0.0); n[axis] = -sign(rd[axis]);
-					uint fw = face_word(id, axis, n);
+					uint fw = face_word(id, cam.anchor.xyz * CHUNK + cell, axis, n);
 					vec3 p = ro + rd * t;
 #ifdef SEE_SCATTER
 					vec4 c = texel4(face_layer(fw), tex_lvl(lod, t + origin_t), face_uv(p, axis, n, fw));
@@ -422,7 +422,7 @@ bool trace(vec3 ro, vec3 rd, float from, float tmax, int max_steps, float lod, o
 
 // Tint goes on the overlay when the face has one (grass block sides), else on the texture; uv from p, the tint's climate from world_p.
 vec3 albedo_at(uint id, vec3 p, vec3 world_p, int axis, vec3 n, float mip) {
-	uint fw = face_word(id, axis, n);
+	uint fw = face_word(id, face_block(p, world_p, n), axis, n);
 	int layer = face_layer(fw), l0 = int(mip), l1 = min(l0 + 1, TEX_MIPS - 1), ov = face_overlay(fw);
 	vec2 uv = face_uv(p, axis, n, fw);
 	vec4 a = mix(texel4(layer, l0, uv), texel4(layer, l1, uv), fract(mip));

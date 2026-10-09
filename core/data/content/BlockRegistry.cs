@@ -118,6 +118,8 @@ public sealed class BlockRegistry
 	public static BlockDef Define(Entry e, string category = null)
 	{
 		BlockId.Parse(e.Id, e.Id);
+		if (e.RandomLook != null && (e.Kind != EntryKind.Cube || e.RandomLook.Length is 0 or > LookTurn.MaxLooks || e.RandomLook.Any(l => l.Weight < 1 || l.X % 90 != 0 || l.Y % 90 != 0 || l.Z % 90 != 0)))
+			throw new InvalidDataException($"{e.Id}: random_look needs a cube with 1 to {LookTurn.MaxLooks} looks, turns in multiples of 90, weights >= 1");
 		var def = new BlockDef { Name = e.Id, Entry = e, Category = category };
 		var list = new List<BlockParam>();
 		int shift = 0;

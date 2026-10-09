@@ -74,7 +74,7 @@ public sealed class Gpu
 		sb.Append($"const uint FACE_LAYER_MASK = {(1 << GpuBlockTable.FaceLayerBits) - 1}u, FACE_OVERLAY_SHIFT = {GpuBlockTable.FaceOverlayShift}u, FACE_ROT_SHIFT = {GpuBlockTable.FaceRotShift}u, " +
 			$"FACE_TINT = {1u << GpuBlockTable.FaceTintShift}u, FACE_EMISSION_SHIFT = {GpuBlockTable.FaceEmissionShift}u, FACE_EMISSION_MAX = {GpuBlockTable.FaceEmissionMax}u;\n");
 		sb.Append($"const int COLORMAP_SIZE = {GpuBlockTable.ColormapSize};\nconst uint TINT_MAP_SHIFT = {GpuBlockTable.TintMapShift}u;\n");
-		sb.Append($"const uint LOOK_MODEL_MASK = {(1u << GpuBlockTable.LookModelBits) - 1}u, LOOK_ROT_SHIFT = {GpuBlockTable.LookRotShift}u, LOOK_WEIGHT_SHIFT = {GpuBlockTable.LookWeightShift}u;\n");
+		sb.Append($"const uint LOOK_MODEL_MASK = {(1u << GpuBlockTable.LookModelBits) - 1}u, LOOK_ROT_SHIFT = {GpuBlockTable.LookRotShift}u, LOOK_WEIGHT_SHIFT = {GpuBlockTable.LookWeightShift}u, RANDOM_COUNT_SHIFT = {GpuBlockTable.RandomCountShift}u;\n");
 		sb.Append($"const uint YAW_ROT[{Rotation24.Yaw.Length}] = uint[]({string.Join(", ", Rotation24.Yaw.Select(r => $"{r.Value}u"))});\n");
 		sb.Append($"const uint MODEL_REC_WORDS = {ModelStore.ModelRecWords}u, MATERIAL_WORDS = {ModelStore.MaterialWords}u, POOL_STRIDE = {ModelStore.PoolStride}u;\nconst int MICRO = {ModelLibrary.Cell};\n");
 		sb.Append($"const uint BRICK_REFS = {ModelPool.BrickRefs}u, TAIL_VALUES = {ModelPool.TailValues}u, MIP1_REF = {ModelPool.Mip1Ref}u, MIP2_REF = {ModelPool.Mip2Ref}u, BRICK_VOXELS = {ModelPool.BrickVoxels}u, EMPTY_REF = {ModelPool.Empty}u;\n");

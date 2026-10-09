@@ -112,7 +112,7 @@ public partial class World : Node3D
 	readonly List<JobGpu> farJobs = new();
 	readonly List<uint> edits = new();
 	Vector3I[] nearOffsets = Array.Empty<Vector3I>(); // the near sphere around the camera chunk, nearest first
-	int rowsSent, epoch;
+	int rowsSent, lookRowsSent, epoch;
 	bool resetRequested = true, loading = true, budgetBound;
 	volatile bool ready;
 	volatile int nearMissing = -1, midMissing = -1, nearEpoch = -1;
@@ -156,7 +156,7 @@ public partial class World : Node3D
 
 		public RingWindow Reset, Ring;
 		public WorldGenerator Gen;
-		public (int First, byte[] Rows)? BlockRows;
+		public (int First, byte[] Rows, int LookFirst, byte[] Looks)? BlockRows;
 		public Upload Columns, Jobs, EditRecords, Released;
 		public int ColumnCount, JobCount, FillCap, Epoch, WorkBoost, Work;
 		public ChunkPos Camera;
@@ -561,13 +561,15 @@ public partial class World : Node3D
 		foreach (var (k, e) in cells) into.AddRange(new[] { k, e.Block, e.Fluid, 0u });
 	}
 
-	(int, byte[])? NewBlockRows()
+	(int, byte[], int, byte[])? NewBlockRows()
 	{
 		int n = Variants.Count;
 		if (n == rowsSent) return null;
-		var rows = (rowsSent, GpuBlockTable.Rows(Registry, Variants.From(rowsSent), textures, Models.Looks));
-		rowsSent = n;
-		return rows;
+		int lookFirst = Variants.MaxCount + lookRowsSent;
+		var (rows, looks) = GpuBlockTable.Rows(Registry, Variants.From(rowsSent), textures, Models.Looks, lookFirst);
+		(var first, rowsSent) = (rowsSent, n);
+		lookRowsSent += looks.Length / GpuBlockTable.RowBytes;
+		return (first, rows, lookFirst, looks);
 	}
 
 

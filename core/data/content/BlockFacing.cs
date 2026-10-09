@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Renesance.Content.Format;
 using Renesance.World;
 
@@ -45,10 +46,11 @@ public static class BlockFacing
 	static int[] Apply(int[][] r, int[] v) => V(
 		v[0] * r[0][0] + v[1] * r[1][0] + v[2] * r[2][0], v[0] * r[0][1] + v[1] * r[1][1] + v[2] * r[2][1], v[0] * r[0][2] + v[1] * r[1][2] + v[2] * r[2][2]);
 
-	// Per world face code: the entry face shown there and the clockwise UV quarter turns the orientation adds.
-	public static (FaceDir Face, int Turns)[] Map(BlockDef d, BlockState s)
+	// Per world face code: the entry face shown there and the clockwise UV quarter turns the random look, then the orientation add.
+	public static (FaceDir Face, int Turns)[] Map(BlockDef d, BlockState s, Rotation24 look = default)
 	{
-		var r = Rotation(d.Orientation?.Value(s));
+		var o = Rotation(d.Orientation?.Value(s));
+		var r = Enumerable.Range(0, 3).Select(i => look.Image(i)).Select(v => Apply(o, V(v.X, v.Y, v.Z))).ToArray();
 		var map = new (FaceDir, int)[Faces];
 		for (int code = 0; code < Faces; code++)
 		{

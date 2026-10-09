@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Renesance.World;
 
 public readonly record struct Rotation24(byte Value)
@@ -21,19 +23,39 @@ public readonly record struct Rotation24(byte Value)
 		return (to == 0 ? sign : 0, to == 1 ? sign : 0, to == 2 ? sign : 0);
 	}
 
-	public static Rotation24 FromMinecraft(int x, int y)
+	public static Rotation24 FromMinecraft(int x, int y) => FromTurns(x, y, 0);
+
+	// Turned about x, then y, then z, in multiples of 90 degrees.
+	public static Rotation24 FromTurns(int x, int y, int z)
 	{
-		static (int, int, int) Turn((int X, int Y, int Z) v, int x, int y)
+		if (x % 90 != 0 || y % 90 != 0 || z % 90 != 0) throw new System.ArgumentException($"rotation x {x}, y {y}, z {z} is not a multiple of 90 degrees");
+		static (int, int, int) Turn((int X, int Y, int Z) v, int x, int y, int z)
 		{
 			for (int k = 0; k < (x / 90 & 3); k++) v = (v.X, v.Z, -v.Y);
 			for (int k = 0; k < (y / 90 & 3); k++) v = (-v.Z, v.Y, v.X);
+			for (int k = 0; k < (z / 90 & 3); k++) v = (v.Y, -v.X, v.Z);
 			return v;
 		}
 		for (byte r = 0; r < 24; r++)
 		{
 			var rot = new Rotation24(r);
-			if (rot.Image(0) == Turn((1, 0, 0), x, y) && rot.Image(1) == Turn((0, 1, 0), x, y) && rot.Image(2) == Turn((0, 0, 1), x, y)) return rot;
+			if (rot.Image(0) == Turn((1, 0, 0), x, y, z) && rot.Image(1) == Turn((0, 1, 0), x, y, z) && rot.Image(2) == Turn((0, 0, 1), x, y, z)) return rot;
 		}
-		throw new System.ArgumentException($"rotation x {x}, y {y} is not a multiple of 90 degrees");
+		throw new System.InvalidOperationException("unreachable");
 	}
+
+	// Turns (degrees) giving this rotation: the first of x, y, z in 0..270 that does.
+	public (int X, int Y, int Z) Turns
+	{
+		get
+		{
+			for (int z = 0; z < 360; z += 90)
+				for (int y = 0; y < 360; y += 90)
+					for (int x = 0; x < 360; x += 90)
+						if (FromTurns(x, y, z) == this) return (x, y, z);
+			throw new System.InvalidOperationException($"rotation {Value}");
+		}
+	}
+
+	public static readonly Rotation24[] All = Enumerable.Range(0, 24).Select(r => new Rotation24((byte)r)).ToArray();
 }

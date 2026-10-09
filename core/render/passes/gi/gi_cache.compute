@@ -181,7 +181,7 @@ vec3 bounce(vec3 p, vec3 n, float bias, float t0, vec2 u) {
 	vec3 hp = o + d * t;
 	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : albedo_at(id, o + d * t, vec3(anchor_block()) + hp, axis, hn, float(TEX_MIPS - 1));
 	vec3 me = model ? material_emission(hit_mat) : vec3(0.0);
-	float emit = model ? min(max(me.r, max(me.g, me.b)), 1.0) : face_emission(face_word(id, axis, hn));
+	float emit = model ? min(max(me.r, max(me.g, me.b)), 1.0) : face_emission(face_word(id, anchor_block() + ivec3(floor(hp - 0.5 * hn)), axis, hn));
 	vec3 lamp = vec3(0.0);
 #ifdef LAMP
 	if (w < PART && types[id].light_color.w > 0.0) emit = 0.0;

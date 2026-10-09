@@ -86,7 +86,7 @@ public partial class World
 	void InitGpu()
 	{
 		var rd = Gpu.Rd;
-		types = blockTable.Add(rd.StorageBufferCreate((uint)(Variants.MaxCount * GpuBlockTable.RowBytes)));
+		types = blockTable.Add(rd.StorageBufferCreate((uint)((Variants.MaxCount + GpuBlockTable.LookCapacity(Registry)) * GpuBlockTable.RowBytes)));
 		tex = blockTable.Add(rd.StorageBufferCreate((uint)textures.Texels.Length, textures.Texels));
 		colormaps = blockTable.Add(rd.StorageBufferCreate((uint)textures.ColormapTexels.Length, textures.ColormapTexels));
 		var library = Models.Pack();
@@ -149,7 +149,11 @@ public partial class World
 		System.Threading.Interlocked.Exchange(ref genSample, (long)genWork << 32 | (uint)BitConverter.SingleToInt32Bits(GenMs));
 		genWork = s?.JobCount > 0 ? s.Work : 0;
 		Models.Upload(rd, modelData);
-		if (s.BlockRows is { } b) rd.BufferUpdate(types, (uint)(b.First * GpuBlockTable.RowBytes), (uint)b.Rows.Length, b.Rows);
+		if (s.BlockRows is { } b)
+		{
+			rd.BufferUpdate(types, (uint)(b.First * GpuBlockTable.RowBytes), (uint)b.Rows.Length, b.Rows);
+			if (b.Looks.Length > 0) rd.BufferUpdate(types, (uint)(b.LookFirst * GpuBlockTable.RowBytes), (uint)b.Looks.Length, b.Looks);
+		}
 		if (s.Reset != null) ResetRing(s.Reset, s.Gen);
 		if (gpuRing == null) return;
 		if (s.WorkBoost != workBoost) UseWork(s.WorkBoost);

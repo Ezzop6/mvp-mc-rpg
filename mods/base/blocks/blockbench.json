@@ -17,6 +17,12 @@
       "kind": "cube",
       "bbmodel": "blocks/solid/crystal.bbmodel",
       "surface": "translucent"
+    },
+    {
+      "id": "base:dirt_rand_bb",
+      "kind": "cube",
+      "bbmodel": "blocks/solid/dirt_rand.bbmodel",
+      "random_look": "all"
     }
   ]
 }

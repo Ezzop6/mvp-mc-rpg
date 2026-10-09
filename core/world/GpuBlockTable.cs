@@ -25,6 +25,7 @@ public static class GpuBlockTable
 	public const int FaceLayerBits = 12, FaceOverlayShift = 12, FaceRotShift = 24, FaceTintShift = 26, FaceEmissionShift = 27, FaceEmissionMax = 31;
 	public const int LookModelBits = 20, LookRotShift = 20, LookWeightShift = 25, LookWeightMax = 127;
 	public const int ColormapSize = 256, TintMapShift = 16;
+	public const int RandomCountShift = 24; // random-look cube row: looks = first look row | count << RandomCountShift; look rows: looks = cumulative weight
 	public static readonly Format.TintSource[] Colormaps = { Format.TintSource.Grass, Format.TintSource.Foliage, Format.TintSource.DryFoliage };
 
 	public sealed record Textures(Dictionary<string, int> Index, HashSet<int> Holes, bool[] Colormapped, byte[] Texels, byte[] ColormapTexels,
@@ -60,7 +61,7 @@ public static class GpuBlockTable
 	}
 
 	// Textures.Holes: an opaque cube with transparent texels renders as cutout; only cutout blocks are alpha tested.
-	static GpuBlockType Row(BlockDef d, BlockState s, Textures tex, Func<VariantLook, uint[]> modelLooks)
+	static GpuBlockType Row(BlockDef d, BlockState s, Textures tex, Func<VariantLook, uint[]> modelLooks, Rotation24 turn = default)
 	{
 		var e = d.Entry;
 		if (e == null) return new GpuBlockType { Flags = d.Id == BlockRegistry.AirId ? 0 : (uint)BlockFlags.Invisible };
@@ -88,7 +89,7 @@ public static class GpuBlockTable
 		else
 		{
 			bool hasHoles = false;
-			var faces = BlockFacing.Map(d, s);
+			var faces = BlockFacing.Map(d, s, turn);
 			for (int code = 0; code < words.Length; code++)
 			{
 				var (face, turns) = faces[code];
@@ -113,9 +114,30 @@ public static class GpuBlockTable
 		return row;
 	}
 
-	// Rows of the given variants, in order.
-	public static byte[] Rows(BlockRegistry reg, IEnumerable<BlockState> variants, Textures tex, Func<VariantLook, uint[]> modelLooks) =>
-		MemoryMarshal.AsBytes(variants.Select(s => Row(reg.Get(s), s, tex, modelLooks)).ToArray().AsSpan()).ToArray();
+	// Rows of the given variants in order, and the look rows of their random-look cubes from row lookFirst on.
+	public static (byte[] Rows, byte[] Looks) Rows(BlockRegistry reg, IEnumerable<BlockState> variants, Textures tex, Func<VariantLook, uint[]> modelLooks, int lookFirst)
+	{
+		var rows = new List<GpuBlockType>();
+		var looks = new List<GpuBlockType>();
+		foreach (var s in variants)
+		{
+			var d = reg.Get(s);
+			var row = Row(d, s, tex, modelLooks);
+			if (d.Entry?.RandomLook is { } turns && BlockLooks.Resolve(d, s).Cube != null)
+			{
+				if (lookFirst + looks.Count + turns.Length > 1 << RandomCountShift) throw new InvalidOperationException("random look rows past the BlockType.looks index");
+				row.Looks = (uint)(lookFirst + looks.Count) | (uint)turns.Length << RandomCountShift;
+				int total = 0;
+				foreach (var t in turns) looks.Add(Row(d, s, tex, modelLooks, t.Rotation) with { Looks = (uint)(total += t.Weight ?? 1) });
+			}
+			rows.Add(row);
+		}
+		return (MemoryMarshal.AsBytes(CollectionsMarshal.AsSpan(rows)).ToArray(), MemoryMarshal.AsBytes(CollectionsMarshal.AsSpan(looks)).ToArray());
+	}
+
+	// Look rows the registry's random-look cubes can need, past the variant rows.
+	public static int LookCapacity(BlockRegistry reg) =>
+		reg.All.Where(d => d.Entry?.RandomLook != null).Sum(d => (1 << System.Numerics.BitOperations.PopCount(d.RenderMask)) * d.Entry.RandomLook.Length);
 
 	static string Global(string file) => ProjectSettings.GlobalizePath($"res://{ContentPaths.Textures}/{file}");
 

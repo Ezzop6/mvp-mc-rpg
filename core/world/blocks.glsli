@@ -28,7 +28,20 @@ vec3 block_tint(uint id, vec3 p) {
 	return m == 0u ? types[id].tint.rgb : colormap(m - 1u, gen_climate(ivec2(floor(p.xz))));
 }
 
-uint face_word(uint id, int axis, vec3 n) { return types[id].face[face_code(axis, n[axis] > 0.0)]; }
+uint pcg(uint v) { uint s = v * 747796405u + 2891336453u; uint w = ((s >> ((s >> 28u) + 4u)) ^ s) * 277803737u; return (w >> 22u) ^ w; }
+uint block_hash(ivec3 b) { return pcg(uint(b.x) * 73856093u ^ uint(b.y) * 19349663u ^ uint(b.z) * 83492791u); }
+
+// A random-look cube's row of the weighted look at world block b (GpuBlockTable look rows), else id.
+uint look_row(uint id, ivec3 b) {
+	uint l = types[id].looks;
+	if (l == 0u) return id;
+	uint first = l & ((1u << RANDOM_COUNT_SHIFT) - 1u), n = l >> RANDOM_COUNT_SHIFT, r = block_hash(b) % types[first + n - 1u].looks, k = 0u;
+	while (k + 1u < n && r >= types[first + k].looks) k++;
+	return first + k;
+}
+// b: the world block the face belongs to.
+uint face_word(uint id, ivec3 b, int axis, vec3 n) { return types[look_row(id, b)].face[face_code(axis, n[axis] > 0.0)]; }
+ivec3 face_block(vec3 p, vec3 world_p, vec3 n) { return ivec3(round(world_p - p)) + ivec3(floor(p - 0.5 * n)); }
 int face_layer(uint w) { return int(w & FACE_LAYER_MASK); }
 int face_overlay(uint w) { return int((w >> FACE_OVERLAY_SHIFT) & FACE_LAYER_MASK) - 1; } // -1 = none
 float face_emission(uint w) { return float(w >> FACE_EMISSION_SHIFT) / float(FACE_EMISSION_MAX); } // 0..1, x EmissionScale x albedo
