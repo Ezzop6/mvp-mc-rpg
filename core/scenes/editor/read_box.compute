@@ -12,9 +12,9 @@ void main() {
 	uint i = gl_GlobalInvocationID.x + gl_GlobalInvocationID.y * uint(pc.size.w);
 	ivec3 s = pc.size.xyz;
 	if (i >= uint(s.x * s.y * s.z)) return;
-	r_off = -W.lv[0].min.xyz * CHUNK;
+	r_off = -W.ring.min.xyz * CHUNK;
 	r_lo = -r_off;
-	r_hi = r_lo + W.lv[0].size.xyz * CHUNK;
+	r_hi = r_lo + W.ring.size.xyz * CHUNK;
 	ivec3 cell = pc.lo.xyz + ivec3(int(i) % s.x, int(i) / s.x % s.y, int(i) / (s.x * s.y)), lo, hi;
 	if (any(lessThan(cell, r_lo)) || any(greaterThanEqual(cell, r_hi))) { ids[i] = ~0u; return; }
 	uint w = lookup(cell, lo, hi);

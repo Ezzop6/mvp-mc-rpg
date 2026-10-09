@@ -21,8 +21,5 @@
   "TimeOfDay": 12,
   "Width": 3840,
   "Height": 2160,
-  "Render": {
-    "LodLevels": 1,
-    "HorizonM": 1175
-  }
+  "Render": {}
 }

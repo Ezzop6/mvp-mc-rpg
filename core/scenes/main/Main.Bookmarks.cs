@@ -20,11 +20,6 @@ public partial class Main
 		public float RenderScale { get; set; }
 		public float EffectiveScale { get; set; } = 1;
 		public ViewPreset View { get; set; } = ViewPreset.Ultra;
-		public bool Lod { get; set; } // levels of detail (docs/v2.md §5.17), off = L0 only to the preset's radius
-		public float HorizonM { get; set; } // 0 = the preset's
-		public float LodPixels { get; set; }
-		public int LodLevels { get; set; } = global::Lod.MaxLevels;
-		public int LodRef { get; set; }
 		public bool FixedBudget { get; set; }
 		public float GenTargetMs { get; set; } = 2;
 		public float StreamCpuMs { get; set; } = 3;
@@ -40,7 +35,7 @@ public partial class Main
 	{
 		Passes = Renderer.Passes.ToDictionary(p => p.Id, p => new PassState(p.Enabled, p.Active, p.Selected)),
 		EffectsOff = Pass.EffectsOff, DebugView = Renderer.View, RenderScale = Renderer.RenderScale, EffectiveScale = Renderer.EffectiveScale,
-		View = World.View, HorizonM = World.HorizonM, LodPixels = World.LodPixels, Lod = World.LodOn, LodLevels = World.MaxLevels, LodRef = World.LodRef, FixedBudget = World.FixedBudget, GenTargetMs = World.GenTargetMs, StreamCpuMs = World.StreamCpuMs, EditChunksPerFrame = World.EditChunksPerFrame,
+		View = World.View, FixedBudget = World.FixedBudget, GenTargetMs = World.GenTargetMs, StreamCpuMs = World.StreamCpuMs, EditChunksPerFrame = World.EditChunksPerFrame,
 		Preset = TuneSet.Edit, Tune = TuneSet.Overrides(),
 	};
 
@@ -48,7 +43,6 @@ public partial class Main
 	void RestoreRender(RenderState r)
 	{
 		(World.View, World.FixedBudget, World.GenTargetMs, World.StreamCpuMs, World.EditChunksPerFrame) = (r.View, r.FixedBudget, r.GenTargetMs, r.StreamCpuMs, r.EditChunksPerFrame);
-		(World.LodOn, World.HorizonM, World.LodPixels, World.MaxLevels, World.LodRef) = (r.Lod, r.HorizonM, r.LodPixels, r.LodLevels, r.LodRef);
 		foreach (var p in Renderer.Passes)
 			p.Enabled = p.Info.Required || (argPasses.TryGetValue(p.Id, out var on) ? on : r.Passes.TryGetValue(p.Id, out var s) ? s.Enabled : TuneSet.DefaultEnabled(p));
 		Pass.EffectsOff = r.EffectsOff;
@@ -126,9 +120,8 @@ public partial class Main
 
 	public bool NearReady => World.GpuReady && !World.Loading;
 
-	// Flights: the levels of detail of the start (command line), at their preset or the start's.
-	public void StartLod(ViewPreset? view, bool? lod) =>
-		(World.View, World.LodOn, World.HorizonM, World.LodPixels, World.MaxLevels, World.LodRef) = (view ?? startup.View, lod ?? startup.Lod, startup.HorizonM, startup.LodPixels, startup.LodLevels, startup.LodRef);
+	// Flights: the range of the start (command line) or the flight's preset.
+	public void StartView(ViewPreset? view) => World.View = view ?? startup.View;
 	// The world's pools in use, then everything the RenderingDevice holds (VRAM of buffers and textures).
 	public Dictionary<string, double> PoolMB
 	{

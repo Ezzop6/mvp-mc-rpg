@@ -182,11 +182,11 @@ void dirty(uint i) {
 	slots[ms].yw = uvec2(key, 1u);
 }
 
-// A stale chunk without faces (air, or solid inside solid) is current at once, the rest go to MESH_BUILD; one not in memory limits the trusted radius (rays there go to a coarser level).
+// A stale chunk without faces (air, or solid inside solid) is current at once, the rest go to MESH_BUILD; one not in memory (within the generator's rows) limits the trusted radius.
 void check(uint i) {
 	ivec3 wc = cam_chunk() + offset_at(i);
 	uint ms = mesh_slot(wc), key = content_key(wc);
-	if (key == NONE_KEY) atomicMin(M.min_stale, i);
+	if (key == NONE_KEY && wc.y >= W.rows.x && wc.y < W.rows.y) atomicMin(M.min_stale, i); // outside the generator's rows nothing is generated, rays never get there
 	uvec4 s = slots[ms];
 	if (s.x == chunk_hash(wc) && s.y == key && s.w == 0u) return;
 	if (nothing_to_mesh((wc - cam.anchor.xyz) * CHUNK)) { slots[ms] = uvec4(chunk_hash(wc), key, s.z + 1u, 0u); return; }

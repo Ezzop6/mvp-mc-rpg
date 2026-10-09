@@ -41,7 +41,7 @@ void main() {
 	bool inside = all(lessThan(px, size));
 	uint hit = inside ? imageLoad(hit_in, px).r : HIT_SKY;
 	uint face = hit_face(hit);
-	bool lit = face != HIT_SKY && (hit >> HIT_LOD_SHIFT & HIT_LOD_MASK) == 0u;
+	bool lit = face != HIT_SKY;
 	vec3 p = lit ? cam.frac.xyz + pixel_dir(px, size) * imageLoad(depth_in, px).r : vec3(0.0), n = hit_normal(face);
 #ifdef BENT
 	if (lit && (hit & HIT_BENT) != 0u) p = imageLoad(hitpos_in, px).xyz;

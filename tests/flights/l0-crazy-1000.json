@@ -1,0 +1,13 @@
+{
+  "Note": "250 m/s straight at 1000 m over random-crazy, effects off, 4K, starting once the near sphere is in (no waiting for the rest): the sphere must render at once and keep up",
+  "Scene": "random-crazy",
+  "NoWait": true,
+  "Off": ["Transparency", "Shadows", "Lights", "AO", "GI", "Fluid", "Sky", "Stars", "Moon", "Sun", "Clouds", "HeightFog", "Haze", "Shafts", "Temporal", "Sharpen", "Animation", "Grade", "Atmosphere"],
+  "TimeOfDay": 12,
+  "Fps": 60,
+  "Resolution": "4k",
+  "Path": [
+    { "T": 0, "Pos": { "X": 0.0, "Y": 1000.0, "Z": 0.0 }, "Yaw": -90.0, "Pitch": -10 },
+    { "T": 20, "Pos": { "X": 5000, "Y": 1000.0, "Z": 0.0 }, "Yaw": -90.0, "Pitch": -10 }
+  ]
+}

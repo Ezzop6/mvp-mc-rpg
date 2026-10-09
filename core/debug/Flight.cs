@@ -25,10 +25,9 @@ public sealed record FrameStats(double Mean, double P99, double Worst);
 public sealed record Hitch(double T, double Ms);
 public sealed record Drift(double QueueStart, double QueueEnd, double FarFillStart, double FarFillEnd);
 public sealed record Memory(int BudgetMB, double PressureMax, double PressureMean, double FarMinM, double FarEndM, double FullM, int Shrinks, int Grows, int Evicted = 0); // the pool regulator while flying (docs/v2.md §3.6)
-public sealed record LodStats(double FallbackMean, double FallbackMax, double CoarseMean, double HolesMax, double HorizonMinM, double HorizonM); // shares of the frame's pixels: hits coarser than their distance asks (fallback), at L >= 1, sky through a missing coarsest chunk; the horizon (docs/v2.md §5.17)
 public sealed record FlightResult(string Flight, string Resolution, int[] Size, bool Passed, List<TestIssue> Issues, int Frames, FrameStats Frame, FrameStats Gpu, FrameStats Gen,
-	int Hitches, int HitchesOverMs, List<Hitch> HitchList, Dictionary<string, int> Overflow, int? NearMissing, int? MidMissing, int MissingFrames, int? FallbackNear,
-	Dictionary<string, TestCore.ImageDiff> Shots, Drift Drift, int[] Collections, double AllocatedMB, Memory Memory = null, LodStats Lod = null); // Collections: GCs per generation while flying, AllocatedMB: managed bytes allocated meanwhile
+	int Hitches, int HitchesOverMs, List<Hitch> HitchList, Dictionary<string, int> Overflow, int? NearMissing, int? MidMissing, int MissingFrames,
+	Dictionary<string, TestCore.ImageDiff> Shots, Drift Drift, int[] Collections, double AllocatedMB, Memory Memory = null); // Collections: GCs per generation while flying, AllocatedMB: managed bytes allocated meanwhile
 
 // A dynamic test, tests/flights/<name>.json (docs/testing.md, Lety): the camera pose is a function of the frame number.
 public sealed class Flight
@@ -49,8 +48,8 @@ public sealed class Flight
 	public string DebugView { get; set; } // DebugView name, null = none
 	public double Fps { get; set; } = 120;
 	public int? WorldMB { get; set; }
-	public ViewPreset? ViewPreset { get; set; } // null = the current one (docs/v2.md §5.17)
-	public bool? Lod { get; set; } // null = the current one
+	public ViewPreset? ViewPreset { get; set; } // null = the current one
+	public bool NoWait { get; set; } // start once the near sphere is in (QuickLoad), not when the world settled
 	public float NearRadius { get; set; } = 64;
 	public double HitchMs { get; set; } = 16.7;
 	public int GraceFrames { get; set; } = 120;
@@ -100,8 +99,7 @@ public sealed class FlightPlayer
 	readonly List<FlightEvent> pending;
 	readonly List<TestIssue> issues = new();
 	readonly List<(int frame, double ms)> frame = new();
-	readonly List<double> gpu = new(), gen = new(), pressure = new(), farM = new(), horizonM = new();
-	readonly List<(float Fallback, float Coarse, float Holes)> lod = new();
+	readonly List<double> gpu = new(), gen = new(), pressure = new(), farM = new();
 	int shrinks0, grows0;
 	readonly List<(double T, int Queue, int Far)> stream = new();
 	readonly Dictionary<string, int> overflow = new();
@@ -112,7 +110,7 @@ public sealed class FlightPlayer
 	static int[] Collections() => new[] { GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2) };
 	bool flying, logged;
 	int n, settle, wait, graceUntil, shadowUntil, missingFrames;
-	int? nearMissing, midMissing, fallbackNear;
+	int? nearMissing, midMissing;
 	readonly StringBuilder log = new();
 	static readonly string[] PoolNames = Enum.GetNames<WorldPool>();
 	int logLines;
@@ -125,7 +123,8 @@ public sealed class FlightPlayer
 		(this.core, host, this.f) = (core, core.Host, f);
 		pending = f.Actions.OrderBy(a => a.T).ToList();
 		host.World.WorldMB = f.WorldMB ?? host.WorldMBArg;
-		host.StartLod(f.ViewPreset, f.Lod);
+		host.World.QuickLoad = f.NoWait;
+		host.StartView(f.ViewPreset);
 		if (f.Scene != null) host.Load(WorldSave.Open(System.IO.Path.Combine(Snapshot.Root, f.Scene)));
 		else host.LoadGenerator(f.Generator, f.Params);
 		host.ApplyBookmark(new Bookmark { Name = f.Name, View = View(0), TimeOfDay = f.TimeOfDay, Preset = f.Preset, Off = f.Off, On = f.On, Resolution = f.Resolution, DebugView = f.DebugView }, null);
@@ -151,7 +150,8 @@ public sealed class FlightPlayer
 		{
 			host.ApplyView(View(0));
 			settle++;
-			if (!core.Settle(ref settle, ref wait, out var issue)) return null;
+			TestIssue? issue = null;
+			if (f.NoWait ? settle < TestCore.SettleFrames || !host.NearReady : !core.Settle(ref settle, ref wait, out issue)) return null;
 			if (issue is TestIssue i) { issues.Add(i); return Result(); }
 			host.Renderer.Restart();
 			SeenFeedback.Request(null);
@@ -202,9 +202,6 @@ public sealed class FlightPlayer
 		nearMissing = Max(nearMissing, host.NearMissing);
 		midMissing = Max(midMissing, host.MidMissing);
 		if (host.NearMissing > 0 || host.MidMissing > 0) missingFrames++;
-		fallbackNear = Max(fallbackNear, host.FallbackNear);
-		if (host.World.LodOn) lod.Add(host.LodShares); // without LOD the shader keeps no counters
-		horizonM.Add(host.World.HorizonNowM);
 		if (host.Stream is var (q, far)) stream.Add((n / f.Fps, q, far));
 	}
 
@@ -251,11 +248,9 @@ public sealed class FlightPlayer
 		DisplayServer.WindowSetVsyncMode(vsync);
 		host.Player.Mode = MoveMode.Fly;
 		var world = host.World;
-		var lodStats = lod.Count == 0 ? null : new LodStats(Math.Round(lod.Average(x => x.Fallback), 5), Math.Round(lod.Max(x => x.Fallback), 5), Math.Round(lod.Average(x => x.Coarse), 4), Math.Round(lod.Max(x => x.Holes), 5),
-			Math.Round(horizonM.Min()), Math.Round(world.Lods?.HorizonM ?? 0));
 		var memory = pressure.Count == 0 ? null : new Memory(world.BudgetMB, Math.Round(pressure.Max(), 3), Math.Round(pressure.Average(), 3), Math.Round(farM.Min()), Math.Round(farM[^1]), Math.Round(world.FullRadiusM),
 			world.Shrinks - shrinks0, world.Grows - grows0, world.Evicted);
-		world.WorldMB = host.WorldMBArg;
+		(world.WorldMB, world.QuickLoad) = (host.WorldMBArg, false);
 		double median = frame.Select(x => x.ms).Order().ElementAtOrDefault(frame.Count / 2);
 		FlushLog();
 		var hitches = frame.Where(x => x.ms > f.HitchMs || x.ms > 2 * median).Select(x => new Hitch(Math.Round(x.frame / f.Fps, 3), Math.Round(x.ms, 1))).ToList();
@@ -263,7 +258,6 @@ public sealed class FlightPlayer
 		var pools = overflow.Where(p => p.Value > 0).ToDictionary(p => p.Key, p => p.Value);
 		if (pools.Count > 0) issues.Add(TestIssue.PoolOverflow);
 		if (nearMissing > 0 || midMissing > 0) issues.Add(TestIssue.NearMissing);
-		if (fallbackNear > 0) issues.Add(TestIssue.FallbackNear);
 		Drift drift = null;
 		if (f.DriftWindow is double w && stream.Count > 0)
 		{
@@ -273,15 +267,14 @@ public sealed class FlightPlayer
 		}
 		var r = new FlightResult(f.Name, f.Resolution, core.WindowSize, issues.All(i => i == TestIssue.NoReference), issues, frame.Count,
 			Stats(frame.Select(x => x.ms)), Stats(gpu), Stats(gen), hitches.Count, hitches.Count(h => h.Ms > f.HitchMs), hitches,
-			pools.Count > 0 ? pools : null, nearMissing, midMissing, missingFrames, fallbackNear, shots.Count > 0 ? shots : null, drift,
-			Collections().Zip(gcStart, (a, b) => a - b).ToArray(), Math.Round((GC.GetTotalAllocatedBytes() - allocStart) / 1048576.0, 1), memory, lodStats);
+			pools.Count > 0 ? pools : null, nearMissing, midMissing, missingFrames, shots.Count > 0 ? shots : null, drift,
+			Collections().Zip(gcStart, (a, b) => a - b).ToArray(), Math.Round((GC.GetTotalAllocatedBytes() - allocStart) / 1048576.0, 1), memory);
 		static string S(FrameStats s) => s == null ? "n/a" : $"mean {s.Mean:0.00} p99 {s.P99:0.00} worst {s.Worst:0.0}";
 		GD.Print($"[flight] {f.Name}: {(r.Passed ? "ok" : "FAIL")} {string.Join(" ", issues.Distinct())}  frames {r.Frames}\n" +
 			$"  frame ms {S(r.Frame)}  (median {median:0.00})\n  gpu ms {S(r.Gpu)}\n  gen ms {S(r.Gen)}\n" +
 			$"  hitches {r.Hitches}, {r.HitchesOverMs} over {f.HitchMs} ms (rule: > {f.HitchMs} ms or > 2x median, outside {f.GraceFrames} grace frames){TestCore.OverflowText(r.Overflow)}\n" +
 			(memory == null ? "" : $"  memory {memory.BudgetMB} MB: pressure max {memory.PressureMax:0.00} mean {memory.PressureMean:0.00}, far radius min {memory.FarMinM} end {memory.FarEndM} of {memory.FullM} m, shrinks {memory.Shrinks} grows {memory.Grows}, evicted unseen {memory.Evicted}\n") +
-			(lodStats == null ? "" : $"  lod: fallback mean {100 * lodStats.FallbackMean:0.000} % max {100 * lodStats.FallbackMax:0.00} %, coarse {100 * lodStats.CoarseMean:0.0} %, holes max {100 * lodStats.HolesMax:0.000} %, horizon min {lodStats.HorizonMinM} of {lodStats.HorizonM} m\n") +
-			$"  near missing {r.NearMissing?.ToString() ?? "n/a"}  mid missing {r.MidMissing?.ToString() ?? "n/a"}  frames missing {r.MissingFrames}  fallback near {r.FallbackNear?.ToString() ?? "n/a"}\n" +
+			$"  near missing {r.NearMissing?.ToString() ?? "n/a"}  mid missing {r.MidMissing?.ToString() ?? "n/a"}  frames missing {r.MissingFrames}\n" +
 			(drift == null ? "" : $"  drift (window {f.DriftWindow} s, second vs last): queue {drift.QueueStart} -> {drift.QueueEnd}, far filled/frame {drift.FarFillStart} -> {drift.FarFillEnd}\n") +
 			(hitches.Count == 0 ? "" : $"  worst hitches (s: ms): {string.Join("  ", r.HitchList.OrderByDescending(h => h.Ms).Take(12).Select(h => $"{h.T:0.00}: {h.Ms:0}"))}"));
 		return r;

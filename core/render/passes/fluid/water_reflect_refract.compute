@@ -25,13 +25,12 @@ vec3 reflection(vec3 o, vec3 d, float from_t) {
 	vec3 c = cam.sun_col.rgb * pow(max(dot(d, cam.sun_dir.xyz), 0.0), cam.water_deep.w) * cam.water_deep.z;
 	if (!trace(o, d, 0.0, REFLECT_BLOCKS, REFLECT_STEPS, lod, t, axis, w, fluid))
 		return c + mix(cam.sky_horizon.rgb, cam.sky_top.rgb, sqrt(clamp(d.y, 0.0, 1.0)));
-	bool model = hit_level == 0 && w >= F_MODEL << PAL_FLAG_SHIFT, colour = hit_level > 0 && w >= LOD_COLOR;
+	bool model = w >= F_MODEL << PAL_FLAG_SHIFT;
 	vec3 n = model ? hit_n : vec3(0.0);
 	if (!model) n[axis] = -sign(d[axis]);
 	uint id = w >= PART ? B_OBJECT : w & PAL_ID_MASK;
-	float tl = t / lv_scale;
-	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : colour ? lod_color(w) : albedo_at(id, level_pos(o) + d * tl, vec3(cam.anchor.xyz * CHUNK) + o + d * t, axis, n, 3.0);
-	vec3 emit = model ? material_emission(hit_mat) : colour ? vec3(0.0) : albedo * face_emission(face_word(id, axis, n));
+	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : albedo_at(id, o + d * t, vec3(cam.anchor.xyz * CHUNK) + o + d * t, axis, n, 3.0);
+	vec3 emit = model ? material_emission(hit_mat) : albedo * face_emission(face_word(id, axis, n));
 	return c + albedo * (cam.sun_col.rgb * max(dot(n, cam.sun_dir.xyz), 0.0) + cam.amb_col.rgb) + emit;
 }
 

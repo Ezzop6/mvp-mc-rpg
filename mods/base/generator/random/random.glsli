@@ -48,8 +48,10 @@ bool island(vec3 p) {
 
 // Heightfield moved up and down by 3D noise (overhangs, arches) or a floating island; caves are cut separately.
 bool ground(vec3 p, float H) {
+	float o = RP.overhang * RG_NOISE_BOUND; // outside H +- o the noise cannot change the answer (as classify)
+	if (p.y < H - o) return true;
 	vec3 q = p / RP.overhang_scale;
-	return p.y < H + (RP.overhang > 0.0 ? RP.overhang * noise3(q.x, q.y, q.z) : 0.0) || island(p);
+	return p.y < H + o && p.y < H + (RP.overhang > 0.0 ? RP.overhang * noise3(q.x, q.y, q.z) : 0.0) || island(p);
 }
 
 // Tunnels where two noise fields are both near zero, from cave_depth below the surface up through it.
@@ -316,11 +318,10 @@ uint gen_classify_group(ivec3 gb) {
 }
 
 // The group's column heights and the features touching it (list bits, then the records and their index in the column list).
-const uint GROUP_FEATURES_LOD = 64u;
 shared float s_hs[GROUP * GROUP];
 shared uint s_hit[(MAX_COL_FEATURES + 31u) / 32u];
-shared ivec4 s_feats[GROUP_FEATURES_LOD];
-shared uint s_fidx[GROUP_FEATURES_LOD];
+shared ivec4 s_feats[GROUP_FEATURES];
+shared uint s_fidx[GROUP_FEATURES];
 shared uint s_nf;
 
 // The first `cap` features touching [gb, ge); where they overlap the highest .w wins.
@@ -344,17 +345,14 @@ void gen_group_begin(ivec3 gb, uint slot, uint v) {
 	group_features(gb, gb + GROUP, slot, v, GROUP_FEATURES);
 }
 
-uint cell_mask[2] = uint[2](~0u, ~0u); // L >= 1: the group's features touching the current coarse cell (gen_cell_lod)
-
 uint feature_at(ivec3 b, uint id) {
 	int best = -2147483647;
 	for (uint j = 0u; j < s_nf; j++) {
-		if ((cell_mask[j >> 5] >> (j & 31u) & 1u) == 0u) continue;
 		uint fb = feature_block(s_feats[j], b);
 		if (fb != 0u && s_feats[j].w > best) { best = s_feats[j].w; id = fb; }
 	}
 	for (uint j = 0u; j < s_nf && id == 0u; j++)
-		if ((cell_mask[j >> 5] >> (j & 31u) & 1u) != 0u && kind_of(s_feats[j]) == K_OBJECT && obj_cell_at(s_feats[j], b) != EMPTY_REF) id = PART | s_fidx[j];
+		if (kind_of(s_feats[j]) == K_OBJECT && obj_cell_at(s_feats[j], b) != EMPTY_REF) id = PART | s_fidx[j];
 	return id;
 }
 
@@ -364,74 +362,3 @@ uint gen_block(ivec3 b, ivec3 l) {
 	return id == 0u ? scatter(b, H) : id;
 }
 
-// L >= 1 (docs/v2.md §5.17): terrain at the exact heights of the sample columns (so features sit on it as at L0), features by sample, no scattered blocks (under a pixel).
-// Features come straight from their anchors per coarse group (a coarse column holds too many for its list), so a chunk or group is mixed within the reach of features around the surface.
-const int RG_LOD_TOP = 64, RG_LOD_BELOW = 12; // blocks: trees and models above the surface, roots below; small templates reach tdir[0].w (the tallest)
-
-// Height of the tallest large template over RG_LOD_TOP whose footprint (either rotation) covers [lo, hi) in x and z, as large_feature draws it (without its surface), else 0.
-int large_top(ivec3 lo, ivec3 hi) {
-	int small = tdir[0].x, large = tdir[0].y, reach = tdir[0].z + 1, top = 0;
-	if (large == 0) return 0;
-	ivec2 l0 = ivec2(fdiv(lo.x - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL), fdiv(lo.z - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL));
-	ivec2 l1 = ivec2(fdiv(hi.x + reach - RG_LARGE_CELL / 2, RG_LARGE_CELL), fdiv(hi.z + reach - RG_LARGE_CELL / 2, RG_LARGE_CELL)) + 1;
-	for (int z = l0.y; z <= l1.y; z++)
-		for (int x = l0.x; x <= l1.x; x++)
-			if (hash01(ivec3(x, 9, z), 7u) < RP.structures) {
-				ivec4 e = templ_entry(pick_template(small, large, hash3(ivec3(x, 10, z), 8u)));
-				ivec2 a = ivec2(x, z) * RG_LARGE_CELL + RG_LARGE_CELL / (2 * RG_FINE) * RG_FINE;
-				int r = max(e.y, e.w) / 2 + 1;
-				if (e.z > top && e.z > RG_LOD_TOP && all(greaterThan(a + r, lo.xz)) && all(lessThan(a - r, hi.xz))) top = e.z;
-			}
-	return top;
-}
-
-uint gen_classify_lod(ivec3 lo, ivec3 hi, vec2 mm) {
-	bool feats = RP.trees + RP.models + RP.structures > 0.0;
-	int top = feats ? max(max(RG_LOD_TOP, tdir[0].w), large_top(lo, hi)) : 0;
-	return classify(mm.x - (feats ? float(RG_LOD_BELOW) * BS : 0.0), mm.y + float(top) * BS, center_m(lo.y), center_m(hi.y - 1));
-}
-
-void add_feature_lod(ivec4 f, ivec3 gb, ivec3 ge) {
-	if (!box_hits(f, gb, ge)) return;
-	uint i = atomicAdd(s_nf, 1u);
-	if (i < GROUP_FEATURES_LOD) { s_feats[i] = f; s_fidx[i] = i; }
-	else atomicAdd(W.lod_stat[1], 1u);
-}
-
-// Every fine, coarse and large anchor whose feature can reach [gb, ge), as gen_feature enumerates them per column.
-shared float s_hs_lod[4 * GROUP * GROUP]; // heights of the group's 2 GROUP x 2 GROUP sample columns
-
-void gen_group_begin_lod(ivec3 gb, uint slot, int level, uint v) {
-	ivec3 ge = gb + (GROUP << level);
-	for (uint k = v; k < uint(4 * GROUP * GROUP); k += GROUP_X) s_hs_lod[k] = gen_column(lod_sample_column(gb, ivec2(int(k) % (2 * GROUP), int(k) / (2 * GROUP)), level));
-	if (v == 0u) s_nf = 0u;
-	barrier();
-	int reach = tdir[0].z + 1;
-	ivec2 f0 = ivec2(fdiv(gb.x, RG_FINE), fdiv(gb.z, RG_FINE)) - RG_FINE_REACH, fn = ivec2(fdiv(ge.x - 1, RG_FINE), fdiv(ge.z - 1, RG_FINE)) + RG_FINE_REACH - f0 + 1;
-	ivec2 c0 = ivec2(fdiv(gb.x, RG_COARSE), fdiv(gb.z, RG_COARSE)) - RG_COARSE_REACH, cn = ivec2(fdiv(ge.x - 1, RG_COARSE), fdiv(ge.z - 1, RG_COARSE)) + RG_COARSE_REACH - c0 + 1;
-	ivec2 l0 = ivec2(fdiv(gb.x - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL), fdiv(gb.z - reach - RG_LARGE_CELL / 2, RG_LARGE_CELL));
-	ivec2 ln = ivec2(fdiv(ge.x + reach - RG_LARGE_CELL / 2, RG_LARGE_CELL), fdiv(ge.z + reach - RG_LARGE_CELL / 2, RG_LARGE_CELL)) - l0 + 2;
-	uint nf = uint(fn.x * fn.y), nc = uint(cn.x * cn.y), nl = uint(ln.x * ln.y);
-	for (uint k = v; k < nf + nc + nl; k += GROUP_X) {
-		ivec4 f;
-		bool ok = k < nf ? fine_feature(f0 + ivec2(int(k) % fn.x, int(k) / fn.x), f)
-			: k < nf + nc ? coarse_feature(c0 + ivec2(int(k - nf) % cn.x, int(k - nf) / cn.x), f)
-			: large_feature(l0 + ivec2(int(k - nf - nc) % ln.x, int(k - nf - nc) / ln.x), f);
-		if (ok) add_feature_lod(f, gb, ge);
-	}
-	barrier();
-	if (v == 0u) s_nf = min(s_nf, GROUP_FEATURES_LOD);
-	barrier();
-}
-
-uint gen_block_lod(ivec3 b, ivec2 sc, int level) { return feature_at(b, terrain(b, s_hs_lod[sc.x + 2 * GROUP * sc.y])); }
-
-ivec4 gen_part_lod(uint j) { return s_feats[j]; }
-
-bool gen_cell_lod(ivec3 lo, ivec3 hi) {
-	cell_mask = uint[2](0u, 0u);
-	for (uint j = 0u; j < s_nf; j++) if (box_hits(s_feats[j], lo, hi)) cell_mask[j >> 5] |= 1u << (j & 31u);
-	return (cell_mask[0] | cell_mask[1]) != 0u;
-}
-
-uint gen_feature_lod(ivec3 b) { return feature_at(b, 0u); }

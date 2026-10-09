@@ -23,7 +23,7 @@ void main() {
 	uint w;
 	bool fluid;
 	bool hit = trace(ro, rd, 0.0, B.dir.w, 4096, log2(cam.lens.z * float(TEX_SIZE)), t, axis, w, fluid);
-	bool model = hit && hit_level == 0 && w >= F_MODEL << PAL_FLAG_SHIFT;
+	bool model = hit && w >= F_MODEL << PAL_FLAG_SHIFT;
 	vec3 n = model ? hit_n : vec3(0.0);
 	if (!model) n[axis] = -sign(rd[axis]);
 	B.t = vec4(t);

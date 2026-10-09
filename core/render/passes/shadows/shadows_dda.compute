@@ -25,16 +25,14 @@ const int Q = 1;
 #else
 const int Q = 2;
 #endif
-const float LEVEL_HOLD = 4.0; // two cells of the next coarser level
 const int MAX_STEPS = 256;
 
 // Lit share of a hit at t (blocks) along the ray: the fade band before the shadow distance.
 float fade(float t) { return P.shadow_fade > 0.0 ? smoothstep(P.shadow_distance - P.shadow_fade, P.shadow_distance, t * BS) : 0.0; }
 
-// Level of detail by distance from the camera (origin_t), the bias in cells of the hit's level; a hit trace() returns blocks the sun, SEE_THROUGH: glass, water and fog tint it, SEE_WATER (Water): water.
+// Texture levels by distance from the camera (origin_t); a hit trace() returns blocks the sun, SEE_THROUGH: glass, water and fog tint it, SEE_WATER (Water): water.
 vec3 sun_ray(vec3 o, float from_t) {
 	origin_t = from_t;
-	level_hold = LEVEL_HOLD;
 	cutout_pass = 2;
 	float t;
 	int axis;
@@ -48,7 +46,7 @@ vec3 sun_ray(vec3 o, float from_t) {
 #endif
 }
 
-vec3 sun_vis(vec4 p, uint hit) { return sun_ray(p.xyz + hit_normal(hit_face(hit)) * (P.shadow_bias * float(1u << ((hit >> HIT_LOD_SHIFT) & HIT_LOD_MASK))), p.w); }
+vec3 sun_vis(vec4 p, uint hit) { return sun_ray(p.xyz + hit_normal(hit_face(hit)) * P.shadow_bias, p.w); }
 
 void main() {
 	ivec2 base = ivec2(gl_GlobalInvocationID.xy) * Q, size = imageSize(sunvis_out);

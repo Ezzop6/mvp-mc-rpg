@@ -62,7 +62,6 @@ const float GI_MAX_SAMPLES = 4096.0;
 const float GI_CONFIDENT = 4.0;  // samples at which a cell counts half
 const uint GI_EVICT_FRAMES = 240u;
 const uint GI_RESTART = 0x80000000u;
-const float LEVEL_HOLD = 4.0;
 const int MAX_STEPS = 128;
 
 uint hash1(uint h, uint v) { h = (h ^ v) * 0x9E3779B1u; return h ^ (h >> 16); }
@@ -104,8 +103,8 @@ uvec2 pack_irr(vec4 v) { return uvec2(packHalf2x16(v.rg), packHalf2x16(v.ba)); }
 
 ivec3 anchor_block() { return cam.anchor.xyz * CHUNK; }
 
-// Continuous cell level of a hit at camera distance t (blocks): integer part = level, fraction = blend towards the next one; never finer than the hit's level of detail.
-float level_of(float t, uint hit) { return max(log2(max(t * cam.lens.x * P.gi_cell_px, 1e-6)), float(hit >> HIT_LOD_SHIFT & HIT_LOD_MASK)); }
+// Continuous cell level of a hit at camera distance t (blocks): integer part = level, fraction = blend towards the next one.
+float level_of(float t, uint hit) { return max(log2(max(t * cam.lens.x * P.gi_cell_px, 1e-6)), 0.0); }
 
 // World cell of level L holding the face at anchor-relative p: the one with the block in front of it.
 ivec3 cell_of(vec3 p, vec3 n, int L) {
@@ -113,11 +112,11 @@ ivec3 cell_of(vec3 p, vec3 n, int L) {
 	return (a >> L) + ivec3(floor((p + n * 0.5 + vec3(a & ((1 << L) - 1))) / float(1 << L)));
 }
 
-// What the L0 chunk of world block b holds (Raster's content key): its directory entry and record stamp, 1 = not in memory or outside the ring.
+// What the chunk of world block b holds (Raster's content key): its directory entry and record stamp, 1 = not in memory or outside the ring.
 uint content_key(ivec3 b) {
-	ivec3 wc = ivec3(fdiv(b.x, CHUNK), fdiv(b.y, CHUNK), fdiv(b.z, CHUNK)), r = wc - W.lv[0].min.xyz, d = W.lv[0].size.xyz;
+	ivec3 wc = ivec3(fdiv(b.x, CHUNK), fdiv(b.y, CHUNK), fdiv(b.z, CHUNK)), r = wc - W.ring.min.xyz, d = W.ring.size.xyz;
 	if (any(lessThan(r, ivec3(0))) || any(greaterThanEqual(r, d))) return 1u;
-	uvec2 e = dir[W.lv[0].base.x + uint(pmod(wc.x, d.x) + d.x * (pmod(wc.y, d.y) + d.y * pmod(wc.z, d.z)))];
+	uvec2 e = dir[chunk_slot(wc)];
 	if (e.x == NONE) return 1u;
 	uint stamp = (e.x & UNI) == 0u ? records[e.x * CHUNK_REC_WORDS + CHUNK_STAMP_WORD] : 0u;
 	return max(hash1(hash1(hash1(0x68E31DA4u, e.x), e.y), stamp), 2u);
@@ -147,7 +146,6 @@ vec3 sky(vec3 d) {
 // SEE_THROUGH: see_trans = what glass, fog and liquid left of it.
 bool ray(vec3 o, vec3 d, float from_t, float tmax, out float t, out int axis, out uint w) {
 	origin_t = from_t;
-	level_hold = LEVEL_HOLD;
 	cutout_pass = 2;
 	bool fluid;
 #if defined(SEE_THROUGH) || defined(SEE_WATER)
@@ -176,21 +174,20 @@ vec3 bounce(vec3 p, vec3 n, float bias, float t0, vec2 u) {
 	uint w;
 	if (!ray(o, d, t0, P.gi_range / BS, t, axis, w)) return sky(d) * passed();
 	vec3 through = passed();
-	bool model = hit_level == 0 && w >= F_MODEL << PAL_FLAG_SHIFT, colour = hit_level > 0 && w >= LOD_COLOR;
+	bool model = w >= F_MODEL << PAL_FLAG_SHIFT;
 	vec3 hn = model ? hit_n : vec3(0.0);
 	if (!model) hn[axis] = -sign(d[axis]);
 	uint id = w >= PART ? B_OBJECT : w & PAL_ID_MASK;
-	int hl = hit_level;
 	vec3 hp = o + d * t;
-	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : colour ? lod_color(w) : albedo_at(id, level_pos(o) + d * (t / lv_scale), vec3(anchor_block()) + hp, axis, hn, float(TEX_MIPS - 1));
+	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : albedo_at(id, o + d * t, vec3(anchor_block()) + hp, axis, hn, float(TEX_MIPS - 1));
 	vec3 me = model ? material_emission(hit_mat) : vec3(0.0);
-	float emit = model ? min(max(me.r, max(me.g, me.b)), 1.0) : colour ? 0.0 : face_emission(face_word(id, axis, hn));
+	float emit = model ? min(max(me.r, max(me.g, me.b)), 1.0) : face_emission(face_word(id, axis, hn));
 	vec3 lamp = vec3(0.0);
 #ifdef LAMP
 	if (w < PART && types[id].light_color.w > 0.0) emit = 0.0;
-	if (hl == 0) lamp = lamp_at(hp, hn);
+	lamp = lamp_at(hp, hn);
 #endif
-	float ndl = dot(hn, cam.sun_dir.xyz), hb = 0.01 * float(1 << hl);
+	float ndl = dot(hn, cam.sun_dir.xyz), hb = 0.01;
 	vec3 sun = vec3(0.0);
 	if (ndl > 0.0 && max(cam.sun_col.r, max(cam.sun_col.g, cam.sun_col.b)) > 0.0) {
 		float ts;
@@ -290,7 +287,7 @@ void sample_block(uint i) {
 	float t = imageLoad(depth_in, px).r;
 	vec3 p = surface(px, size, hit, t), n = hit_normal(face);
 	uint s = pcg(uint(px.x) * 9781u + uint(px.y) * 6271u + cam.frame.x * 26699u), s2 = pcg(s);
-	vec3 rad = bounce(p, n, 0.02 * float(1u << (hit >> HIT_LOD_SHIFT & HIT_LOD_MASK)), t, vec2(float(s >> 8), float(s2 >> 8)) / 16777216.0);
+	vec3 rad = bounce(p, n, 0.02, t, vec2(float(s >> 8), float(s2 >> 8)) / 16777216.0);
 	uvec3 q = uvec3(clamp(rad, 0.0, P.gi_clamp) * GI_FIXED + 0.5);
 	int L = int(level_of(t, hit));
 	add_sample(cell_of(p, n, L), L, face, q);

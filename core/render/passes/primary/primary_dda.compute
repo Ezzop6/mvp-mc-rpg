@@ -25,10 +25,6 @@ layout(set = 0, binding = 12, rgba32f) restrict writeonly uniform image2D hitpos
 layout(set = 0, binding = 11, rgba16f) restrict writeonly uniform image2D liquid_out;   // Liquid: transmittance of the liquid path, a = first surface (> 0 from above, < 0 from below)
 layout(set = 0, binding = 12, r32ui) restrict writeonly uniform uimage2D liquid_id_out; // Liquid: variant of the first liquid surface
 #endif
-layout(set = 0, binding = 8, std430) restrict buffer LodStats { uint lod_stats[4]; }; // Dda.LodStats: pixels with a fallback hit, of them nearer than NearRadius, hits at L >= 1, sky through a missing coarsest chunk
-shared uint s_lod[4];
-// Coarse leaves are solid cubes lit from the top, L0 crowns show holes and side faces: per level the albedo factor that matches their mean luminance to the finer level (docs/v2-mereni.md, lod_vs_finer.py).
-const float LOD_CUTOUT_SHADE[4] = float[4](1.0, 1.0, 0.937, 0.877);
 #ifdef DEBUG_VIEW
 layout(set = 0, binding = 6, std430) restrict buffer Stats { uint stats[]; }; // Dda.DebugStats: pixels, DDA steps, model march steps, model cells entered, DDA steps at chunk / group / cell level, 32 x the slowest DDA of each warp, the slowest pixel (DDA + march steps << 18 | x / 8 << 9 | y / 8), pixels over 256 and 1024 steps, backstop restarts, pixels out of steps
 shared uint s_stats[10];
@@ -36,7 +32,7 @@ shared uint s_stats[10];
 
 const int MAX_STEPS = 4096;
 vec2 footprint = vec2(-99.0, 0.0); // Footprint: texture level by distance (lod + log2 t), |cos| of the hit face to the ray
-float depth_t = -1.0; // Depth: t in blocks, raw (r, g = t * 2 as 16 bits, b = 1 on a hit) for tests/tools/lod_align.py
+float depth_t = -1.0; // Depth: t in blocks, raw (r, g = t * 2 as 16 bits, b = 1 on a hit)
 
 // Debug views but Albedo replace the albedo by a heat map (v1 colours: blue 0, green half, red full), Footprint by r = texture level (lod + log2 t, (floor + 9) / 16), g = its fraction, b = |cos| of the face to the ray (black sky).
 void store_albedo(ivec2 px, vec4 a, bool model) {
@@ -47,10 +43,6 @@ void store_albedo(ivec2 px, vec4 a, bool model) {
 	float h = float(trace_cost.x + trace_cost.y) / 128.0;
 #elif defined(VIEW_MODEL_LEVEL)
 	float h = model ? float(hit_lvl) / 4.0 : -1.0;
-#elif defined(VIEW_LOD)
-	float h = -2.0;
-	const vec3 lod_rgb[4] = vec3[](vec3(0.1, 0.8, 0.2), vec3(0.9, 0.85, 0.1), vec3(0.95, 0.45, 0.05), vec3(0.85, 0.1, 0.1));
-	a = albedo_encode(footprint.x < -90.0 ? vec3(0.0) : lod_rgb[hit_level & 3] * (hit_fallback ? 0.4 : 1.0), 0.0);
 #elif defined(VIEW_DEPTH)
 	float h = -2.0;
 	uint q = uint(clamp(depth_t * 2.0, 0.0, 65535.0));
@@ -107,15 +99,6 @@ void main() {
 #else
 	float tm = t;
 #endif
-#if LOD_ON
-	if (gl_LocalInvocationIndex < 4u) s_lod[gl_LocalInvocationIndex] = 0u;
-	barrier();
-	if (hit && hit_fallback) { atomicAdd(s_lod[0], 1u); if (t < W.near.w * float(CHUNK)) atomicAdd(s_lod[1], 1u); }
-	if (hit && hit_level > 0) atomicAdd(s_lod[2], 1u);
-	if (inside && !hit && hit_hole) atomicAdd(s_lod[3], 1u);
-	barrier();
-	if (gl_LocalInvocationIndex < 4u && s_lod[gl_LocalInvocationIndex] != 0u) atomicAdd(lod_stats[gl_LocalInvocationIndex], s_lod[gl_LocalInvocationIndex]);
-#endif
 #ifdef DEBUG_VIEW
 	if (gl_LocalInvocationIndex < 10u) s_stats[gl_LocalInvocationIndex] = 0u;
 	barrier();
@@ -164,18 +147,16 @@ void main() {
 		store_albedo(px, vec4(0.0), false);
 		return;
 	}
-	bool model = hit_level == 0 && w >= F_MODEL << PAL_FLAG_SHIFT, colour = hit_level > 0 && w >= LOD_COLOR;
-	float tl = t / lv_scale; // level cells: textures span the coarse cell
-	vec3 n = model ? hit_n : vec3(0.0), p = level_pos(ro) + rd * tl, world_p = vec3(cam.anchor.xyz * CHUNK) + ro + rd * t;
+	bool model = w >= F_MODEL << PAL_FLAG_SHIFT;
+	vec3 n = model ? hit_n : vec3(0.0), p = ro + rd * t, world_p = vec3(cam.anchor.xyz * CHUNK) + ro + rd * t;
 	if (!model) n[axis] = -sign(rd[axis]);
 	uint id = w >= PART ? B_OBJECT : w & PAL_ID_MASK;
-	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : colour ? lod_color(w) : albedo_at(id, p, world_p, axis, n, clamp(lod + log2(max(tm / lv_scale, 1e-6)) - 0.5, 0.0, float(TEX_MIPS - 1)));
-	if (hit_level > 0 && !colour && w < F_MODEL << PAL_FLAG_SHIFT && (pal_flags(w) & F_CUTOUT) != 0u) albedo *= LOD_CUTOUT_SHADE[hit_level];
+	vec3 albedo = model ? material_albedo(hit_mat) * hit_tint : albedo_at(id, p, world_p, axis, n, clamp(lod + log2(max(tm, 1e-6)) - 0.5, 0.0, float(TEX_MIPS - 1)));
 	vec3 me = model ? material_emission(hit_mat) / max(material_albedo(hit_mat), vec3(1e-3)) : vec3(0.0);
-	float emission = model ? min(max(me.r, max(me.g, me.b)), 1.0) : colour ? 0.0 : face_emission(face_word(id, axis, n));
+	float emission = model ? min(max(me.r, max(me.g, me.b)), 1.0) : face_emission(face_word(id, axis, n));
 	imageStore(depth_out, px, vec4(tm));
-	footprint = vec2(lod + log2(max(tl, 1e-6)), abs(dot(n, rd)));
+	footprint = vec2(lod + log2(max(t, 1e-6)), abs(dot(n, rd)));
 	depth_t = t;
-	imageStore(hit_out, px, uvec4(uint(face_code(axis, n[axis] > 0.0)) | id << HIT_VARIANT_SHIFT | uint(hit_level) << HIT_LOD_SHIFT | (model ? HIT_MODEL : 0u) | (fluid ? HIT_FLUID : 0u) | (hit_fallback ? HIT_FALLBACK : 0u) | (seen ? HIT_TRANSPARENT : 0u) | (bent ? HIT_BENT : 0u)));
+	imageStore(hit_out, px, uvec4(uint(face_code(axis, n[axis] > 0.0)) | id << HIT_VARIANT_SHIFT | (model ? HIT_MODEL : 0u) | (fluid ? HIT_FLUID : 0u) | (seen ? HIT_TRANSPARENT : 0u) | (bent ? HIT_BENT : 0u)));
 	store_albedo(px, albedo_encode(albedo, emission), model);
 }

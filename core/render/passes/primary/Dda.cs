@@ -14,10 +14,7 @@ public class Dda : PrimaryPass
 	const int StatWords = 13;
 	readonly System.Collections.Generic.Dictionary<(bool, bool, bool), Kernel> kernels = new();
 	Kernel kernel;
-	Rid set, stats, lodStats;
-	// Last frame's pixels (docs/v2.md §5.17): with a fallback hit, of them nearer than NearRadius, hits at L >= 1, sky through a missing chunk of the coarsest level; and the frame's pixel count.
-	public static volatile int FallbackPx = -1, FallbackNearPx = -1, CoarsePx, HolePx, Pixels = 1;
-	Callable lodRead;
+	Rid set, stats;
 	bool debug;
 	volatile string debugStats;
 
@@ -29,12 +26,6 @@ public class Dda : PrimaryPass
 		base.Init(gpu);
 		debug = Renderer.View != DebugView.None;
 		if (debug) stats = gpu.Buffer(gpu.Persistent, StatWords * 4);
-		lodStats = gpu.Buffer(gpu.Persistent, 16);
-		lodRead = Callable.From<byte[]>(d =>
-		{
-			(FallbackPx, FallbackNearPx, CoarsePx, HolePx) = (BitConverter.ToInt32(d, 0), BitConverter.ToInt32(d, 4), BitConverter.ToInt32(d, 8), BitConverter.ToInt32(d, 12));
-			Renderer.World.ViewHoles = (float)HolePx / Pixels;
-		});
 	}
 
 	// With Transparency (its Trans target exists) the ray sees through glass and fog and fills Trans and Inscatter; with Water (its Water target) it refracts at water surfaces and goes on under water; with Liquid (Liquid target) it goes straight through translucent liquids.
@@ -44,7 +35,7 @@ public class Dda : PrimaryPass
 		bool see = t.Has(TargetId.Trans), water = t.Has(TargetId.Water), liquid = t.Has(TargetId.Liquid);
 		if (!kernels.TryGetValue((see, water, liquid), out kernel))
 			kernels[(see, water, liquid)] = kernel = Gpu.Compile("res://core/render/passes/primary/primary_dda.compute", 8, 8, [.. Defines, .. see ? new[] { "SEE_THROUGH", "SEE_SCATTER" } : [], .. water ? new[] { "WATER" } : [], .. liquid ? new[] { "LIQUID" } : []]);
-		(int, Rid)[] b = [(1, Renderer.CameraBuffer), (2, t[TargetId.Depth]), (3, t[TargetId.HitId]), (4, t[TargetId.Albedo]), (5, t[TargetId.Start]), (8, lodStats), .. Bindings];
+		(int, Rid)[] b = [(1, Renderer.CameraBuffer), (2, t[TargetId.Depth]), (3, t[TargetId.HitId]), (4, t[TargetId.Albedo]), (5, t[TargetId.Start]), .. Bindings];
 		if (see) b = [.. b, (9, t[TargetId.Trans]), (10, t[TargetId.Inscatter])];
 		if (water) b = [.. b, (11, t[TargetId.Water]), (12, t[TargetId.HitPos])];
 		if (liquid) b = [.. b, (11, t[TargetId.Liquid]), (12, t[TargetId.LiquidId])];
@@ -54,11 +45,7 @@ public class Dda : PrimaryPass
 	public override void Record(Frame f)
 	{
 		if (debug) Gpu.Rd.BufferClear(stats, 0, StatWords * 4);
-		bool lod = Renderer.World.LodOn; // without LOD the shader leaves the counters alone (LOD_ON 0)
-		if (lod) Gpu.Rd.BufferClear(lodStats, 0, 16);
 		Dispatch(kernel, set, f.Size);
-		Pixels = f.Size.X * f.Size.Y;
-		if (lod) Gpu.Rd.BufferGetDataAsync(lodStats, lodRead);
 		if (debug) Gpu.Rd.BufferGetDataAsync(stats, Callable.From<byte[]>(OnStats));
 	}
 

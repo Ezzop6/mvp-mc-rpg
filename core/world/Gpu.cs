@@ -42,11 +42,11 @@ public sealed class Gpu
 	string[] includeDirs;
 	string generatorModule, generatorPrelude; // generatorPrelude: only where GENERATOR_MODULE is included, so a generator switch leaves the other shaders' sources alone
 
-	public void Init(BlockVariants variants, WorldGenerator generator, bool lod)
+	public void Init(BlockVariants variants, WorldGenerator generator)
 	{
 		generatorModule = generator.ShaderModule;
 		includeDirs = new[] { "res://core/render", "res://core/world", generator.ShaderModule.GetBaseDir() };
-		Prelude = BuildPrelude(variants, generator, lod);
+		Prelude = BuildPrelude(variants, generator);
 		generatorPrelude = GeneratorPrelude(variants, generator);
 	}
 
@@ -59,7 +59,7 @@ public sealed class Gpu
 		worldShaders.Clear();
 	}
 
-	static string BuildPrelude(BlockVariants variants, WorldGenerator generator, bool lod)
+	static string BuildPrelude(BlockVariants variants, WorldGenerator generator)
 	{
 		var sb = new StringBuilder("#version 450\n#extension GL_GOOGLE_cpp_style_line_directive : enable\n#extension GL_EXT_control_flow_attributes : enable\n");
 		sb.Append(CultureInfo.InvariantCulture, $"const float BS = {Voxel.BlockSize};\nconst int PERM_SIZE = {Perlin.TableSize};\n");
@@ -78,7 +78,7 @@ public sealed class Gpu
 		sb.Append($"const uint YAW_ROT[{Rotation24.Yaw.Length}] = uint[]({string.Join(", ", Rotation24.Yaw.Select(r => $"{r.Value}u"))});\n");
 		sb.Append($"const uint MODEL_REC_WORDS = {ModelStore.ModelRecWords}u, MATERIAL_WORDS = {ModelStore.MaterialWords}u, POOL_STRIDE = {ModelStore.PoolStride}u;\nconst int MICRO = {ModelLibrary.Cell};\n");
 		sb.Append($"const uint BRICK_REFS = {ModelPool.BrickRefs}u, TAIL_VALUES = {ModelPool.TailValues}u, MIP1_REF = {ModelPool.Mip1Ref}u, MIP2_REF = {ModelPool.Mip2Ref}u, BRICK_VOXELS = {ModelPool.BrickVoxels}u, EMPTY_REF = {ModelPool.Empty}u;\n");
-		sb.Append($"const uint WORLD_SET = {WorldSet}u;\nconst int LOD_LEVELS = {Lod.MaxLevels};\n#define LOD_ON {(lod ? 1 : 0)}\n");
+		sb.Append($"const uint WORLD_SET = {WorldSet}u;\n");
 		void Enum<T>(string prefix, bool flagsOnly) where T : struct, System.Enum
 		{
 			foreach (var v in System.Enum.GetValues<T>())

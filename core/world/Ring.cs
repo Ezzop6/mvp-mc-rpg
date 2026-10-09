@@ -92,10 +92,11 @@ public sealed class RingWindow
 		readonly int y0, y1, z1;
 		int y, z;
 
-		public Shift(RingWindow from, RingWindow to)
+		// Rows [rowLo, rowHi) only: outside them the caller has nothing resident.
+		public Shift(RingWindow from, RingWindow to, int rowLo = int.MinValue, int rowHi = int.MaxValue)
 		{
 			(this.from, this.to) = (from, to);
-			(y0, y1) = (Math.Min(from.Center.Y - from.RadiusY, to.Center.Y - to.RadiusY), Math.Max(from.Center.Y + from.RadiusY, to.Center.Y + to.RadiusY));
+			(y0, y1) = (Math.Max(rowLo, Math.Min(from.Center.Y - from.RadiusY, to.Center.Y - to.RadiusY)), Math.Min(rowHi - 1, Math.Max(from.Center.Y + from.RadiusY, to.Center.Y + to.RadiusY)));
 			(z, z1) = (Math.Min(from.Center.Z - from.Radius, to.Center.Z - to.Radius), Math.Max(from.Center.Z + from.Radius, to.Center.Z + to.Radius));
 			y = y0;
 		}
@@ -143,7 +144,8 @@ public sealed class RingWindow
 
 public enum SlotState : byte { None, Queued, Sent, Failed }
 
-// CPU streaming state (docs/v2.md §4.1, §5.17): the ring, a state byte per slot, the queue (chunks entering the mid sphere first, then FIFO buckets of whole chunks of distance, past the mid sphere in three tiers: seen or wanted by rays, in the view cone, the rest), which column each column slot holds; Godot-free.
+// CPU streaming state (docs/v2.md §4.1): the ring, a state byte per slot, the queue (chunks entering the mid sphere first, then FIFO buckets by whole chunks of distance and, past the mid sphere, by direction: the view cone, the side half, behind - a spiral from where the camera looks; re-sorted when the view turns), which column each column slot holds; Godot-free.
+// Wanted: in the ring, within the generator's rows (or edited) - the same set whatever the view.
 public sealed class ChunkStream
 {
 	public RingWindow Ring => ring;
@@ -164,23 +166,31 @@ public sealed class ChunkStream
 	readonly byte[] fails; // per slot, since the chunk entered: Fail backoff
 	readonly PriorityQueue<ChunkPos, int> retry = new(); // by frame due
 	readonly long[] columnOf;
-	readonly Queue<ChunkPos>[] buckets; // Tiers x distance
+	readonly Queue<ChunkPos>[] buckets; // distance x Tiers
 	readonly ushort[] seenAt; // per slot: the visibility period rays last touched it (MarkSeen)
 	ushort period = 1000;
-	public const int Tiers = 3, SeenPeriods = 4; // seen within this many periods counts
+	public const int Tiers = 3, SeenPeriods = 15; // Tiers: view cone, side, behind; seen within SeenPeriods periods counts
 	readonly Queue<ChunkPos> mid = new();
 	readonly Queue<ChunkPos> incoming = new();
 	readonly List<ChunkPos> staged = new(), midEntered = new(), midLeft = new();
 	readonly Queue<RingWindow.Shift> shifts = new();
+	readonly List<ChunkPos> left = new();
 	RingWindow.Shift shift; // the crossing Advance is in
 	bool inShift;
 	int lowest, sweep, sweepLeft; // sweep: the bucket Compact walks, sweepLeft its entries not visited yet
-	Vector3 forward;
+	Vector3 forward, swept;
 	float viewCos = -1;
+	readonly int y0, y1; // chunk rows the generator can put anything in; outside them only edited chunks are generated (the rest is uniform and never reached by rays)
+	int sy0, sy1; // rows crossings walk: the generator's and every edited chunk's woken so far
+	readonly Func<ChunkPos, bool> edited;
+	bool Want(ChunkPos c) => ring.Wanted(c) && (c.Y >= y0 && c.Y < y1 || edited?.Invoke(c) == true);
+	int retier, retierLeft = -1; // the bucket Retier walks, its entries not visited yet
+	public const float RetierCos = 0.996f; // a view turn over ~5 degrees re-sorts the queue past the mid sphere
 
-	public ChunkStream(RingWindow ring, int midRadius, Vector3 forward = default, float viewCos = -1)
+	public ChunkStream(RingWindow ring, int midRadius, Vector3 forward = default, float viewCos = -1, int y0 = int.MinValue, int y1 = int.MaxValue, Func<ChunkPos, bool> edited = null)
 	{
 		this.ring = ring;
+		(this.y0, this.y1, this.edited, sy0, sy1) = (y0, y1, edited, y0, y1);
 		Look(forward, viewCos);
 		Mid = new RingWindow(ring.Center, Math.Clamp(midRadius, 1, ring.RadiusY), 1);
 		state = new SlotState[ring.Slots];
@@ -189,15 +199,34 @@ public sealed class ChunkStream
 		columnOf = new long[ring.Columns];
 		Array.Fill(columnOf, long.MinValue);
 		buckets = new Queue<ChunkPos>[Tiers * (Math.Max(ring.Radius, ring.RadiusY) + 1)];
+		retier = buckets.Length;
+		swept = forward;
 		seenAt = new ushort[ring.Slots];
 		parked = new bool[ring.Slots];
 		for (int i = 0; i < buckets.Length; i++) buckets[i] = new();
-		ring.EachWanted(c => Enqueue(c, ring.SlotIndex(c)));
+		Revisit();
 	}
+
+	// Every wanted chunk is queued (a new stream): the ring's columns over the generator's rows.
+	void Revisit()
+	{
+		int lo = Math.Max(y0, ring.Center.Y - ring.RadiusY), hi = Math.Min(y1 - 1, ring.Center.Y + ring.RadiusY);
+		for (int z = ring.Center.Z - ring.Radius; z <= ring.Center.Z + ring.Radius; z++)
+			for (int x = ring.Center.X - ring.Radius; x <= ring.Center.X + ring.Radius; x++)
+				for (int y = lo; y <= hi; y++)
+				{
+					var c = new ChunkPos(x, y, z);
+					int slot = ring.SlotIndex(c);
+					if (state[slot] == SlotState.None && Want(c)) Enqueue(c, slot);
+				}
+	}
+
+	// Nothing of this ring waits: queued, entering or in a crossing.
+	public bool Done => Pending == 0 && Incoming == 0 && Shifts == 0 && mid.Count == 0;
 
 	public SlotState State(ChunkPos c) => ring.Contains(c) ? state[ring.SlotIndex(c)] : SlotState.None;
 	public int Age(ChunkPos c) => Now - queuedAt[ring.SlotIndex(c)]; // frames since it was last queued
-	public int Entries(int lo, int hi) { int n = 0; for (int b = lo; b < Math.Min(hi, buckets.Length); b++) n += buckets[b].Count; return n; } // bucket entries of distances [lo, hi) (the view cone; past Ring radius those outside it), stale ones included
+	public int Entries(int lo, int hi) { int n = 0; for (int b = lo * Tiers; b < Math.Min(hi * Tiers, buckets.Length); b++) n += buckets[b].Count; return n; } // bucket entries of distances [lo, hi), stale ones included
 
 	void Enqueue(ChunkPos c, int slot)
 	{
@@ -214,15 +243,38 @@ public sealed class ChunkStream
 		if (b < lowest) lowest = b;
 	}
 
-	// View cone (unit forward, cosine of the half angle; -1 = everything in view): past the mid sphere, chunks in it go to the second tier of the buckets, the rest to the third (seen ones to the first). Entries keep their bucket until popped or compacted.
-	public void Look(Vector3 forward, float viewCos) => (this.forward, this.viewCos) = (forward, viewCos);
+	// View cone (unit forward, cosine of the half angle; -1 = everything in view): past the mid sphere it orders each distance (cone, side, behind). Entries keep their bucket until popped, compacted or re-sorted.
+	public void Look(Vector3 forward, float viewCos)
+	{
+		(this.forward, this.viewCos) = (forward, viewCos);
+		if (Vector3.Dot(forward, swept) < RetierCos) (swept, retier, retierLeft) = (forward, 0, -1);
+	}
+
+	// After a turn: up to max queue entries past the mid sphere, nearest first, go to the bucket of the view now.
+	public void Retier(int max)
+	{
+		if (retier < (Mid.Radius + 1) * Tiers) retier = (Mid.Radius + 1) * Tiers;
+		while (max > 0 && retier < buckets.Length)
+		{
+			var q = buckets[retier];
+			if (retierLeft < 0) retierLeft = q.Count;
+			if (retierLeft == 0) { retier++; retierLeft = -1; continue; }
+			retierLeft--;
+			max--;
+			var c = q.Dequeue();
+			Count--;
+			if (state[ring.SlotIndex(c)] == SlotState.Queued && Want(c)) Put(c);
+		}
+	}
 
 	int Bucket(ChunkPos c)
 	{
 		long dx = c.X - ring.Center.X, dy = c.Y - ring.Center.Y, dz = c.Z - ring.Center.Z;
 		double d = Math.Sqrt(dx * dx + dy * dy + dz * dz);
-		int third = buckets.Length / Tiers, b = Math.Min(third - 1, (int)d);
-		return b <= Mid.Radius || Seen(ring.SlotIndex(c)) ? b : dx * forward.X + dy * forward.Y + dz * forward.Z >= viewCos * d ? third + b : 2 * third + b;
+		int b = Math.Min(buckets.Length / Tiers - 1, (int)d);
+		if (b <= Mid.Radius) return b * Tiers;
+		double dot = dx * forward.X + dy * forward.Y + dz * forward.Z;
+		return b * Tiers + (dot >= viewCos * d ? 0 : dot >= 0 ? 1 : 2);
 	}
 
 	// Stale bucket entries over this many per queued slot start Compact.
@@ -238,16 +290,16 @@ public sealed class ChunkStream
 			sweepLeft--;
 			var c = buckets[sweep].Dequeue();
 			Count--;
-			if (state[ring.SlotIndex(c)] == SlotState.Queued && ring.Wanted(c)) Put(c);
+			if (state[ring.SlotIndex(c)] == SlotState.Queued && Want(c)) Put(c);
 		}
 	}
 
-	// The camera is in another chunk: the crossing's diff runs within maxRows rows now, the rest in Advance. Chunks that left go to released (their slots become None), the ones that entered wait in Incoming for Drain once the crossing's releases are all done (a slot is never queued while its old chunk holds it); those entering the mid sphere are queued now and go first (their slots were outside the old ring; the previous crossing is finished first, so one is in progress at most).
+	// The camera is in another chunk: the crossing's diff runs within maxRows rows now, the rest in Advance. Chunks that left free their slots (the sent ones go to released), the ones that entered wait in Incoming for Drain once the crossing's releases are all done (a slot is never queued while its old chunk holds it); those entering the mid sphere are queued now and go first (their slots were outside the old ring; the previous crossing is finished first, so one is in progress at most).
 	public void Move(ChunkPos center, List<ChunkPos> released, int maxRows = int.MaxValue)
 	{
 		Advance(released, int.MaxValue);
 		var next = ring.MovedTo(center);
-		shifts.Enqueue(new RingWindow.Shift(ring, next));
+		shifts.Enqueue(new RingWindow.Shift(ring, next, sy0, sy1));
 		ring = next;
 		var nextMid = Mid.MovedTo(center);
 		midEntered.Clear();
@@ -258,10 +310,20 @@ public sealed class ChunkStream
 		{
 			int slot = ring.SlotIndex(c);
 			if (state[slot] == SlotState.Failed) { Failed--; (state[slot], parked[slot]) = (SlotState.None, false); }
-			if (state[slot] == SlotState.None) Enqueue(c, slot);
+			if (state[slot] == SlotState.None && Want(c)) Enqueue(c, slot);
 			if (state[slot] == SlotState.Queued) mid.Enqueue(c);
 		}
 		Advance(released, maxRows);
+	}
+
+	// The chunk is not wanted any more: its slot becomes None, on the GPU it is released when it was sent.
+	void Free(ChunkPos c, List<ChunkPos> released)
+	{
+		int slot = ring.SlotIndex(c);
+		if (state[slot] == SlotState.Sent) released.Add(c);
+		if (state[slot] == SlotState.Queued) Pending--;
+		if (state[slot] == SlotState.Failed) Failed--;
+		(state[slot], fails[slot], parked[slot], seenAt[slot]) = (SlotState.None, 0, false, (ushort)(period - SeenPeriods - 1));
 	}
 
 	// Another wanted radius around the same centre (memory pressure): the shell that left goes to released like a crossing's, one that entered to Incoming.
@@ -270,7 +332,7 @@ public sealed class ChunkStream
 		Advance(released, int.MaxValue);
 		var next = ring.Resized(radius);
 		if (next == ring) return;
-		shifts.Enqueue(new RingWindow.Shift(ring, next));
+		shifts.Enqueue(new RingWindow.Shift(ring, next, sy0, sy1));
 		ring = next;
 		Advance(released, maxRows);
 	}
@@ -281,15 +343,9 @@ public sealed class ChunkStream
 		while (maxRows > 0)
 		{
 			if (!inShift && !(inShift = shifts.TryDequeue(out shift))) return;
-			int first = released.Count;
-			bool done = shift.Rows(ref maxRows, released, staged);
-			for (int i = first; i < released.Count; i++)
-			{
-				int slot = ring.SlotIndex(released[i]);
-				if (state[slot] == SlotState.Queued) Pending--;
-				if (state[slot] == SlotState.Failed) Failed--;
-				(state[slot], fails[slot], parked[slot], seenAt[slot]) = (SlotState.None, 0, false, (ushort)(period - SeenPeriods - 1));
-			}
+			left.Clear();
+			bool done = shift.Rows(ref maxRows, left, staged);
+			foreach (var c in left) Free(c, released);
 			if (!done) return;
 			inShift = false;
 			foreach (var c in staged) incoming.Enqueue(c);
@@ -303,13 +359,13 @@ public sealed class ChunkStream
 		for (int n = 0; n < max && incoming.TryDequeue(out var c); n++)
 		{
 			int slot = ring.SlotIndex(c);
-			if (state[slot] == SlotState.None && ring.Wanted(c)) Enqueue(c, slot);
+			if (state[slot] == SlotState.None && Want(c)) Enqueue(c, slot);
 		}
 	}
 
 	bool Take(ChunkPos c, int slot)
 	{
-		if (state[slot] != SlotState.Queued || !ring.Wanted(c)) return false;
+		if (state[slot] != SlotState.Queued || !Want(c)) return false;
 		state[slot] = SlotState.Sent;
 		Pending--;
 		return true;
@@ -323,18 +379,18 @@ public sealed class ChunkStream
 
 	public bool TryPop(out ChunkPos c, ref int skips) => TryPop(out c, ref skips, int.MaxValue);
 
-	// Next chunk to generate, now Sent: mid sphere entries first, then the nearest bucket, oldest first; an entry whose distance grew moves to its bucket. Gives up after `skips` stale entries, or at a bucket farther than maxDistance (memory pressure).
+	// Next chunk to generate, now Sent: mid sphere entries first, then the nearest bucket, oldest first; an entry whose distance grew moves to its bucket. Gives up after `skips` stale entries, or at a bucket farther than maxDistance (memory pressure, the mid sphere first; < 0: nothing).
 	public bool TryPop(out ChunkPos c, ref int skips, int maxDistance)
 	{
-		while (mid.TryDequeue(out c)) if (Take(c, ring.SlotIndex(c))) return true;
+		while (maxDistance >= 0 && mid.TryDequeue(out c)) if (Take(c, ring.SlotIndex(c))) return true;
 		while (Count > 0 && skips > 0)
 		{
 			while (buckets[lowest].Count == 0) lowest++;
-			if (lowest % (buckets.Length / Tiers) > maxDistance) break;
+			if (lowest / Tiers > maxDistance) break;
 			c = buckets[lowest].Dequeue();
 			Count--;
 			int slot = ring.SlotIndex(c);
-			if (state[slot] != SlotState.Queued || !ring.Wanted(c)) { skips--; continue; }
+			if (state[slot] != SlotState.Queued || !Want(c)) { skips--; continue; }
 			if (Bucket(c) > lowest) { Put(c); skips--; continue; }
 			state[slot] = SlotState.Sent;
 			Pending--;
@@ -344,19 +400,9 @@ public sealed class ChunkStream
 		return false;
 	}
 
-	// Key of the next TryPop, comparable across rings of other levels (docs/v2.md §5.17): -1 for mid sphere entries, else the bucket's distance in own chunks (pixel footprint) times Tiers plus its tier (tier-major keys measured worse: lod-cruise-150 fallback 7.9 % against 5.7 %); int.MaxValue when nothing is queued within maxDistance. Stale entries count until popped.
-	public int NextKey(int maxDistance = int.MaxValue)
-	{
-		if (mid.Count > 0) return -1;
-		if (Count == 0) return int.MaxValue;
-		while (buckets[lowest].Count == 0) lowest++;
-		int third = buckets.Length / Tiers, b = lowest % third;
-		return b > maxDistance ? int.MaxValue : b * Tiers + lowest / third;
-	}
-
 	public bool Seen(int slot) => (ushort)(period - seenAt[slot]) <= SeenPeriods;
 
-	// A visibility readback (docs/v2.md §5.17): bit per slot of this ring, set where primary rays hit or wanted a chunk. A queued chunk moves to the first tier, a parked one (Evict) is queued again.
+	// A visibility readback: bit per slot of this ring, set where primary rays hit or wanted a chunk (Evict keeps those); a parked one (Evict) is queued again.
 	public void MarkSeen(ReadOnlySpan<uint> bits)
 	{
 		period++;
@@ -366,8 +412,7 @@ public sealed class ChunkStream
 				int slot = 32 * w + System.Numerics.BitOperations.TrailingZeroCount(m);
 				if (slot >= seenAt.Length) return;
 				seenAt[slot] = period;
-				if (state[slot] == SlotState.Queued) Put(ChunkAt(slot));
-				else if (state[slot] == SlotState.Failed && parked[slot]) { Failed--; parked[slot] = false; state[slot] = SlotState.None; Enqueue(ChunkAt(slot), slot); }
+				if (state[slot] == SlotState.Failed && parked[slot]) { Failed--; parked[slot] = false; state[slot] = SlotState.None; Enqueue(ChunkAt(slot), slot); }
 			}
 	}
 
@@ -391,7 +436,7 @@ public sealed class ChunkStream
 			if (state[evictCursor] != SlotState.Sent || Seen(evictCursor)) continue;
 			var c = ChunkAt(evictCursor);
 			long dx = c.X - ring.Center.X, dy = c.Y - ring.Center.Y, dz = c.Z - ring.Center.Z;
-			if (!ring.Wanted(c) || dx * dx + dy * dy + dz * dz <= (long)minDistance * minDistance) continue;
+			if (!Want(c) || dx * dx + dy * dy + dz * dz <= (long)minDistance * minDistance) continue;
 			released.Add(c);
 			(state[evictCursor], parked[evictCursor]) = (SlotState.Failed, true);
 			Failed++;
@@ -401,6 +446,14 @@ public sealed class ChunkStream
 		return n;
 	}
 
+	// A chunk that just became wanted (an edit outside the generator's rows) is queued.
+	public void Wake(ChunkPos c)
+	{
+		if (edited?.Invoke(c) == true) (sy0, sy1) = (Math.Min(sy0, c.Y), Math.Max(sy1, c.Y + 1));
+		int slot = ring.SlotIndex(c);
+		if (ring.Contains(c) && state[slot] == SlotState.None && Want(c)) Enqueue(c, slot);
+	}
+
 	// Sent now, out of queue order (the near sphere first); false unless it is wanted and queued.
 	public bool Claim(ChunkPos c) => Take(c, ring.SlotIndex(c));
 
@@ -408,7 +461,7 @@ public sealed class ChunkStream
 	public void Fail(ChunkPos c)
 	{
 		int slot = ring.SlotIndex(c);
-		if (state[slot] != SlotState.Sent || !ring.Wanted(c)) return;
+		if (state[slot] != SlotState.Sent || !Want(c)) return;
 		if (Mid.Wanted(c)) { Enqueue(c, slot); mid.Enqueue(c); return; }
 		state[slot] = SlotState.Failed;
 		Failed++;
@@ -423,7 +476,7 @@ public sealed class ChunkStream
 		{
 			retry.Dequeue();
 			int slot = ring.SlotIndex(c);
-			if (state[slot] != SlotState.Failed || !ring.Wanted(c)) continue;
+			if (state[slot] != SlotState.Failed || !Want(c)) continue;
 			Failed--;
 			parked[slot] = false;
 			state[slot] = SlotState.None;
@@ -435,7 +488,7 @@ public sealed class ChunkStream
 	public void Requeue(ChunkPos c)
 	{
 		int slot = ring.SlotIndex(c);
-		if (state[slot] != SlotState.Sent || !ring.Wanted(c)) return;
+		if (state[slot] != SlotState.Sent || !Want(c)) return;
 		Enqueue(c, slot);
 		if (Mid.Wanted(c)) mid.Enqueue(c);
 	}

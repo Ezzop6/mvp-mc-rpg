@@ -13,7 +13,7 @@ public enum GenStep : uint { Clear, Release, Heights, ColumnMinMax, Features, Cl
 // Job.chunk.w in gen.compute.
 public enum JobState : uint { Pending, Uniform, Mixed, Deferred, Failed }
 
-// Render thread: ring buffers, pools and the generation dispatch (docs/v2.md §4.2); every level of detail in the same buffers (§5.17).
+// Render thread: ring buffers, pools and the generation dispatch (docs/v2.md §4.2).
 public partial class World
 {
 	// ponytail: fixed pool shares of WorldBudgetMB (docs/v2.md §3.6), re-split from measured use when it matters.
@@ -23,34 +23,38 @@ public partial class World
 	public static readonly int LightRing = (LightReach + Layout.Chunk - 1) / Layout.Chunk, LightNeighbours = (2 * LightRing + 1) * (2 * LightRing + 1) * (2 * LightRing + 1); // chunks around a light's own that it reaches
 	public static readonly int LightTileChunks = Math.Max(8, 64 * 15625 / Coords.ChunkVolume); // Lights/cubemaps: a tile gathers lists from up to this many chunks (the volume of 64 chunks of 25^3), more goes per pixel
 	const int LightHeaderBytes = 32 + LightChanges * 16;
-	public static readonly int MaxColFeatures = Math.Max(64, (64 * Layout.Chunk * Layout.Chunk / 625 + 15) / 16 * 16); // per column, 64 for 25^2 blocks; ponytail: L0 overflow drops features (W.lod_stat.x, FeaturesDropped), raise if forests look thin
-	const int ColumnBlocks = Layout.Chunk * Layout.Chunk, SlotAlign = 2048; // SlotAlign: a level's slots start on a word of the occupancy mip
+	public static readonly int MaxColFeatures = Math.Max(64, (64 * Layout.Chunk * Layout.Chunk / 625 + 15) / 16 * 16); // per column, 64 for 25^2 blocks; ponytail: overflow drops features (W.stat.x, FeaturesDropped), raise if forests look thin
+	const int ColumnBlocks = Layout.Chunk * Layout.Chunk, SlotAlign = 2048; // SlotAlign: CLEAR covers whole words of the occupancy mip
 
 	public volatile uint[] PoolUsed = new uint[4], PoolCap = new uint[4], PoolFail = new uint[4], PoolHigh = new uint[4], PoolFree = new uint[4]; // by WorldPool, from the async counter readback: Used = taken and not given back, High = bump high water, Free = free stack height
 	public volatile float GenMs, UpkeepMs; // previous frame's generation on the GPU, CPU time of the last Upkeep
-	public volatile uint FeaturesDropped, GroupFeaturesDropped; // since the reset: L0 column features over MaxColFeatures, coarse group features over the module's cap (W.lod_stat)
+	long genSample; // GenMs bits | the Work of the step it measured << 32 (main thread: GPU ms per job)
+	int genWork; // render thread: Work of the step generated in the frame GenMs comes from
+	public volatile uint FeaturesDropped; // since the reset: column features over MaxColFeatures (W.stat)
 	public long PoolBytes(WorldPool p, bool capacity = false) => (long)(capacity ? PoolCap : PoolUsed)[(int)p] * Layout.PoolWords(p) * 4;
-	public long FixedBytes { get; private set; } // directory, occupancy and column rings of every level
+	public long FixedBytes { get; private set; } // directory, occupancy and column ring
 
 	[StructLayout(LayoutKind.Sequential)]
-	struct LevelGpu // world.glsli Level
+	struct RingGpu // world.glsli Ring
 	{
-		public Vector4I Min, Size, Off, Base;
+		public Vector4I Min, Size, Off;
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	struct WorldGpu // world.glsli W, followed by the permutation table
 	{
 		public Vector4 Near;
-		public Vector4I Probe, Lod;
-		public LevelGpu L0, L1, L2, L3;
+		public Vector4I Probe, Rows;
+		public RingGpu Ring;
 		public uint Used0, Used1, Used2, Used3, Cap0, Cap1, Cap2, Cap3, Fail0, Fail1, Fail2, Fail3;
-		public int Free0, Free1, Free2, Free3, TopY0, TopY1, TopY2, TopY3;
-		public uint Stat0, Stat1, Stat2, Stat3;
+		public int Free0, Free1, Free2, Free3, TopY;
+		public uint Stat0, Stat1, Stat2;
 	}
 
-	static readonly int FrameHeaderBytes = (int)Marshal.OffsetOf<WorldGpu>(nameof(WorldGpu.Used0)); // near .. levels, written every frame
+	static readonly int FrameHeaderBytes = (int)Marshal.OffsetOf<WorldGpu>(nameof(WorldGpu.Used0)); // near .. ring, written every frame
 	const string GenBegin = "gen_begin", GenEnd = "gen_end";
+	static readonly string[] GenMarks = { "gen_columns", "gen_classify", "gen_fill" }; // phase ends before GenEnd: release + columns, classify + list, fill, then pack to occupancy
+	public readonly float[] GenPhaseMs = new float[4]; // previous frame, by GenMarks then the rest (flight log)
 	readonly byte[] headerBytes = new byte[Unsafe.SizeOf<WorldGpu>()];
 	readonly System.Collections.Concurrent.ConcurrentQueue<int> counterEpochs = new(); // render thread: epochs of the counter reads in flight, in order
 	Callable countersRead;
@@ -65,14 +69,13 @@ public partial class World
 	(Rid Columns, Rid Jobs, Rid JobGroups, Rid Mixed, Rid GroupWork, Rid Results) small, big;
 	int workBoost;
 	Rid[] bricks = new Rid[3];
-	RingWindow[] gpuRings;
-	long[] slotBase = Array.Empty<long>(), colBase = Array.Empty<long>();
+	RingWindow gpuRing;
 	long totalSlots;
 	long editCap, releaseCap;
 	uint featureCandidates; // of the generator gen was compiled for
 	readonly RidGroup blockTable = new(), generatorBuffers = new();
 
-	public bool RingReady => gpuRings != null; // render thread
+	public bool RingReady => gpuRing != null; // render thread
 	public Rid TexBuffer => tex;
 	public GpuBlockTable.Textures Textures => textures;
 	public int RingResets { get; private set; } // render thread: ResetRing calls, the rings were emptied
@@ -95,7 +98,7 @@ public partial class World
 	void InitGenerator()
 	{
 		var rd = Gpu.Rd;
-		Gpu.Init(Variants, generator, gpuLod);
+		Gpu.Init(Variants, generator);
 		gen = Gpu.Compile("gen.compute", (int)Math.Max(128, System.Numerics.BitOperations.RoundUpToPowerOf2((uint)Math.Max(Math.Max(Layout.Groups + 1, Layout.GroupCells), LightNeighbours)))); // FILL: thread per cell, PACK: per group and one for the record, LIGHTS: per neighbour chunk
 		fill = Gpu.Compile("gen.compute", (int)Math.Max(32, System.Numerics.BitOperations.RoundUpToPowerOf2((uint)Math.Max(Layout.GroupCells, Layout.MaskWords)))); // a thread per cell, at least a warp
 		featureCandidates = (uint)generator.FeatureCandidates;
@@ -105,7 +108,7 @@ public partial class World
 		foreach (var (b, rid) in new[] { (WorldBinding.Types, types), (WorldBinding.Tex, tex), (WorldBinding.Colormaps, colormaps), (WorldBinding.ModelData, modelData), (WorldBinding.Items, items), (WorldBinding.GenParams, genParams) })
 			Gpu.Publish(b, rid);
 		for (int i = 0; i < genBuffers.Length; i++) Gpu.Publish(WorldBinding.GenBuffers, genBuffers[i], i);
-		gpuRings = null;
+		gpuRing = null;
 		ready = true;
 	}
 
@@ -128,16 +131,6 @@ public partial class World
 		(small, big) = (default, default);
 	}
 
-	LevelGpu LevelOf(RingWindow r, int l, LodLayout lods)
-	{
-		var o = r.Offset;
-		return new LevelGpu
-		{
-			Min = new(r.Min.X, r.Min.Y, r.Min.Z, (int)Math.Min(lods.SwitchBlocks(l), 1e9f)), Size = new(r.SizeXZ, r.SizeY, r.SizeXZ, 0),
-			Off = new(o.X, o.Y, o.Z, r.Radius), Base = new((int)slotBase[l], (int)colBase[l], 0, 0),
-		};
-	}
-
 	// Render thread, before the passes of the frame: reset or ring shifts, release, generation, then the near probe.
 	public void Upkeep(Step s)
 	{
@@ -146,13 +139,24 @@ public partial class World
 		var rd = Gpu.Rd;
 		var t = Gpu.Captured;
 		GenMs = t.Count == 0 ? -1 : t.TryGetValue(GenBegin, out var t0) && t.TryGetValue(GenEnd, out var t1) ? (t1 - t0) / 1e6f : 0;
+		Array.Clear(GenPhaseMs);
+		if (GenMs > 0)
+		{
+			ulong at = t[GenBegin];
+			for (int i = 0; i < GenPhaseMs.Length; i++)
+				if (t.TryGetValue(i < GenMarks.Length ? GenMarks[i] : GenEnd, out var e)) (GenPhaseMs[i], at) = ((e - at) / 1e6f, e);
+		}
+		System.Threading.Interlocked.Exchange(ref genSample, (long)genWork << 32 | (uint)BitConverter.SingleToInt32Bits(GenMs));
+		genWork = s?.JobCount > 0 ? s.Work : 0;
 		Models.Upload(rd, modelData);
 		if (s.BlockRows is { } b) rd.BufferUpdate(types, (uint)(b.First * GpuBlockTable.RowBytes), (uint)b.Rows.Length, b.Rows);
 		if (s.Reset != null) ResetRing(s.Reset, s.Gen);
-		if (gpuRings == null) return;
+		if (gpuRing == null) return;
 		if (s.WorkBoost != workBoost) UseWork(s.WorkBoost);
-		var h = new WorldGpu { Near = new(s.Camera.X, s.Camera.Y, s.Camera.Z, s.NearChunks), Probe = new(0, 0, 0, s.MidChunks), Lod = new(s.DrawLevels, 0, 0, 0) };
-		for (int l = 0; l < s.Rings.Length; l++) Level(ref h, l) = LevelOf(s.Rings[l], l, s.Lods);
+		var r = s.Ring;
+		var o = r.Offset;
+		var h = new WorldGpu { Near = new(s.Camera.X, s.Camera.Y, s.Camera.Z, s.NearChunks), Probe = new(0, 0, 0, s.MidChunks), Rows = new(s.Rows.Y0, s.Rows.Y1, 0, 0),
+			Ring = new RingGpu { Min = new(r.Min.X, r.Min.Y, r.Min.Z, 0), Size = new(r.SizeXZ, r.SizeY, r.SizeXZ, 0), Off = new(o.X, o.Y, o.Z, r.Radius) } };
 		Gpu.Write(h, headerBytes);
 		rd.BufferUpdate(header, 0, (uint)FrameHeaderBytes, headerBytes);
 		if (s.Released.Length > 0 || s.JobCount > 0) Generate(s);
@@ -169,25 +173,14 @@ public partial class World
 		UpkeepMs = (float)Stopwatch.GetElapsedTime(started).TotalMilliseconds;
 	}
 
-	static ref LevelGpu Level(ref WorldGpu h, int l)
-	{
-		switch (l)
-		{
-			case 0: return ref h.L0;
-			case 1: return ref h.L1;
-			case 2: return ref h.L2;
-			default: return ref h.L3;
-		}
-	}
-
 	// Release everything: counters, free stacks and the directory start empty (every chunk NONE, CLEAR); the generator parameters go in even when the shader key did not change.
-	void ResetRing(RingWindow[] rings, WorldGenerator g)
+	void ResetRing(RingWindow ring, WorldGenerator g)
 	{
 		var rd = Gpu.Rd;
-		if (gpuRings == null || gpuRings.Length != rings.Length || gpuRings.Zip(rings).Any(p => p.First.SizeXZ != p.Second.SizeXZ || p.First.SizeY != p.Second.SizeY)) Allocate(rings);
-		gpuRings = rings;
+		if (gpuRing == null || gpuRing.SizeXZ != ring.SizeXZ || gpuRing.SizeY != ring.SizeY) Allocate(ring);
+		gpuRing = ring;
 		RingResets++;
-		var h = new WorldGpu { TopY0 = rings[0].Min.Y, TopY1 = rings.Length > 1 ? rings[1].Min.Y : 0, TopY2 = rings.Length > 2 ? rings[2].Min.Y : 0, TopY3 = rings.Length > 3 ? rings[3].Min.Y : 0 };
+		var h = new WorldGpu { TopY = ring.Min.Y };
 		var cap = PoolCaps(BudgetMB);
 		(h.Cap0, h.Cap1, h.Cap2, h.Cap3) = (cap[0], cap[1], cap[2], cap[3]);
 		var bytes = Gpu.Bytes(h).Concat(g.Perlin.Table.SelectMany(BitConverter.GetBytes)).ToArray();
@@ -202,26 +195,19 @@ public partial class World
 		rd.BufferClear(LightBuffer, 0, LightHeaderBytes);
 		rd.BufferUpdate(LightBuffer, 8, 4, BitConverter.GetBytes((uint)LightLists));
 		(PoolUsed, PoolCap, PoolFail, PoolHigh, PoolFree) = (new uint[4], cap, new uint[4], new uint[4], new uint[4]);
-		(FeaturesDropped, GroupFeaturesDropped) = (0, 0);
+		FeaturesDropped = 0;
 	}
 
 	uint[] PoolCaps(int mb) => Enumerable.Range(0, 4).Select(p => (uint)(mb * 1048576L * PoolShare[p] / (Layout.PoolWords((WorldPool)p) * 4))).ToArray();
 	static long OccBytes(long bits) => (bits + 31) / 32 * 4;
 
-	// Every level's slots one after the other (SlotAlign), then their column slots.
-	void Allocate(RingWindow[] rings)
+	// The ring's slots (rounded up to SlotAlign) and column slots.
+	void Allocate(RingWindow ring)
 	{
 		var rd = Gpu.Rd;
 		Gpu.World.Free(rd);
 		Rid Buf(long bytes, byte[] data = null) => Gpu.Buffer(Gpu.World, Math.Max(bytes, 16), data);
-		(slotBase, colBase) = (new long[rings.Length], new long[rings.Length]);
-		long slots = 0, cols = 0;
-		for (int l = 0; l < rings.Length; l++)
-		{
-			(slotBase[l], colBase[l]) = (slots, cols);
-			slots += (rings[l].Slots + SlotAlign - 1) / SlotAlign * SlotAlign;
-			cols += rings[l].Columns;
-		}
+		long slots = (ring.Slots + SlotAlign - 1) / SlotAlign * SlotAlign, cols = ring.Columns;
 		totalSlots = slots;
 		if (slots > int.MaxValue / 8) throw new InvalidOperationException($"world rings too large ({slots} slots)");
 		var cap = PoolCaps(Presets[View].BudgetMB); // the preset's size: BudgetMB only lowers the caps in the header
@@ -315,7 +301,11 @@ public partial class World
 		{
 			Run(GenStep.Heights, s.ColumnCount * (long)ColumnBlocks);
 			Run(GenStep.ColumnMinMax, s.ColumnCount * (long)gen.X);
-			Run(GenStep.Features, s.LevelColumns[0] * (long)featureCandidates); // L0 columns come first
+			Run(GenStep.Features, s.ColumnCount * (long)featureCandidates);
+			rd.ComputeListEnd();
+			Gpu.Timestamp(GenMarks[0]);
+			cl = Gpu.Begin(gen);
+			rd.ComputeListBindUniformSet(cl, genSet, 0);
 			Run(GenStep.Classify, s.JobCount * (long)gen.X);
 			Run(GenStep.Scan, gen.X);
 			Run(GenStep.List, s.JobCount * (long)gen.X);
@@ -325,11 +315,13 @@ public partial class World
 		rd.ComputeListEnd();
 		if (s.JobCount > 0)
 		{
+			Gpu.Timestamp(GenMarks[1]);
 			cl = Gpu.Begin(fill);
 			rd.ComputeListBindUniformSet(cl, genSet, 0);
 			rd.ComputeListSetPushConstant(cl, Gpu.Push((int)GenStep.Fill), Gpu.PushBytes);
 			rd.ComputeListDispatchIndirect(cl, fillArgs, 0);
 			rd.ComputeListEnd();
+			Gpu.Timestamp(GenMarks[2]);
 			cl = Gpu.Begin(gen);
 			rd.ComputeListBindUniformSet(cl, genSet, 0);
 			Gpu.Dispatch(cl, gen, (uint)GenStep.Pack, s.JobCount * (long)gen.X, (int)++packStamp);
@@ -347,20 +339,19 @@ public partial class World
 		{
 			var r = MemoryMarshal.Cast<byte, Vector4I>(d);
 			int n = Math.Min((int)BitConverter.ToUInt32(d, 0), r.Length - 1);
-			var deferred = new List<(ChunkPos, int, bool)>();
-			for (int i = 1; i <= n; i++) deferred.Add((new ChunkPos(r[i].X, r[i].Y, r[i].Z), r[i].W >> 1, (r[i].W & 1) != 0));
+			var deferred = new List<(ChunkPos, bool)>();
+			for (int i = 1; i <= n; i++) deferred.Add((new ChunkPos(r[i].X, r[i].Y, r[i].Z), (r[i].W & 1) != 0));
 			Generated(stepEpoch, deferred);
 		}), 0, (uint)(16 + s.JobCount * 16));
 	}
 
-	// The visibility bits the sampled primary rays set since the last read (docs/v2.md §5.17), then cleared; ApplyVisible hands them to the streams.
+	// The visibility bits the sampled primary rays set since the last read, then cleared; ApplyVisible hands them to the stream.
 	const int VisFrames = 30;
 	int visFrame;
 	void ReadVisible(int stepEpoch)
 	{
 		uint bytes = (uint)OccBytes(totalSlots);
-		var starts = slotBase.ToArray();
-		Gpu.Rd.BufferGetDataAsync(vis, Callable.From<byte[]>(d => visibleBack.Enqueue((stepEpoch, d, starts))), 0, bytes);
+		Gpu.Rd.BufferGetDataAsync(vis, Callable.From<byte[]>(d => visibleBack.Enqueue((stepEpoch, d))), 0, bytes);
 		Gpu.Rd.BufferClear(vis, 0, bytes);
 	}
 
@@ -374,7 +365,7 @@ public partial class World
 		(PoolFail[0], PoolFail[1], PoolFail[2], PoolFail[3]) = (w.Fail0, w.Fail1, w.Fail2, w.Fail3);
 		(PoolHigh[0], PoolHigh[1], PoolHigh[2], PoolHigh[3]) = (w.Used0, w.Used1, w.Used2, w.Used3);
 		(PoolFree[0], PoolFree[1], PoolFree[2], PoolFree[3]) = ((uint)Math.Max(w.Free0, 0), (uint)Math.Max(w.Free1, 0), (uint)Math.Max(w.Free2, 0), (uint)Math.Max(w.Free3, 0));
-		(FeaturesDropped, GroupFeaturesDropped) = (w.Stat0, w.Stat1);
+		FeaturesDropped = w.Stat0;
 		Probed(stepEpoch, w.Probe.X, w.Probe.Y, w.Probe.Z);
 	}
 }

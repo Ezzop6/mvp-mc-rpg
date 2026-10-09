@@ -10,7 +10,7 @@ using System.Text.Json.Serialization;
 using Renesance.Content;
 using Renesance.Save;
 
-public enum TestIssue { NoReference, ImageDiff, SizeMismatch, WrongResolution, NotSettled, Slower, PoolOverflow, Hitch, NearMissing, FallbackNear, Degraded, Timeout, CameraMoved, UnknownView, WrongPosition }
+public enum TestIssue { NoReference, ImageDiff, SizeMismatch, WrongResolution, NotSettled, Slower, PoolOverflow, Hitch, NearMissing, Degraded, Timeout, CameraMoved, UnknownView, WrongPosition }
 
 public enum BookmarkStatus { Open, Resolved }
 

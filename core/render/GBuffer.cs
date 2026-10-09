@@ -12,9 +12,9 @@ public enum TargetId { Depth, HitId, Albedo, Color, History0, History1, Output, 
 public static class HitBits
 {
 	public const uint FaceMask = 7, Sky = 7;
-	public const int LodShift = 3, VariantShift = 5;
-	public const uint LodMask = 3, VariantMask = (1u << 22) - 1;
-	public const uint Model = 1u << 27, Fluid = 1u << 28, Transparent = 1u << 29, Fallback = 1u << 30, Bent = 1u << 31;
+	public const int VariantShift = 5;
+	public const uint VariantMask = (1u << 22) - 1;
+	public const uint Model = 1u << 27, Fluid = 1u << 28, Transparent = 1u << 29, Bent = 1u << 31;
 }
 
 // Render-size and output-size targets, allocated only when declared (Pass.Declared).

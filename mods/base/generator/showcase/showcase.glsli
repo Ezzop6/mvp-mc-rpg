@@ -60,9 +60,9 @@ uint gen_classify_chunk(ivec3 lo, vec2 mm, uint li) { return sc_classify(lo, lo 
 
 uint gen_classify_group(ivec3 gb) { return sc_classify(gb, gb + GROUP, true); }
 
-const uint SC_LOD_OBJECTS = 64u;
-shared ivec4 s_objs[SC_LOD_OBJECTS];
-shared uint s_idx[SC_LOD_OBJECTS]; // L0: the column feature index (rays find parts by it)
+const uint SC_GROUP_OBJECTS = 64u;
+shared ivec4 s_objs[SC_GROUP_OBJECTS];
+shared uint s_idx[SC_GROUP_OBJECTS]; // the column feature index (rays find parts by it)
 shared uint s_nobj;
 
 // The models of the column whose boxes touch the group.
@@ -70,9 +70,9 @@ void gen_group_begin(ivec3 gb, uint slot, uint v) {
 	if (v == 0u) s_nobj = 0u;
 	barrier();
 	for (uint k = v; k < feature_count(slot); k += GROUP_X)
-		if (box_hits(col_feature(slot, k), gb, gb + GROUP)) { uint i = atomicAdd(s_nobj, 1u); if (i < SC_LOD_OBJECTS) { s_objs[i] = col_feature(slot, k); s_idx[i] = k; } }
+		if (box_hits(col_feature(slot, k), gb, gb + GROUP)) { uint i = atomicAdd(s_nobj, 1u); if (i < SC_GROUP_OBJECTS) { s_objs[i] = col_feature(slot, k); s_idx[i] = k; } }
 	barrier();
-	if (v == 0u) s_nobj = min(s_nobj, SC_LOD_OBJECTS);
+	if (v == 0u) s_nobj = min(s_nobj, SC_GROUP_OBJECTS);
 	barrier();
 }
 
@@ -81,40 +81,4 @@ uint gen_block(ivec3 b, ivec3 l) {
 	uint id = b.y == 0 ? sc_block(b.xz) : 0u;
 	for (uint j = 0u; j < s_nobj && id == 0u; j++) if (obj_cell_at(s_objs[j], b) != EMPTY_REF) id = PART | s_idx[j];
 	return id;
-}
-
-// L >= 1 (docs/v2.md §5.17): the same blocks by sample, the models of the lattice cells under the coarse group (a model fits its SC_CELL cell).
-uint gen_classify_lod(ivec3 lo, ivec3 hi, vec2 mm) { return sc_classify(lo, hi, false); }
-
-void gen_group_begin_lod(ivec3 gb, uint slot, int level, uint v) {
-	if (v == 0u) s_nobj = 0u;
-	barrier();
-	ivec2 g0 = ivec2(fdiv(gb.x, SC_CELL), fdiv(gb.z, SC_CELL));
-	int n = fdiv(gb.x + (GROUP << level) - 1, SC_CELL) - g0.x + 1;
-	for (uint k = v; k < uint(n * n); k += GROUP_X) {
-		ivec4 f;
-		if (sc_feature(g0 + ivec2(int(k) % n, int(k) / n), f)) { uint i = atomicAdd(s_nobj, 1u); if (i < SC_LOD_OBJECTS) s_objs[i] = f; }
-	}
-	barrier();
-	if (v == 0u) s_nobj = min(s_nobj, SC_LOD_OBJECTS);
-	barrier();
-}
-
-uint gen_block_lod(ivec3 b, ivec2 sc, int level) {
-	if (b.y == -1) return sc_ground(b.xz);
-	uint id = b.y == 0 ? sc_block(b.xz) : 0u;
-	for (uint j = 0u; j < s_nobj && id == 0u; j++) if (obj_cell_at(s_objs[j], b) != EMPTY_REF) id = PART | j;
-	return id;
-}
-
-ivec4 gen_part_lod(uint j) { return s_objs[j]; }
-
-bool gen_cell_lod(ivec3 lo, ivec3 hi) {
-	for (uint j = 0u; j < s_nobj; j++) if (box_hits(s_objs[j], lo, hi)) return true;
-	return false;
-}
-
-uint gen_feature_lod(ivec3 b) {
-	for (uint j = 0u; j < s_nobj; j++) if (obj_cell_at(s_objs[j], b) != EMPTY_REF) return PART | j;
-	return 0u;
 }

@@ -9,6 +9,5 @@
     <ProjectReference Include="../../core/data/Renesance.Data.csproj" />
     <Compile Include="../../core/world/Ring.cs" />
     <Compile Include="../../core/world/Layout.cs" />
-    <Compile Include="../../core/world/Lod.cs" />
   </ItemGroup>
 </Project>

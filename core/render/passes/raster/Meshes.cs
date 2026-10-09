@@ -175,13 +175,8 @@ public sealed class Meshes : RasterPass
 	Rid Texture(DataFormat format, Vector2I size, Usage usage, int mips = 1) =>
 		Gpu.Rd.TextureCreate(new RDTextureFormat { Format = format, Width = (uint)size.X, Height = (uint)size.Y, Mipmaps = (uint)mips, UsageBits = usage }, new RDTextureView());
 
-	// Chunks, kept well inside the L0 sphere (the mesh slots and the directory must not alias) and inside L0's band (docs/v2.md §5.17): past it rays go coarser and a coarse surface may stand in front of a face.
-	int Radius()
-	{
-		var w = Renderer.World;
-		float d1 = w.Lods is { Levels: > 1 } l ? l.SwitchM[1] - 3 * Voxel.ChunkMeters : float.MaxValue;
-		return Math.Clamp((int)(Math.Min(MeshRadius, d1) / Voxel.ChunkMeters), 1, Math.Max(1, (w.Ring?.Reach ?? 1) - Shell - 2));
-	}
+	// Chunks, kept well inside the sphere (the mesh slots and the directory must not alias).
+	int Radius() => Math.Clamp((int)(MeshRadius / Voxel.ChunkMeters), 1, Math.Max(1, (Renderer.World.Ring?.Reach ?? 1) - Shell - 2));
 
 	public override void Record(Frame f)
 	{

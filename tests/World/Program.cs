@@ -48,14 +48,35 @@ Check(popped[0] == small.Center && popped.Zip(popped.Skip(1)).All(p => (int)D(p.
 stream.Requeue(popped[^1]);
 Check(stream.State(popped[^1]) == SlotState.Queued && stream.TryPop(out var again) && again == popped[^1], "a deferred chunk goes back and comes out again");
 
+// Queue key past the mid sphere (3): whole chunks of distance, in each the view cone (cos 0.5), the side half, behind.
+int Spiral(ChunkPos c, System.Numerics.Vector3 f)
+{
+	double d = D(c, small.Center), dot = (c.X - small.Center.X) * f.X + (c.Y - small.Center.Y) * f.Y + (c.Z - small.Center.Z) * f.Z;
+	int b = (int)d;
+	return b * 3 + (b <= 3 ? 0 : dot >= 0.5 * d ? 0 : dot >= 0 ? 1 : 2);
+}
 var coned = new ChunkStream(small, 3, System.Numerics.Vector3.UnitX, 0.5f);
 var coneOrder = new List<ChunkPos>();
 while (coned.TryPop(out var c)) coneOrder.Add(c);
-bool InCone(ChunkPos c) => c.X - small.Center.X >= 0.5 * D(c, small.Center);
-int lastIn = coneOrder.FindLastIndex(c => (int)D(c, small.Center) <= 3 || InCone(c)), firstOut = coneOrder.FindIndex(c => (int)D(c, small.Center) > 3 && !InCone(c));
-Check(coneOrder.Count == WantedSet(small).Count && coneOrder.Distinct().Count() == coneOrder.Count && lastIn < firstOut && firstOut > 0,
-	"view cone: the mid sphere and the cone past it before the rest, nothing dropped");
-Check(coneOrder.Skip(firstOut).Zip(coneOrder.Skip(firstOut + 1)).All(p => (int)D(p.First, small.Center) <= (int)D(p.Second, small.Center)), "outside the cone nearest first");
+Check(coneOrder.Count == WantedSet(small).Count && coneOrder.Distinct().Count() == coneOrder.Count && coneOrder.Zip(coneOrder.Skip(1)).All(p => Spiral(p.First, System.Numerics.Vector3.UnitX) <= Spiral(p.Second, System.Numerics.Vector3.UnitX)),
+	"spiral: by whole chunks of distance, in each the view cone, the side, then behind; nothing dropped");
+var turning = new ChunkStream(small, 3, System.Numerics.Vector3.UnitX, 0.5f);
+turning.Look(-System.Numerics.Vector3.UnitX, 0.5f);
+turning.Retier(int.MaxValue);
+var turned = new List<ChunkPos>();
+while (turning.TryPop(out var c)) turned.Add(c);
+Check(turned.Count == coneOrder.Count && turned.Zip(turned.Skip(1)).All(p => Spiral(p.First, -System.Numerics.Vector3.UnitX) <= Spiral(p.Second, -System.Numerics.Vector3.UnitX)), "a turn re-sorts the queue: the spiral starts in the new view, the same chunks");
+var editedRows = new HashSet<ChunkPos> { new(0, -3, 0) };
+var rows = new ChunkStream(new RingWindow(new ChunkPos(0, 0, 0), 4, 1), 1, default, -1, 0, 2, editedRows.Contains);
+rows.Wake(new ChunkPos(0, -3, 0)); // World wakes the edited chunks after a reset
+var rowPops = new List<ChunkPos>();
+while (rows.TryPop(out var c)) rowPops.Add(c);
+editedRows.Add(new ChunkPos(1, 3, 0));
+rows.Wake(new ChunkPos(1, 3, 0));
+Check(rowPops.All(c => c.Y is >= 0 and < 2 || c == new ChunkPos(0, -3, 0)) && rowPops.Contains(new ChunkPos(0, -3, 0)) && rows.TryPop(out var woken) && woken == new ChunkPos(1, 3, 0), "outside the generator's rows only edited chunks are generated");
+var rowsLeft = new List<ChunkPos>();
+rows.Move(new ChunkPos(20, 0, 0), rowsLeft);
+Check(rowsLeft.ToHashSet().SetEquals(rowPops.Append(new ChunkPos(1, 3, 0))), "a crossing walks only the generator's rows and the edited ones: every sent chunk is released");
 
 var near = new ChunkPos(small.Center.X + 5, small.Center.Y, small.Center.Z);
 Check(stream.Claim(near) && stream.State(near) == SlotState.Sent && !stream.Claim(near), "the near pass claims a queued chunk once");
@@ -258,30 +279,7 @@ Check(fs.State(farC) == SlotState.Queued && fs.Failed == 0, "a failed chunk ente
 	Check(rel.Count == 0 && regrown.SetEquals(WantedSet(small.MovedTo(rs.Ring.Center))) && regrown.All(c => rs.State(c) != SlotState.None), "growing back queues the shell again, nothing released");
 }
 
-// --- levels of detail (docs/v2.md §5.17) ---
-{
-	float a4k = 2 * MathF.Tan(40 * MathF.PI / 180) / 2160, a1080 = 2 * a4k;
-	var u4k = Lod.Plan(a4k, 2, 9600, 325);
-	Check(u4k.Levels == 4 && Math.Abs(u4k.SwitchM[1] - 643.6f) < 1 && Math.Abs(u4k.SwitchM[2] - 1287.2f) < 1 && Math.Abs(u4k.SwitchM[3] - 2574.4f) < 2, "u4k 4K: L1 from ~644 m, then twice as far per level");
-	float cm = Coords.ChunkSize * Coords.BlockMeters;
-	Check(u4k.Radius[0] == (int)MathF.Ceiling(u4k.SwitchM[1] / cm) + Lod.Margin && u4k.Radius[3] == (int)MathF.Ceiling(9600 / (8 * cm)) + Lod.Margin && Math.Abs(u4k.RadiusM(3) - u4k.Radius[3] * 8 * cm) < 1 && u4k.RadiusM(3) >= 9600, "a level reaches the next one's start, the last the horizon (+ margin)");
-	Check(Enumerable.Range(1, 3).All(l => Math.Abs(u4k.Radius[l] - u4k.Radius[0]) <= 1 || l == 3), "about the same chunks per level radius");
-	var l1080 = Lod.Plan(a1080, 4, 1200, 325);
-	Check(l1080.Levels == 3 && l1080.SwitchM[1] == 325 && l1080.SwitchM[2] == 650 && l1080.RadiusM(2) >= 1200, "l1080 1080p: never inside the mid sphere, levels double, the horizon reached");
-	Check(Lod.Plan(a4k, 2, 1175, 325, maxLevels: 1) is { Levels: 1 } one && one.Radius[0] == Math.Min((int)MathF.Ceiling(1175 / cm) + Lod.Margin, Lod.MaxRadius) && Lod.Plan(a4k, 2, 9600, 325, maxLevels: 1).Radius[0] == Lod.MaxRadius, "one level: L0 to the horizon, at most MaxRadius chunks");
-	var reference = Lod.Plan(a4k, 2, 9600, 325, refLevel: 1);
-	Check(reference.SwitchM[1] == u4k.SwitchM[2] && (reference.RadiusM(0) >= u4k.SwitchM[2] || reference.Radius[0] == Lod.MaxRadius), "lod-ref 1: L1's band is drawn by L0 (as far as MaxRadius chunks reach)");
-	Check(Lod.SampleOffset(1, 0) == (0, 0, 0) && Lod.SampleOffset(1, 7) == (1, 1, 1) && Lod.SampleOffset(3, 5) == (6, 2, 6), "sample offsets: L1 every block, L3 at 2 and 6");
-	Check(Enumerable.Range(0, 8).All(k => Lod.SampleOffset(2, k) is var o && Lod.SampleOf(2, o.X, o.Y, o.Z) == k) && Lod.SampleOf(2, 0, 1, 1) == -1, "SampleOf inverts SampleOffset, other blocks are no sample");
-	Check(Lod.Parent(new ChunkPos(-1, 5, -8), 2) == new ChunkPos(-1, 1, -2), "parent chunk floors negatives");
-	var s0 = new ChunkStream(new RingWindow(new ChunkPos(0, 0, 0), 6, 1), 2);
-	var s1 = new ChunkStream(new RingWindow(new ChunkPos(0, 0, 0), 6, 1), 0);
-	while (s0.NextKey() < 3 * ChunkStream.Tiers && s0.TryPop(out _)) { }
-	Check(s0.NextKey() == 3 * ChunkStream.Tiers + 1 && s1.NextKey() <= 0, "NextKey: the bucket's distance in own chunks times Tiers plus its tier (past the mid sphere: in the view cone = tier 1), comparable across levels");
-	Check(s0.NextKey(2) == int.MaxValue, "NextKey honours maxDistance");
-}
-
-// --- visibility tiers and eviction (docs/v2.md §5.17) ---
+// --- visibility stamps and eviction ---
 {
 	var vr = new RingWindow(new ChunkPos(0, 0, 0), 8, 1);
 	var vs = new ChunkStream(vr, 2, System.Numerics.Vector3.UnitX, 0.9f);
@@ -290,9 +288,6 @@ Check(fs.State(farC) == SlotState.Queued && fs.Failed == 0, "a failed chunk ente
 	int fslot = vr.SlotIndex(farSeen);
 	bits[fslot >> 5] |= 1u << (fslot & 31);
 	vs.MarkSeen(bits);
-	ChunkPos first = default;
-	while (vs.TryPop(out var c)) { if ((int)D(c, vr.Center) > 2) { first = c; break; } }
-	Check(first == farSeen, "past the mid sphere a seen chunk comes before the view cone and the rest");
 	while (vs.TryPop(out _)) { }
 	var rel = new List<ChunkPos>();
 	vs.MarkSeen(new uint[bits.Length]);
@@ -304,6 +299,30 @@ Check(fs.State(farC) == SlotState.Queued && fs.Failed == 0, "a failed chunk ente
 	back[ps >> 5] |= 1u << (ps & 31);
 	vs.MarkSeen(back);
 	Check(vs.State(rel[0]) == SlotState.Queued, "a parked chunk that rays want again is queued at once");
+}
+
+// --- the wanted set whatever the view, the order it loads in, release ---
+{
+	var dirs = new[] { System.Numerics.Vector3.UnitX, -System.Numerics.Vector3.UnitX, System.Numerics.Vector3.UnitZ, System.Numerics.Vector3.Normalize(new(1, 0, -1)) };
+	var origin = new ChunkPos(0, 0, 0);
+	ChunkStream New(System.Numerics.Vector3 f) => new(new RingWindow(origin, 14, 1), 3, f, 0.5f, -3, 4);
+	var loads = dirs.Select(f => { var s = New(f); var o = new List<ChunkPos>(); while (s.TryPop(out var c)) o.Add(c); return o; }).ToList();
+	Check(loads.All(o => o.ToHashSet().SetEquals(loads[0])) && loads[0].ToHashSet().SetEquals(WantedSet(new RingWindow(origin, 14, 1)).Where(c => c.Y is >= -3 and < 4)), "the generated set is the ring within the generator's rows, whatever the view direction");
+	Check(loads.Zip(dirs).All(p =>
+	{
+		var past = p.First.Where(c => (int)D(c, origin) > 3).ToList();
+		var f = p.Second;
+		int Key(ChunkPos c) { double d = D(c, origin), dot = c.X * f.X + c.Y * f.Y + c.Z * f.Z; return (int)d * 3 + (dot >= 0.5 * d ? 0 : dot >= 0 ? 1 : 2); }
+		return past[0].X * f.X + past[0].Y * f.Y + past[0].Z * f.Z >= 0.5 * D(past[0], origin) && past.Zip(past.Skip(1)).All(q => Key(q.First) <= Key(q.Second));
+	}), "past the mid sphere the queue starts in the view direction and goes outward around (a spiral), behind the camera too");
+
+	var s = New(dirs[0]);
+	var sent = new HashSet<ChunkPos>();
+	while (s.TryPop(out var c)) sent.Add(c);
+	foreach (var c in sent.Where(c => c.X < -11 && c.Z % 2 == 0).ToList()) { s.Requeue(c); sent.Remove(c); }
+	var rel = new List<ChunkPos>();
+	s.Move(new ChunkPos(3, 0, 0), rel);
+	Check(rel.Count > 0 && rel.ToHashSet().SetEquals(sent.Where(c => !s.Ring.Wanted(c))) && rel.All(c => s.State(c) == SlotState.None), "a crossing releases exactly the sent chunks that left the ring (queued ones only free their slots)");
 }
 
 // --- palette and bricks (mirror of gen.compute FILL) ---

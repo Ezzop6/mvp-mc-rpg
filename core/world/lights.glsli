@@ -17,9 +17,9 @@ uint light_word(uint list, uint k) { return LL.cap + list * LIGHT_LIST_WORDS + 2
 uvec2 light_at(uint y, uint k) { uint o = light_word(light_list(y), k); return uvec2(LL.words[o], LL.words[o + 1u]); }
 ivec3 light_block(uint i) { return ivec3(i % uint(CHUNK), i / uint(CHUNK) % uint(CHUNK), i / uint(CHUNK * CHUNK)); }
 
-// L0 ring slot of world chunk wc, only inside the ring's window (outside, a slot holds another chunk).
-bool in_ring0(ivec3 wc) { ivec3 r = wc - W.lv[0].min.xyz; return all(greaterThanEqual(r, ivec3(0))) && all(lessThan(r, W.lv[0].size.xyz)); }
-uint slot0(ivec3 wc) { ivec3 d = W.lv[0].size.xyz; return W.lv[0].base.x + uint(pmod(wc.x, d.x) + d.x * (pmod(wc.y, d.y) + d.y * pmod(wc.z, d.z))); }
+// Ring slot of world chunk wc, only inside the ring's window (outside, a slot holds another chunk).
+bool in_ring0(ivec3 wc) { ivec3 r = wc - W.ring.min.xyz; return all(greaterThanEqual(r, ivec3(0))) && all(lessThan(r, W.ring.size.xyz)); }
+uint slot0(ivec3 wc) { return chunk_slot(wc); }
 
 // Distance from point c (blocks) to the box of world chunk wc.
 float chunk_distance(vec3 c, ivec3 wc) { vec3 lo = vec3(wc * CHUNK); return length(c - clamp(c, lo, lo + float(CHUNK))); }

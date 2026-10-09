@@ -9,29 +9,23 @@ layout(set = WORLD_SET, binding = WB_BRICK_FULL, std430) restrict buffer BrickFu
 layout(set = WORLD_SET, binding = WB_OCCUPANCY, std430) restrict buffer Occupancy { uint occ[]; };    // bit per ring slot: not only air
 layout(set = WORLD_SET, binding = WB_OCCUPANCY_MIP, std430) restrict buffer OccupancyMip { uint occ_mip[]; }; // bit per 4^3 slots
 layout(set = WORLD_SET, binding = WB_VISIBLE, std430) restrict buffer Visible { uint vis_bits[]; }; // bit per slot: a sampled primary ray hit or wanted (missing) the chunk since the last readback (World.ApplyVisible)
-// Level L of detail (docs/v2.md §5.17): min = world chunk of the ring's first slot row (w = drawn from, blocks), size = D (w = slots), off = pmod(min, D) (w = wanted radius, chunks), base = first slot, first column slot, columns.
-struct Level { ivec4 min; ivec4 size; ivec4 off; uvec4 base; };
+// The ring: min = world chunk of its first slot row, size = D (w = slots), off = pmod(min, D) (w = wanted radius, chunks).
+struct Ring { ivec4 min; ivec4 size; ivec4 off; };
 layout(set = WORLD_SET, binding = WB_WORLD, std430) restrict buffer World {
 	vec4 near;       // PROBE: xyz = camera chunk, w = NearRadius in chunks
 	uvec4 probe;     // NONE chunks within x = near.w, y = w (mid radius, chunks); z = entries generated over a resident one; cleared every frame
-	ivec4 lod;       // x = levels
-	Level lv[LOD_LEVELS];
+	ivec4 rows;      // xy = the generator's chunk rows [x, y)
+	Ring ring;
 	uint used[4];    // by PL_*: bump high water (FIXUP clamps it to cap)
 	uint cap[4];
 	uint fail[4];    // chunks that did not fit
 	int free_top[4]; // free stack heights; failed pops take them below 0 until FIXUP
-	int top_y[LOD_LEVELS]; // per level: 1 + highest occupied world chunk y since the reset (only grows), lv.min.y = none
-	uint lod_stat[4]; // x = column features dropped (MAX_COL_FEATURES)
+	int top_y;       // 1 + highest occupied world chunk y since the reset (only grows), ring.min.y = none
+	uint stat[3];    // x = column features dropped (MAX_COL_FEATURES)
 	int perm[PERM_SIZE];
 } W;
 
-int lvl = 0; // the level the ring helpers address (LVL: 0 without LOD, the compiler folds it)
-#if LOD_ON
-#define LVL lvl
-#else
-#define LVL 0
-#endif
-const uint MISSING = 0xFFFFFFFFu, LOD_COLOR = PART; // lookup of a NONE chunk; L >= 1: a colour word (gen.compute lod_color_word)
+const uint MISSING = 0xFFFFFFFFu; // lookup of a NONE chunk
 int pmod(int a, int m) { return a >= 0 ? a % m : m - 1 - (-a - 1) % m; } // GLSL % is undefined for negative operands
 int fdiv(int a, int b) { return a >= 0 ? a / b : -((-a - 1) / b) - 1; }
 
@@ -45,12 +39,12 @@ uint pack_box(uvec3 lo, uvec3 hi) { return (lo.x | lo.y << 4 | lo.z << 8 | hi.x 
 uvec3 box_lo(uint w) { uint b = w >> 8; return uvec3(b, b >> 4, b >> 8) & 15u; }
 uvec3 box_hi(uint w) { uint b = w >> 8; return uvec3(b >> 12, b >> 16, b >> 20) & 15u; }
 
-// Ring slot of a world chunk of level lvl, as coordinates and as one index (all levels in one directory).
-ivec3 ring_size() { return W.lv[LVL].size.xyz; }
+// Ring slot of a world chunk, as coordinates and as one index.
+ivec3 ring_size() { return W.ring.size.xyz; }
 ivec3 slot_of(ivec3 wc) { ivec3 d = ring_size(); return ivec3(pmod(wc.x, d.x), pmod(wc.y, d.y), pmod(wc.z, d.z)); }
-uint slot_index(ivec3 s) { ivec3 d = ring_size(); return W.lv[LVL].base.x + uint(s.x + d.x * (s.y + d.y * s.z)); }
+uint slot_index(ivec3 s) { ivec3 d = ring_size(); return uint(s.x + d.x * (s.y + d.y * s.z)); }
 uint chunk_slot(ivec3 wc) { return slot_index(slot_of(wc)); }
-uint mip_index(ivec3 s) { ivec3 m = s >> 2, md = ring_size() >> 2; return W.lv[LVL].base.x / 64u + uint(m.x + md.x * (m.y + md.y * m.z)); }
+uint mip_index(ivec3 s) { ivec3 m = s >> 2, md = ring_size() >> 2; return uint(m.x + md.x * (m.y + md.y * m.z)); }
 bool bit_of(uint w, uint i) { return (w >> (i & 31u) & 1u) != 0u; }
 
 const uint ENTRY_AIR = CLASS_AIR << CLASS_SHIFT;

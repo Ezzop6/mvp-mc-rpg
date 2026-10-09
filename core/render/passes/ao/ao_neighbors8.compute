@@ -1,4 +1,4 @@
-// AO/neighbors8: Minecraft-style smooth AO (v1 ao_bits, ao_from) from the 8 cells around the cell in front of the hit face, at the hit's level of detail.
+// AO/neighbors8: Minecraft-style smooth AO (v1 ao_bits, ao_from) from the 8 cells around the cell in front of the hit face.
 layout(local_size_x = GROUP_X, local_size_y = GROUP_Y) in;
 #include "world.glsli"
 #include "camera.glsli"
@@ -58,12 +58,12 @@ void main() {
 	uint hit = imageLoad(hit_in, px).r, face = hit_face(hit);
 	float ao = 1.0;
 	if (face != HIT_SKY && (hit & HIT_FLUID) == 0u && (hit >> HIT_VARIANT_SHIFT & HIT_VARIANT_MASK) != B_OBJECT) {
-		level_setup(int(hit >> HIT_LOD_SHIFT & HIT_LOD_MASK));
+		ring_setup();
 		vec3 q = cam.frac.xyz + pixel_dir(px, size) * imageLoad(depth_in, px).r;
 #ifdef BENT
 		if ((hit & HIT_BENT) != 0u) q = imageLoad(hitpos_in, px).xyz;
 #endif
-		vec3 p = level_pos(q);
+		vec3 p = q;
 		int axis = int(face >> 1u);
 		ivec2 uv = face_axes(axis);
 		ao = ao_from(ao_bits(ivec3(floor(p + hit_normal(face) * 0.5)), axis), vec2(fract(p[uv.x]), fract(p[uv.y])));

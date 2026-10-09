@@ -1,31 +1,30 @@
 {
-  "Note": "200 m/s straight at 300.0 m over random-crazy, 60 virtual fps, 4K: near and mid complete, coarser levels keep up (fallback instead of holes)",
-  "Lod": true,
+  "Note": "l0-crazy-1000 with every effect on (the default passes): which passes eat the GPU in that flight",
   "Scene": "random-crazy",
+  "NoWait": true,
   "TimeOfDay": 12,
   "Fps": 60,
-  "DriftWindow": 4,
   "Resolution": "4k",
   "Path": [
     {
       "T": 0,
       "Pos": {
         "X": 0.0,
-        "Y": 300.0,
+        "Y": 1000.0,
         "Z": 0.0
       },
       "Yaw": -90.0,
-      "Pitch": -6
+      "Pitch": -10
     },
     {
       "T": 20,
       "Pos": {
-        "X": 4000,
-        "Y": 300.0,
+        "X": 5000,
+        "Y": 1000.0,
         "Z": 0.0
       },
       "Yaw": -90.0,
-      "Pitch": -6
+      "Pitch": -10
     }
   ]
 }

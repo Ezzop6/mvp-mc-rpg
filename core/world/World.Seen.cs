@@ -15,7 +15,7 @@ public partial class World
 	// Render thread, synchronous readbacks of the directory and the used records (a measurement run only).
 	public void SeenReport(byte[] seenBytes, string label)
 	{
-		var ring = gpuRings?[0];
+		var ring = gpuRing;
 		if (ring == null) return;
 		var rd = Gpu.Rd;
 		var seen = MemoryMarshal.Cast<byte, uint>(seenBytes).ToArray();

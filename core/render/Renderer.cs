@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 
 // Generic debug views (docs/v2.md §6.1); any but None compiles the passes with DEBUG_VIEW.
-public enum DebugView { None, Steps, Albedo, Cost, ModelLevel, Temporal, Footprint, Lod, Depth, AO, Sun, Lamp, LightCount, GI }
+public enum DebugView { None, Steps, Albedo, Cost, ModelLevel, Temporal, Footprint, Depth, AO, Sun, Lamp, LightCount, GI }
 
 // The frame besides the passes, ms: CPU interval, scripts' _Process (Main's start to Renderer's end), Renderer's alone (NextStep, recording), Godot's viewport draw (CPU with frame setup, GPU), GPU span of every timestamp.
 public enum FrameStat { Frame, Process, Renderer, GodotCpu, GodotGpu, GpuSpan }

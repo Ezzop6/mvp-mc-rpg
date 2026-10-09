@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# img_diff.py <run dir a> <run dir b> <list/shot.png>...: pixels that differ between two runs' shots (e.g. LOD off against world-v2), share and max channel difference.
+# img_diff.py <run dir a> <run dir b> <list/shot.png>...: pixels that differ between two runs' shots, share and max channel difference.
 import sys, os
 import numpy as np
 from PIL import Image

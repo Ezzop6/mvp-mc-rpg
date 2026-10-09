@@ -52,12 +52,6 @@ public partial class Main : Node3D
 				case "--save-bookmark": saveBookmark = value; break;
 				case "--gen": World.Generator = value; break;
 				case "--view": World.View = Enum.Parse<ViewPreset>(value, true); break;
-				case "--lod": World.LodOn = value == "on"; break;
-				case "--horizon": World.HorizonM = float.Parse(value, CultureInfo.InvariantCulture); break;
-				case "--lod-pixels": World.LodPixels = float.Parse(value, CultureInfo.InvariantCulture); break;
-				case "--lod-levels": World.MaxLevels = int.Parse(value); break;
-				case "--lod-ref": World.LodRef = int.Parse(value); break;
-				case "--lod-draw": World.DrawLevels = int.Parse(value); break;
 				case "--render-scale": Renderer.RenderScale = float.Parse(value, CultureInfo.InvariantCulture); break;
 				case "--gen-budget": World.FixedBudget = value == "fixed"; break;
 				case "--gen-ms": World.GenTargetMs = float.Parse(value, CultureInfo.InvariantCulture); break;
@@ -137,7 +131,7 @@ public partial class Main : Node3D
 		Env.Environment.TonemapExposure = debug ? 1 : Exposure;
 	}
 
-	// --world=bookmark --save-bookmark=name (after the world settled, then quits unless --shot) --gen=id --view=low..ultra --horizon=m --lod-pixels=k (over the preset) --lod-levels=n (1 = L0 only) --lod-ref=L (level L's band one level finer, docs/v2.md §5.17) --lod-draw=n (rays read n levels) --render-scale=f (0 = auto) --gen-budget=fixed --gen-ms=f --world-mb=n (pools for n MB when under the view's budget: memory pressure) --debug-view=steps|albedo|cost|modellevel|temporal --test[=filter] --flight=name --pos=x,y,z (m) --look=yaw,pitch (deg) --time=h --edits=x,y,z[..x,y,z]=block;.. --off=Pass,.. --on=Pass,.. --variant=Pass:name|off,.. --compare-variant=Pass:a,b (tests: each item with both, ms and the image difference in the results) --freeze-streaming --walk --no-vsync --shot=file.png [--frames=n after the world settled] [--ui[=Tab,..,hud]: the menu on each tab (or the full HUD), a shot each as file-tab.png, and the editor] --test-accept[=filter] (captured images become references, then quits)
+	// --world=bookmark --save-bookmark=name (after the world settled, then quits unless --shot) --gen=id --view=low..ultra --render-scale=f (0 = auto) --gen-budget=fixed --gen-ms=f --world-mb=n (pools for n MB when under the view's budget: memory pressure) --debug-view=steps|albedo|cost|modellevel|temporal --test[=filter] --flight=name --pos=x,y,z (m) --look=yaw,pitch (deg) --time=h --edits=x,y,z[..x,y,z]=block;.. --off=Pass,.. --on=Pass,.. --variant=Pass:name|off,.. --compare-variant=Pass:a,b (tests: each item with both, ms and the image difference in the results) --freeze-streaming --walk --no-vsync --shot=file.png [--frames=n after the world settled] [--ui[=Tab,..,hud]: the menu on each tab (or the full HUD), a shot each as file-tab.png, and the editor] --test-accept[=filter] (captured images become references, then quits)
 	void ApplyArgs()
 	{
 		foreach (var (key, value) in args)
@@ -145,7 +139,7 @@ public partial class Main : Node3D
 			float[] F() => value.Split(',').Select(s => float.Parse(s, CultureInfo.InvariantCulture)).ToArray();
 			switch (key)
 			{
-				case "--world": case "--save-bookmark": case "--gen": case "--view": case "--horizon": case "--lod-pixels": case "--lod-levels": case "--lod-ref": case "--lod-draw": case "--render-scale": case "--gen-budget": case "--gen-ms": case "--world-mb": case "--item-ms": case "--debug-view": case "--test": case "--flight": break;
+				case "--world": case "--save-bookmark": case "--gen": case "--view": case "--render-scale": case "--gen-budget": case "--gen-ms": case "--world-mb": case "--item-ms": case "--debug-view": case "--test": case "--flight": break;
 				case "--pos": var p = F(); World.CameraPosition = new Vector3(p[0], p[1], p[2]); break;
 				case "--look": var l = F(); Player.Look = (Mathf.DegToRad(l[0]), Mathf.DegToRad(l[1])); break;
 				case "--time": World.TimeOfDay = F()[0]; break;
@@ -215,17 +209,6 @@ public partial class Main : Node3D
 
 	static string Mb(long bytes) => (bytes / 1048576.0).ToString("0", CultureInfo.InvariantCulture);
 
-	// Levels of detail: where each is drawn from and its radius now (of the full one), m.
-	string LevelsLine()
-	{
-		var l = World.Lods;
-		if (l == null) return "levels -";
-		var ic = CultureInfo.InvariantCulture;
-		return $"levels {l.Levels} (LodPixels {l.LodPixels.ToString(ic)}, horizon {World.HorizonNowM.ToString("0", ic)}/{l.HorizonM.ToString("0", ic)} m): " +
-			string.Join("  ", Enumerable.Range(0, l.Levels).Select(i => $"L{i} from {l.SwitchM[i].ToString("0", ic)} to {World.LevelRadiusM(i).ToString("0", ic)} m, queued {World.LevelPending(i)}")) +
-			$"  features dropped {World.FeaturesDropped} / {World.GroupFeaturesDropped}  evicted {World.Evicted}  fixed {Mb(World.FixedBytes)} MB";
-	}
-
 	string WorldLine()
 	{
 		var pools = Enum.GetValues<WorldPool>().Select(p => $"{p} {Mb(World.PoolBytes(p))}/{Mb(World.PoolBytes(p, true))}");
@@ -234,7 +217,7 @@ public partial class Main : Node3D
 		string budget = World.FixedBudget ? "fixed" : $"x{World.Budget.ToString("0.00", CultureInfo.InvariantCulture)}";
 		string far = World.FarRadiusM < World.FullRadiusM ? $"far {World.FarRadiusM:0}/{World.FullRadiusM:0} m" : $"far {World.FarRadiusM:0} m";
 		return $"world {World.Generator} {World.View}  mem {World.Pressure.ToString("0.00", CultureInfo.InvariantCulture)} of {World.BudgetMB} MB  {far} (shrinks {World.Shrinks}, grows {World.Grows})  queue {World.Queued}  sent {World.SentLastFrame}/frame (budget {budget}){(World.Settled ? "  settled" : "")}  gen {World.GenMs.ToString("0.000", CultureInfo.InvariantCulture)} ms  {near}  {mid}\n" +
-			$"pools MB used/cap: {string.Join("  ", pools)}  used {Mb(used)} free {Mb(cap - used)}  fail {string.Join(",", World.PoolFail)}  holes {World.Frame.Holes} (retry {World.Frame.Retrying})  incoming {World.Frame.Incoming}";
+			$"pools MB used/cap: {string.Join("  ", pools)}  used {Mb(used)} free {Mb(cap - used)}  fail {string.Join(",", World.PoolFail)}  holes {World.Frame.Holes} (retry {World.Frame.Retrying})  incoming {World.Frame.Incoming}  features dropped {World.FeaturesDropped}  evicted {World.Evicted}  fixed {Mb(World.FixedBytes)} MB";
 	}
 
 	public override void _Process(double delta)
@@ -282,7 +265,7 @@ public partial class Main : Node3D
 	double hudAge = HudSeconds;
 	int loadingShown = -1;
 
-	enum InfoGroup { Frame, Passes, World, Lod, Camera, Keys }
+	enum InfoGroup { Frame, Passes, World, Camera, Keys }
 	readonly Dictionary<InfoGroup, string> info = new();
 
 	// The HUD's (F3) and the Stats tab's lines, by group.
@@ -298,7 +281,6 @@ public partial class Main : Node3D
 			InfoGroup.Passes => $"GPU ms: {string.Join("  ", Renderer.Passes.Select(p => $"{p.Id.ToString().ToLowerInvariant()} {(p.Active ? Renderer.PassMs(p.Id).ToString("0.000", ic) : "off")}"))}" +
 				(Renderer.View != DebugView.None ? "\n" + Renderer.DebugStats : ""),
 			InfoGroup.World => WorldLine(),
-			InfoGroup.Lod => LevelsLine(),
 			InfoGroup.Camera => $"pos {pos.X:0} {pos.Y:0} {pos.Z:0}  {Player.Mode}  speed {Player.Speed:0} m/s (Ctrl x8)  time {World.TimeOfDay.ToString("0.0", ic)} h day {World.Day}{(World.TimePaused ? " (paused)" : "")}",
 			_ => (GetNodeOrNull<CanvasLayer>("Editor") != null ? EditorKeys : "WASD, Space/Shift up/down, Ctrl fast, wheel speed") +
 				", G walk / fly (walk: WASD, Space jump / swim up, Ctrl sprint), ` menu, F3 info, Ctrl+Q quit, F5 regenerate, F6 VSync, F7 teleport, F8 A/B variant, B/X place/dig a box, Esc release mouse",
@@ -346,12 +328,10 @@ public partial class Main : Node3D
 	public Dictionary<string, int> PoolFails => Enum.GetValues<WorldPool>().ToDictionary(p => p.ToString(), p => (int)World.PoolFail[(int)p]);
 	public uint[] PoolFailCounts => World.PoolFail; // by WorldPool, read in place every flight frame
 	public int? NearMissing => World.NearMissing < 0 ? null : World.NearMissing;
-	public int? FallbackNear => Dda.FallbackNearPx < 0 ? null : Dda.FallbackNearPx;
-	public (float Fallback, float Coarse, float Holes) LodShares => ((float)Math.Max(Dda.FallbackPx, 0) / Dda.Pixels, (float)Dda.CoarsePx / Dda.Pixels, (float)Dda.HolePx / Dda.Pixels); // of the frame's pixels
 	public int? MidMissing => World.MidMissing < 0 ? null : World.MidMissing;
 	public (int Queue, int FarFilled)? Stream => (World.Queued, World.Frame.SentFar - World.Frame.RequeuedFar);
 	public string FrameLogHeader => "cx,cy,cz,queue,sent,columns,fill_cap,released,entered,requeued,move_ms,near_ms,pop_ms,drain_ms,upload_ms,step_ms,upkeep_ms,gen_ms,gpu_ms,raster_ms,primary_ms,temporal_ms,near_missing,mid_missing,redone,gc0,gc1,gc2,alloc_kb,alloc_step_kb,alloc_renderer_kb,alloc_render_thread_kb,budget,render_scale," +
-		"pressure,far_radius,shrinks,grows,failed,holes,incoming,drained,pending,stale,q_near,q_mid,q_far,sent_near,sent_mid,sent_far,requeued_far,far_age,far_age_max,sent_lod,px_fallback,px_coarse,px_holes,horizon," + string.Join(",", Enum.GetNames<WorldPool>().SelectMany(p => new[] { $"used_{p}", $"high_{p}", $"free_{p}", $"fail_{p}" }));
+		"pressure,far_radius,shrinks,grows,failed,holes,incoming,drained,pending,stale,q_near,q_mid,q_far,sent_near,sent_mid,sent_far,requeued_far,far_age,far_age_max," + string.Join(",", Enum.GetNames<WorldPool>().SelectMany(p => new[] { $"used_{p}", $"high_{p}", $"free_{p}", $"fail_{p}" })) + string.Concat(Renderer.Passes.Select(p => $",pass_{p.Id}_ms")) + ",gen_columns_ms,gen_classify_ms,gen_fill_ms,gen_pack_ms";
 
 	// One line of FrameLogHeader's columns, appended without allocating (interpolation handlers).
 	public void FrameLog(StringBuilder into)
@@ -364,10 +344,10 @@ public partial class Main : Node3D
 		into.Append(ic, $"{f.MoveMs:0.###},{f.NearMs:0.###},{f.PopMs:0.###},{f.DrainMs:0.###},{f.UploadMs:0.###},{f.StepMs:0.###},{World.UpkeepMs:0.###},{World.GenMs:0.###},{Renderer.LastMs:0.###},");
 		into.Append(ic, $"{Renderer.LastPassMs(PassId.Raster):0.###},{Renderer.LastPassMs(PassId.Primary):0.###},{Renderer.LastPassMs(PassId.Temporal):0.###},{World.NearMissing},{World.MidMissing},{World.Redone},");
 		into.Append(ic, $"{gc0 - gcSeen.Gen0},{gc1 - gcSeen.Gen1},{gc2 - gcSeen.Gen2},{Kb(alloc - gcSeen.Alloc):0.###},{Kb(World.StepAllocated):0.###},{Kb(Renderer.ProcessAllocated):0.###},{Kb(Renderer.TakeRenderThreadAllocated()):0.###},{World.Budget:0.###},{Renderer.EffectiveScale:0.###},");
-		into.Append(ic, $"{World.Pressure:0.###},{World.FarRadiusM:0},{World.Shrinks},{World.Grows},{f.Failed},{f.Holes},{f.Incoming},{f.Drained},{f.Pending},{f.Stale},{f.QNear},{f.QMid},{f.QFar},{f.SentNear},{f.SentMid},{f.SentFar},{f.RequeuedFar},{f.FarAge:0.###},{f.FarAgeMax},");
-		var lod = LodShares;
-		into.Append(ic, $"{f.SentLod},{lod.Fallback:0.#####},{lod.Coarse:0.####},{lod.Holes:0.#####},{World.HorizonNowM:0}");
+		into.Append(ic, $"{World.Pressure:0.###},{World.FarRadiusM:0},{World.Shrinks},{World.Grows},{f.Failed},{f.Holes},{f.Incoming},{f.Drained},{f.Pending},{f.Stale},{f.QNear},{f.QMid},{f.QFar},{f.SentNear},{f.SentMid},{f.SentFar},{f.RequeuedFar},{f.FarAge:0.###},{f.FarAgeMax}");
 		for (int p = 0; p < 4; p++) into.Append(ic, $",{World.PoolUsed[p]},{World.PoolHigh[p]},{World.PoolFree[p]},{World.PoolFail[p]}");
+		foreach (var p in Renderer.Passes) into.Append(ic, $",{Renderer.LastPassMs(p.Id):0.###}");
+		foreach (var ms in World.GenPhaseMs) into.Append(ic, $",{ms:0.###}");
 		into.Append('\n');
 		gcSeen = (gc0, gc1, gc2, alloc);
 	}
