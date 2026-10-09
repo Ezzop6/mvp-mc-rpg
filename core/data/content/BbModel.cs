@@ -13,7 +13,7 @@ public sealed record BbCube(float[] From, float[] To, float[] Rotation, Dictiona
 
 public sealed record BbTexture(int UvWidth, int UvHeight, int W, int H, byte[] Rgba);
 
-// Blockbench .bbmodel: 32 units = 1 block, a block spans -16..16 on x and z, 0..32 on y.
+// Blockbench .bbmodel: 32 units = 1 block.
 public sealed record BbModel(BbCube[] Cubes, BbTexture[] Textures, int ElementCount)
 {
 	public const int BlockUnits = 32, FaceTexels = 32;
@@ -42,8 +42,8 @@ public sealed record BbModel(BbCube[] Cubes, BbTexture[] Textures, int ElementCo
 		return new BbModel(cubes, textures, elements.Length);
 	}
 
-	public bool IsFullBlock => ElementCount == 1 && Cubes is [var c] && c.From.SequenceEqual(new float[] { -16, 0, -16 })
-		&& c.To.SequenceEqual(new float[] { 16, BlockUnits, 16 }) && c.Rotation.All(a => a == 0);
+	// One unrotated cube of a block's size; where it sits in the model doesn't matter.
+	public bool IsFullBlock => ElementCount == 1 && Cubes is [var c] && Enumerable.Range(0, 3).All(i => c.To[i] - c.From[i] == BlockUnits) && c.Rotation.All(a => a == 0);
 
 	// The face's UV rectangle, nearest-sampled to FaceTexels^2 RGBA; reversed UVs mirror.
 	public byte[] Cut(BbFace f)

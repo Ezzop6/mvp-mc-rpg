@@ -1,6 +1,20 @@
 {
   "category": "test",
   "entries": [
-    { "id": "base:grass_block_bb", "kind": "cube", "bbmodel": "blocks/solid/grass_block.bbmodel" }
+    {
+      "id": "base:grass_block_bb",
+      "kind": "cube",
+      "bbmodel": "blocks/solid/grass_block.bbmodel"
+    },
+    {
+      "id": "base:water_block_bb",
+      "kind": "cube",
+      "bbmodel": "blocks/fluid/water.bbmodel"
+    },
+    {
+      "id": "base:crystal_block_bb",
+      "kind": "cube",
+      "bbmodel": "blocks/solid/crystal.bbmodel"
+    }
   ]
 }
