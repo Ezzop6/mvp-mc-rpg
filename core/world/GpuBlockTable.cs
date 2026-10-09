@@ -127,11 +127,15 @@ public static class GpuBlockTable
 		return img;
 	}
 
+	// A block texture by name: from memory (.bbmodel faces), else its file.
+	public static Image Texture(Format.ContentSet content, string name) =>
+		content.Images.TryGetValue(name, out var m) ? Image.CreateFromData(m.W, m.H, false, Image.Format.Rgba8, m.Rgba) : Load(ContentPaths.TextureFile(name));
+
 	// Texels: RGBA8 32 -> 1 mip chains of the still textures, a live layer per animation, then the animation tiles.
 	public static Textures Load(BlockRegistry reg)
 	{
 		var names = Layers(reg);
-		var images = names.ToDictionary(n => n, n => Load(ContentPaths.TextureFile(n)));
+		var images = names.ToDictionary(n => n, n => Texture(reg.Content, n));
 		var anims = names.ToDictionary(n => n, n => File.Exists(Global(ContentPaths.TextureMeta(n)))
 			? TextureAnimation.Parse(File.ReadAllText(Global(ContentPaths.TextureMeta(n))), images[n].GetHeight() / images[n].GetWidth()) : null);
 		var faced = names.Where(n => anims[n] == null).Concat(names.Where(n => anims[n] != null)).ToList();

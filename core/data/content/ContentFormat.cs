@@ -57,7 +57,7 @@ public sealed record Entry(string Id, [property: JsonIgnore(Condition = JsonIgno
 	SortedDictionary<string, string> Textures = null, Surface Surface = Surface.Opaque, Tint Tint = null, float Emission = 0,
 	Light Light = null, Orientation Orientation = Orientation.None, SortedDictionary<string, string[]> States = null, string Multiblock = null,
 	string[] Tags = null, SortedDictionary<string, Faces> Cubes = null, LookCase[] Variants = null, LookPart[] Multipart = null,
-	Matter Matter = Matter.Solid, float Density = 0);
+	Matter Matter = Matter.Solid, float Density = 0, string Bbmodel = null);
 
 public sealed record CategoryDef(string Id, string Name, string Parent = null, EntrySource Source = EntrySource.Hand);
 
@@ -84,13 +84,23 @@ public sealed record ContentSet(CategoryDef[] Categories, EntryFile[] Files, Ite
 		Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) },
 	};
 
+	// Face images read from .bbmodel files, by texture name.
+	public Dictionary<string, (int W, int H, byte[] Rgba)> Images { get; init; } = new();
+
 	public IEnumerable<Entry> Entries => Files.SelectMany(f => f.Entries);
 	public IEnumerable<(ItemEntry Item, string Category)> Items => (ItemFiles ?? Array.Empty<ItemFile>()).SelectMany(f => f.Entries.Select(e => (e, f.Category)));
 
-	public static ContentSet Load(string dir) => new(
-		Read<CategoryDef[]>(Path.Combine(dir, CategoriesFile)),
-		Directory.GetFiles(Path.Combine(dir, EntriesDir), "*.json").Order().Select(Read<EntryFile>).ToArray(),
-		Directory.Exists(Path.Combine(dir, ItemsDir)) ? Directory.GetFiles(Path.Combine(dir, ItemsDir), "*.json").Order().Select(Read<ItemFile>).ToArray() : Array.Empty<ItemFile>());
+	public static ContentSet Load(string dir)
+	{
+		var images = new Dictionary<string, (int W, int H, byte[] Rgba)>();
+		string assets = Path.Combine(dir, "..", "..", ContentPaths.Assets);
+		return new(
+			Read<CategoryDef[]>(Path.Combine(dir, CategoriesFile)),
+			Directory.GetFiles(Path.Combine(dir, EntriesDir), "*.json").Order().Select(Read<EntryFile>)
+				.Select(f => f with { Entries = f.Entries.Select(e => e.Bbmodel == null ? e : BbModel.Block(e, assets, images)).ToArray() }).ToArray(),
+			Directory.Exists(Path.Combine(dir, ItemsDir)) ? Directory.GetFiles(Path.Combine(dir, ItemsDir), "*.json").Order().Select(Read<ItemFile>).ToArray() : Array.Empty<ItemFile>())
+		{ Images = images };
+	}
 
 	public void Save(string dir)
 	{

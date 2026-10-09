@@ -5,7 +5,7 @@ namespace Renesance.Content;
 
 public static class ContentPaths
 {
-	public const string Textures = "assets/textures", Packs = "assets/textures/packs", VoxSources = "assets/models/vox",
+	public const string Assets = "assets", Textures = "assets/textures", Packs = "assets/textures/packs", VoxSources = "assets/models/vox",
 		ModelLibrary = "assets/models/library", Structures = "assets/structures";
 	public const string SunTexture = "environment/sun", MoonTexture = "environment/moon_phases";
 	public static readonly string[] SkyTextures = { SunTexture, MoonTexture };

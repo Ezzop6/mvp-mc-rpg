@@ -81,7 +81,7 @@ public partial class Inventory : Control
 	{
 		var b = new Button
 		{
-			Icon = EditorItems.Icon(d), ExpandIcon = true, IconAlignment = HorizontalAlignment.Center,
+			Icon = EditorItems.Icon(registry, d), ExpandIcon = true, IconAlignment = HorizontalAlignment.Center,
 			CustomMinimumSize = new Vector2(72, 72), TooltipText = EditorItems.Tooltip(registry, d), FocusMode = FocusModeEnum.None,
 		};
 		b.Pressed += () => Chosen?.Invoke(d);

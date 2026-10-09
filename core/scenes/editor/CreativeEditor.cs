@@ -87,7 +87,7 @@ public partial class CreativeEditor : CanvasLayer
 	{
 		hotbar[slot] = d;
 		var icon = slots[slot].GetChild<TextureRect>(0);
-		icon.Texture = EditorItems.Icon(d);
+		icon.Texture = EditorItems.Icon(World.Registry, d);
 		slots[slot].TooltipText = EditorItems.Tooltip(World.Registry, d);
 		if (slot == selected) Select(slot);
 	}

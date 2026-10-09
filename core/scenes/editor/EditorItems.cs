@@ -28,30 +28,29 @@ public static class EditorItems
 		string.IsNullOrWhiteSpace(query) || new[] { DisplayName(d), d.Name, CategoryName(registry, d.Category) }
 			.Any(s => s.Contains(query.Trim(), StringComparison.OrdinalIgnoreCase));
 
-	static Image Texture(string name)
+	static Image Texture(BlockRegistry registry, string name)
 	{
-		var img = Image.LoadFromFile(ProjectSettings.GlobalizePath($"res://{ContentPaths.Textures}/{ContentPaths.TextureFile(name)}"));
+		var img = GpuBlockTable.Texture(registry.Content, name);
 		if (img.GetHeight() > img.GetWidth()) img = img.GetRegion(new Rect2I(0, 0, img.GetWidth(), img.GetWidth())); // animated: first frame
-		img.Convert(Image.Format.Rgba8);
 		img.Resize(IconSize, IconSize, Image.Interpolation.Nearest);
 		return img;
 	}
 
 	// The front (else side, else all) face, tinted as in the world: the overlay when the face has one, else the texture.
-	public static Texture2D Icon(BlockDef d)
+	public static Texture2D Icon(BlockRegistry registry, BlockDef d)
 	{
 		if (icons.TryGetValue(d.Id, out var icon)) return icon;
 		if (d.Item?.Layers is [var first, ..] layers)
 		{
-			var sprite = Texture(first);
-			foreach (var layer in layers.Skip(1)) sprite.BlendRect(Texture(layer), new Rect2I(0, 0, IconSize, IconSize), Vector2I.Zero);
+			var sprite = Texture(registry, first);
+			foreach (var layer in layers.Skip(1)) sprite.BlendRect(Texture(registry, layer), new Rect2I(0, 0, IconSize, IconSize), Vector2I.Zero);
 			return icons[d.Id] = ImageTexture.CreateFromImage(sprite);
 		}
 		var e = d.Entry;
 		var face = (e.Faces ?? e.Cubes?.Values.FirstOrDefault())?.Get(Format.FaceDir.Front) ?? new Format.Face(BlockLooks.Particle(e), Tint: true);
 		var tint = face.Tint && e.Tint != null ? new Color(e.Tint.Color) : Colors.White;
-		var img = face.Texture != null ? Texture(face.Texture) : Image.CreateEmpty(IconSize, IconSize, false, Image.Format.Rgba8);
-		var overlay = face.Overlay != null ? Texture(face.Overlay) : null;
+		var img = face.Texture != null ? Texture(registry, face.Texture) : Image.CreateEmpty(IconSize, IconSize, false, Image.Format.Rgba8);
+		var overlay = face.Overlay != null ? Texture(registry, face.Overlay) : null;
 		for (int y = 0; y < IconSize; y++)
 			for (int x = 0; x < IconSize; x++)
 			{
