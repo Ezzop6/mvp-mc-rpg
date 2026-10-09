@@ -8,13 +8,15 @@
     },
     {
       "id": "base:water_block_bb",
-      "kind": "cube",
-      "bbmodel": "blocks/fluid/water.bbmodel"
+      "kind": "liquid",
+      "bbmodel": "blocks/fluid/water.bbmodel",
+      "surface": "translucent"
     },
     {
       "id": "base:crystal_block_bb",
       "kind": "cube",
-      "bbmodel": "blocks/solid/crystal.bbmodel"
+      "bbmodel": "blocks/solid/crystal.bbmodel",
+      "surface": "translucent"
     }
   ]
 }

@@ -61,10 +61,11 @@ public sealed record BbModel(BbCube[] Cubes, BbTexture[] Textures, int ElementCo
 		return o;
 	}
 
-	// A full-block cube entry; face images go to images under "<bbmodel path>#<face>".
+	// A full-block cube or liquid entry (liquid: up -> still, north -> flow); face images go to images under "<bbmodel path>#<face>".
 	public static Entry Block(Entry e, string assetsDir, Dictionary<string, (int W, int H, byte[] Rgba)> images)
 	{
 		var path = Path.Combine(assetsDir, e.Bbmodel);
+		if (e.Kind is not (EntryKind.Cube or EntryKind.Liquid)) throw new InvalidDataException($"{path}: kind {e.Kind} is not supported from .bbmodel");
 		var m = Read(path);
 		if (!m.IsFullBlock) throw new InvalidDataException($"{path}: only a single cube covering the whole block is supported");
 		var faces = new Dictionary<FaceDir, Face>();
@@ -77,10 +78,8 @@ public sealed record BbModel(BbCube[] Cubes, BbTexture[] Textures, int ElementCo
 			faces[dir] = new Face(key, f.Rotation);
 		}
 		Face F(FaceDir d) => faces.GetValueOrDefault(d);
-		return e with
-		{
-			Kind = EntryKind.Cube,
-			Faces = new Faces(Top: F(FaceDir.Top), Bottom: F(FaceDir.Bottom), Front: F(FaceDir.Front), Back: F(FaceDir.Back), Left: F(FaceDir.Left), Right: F(FaceDir.Right)),
-		};
+		if (e.Kind == EntryKind.Liquid)
+			return e with { Textures = new(e.Textures ?? new()) { [BlockLooks.StillTexture] = F(FaceDir.Top)?.Texture, [BlockLooks.FlowTexture] = F(FaceDir.Front)?.Texture } };
+		return e with { Faces = new Faces(Top: F(FaceDir.Top), Bottom: F(FaceDir.Bottom), Front: F(FaceDir.Front), Back: F(FaceDir.Back), Left: F(FaceDir.Left), Right: F(FaceDir.Right)) };
 	}
 }
