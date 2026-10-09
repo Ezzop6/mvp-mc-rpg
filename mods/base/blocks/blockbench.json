@@ -1,0 +1,6 @@
+{
+  "category": "test",
+  "entries": [
+    { "id": "base:grass_block_bb", "kind": "cube", "bbmodel": "blocks/solid/grass_block.bbmodel" }
+  ]
+}
